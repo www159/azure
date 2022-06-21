@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C0D97811-3E3D-42A9-97F7-2C89C1CFE97C}</ProjectGuid>
+    <ProjectGuid>{EE6B3ABB-0CB3-4C42-921F-2F07B7B6F205}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{89a4fe7c-635d-49c9-8d8c-5cd363c0d68d}</TemplateGuid>
     <OutputType>Exe</OutputType>
@@ -138,7 +138,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\azure-m\azure-m.csproj">
-      <Project>{444CCA2E-399E-45C0-AC55-D62DCC3A6A0C}</Project>
+      <Project>{1275BB7C-FFA8-4541-9481-8166CEAB9209}</Project>
       <Name>azure-m</Name>
     </ProjectReference>
   </ItemGroup>

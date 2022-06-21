@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D90E4417-FE24-4EA9-B64F-05F6EECB3B18}</ProjectGuid>
+    <ProjectGuid>{45C70E22-DA84-44EF-B0F3-D1A489E64DB4}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{6968b3a4-1835-46a3-ac5c-1ae33b475983}</TemplateGuid>
     <OutputType>Library</OutputType>
@@ -88,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\azure-m\azure-m.csproj">
-      <Project>{444CCA2E-399E-45C0-AC55-D62DCC3A6A0C}</Project>
+      <Project>{1275BB7C-FFA8-4541-9481-8166CEAB9209}</Project>
       <Name>azure-m</Name>
     </ProjectReference>
   </ItemGroup>
