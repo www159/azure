@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\azure-d",
+    "\\azure-m",
+    "\\azure-mt1"
   ],
-  "SelectedNode": "\\G:\\Users\\21077\\Source\\Repos\\azure",
+  "SelectedNode": "\\azure-mt1\\azure-mt1.sln",
   "PreviewInSolutionExplorer": false
 }

@@ -23,7 +23,7 @@
     </Window.Resources>
     <Grid>
         <StackPanel>
-            <Button Content="Button1" Style="{StaticResource ButtonStyle}" />
+            <Button Content="Button1" Style="{StaticResource ButtonStyle}" Cursor="Hand" />
 
         </StackPanel>
     </Grid>

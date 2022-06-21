@@ -1,0 +1,119 @@
+{
+  "format": 1,
+  "restore": {
+    "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m.Android\\azure-m.Android.csproj": {}
+  },
+  "projects": {
+    "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m.Android\\azure-m.Android.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m.Android\\azure-m.Android.csproj",
+        "projectName": "azure-m.Android",
+        "projectPath": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m.Android\\azure-m.Android.csproj",
+        "packagesPath": "G:\\Users\\21077\\.nuget\\packages\\",
+        "outputPath": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m.Android\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "G:\\Users\\21077\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "monoandroid12.0"
+        ],
+        "sources": {
+          "G:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "monoandroid12.0": {
+            "projectReferences": {
+              "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\azure-m.csproj": {
+                "projectPath": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\azure-m.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "monoandroid12.0": {
+          "dependencies": {
+            "Xamarin.Essentials": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
+            "Xamarin.Forms": {
+              "target": "Package",
+              "version": "[5.0.0.2196, )"
+            }
+          }
+        }
+      }
+    },
+    "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\azure-m.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\azure-m.csproj",
+        "projectName": "azure-m",
+        "projectPath": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\azure-m.csproj",
+        "packagesPath": "G:\\Users\\21077\\.nuget\\packages\\",
+        "outputPath": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "G:\\Users\\21077\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "G:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "Xamarin.Essentials": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
+            "Xamarin.Forms": {
+              "target": "Package",
+              "version": "[5.0.0.2196, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "G:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
