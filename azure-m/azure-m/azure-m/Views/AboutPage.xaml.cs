@@ -3,6 +3,7 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
 namespace azure_m.Views
 {
     public partial class AboutPage : ContentPage
@@ -10,6 +11,11 @@ namespace azure_m.Views
         public AboutPage()
         {
             InitializeComponent();
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }
