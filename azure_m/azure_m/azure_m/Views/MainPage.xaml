@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="azure_m.Views.MainPage"
+             xmlns:vm="clr-namespace:azure_m.ViewModels"
+             Title="主页">
+    
+    <ContentPage.BindingContext>
+        <vm:AboutViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Margin="5,0,5,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--<StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
+                    <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />
+                </ContentView>
+            </StackLayout>
+        </StackLayout>-->
+        <ScrollView Grid.Row="1">
+            <StackLayout Orientation="Vertical" Padding="5,0,5,0" Spacing="10">
+                <Label Text="Azure服务" FontSize="Title"/>
+                <Grid Margin="20,35,20,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.33*" />
+                        <ColumnDefinition Width="0.33*" />
+                        <ColumnDefinition Width="0.33*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.16*" />
+                        <RowDefinition Height="0.16*" />
+                        <RowDefinition Height="0.16*" />
+                        <RowDefinition Height="0.16*" />
+                        <RowDefinition Height="0.16*" />
+                        <RowDefinition Height="0.16*" />
+                    </Grid.RowDefinitions>
+                    <ImageButton Source="add1.png" Grid.Row="0" Grid.Column="0"/>
+                    <Label Text="创建资源" Grid.Row="1" Grid.Column="0"/>
+                    <ImageButton Source="" Grid.Row="0" Grid.Column="1"/>
+                    <ImageButton Source="" Grid.Row="0" Grid.Column="2"/>
+                    <Label Text="订阅" Grid.Row="1" Grid.Column="1"/>
+                    <Label Text="虚拟机" Grid.Row="1" Grid.Column="2"/>
+                    <ImageButton Source="" Grid.Row="2" Grid.Column="0"/>
+                    <ImageButton Source=""   Grid.Row="2" Grid.Column="1"/>
+                    <ImageButton Source=""  Grid.Row="2" Grid.Column="2"/>
+                    <Label Text="仪表盘" Grid.Row="3" Grid.Column="0"/>
+                    <Label Text="Azure Monitor" Grid.Row="3" Grid.Column="1"/>
+                    <Label Text="更多服务" Grid.Row="3" Grid.Column="2"/>
+                </Grid>
+                <!--<Label FontSize="16" Padding="0,24,0,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Learn more at "/>
+                                <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Button Margin="0,10,0,0" Text="Learn more"
+                        Command="{Binding OpenWebCommand}"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White" />-->
+                <Label Text="Resources" FontSize="Title"  />
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>
