@@ -4,7 +4,7 @@
              x:Class="azure_m.Views.AllResourcesPage">
   <ContentPage.Content>
       <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
+           
       </StackLayout>
   </ContentPage.Content>
 </ContentPage>
