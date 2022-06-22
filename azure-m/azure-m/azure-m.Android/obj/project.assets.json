@@ -3172,34 +3172,34 @@
     ]
   },
   "packageFolders": {
-    "G:\\Users\\21077\\.nuget\\packages\\": {}
+    "C:\\Users\\86181\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m.Android\\azure-m.Android.csproj",
+      "projectUniqueName": "D:\\大二下\\暑期实训\\AzureCore\\azure\\azure-m\\azure-m\\azure-m.Android\\azure-m.Android.csproj",
       "projectName": "azure-m.Android",
-      "projectPath": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m.Android\\azure-m.Android.csproj",
-      "packagesPath": "G:\\Users\\21077\\.nuget\\packages\\",
-      "outputPath": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m.Android\\obj\\",
+      "projectPath": "D:\\大二下\\暑期实训\\AzureCore\\azure\\azure-m\\azure-m\\azure-m.Android\\azure-m.Android.csproj",
+      "packagesPath": "C:\\Users\\86181\\.nuget\\packages\\",
+      "outputPath": "D:\\大二下\\暑期实训\\AzureCore\\azure\\azure-m\\azure-m\\azure-m.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "G:\\Users\\21077\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\86181\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "monoandroid12.0"
       ],
       "sources": {
-        "G:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "monoandroid12.0": {
           "projectReferences": {
-            "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\azure-m.csproj": {
-              "projectPath": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\azure-m.csproj"
+            "D:\\大二下\\暑期实训\\AzureCore\\azure\\azure-m\\azure-m\\azure-m\\azure-m.csproj": {
+              "projectPath": "D:\\大二下\\暑期实训\\AzureCore\\azure\\azure-m\\azure-m\\azure-m\\azure-m.csproj"
             }
           }
         }
