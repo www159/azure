@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\azure-d"
+    "\\azure-d",
+    "\\azure-m",
+    "\\azure-m\\azure-m",
+    "\\azure-m\\azure-m\\azure-m",
+    "\\azure-m\\azure-m\\azure-m\\Views"
   ],
+  "SelectedNode": "\\azure-m\\azure-m\\azure-m\\Views\\AboutPage.xaml",
   "PreviewInSolutionExplorer": false
 }
