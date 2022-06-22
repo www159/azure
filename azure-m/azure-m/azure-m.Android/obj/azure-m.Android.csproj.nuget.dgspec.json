@@ -14,8 +14,12 @@
         "outputPath": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m.Android\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "G:\\Users\\21077\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +32,8 @@
         "frameworks": {
           "monoandroid12.0": {
             "projectReferences": {
-              "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\azure-m.csproj": {
-                "projectPath": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\azure-m.csproj"
+              "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\azure_m.csproj": {
+                "projectPath": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\azure_m.csproj"
               }
             }
           }
@@ -50,17 +54,21 @@
         }
       }
     },
-    "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\azure-m.csproj": {
+    "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\azure_m.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\azure-m.csproj",
-        "projectName": "azure-m",
-        "projectPath": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\azure-m.csproj",
+        "projectUniqueName": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\azure_m.csproj",
+        "projectName": "azure_m",
+        "projectPath": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\azure_m.csproj",
         "packagesPath": "G:\\Users\\21077\\.nuget\\packages\\",
         "outputPath": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "G:\\Users\\21077\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -86,6 +94,10 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "dependencies": {
+            "Flurl.Http": {
+              "target": "Package",
+              "version": "[3.2.4, )"
+            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",

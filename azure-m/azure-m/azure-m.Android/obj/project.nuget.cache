@@ -1,10 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "7iWODdRpLkRIRfiHmUmaPdQoczYbm5ogLP81nc5mAuKOyajfPGQR9Kq7ov36uBhw+BiofUkXT9zONkfcdX6GZA==",
+  "dgSpecHash": "aK7CjFEqtzfbN1kqWYDy1PXYyg2EFJQcyc4w1IDGvguAVtJ1fgc09McQyDaDzsSl3wtF63QT/wrBfTQvX5ESqg==",
   "success": true,
   "projectFilePath": "G:\\Users\\21077\\source\\repos\\azure\\azure-m\\azure-m\\azure-m.Android\\azure-m.Android.csproj",
   "expectedPackageFiles": [
+    "G:\\Users\\21077\\.nuget\\packages\\flurl\\3.0.6\\flurl.3.0.6.nupkg.sha512",
+    "G:\\Users\\21077\\.nuget\\packages\\flurl.http\\3.2.4\\flurl.http.3.2.4.nupkg.sha512",
+    "G:\\Users\\21077\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
     "G:\\Users\\21077\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "G:\\Users\\21077\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512",
     "G:\\Users\\21077\\.nuget\\packages\\xamarin.androidx.activity\\1.2.4.1\\xamarin.androidx.activity.1.2.4.1.nupkg.sha512",
     "G:\\Users\\21077\\.nuget\\packages\\xamarin.androidx.annotation\\1.2.0.1\\xamarin.androidx.annotation.1.2.0.1.nupkg.sha512",
     "G:\\Users\\21077\\.nuget\\packages\\xamarin.androidx.annotation.experimental\\1.1.0.1\\xamarin.androidx.annotation.experimental.1.1.0.1.nupkg.sha512",
