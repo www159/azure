@@ -137,7 +137,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\azure-m\azure_m.csproj">
+    <ProjectReference Include="..\azure_m\azure_m.csproj">
       <Project>{F485F160-DB1E-40DB-9044-C0E8487CB3AC}</Project>
       <Name>azure_m</Name>
     </ProjectReference>
