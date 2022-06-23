@@ -36,35 +36,54 @@ namespace azure_m.Views
             //异步 querying datas, 在此期间出现一个刷新标志
         }
 
-        /// <summary>
-        /// 跳转“我的”页面
-        /// </summary>
-        public void OnMy_Clicked(object sender, EventArgs e)
+
+        public void OnMyIcon_Clicked(object sender, EventArgs e)
         {
             //this.Navigation.PushAsync(new MyPage());
+            DisplayAlert("Alert", "My page", "OK");
         }
 
         public void OnSetting_Clicked(object sender, EventArgs e)
         {
             //this.Navigation.PushAsync(new SettingsPage());
+            DisplayAlert("Alert", "SettingPage", "OK");
         }
 
         public void OnAlert_Clicked(object sender, EventArgs e)
         {
             //this.Navigation.PushAsync(new AlertsPage());
+            DisplayAlert("Alert", "AlertPage", "OK");
         }
 
         public void OnAdd_Clicked(object sender, EventArgs e)
         {
-
+            //this.Navigation.PushAsync(new AddPage());
+            DisplayAlert("Alert", "AddPage", "OK");
         }
         public void OnSubscribe_Clicked(object sender, EventArgs e)
         {
-
+            //this.Navigation.PushAsync(new SubscribePage());
+            DisplayAlert("Alert", "SubscribePage", "OK");
         }
         public void OnVM_Clicked(object sender, EventArgs e)
         {
             //Navigation.PushAsync(new VirtualMachinePage());
+            DisplayAlert("Alert", "VMPage", "OK");
+        }
+        public void OnDashboard_Clicked(object sender, EventArgs e)
+        {
+            //Navigation.PushAsync(new DashboardPage());
+            DisplayAlert("Alert", "Dashboard", "OK");
+        }
+        public void OnMonitor_Clicked(object sender, EventArgs e)
+        {
+            //Navigation.PushAsync(new Monitor());
+            DisplayAlert("Alert", "MonitorPage", "OK");
+        }
+        public void OnMoreService_Clicked(object sender, EventArgs e)
+        {
+            //Navigation.PushAsync(new AllService());
+            DisplayAlert("Alert", "AllService", "OK");
         }
 
     }

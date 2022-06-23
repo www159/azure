@@ -9,7 +9,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="Alert" IconImageSource="alert0.png" Clicked="OnAlert_Clicked" />
         <ToolbarItem x:Name="Setting" IconImageSource="setting0.png" Clicked="OnSetting_Clicked" />
-        <ToolbarItem x:Name="My" IconImageSource="user0.png" Clicked="OnMy_Clicked" />
+        <ToolbarItem x:Name="My" IconImageSource="user0.png" Clicked="OnMyIcon_Clicked" />
     </ContentPage.ToolbarItems>
     <!--#endregion-->
     
@@ -49,10 +49,10 @@
                         <RowDefinition Height="50" />
                         <RowDefinition Height="50" />
                     </Grid.RowDefinitions>
-                    <ImageButton Source="add1.png" Grid.Row="0" Grid.Column="0" BackgroundColor="White" Clicked="OnAdd_Btn"/>
+                    <ImageButton Source="add1.png" Grid.Row="0" Grid.Column="0" BackgroundColor="White" Clicked="OnAdd_Clicked"/>
                     <Label Text="创建资源" Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="Center" />
                     <ImageButton Source="subscribe5.png" Grid.Row="0" Grid.Column="1" BackgroundColor="White" 
-                                 WidthRequest="50" Clicked="OnSubscribe_Btn">
+                                 WidthRequest="50" Clicked="OnSubscribe_Clicked">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
@@ -72,14 +72,14 @@
                         </VisualStateManager.VisualStateGroups>
                     </ImageButton>
                     <Label Text="订阅" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" />
-                    <ImageButton Source="vm2" Grid.Row="0" Grid.Column="2" BackgroundColor="White" Clicked="OnVM_Btn"/>
+                    <ImageButton Source="vm2" Grid.Row="0" Grid.Column="2" BackgroundColor="White" Clicked="OnVM_Clicked"/>
                     <Label Text="虚拟机" Grid.Row="1" Grid.Column="2" HorizontalTextAlignment="Center"/>
 
-                    <ImageButton Source="dashboard2.png" Grid.Row="2" Grid.Column="0" BackgroundColor="White" />
+                    <ImageButton Source="dashboard2.png" Grid.Row="2" Grid.Column="0" BackgroundColor="White" Clicked="OnDashboard_Clicked"/>
                     <Label Text="仪表盘" Grid.Row="3" Grid.Column="0" HorizontalTextAlignment="Center" />
-                    <ImageButton Source="monitor2.png"   Grid.Row="2" Grid.Column="1" BackgroundColor="White" />
-                    <Label Text="Azure Monitor" Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="Center" />
-                    <ImageButton Source="more6.png"  Grid.Row="2" Grid.Column="2" BackgroundColor="White" />
+                    <ImageButton Source="monitor2.png"   Grid.Row="2" Grid.Column="1" BackgroundColor="White" Clicked="OnMonitor_Clicked"/>
+                    <Label Text="Azure Monitor" Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="Center"  />
+                    <ImageButton Source="more6.png"  Grid.Row="2" Grid.Column="2" BackgroundColor="White" Clicked="OnMoreService_Clicked"/>
                     <Label Text="更多服务" Grid.Row="3" Grid.Column="2" HorizontalTextAlignment="Center" />
                 </Grid>
                 <!--#endRegion-->
