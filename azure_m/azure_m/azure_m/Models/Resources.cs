@@ -17,7 +17,7 @@ namespace azure_m.Models
     /// 用于所有资源列表
     /// </summary>
     /// <typeparam name="T">虚拟资源，对应虚拟资源类型</typeparam>
-    public class Resources
+    public class Resource
     {
         public string ChangeTime { get; set; }
         public string CreatedTime { get; set; }

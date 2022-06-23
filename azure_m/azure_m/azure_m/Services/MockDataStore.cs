@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace azure_m.Services
 {
-    public class MockDataStore : IDataStore<Item>
+    partial class MockDataStore : IDataStore<Item>
     {
         readonly List<Item> items;
 
