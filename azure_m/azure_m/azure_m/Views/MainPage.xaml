@@ -28,7 +28,7 @@
             </StackLayout>
         </StackLayout>-->
         <ScrollView Grid.Row="1">
-            <StackLayout Orientation="Vertical" Padding="5,0,5,0" Spacing="10"
+            <StackLayout Orientation="Vertical" Padding="5,0,5,0" Spacing="10">
                 <!--#region 服务-->
                 <Label Text="Azure服务" FontSize="Title"/>
                 <Grid Margin="20,0,20,0">
