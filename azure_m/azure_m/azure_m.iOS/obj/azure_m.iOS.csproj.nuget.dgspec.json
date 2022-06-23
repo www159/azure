@@ -105,6 +105,10 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "dependencies": {
+            "Flurl.Http": {
+              "target": "Package",
+              "version": "[3.2.4, )"
+            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
@@ -113,7 +117,7 @@
             },
             "Xamarin.Essentials": {
               "target": "Package",
-              "version": "[1.7.0, )"
+              "version": "[1.7.1, )"
             },
             "Xamarin.Forms": {
               "target": "Package",

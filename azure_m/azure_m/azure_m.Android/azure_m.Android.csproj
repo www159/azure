@@ -1,27 +1,14 @@
-<<<<<<< HEAD
-﻿<?xml version="1.0" encoding="utf-8"?>
-=======
 <?xml version="1.0" encoding="utf-8"?>
->>>>>>> dk
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-<<<<<<< HEAD
     <ProjectGuid>{45C70E22-DA84-44EF-B0F3-D1A489E64DB4}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{6968b3a4-1835-46a3-ac5c-1ae33b475983}</TemplateGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>azure_m.Droid</RootNamespace>
     <AssemblyName>azure-m.Android</AssemblyName>
-=======
-    <ProjectGuid>{B524A553-F67D-4519-84F0-2BAB993B2A02}</ProjectGuid>
-    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TemplateGuid>{6968b3a4-1835-46a3-ac5c-1ae33b475983}</TemplateGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>testJ.Droid</RootNamespace>
-    <AssemblyName>testJ.Android</AssemblyName>
->>>>>>> dk
     <Deterministic>True</Deterministic>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
