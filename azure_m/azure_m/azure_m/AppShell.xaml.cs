@@ -20,11 +20,11 @@ namespace azure_m
             await Shell.Current.GoToAsync("//LoginPage");
         }
 
-        private async void onMenuBtn_Clicked(object sender, EventArgs e)
+        private  void onMenuBtn_Clicked(object sender, EventArgs e)
         {
-            //TODO: 这里修改为侧边栏收回
-            await Shell.Current.GoToAsync("//MainPage");
+             Shell.Current.FlyoutIsPresented = false;
             
+
         }
 
     }
