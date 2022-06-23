@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "G:\\Users\\21077\\source\\repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {}
   },
   "projects": {
@@ -12,14 +13,23 @@
         "projectPath": "G:\\Users\\21077\\source\\repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj",
         "packagesPath": "G:\\Users\\21077\\.nuget\\packages\\",
         "outputPath": "G:\\Users\\21077\\source\\repos\\azure\\azure_m\\azure_m\\azure_m\\obj\\",
+=======
+    "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {}
+  },
+  "projects": {
+    "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj",
+        "projectName": "azure_m",
+        "projectPath": "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj",
+        "packagesPath": "C:\\Users\\wusiye\\.nuget\\packages\\",
+        "outputPath": "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m\\obj\\",
+>>>>>>> VirtualNetwork
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "G:\\Users\\21077\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\wusiye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
@@ -73,7 +83,11 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "G:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+>>>>>>> VirtualNetwork
         }
       }
     }

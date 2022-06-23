@@ -1257,26 +1257,40 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "G:\\Users\\21077\\.nuget\\packages\\": {},
     "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+=======
+    "C:\\Users\\wusiye\\.nuget\\packages\\": {}
+>>>>>>> VirtualNetwork
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "G:\\Users\\21077\\source\\repos\\azure\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
       "projectName": "azure-m.iOS",
       "projectPath": "G:\\Users\\21077\\source\\repos\\azure\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
       "packagesPath": "G:\\Users\\21077\\.nuget\\packages\\",
       "outputPath": "G:\\Users\\21077\\source\\repos\\azure\\azure_m\\azure_m\\azure_m.iOS\\obj\\",
+=======
+      "projectUniqueName": "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
+      "projectName": "azure-m.iOS",
+      "projectPath": "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
+      "packagesPath": "C:\\Users\\wusiye\\.nuget\\packages\\",
+      "outputPath": "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m.iOS\\obj\\",
+>>>>>>> VirtualNetwork
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
-      "fallbackFolders": [
-        "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
+<<<<<<< HEAD
         "G:\\Users\\21077\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+=======
+        "C:\\Users\\wusiye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> VirtualNetwork
       ],
       "originalTargetFrameworks": [
         "xamarinios10"
@@ -1288,8 +1302,13 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
+<<<<<<< HEAD
             "G:\\Users\\21077\\source\\repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {
               "projectPath": "G:\\Users\\21077\\source\\repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj"
+=======
+            "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {
+              "projectPath": "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj"
+>>>>>>> VirtualNetwork
             }
           }
         }

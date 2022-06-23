@@ -120,6 +120,18 @@
         <ShellContent Route="Stars" ContentTemplate="{DataTemplate local:ItemsPage}" Icon="star1.png" />
     </FlyoutItem>
 
+<<<<<<< HEAD
+=======
+    <FlyoutItem Title="虚拟网络" Icon="icon_fee.png">
+        <ShellContent Route="VirtualNetworkPage" ContentTemplate="{DataTemplate local:VirtualNetworkPage}" />
+    </FlyoutItem>
+    <!--<FlyoutItem Title="收藏夹" Icon="star1.png">
+        <ShellContent Route="Stars" ContentTemplate="{DataTemplate local:ItemsPage}" />
+    </FlyoutItem>-->
+    
+    <!--#endregion-->
+    
+>>>>>>> VirtualNetwork
     <FlyoutItem Title="监视器">
         <ShellContent Route="MonitorPage" ContentTemplate="{DataTemplate local:MonitorPage}" />
     </FlyoutItem>

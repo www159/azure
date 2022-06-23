@@ -100,6 +100,7 @@
                     </Grid.RowDefinitions>
                     <Button x:Name="RecentBtn" Text="Recent" FontSize="10" TextColor="white" BorderColor="white" BackgroundColor="#1e6ede" Grid.Column="0" Clicked="onRecentBtn_Clicked"/>
                     <Button x:Name="FavoriteBtn" Text="Favorite" FontSize="10" TextColor="#1e6ede" BorderColor="#1e6ede" BackgroundColor="LightGray" Grid.Column="1" Clicked="onFavoriteBtn_Clicked"/>
+<<<<<<< HEAD
                 </Grid>
 
                 <Grid Margin="20,0,20,0">
@@ -121,6 +122,9 @@
                 </ListView>
                 <Button x:Name="MoreResourceBtn" BackgroundColor="White" Text="查看全部" TextColor="#1e6ede" HorizontalOptions="Start"/>
 
+=======
+                 </Grid>
+>>>>>>> VirtualNetwork
                 <!--#endRegion-->
             </StackLayout>
         </ScrollView>

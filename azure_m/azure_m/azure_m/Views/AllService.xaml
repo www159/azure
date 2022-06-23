@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="azure_m.Views.AllService"
+<<<<<<< HEAD
              xmlns:vm="clr-namespace:azure_m.ViewModels"
              Title="{Binding Title}">
 
@@ -14,6 +15,9 @@
             <Color x:Key="Accent">#96d1ff</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
+=======
+             >
+>>>>>>> VirtualNetwork
 
     <FlexLayout Direction="Column">
         <StackLayout Orientation="Horizontal" HeightRequest="40" Spacing="20" Margin="20">
