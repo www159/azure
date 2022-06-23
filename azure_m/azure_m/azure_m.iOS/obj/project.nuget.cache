@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UJbrwKQCi3un97BscewVCN9+sUm3vFXYSqDs+X2xuEzncHxxKR2zSFJTAqEBQOopM74awbv8vNZ1BG/jVWWa4g==",
+  "dgSpecHash": "qHDPsqWZz97E7w0/K6g9I4hzCbJx6NRTBP+AjtI5RLRpAmL48s2cc+URJoPjBmg0nBeJDZuJpfjiSGvJJ9Ny2A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\董锟的小天地\\resource\\azure-m\\azure-m\\azure-m.iOS\\azure-m.iOS.csproj",
+  "projectFilePath": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\董锟的小天地\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\董锟的小天地\\.nuget\\packages\\xamarin.essentials\\1.7.0\\xamarin.essentials.1.7.0.nupkg.sha512",

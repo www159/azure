@@ -1,9 +1,66 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {}
+    "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj": {}
   },
   "projects": {
+    "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
+        "projectName": "azure-m.iOS",
+        "projectPath": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
+        "packagesPath": "C:\\Users\\董锟的小天地\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m.iOS\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Users\\董锟的小天地\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "xamarinios10"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "xamarinios10": {
+            "projectReferences": {
+              "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {
+                "projectPath": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m\\azure_m.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "xamarinios10": {
+          "dependencies": {
+            "Xamarin.Essentials": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
+            "Xamarin.Forms": {
+              "target": "Package",
+              "version": "[5.0.0.2196, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    },
     "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {
       "version": "1.0.0",
       "restore": {

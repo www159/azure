@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "azure_m.Android", "azure-m\azure-m.Android\azure_m.Android.csproj", "{45C70E22-DA84-44EF-B0F3-D1A489E64DB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "azure_m.Android", "azure_m\azure_m.Android\azure_m.Android.csproj", "{45C70E22-DA84-44EF-B0F3-D1A489E64DB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "azure_m.iOS", "azure-m\azure-m.iOS\azure_m.iOS.csproj", "{EE6B3ABB-0CB3-4C42-921F-2F07B7B6F205}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "azure_m.iOS", "azure_m\azure_m.iOS\azure_m.iOS.csproj", "{EE6B3ABB-0CB3-4C42-921F-2F07B7B6F205}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "azure_m", "azure-m\azure-m\azure_m.csproj", "{F485F160-DB1E-40DB-9044-C0E8487CB3AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "azure_m", "azure_m\azure_m\azure_m.csproj", "{F485F160-DB1E-40DB-9044-C0E8487CB3AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

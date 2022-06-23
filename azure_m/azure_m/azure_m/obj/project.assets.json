@@ -530,11 +530,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\董锟的小天地\\resource\\azure-m\\azure-m\\azure-m\\azure_m.csproj",
+      "projectUniqueName": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m\\azure_m.csproj",
       "projectName": "azure_m",
-      "projectPath": "C:\\Users\\董锟的小天地\\resource\\azure-m\\azure-m\\azure-m\\azure_m.csproj",
+      "projectPath": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m\\azure_m.csproj",
       "packagesPath": "C:\\Users\\董锟的小天地\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\董锟的小天地\\resource\\azure-m\\azure-m\\azure-m\\obj\\",
+      "outputPath": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\董锟的小天地\\AppData\\Roaming\\NuGet\\NuGet.Config",

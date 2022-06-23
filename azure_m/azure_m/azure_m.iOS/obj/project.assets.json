@@ -970,8 +970,8 @@
     },
     "azure_m/1.0.0": {
       "type": "project",
-      "path": "../azure-m/azure_m.csproj",
-      "msbuildProject": "../azure-m/azure_m.csproj"
+      "path": "../azure_m/azure_m.csproj",
+      "msbuildProject": "../azure_m/azure_m.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -987,11 +987,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\董锟的小天地\\resource\\azure-m\\azure-m\\azure-m.iOS\\azure-m.iOS.csproj",
+      "projectUniqueName": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
       "projectName": "azure-m.iOS",
-      "projectPath": "C:\\Users\\董锟的小天地\\resource\\azure-m\\azure-m\\azure-m.iOS\\azure-m.iOS.csproj",
+      "projectPath": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
       "packagesPath": "C:\\Users\\董锟的小天地\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\董锟的小天地\\resource\\azure-m\\azure-m\\azure-m.iOS\\obj\\",
+      "outputPath": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
@@ -1008,8 +1008,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "C:\\Users\\董锟的小天地\\resource\\azure-m\\azure-m\\azure-m\\azure_m.csproj": {
-              "projectPath": "C:\\Users\\董锟的小天地\\resource\\azure-m\\azure-m\\azure-m\\azure_m.csproj"
+            "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {
+              "projectPath": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m\\azure_m.csproj"
             }
           }
         }

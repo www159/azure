@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WF+aqZUG6PxFNKCJ9BYQwdpJqWe/3MsocqkH9mufo/L//ApJs3DO9vpl+2SkNumpIn986SZ6zTA1hqLAc2mhtw==",
+  "dgSpecHash": "ewJ3QFhGUGtL8fwkgOM7vLeMOD/QmvalpQD/8KHXwYeQejOMYbl1T78qnTxa4AvyvKzTHGa47pLqfyNzHy4AEQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\董锟的小天地\\resource\\azure-m\\azure-m\\azure-m\\azure_m.csproj",
+  "projectFilePath": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m\\azure_m.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\董锟的小天地\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\董锟的小天地\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
