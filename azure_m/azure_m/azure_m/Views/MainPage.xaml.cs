@@ -37,7 +37,6 @@ namespace azure_m.Views
             //异步 querying datas, 在此期间出现一个刷新标志
         }
 
-<<<<<<< HEAD
         public void OnMyIcon_Clicked(object sender, EventArgs e)
         {
             //this.Navigation.PushAsync(new MyPage());
@@ -87,7 +86,5 @@ namespace azure_m.Views
             DisplayAlert("Alert", "AllService", "OK");
         }
 
-=======
->>>>>>> VirtualNetwork
     }
 }
