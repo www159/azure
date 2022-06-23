@@ -1,14 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "P7QwCtRHJXc8dfA3vM/smXDtoGVfXOOGwR7ljWOwJRYhIVQeMTBgqEuURrnoYhwonnp/cS5+8maYKRdav8TTEw==",
+  "dgSpecHash": "MqBjD0Czzurva8f09Vq30gBtmyVfl920bkjRi8nHcAglzdtF/c8WMF8KqYJzPBHDZR69A1Qc1y+IWd5RKUXZHw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m.Android\\azure_m.Android.csproj",
+  "projectFilePath": "C:\\Users\\董锟的小天地\\resource\\azure-m\\azure-m\\azure-m.Android\\azure-m.Android.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\董锟的小天地\\.nuget\\packages\\flurl\\3.0.6\\flurl.3.0.6.nupkg.sha512",
-    "C:\\Users\\董锟的小天地\\.nuget\\packages\\flurl.http\\3.2.4\\flurl.http.3.2.4.nupkg.sha512",
-    "C:\\Users\\董锟的小天地\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
     "C:\\Users\\董锟的小天地\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
-    "C:\\Users\\董锟的小天地\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512",
     "C:\\Users\\董锟的小天地\\.nuget\\packages\\xamarin.androidx.activity\\1.2.4.1\\xamarin.androidx.activity.1.2.4.1.nupkg.sha512",
     "C:\\Users\\董锟的小天地\\.nuget\\packages\\xamarin.androidx.annotation\\1.2.0.1\\xamarin.androidx.annotation.1.2.0.1.nupkg.sha512",
     "C:\\Users\\董锟的小天地\\.nuget\\packages\\xamarin.androidx.annotation.experimental\\1.1.0.1\\xamarin.androidx.annotation.experimental.1.1.0.1.nupkg.sha512",

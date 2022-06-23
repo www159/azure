@@ -4,6 +4,6 @@
     <SelectedDevice>Android Emulator</SelectedDevice>
     <SelectedPlatformGroup>Emulator</SelectedPlatformGroup>
     <ActiveDebugProfile>Android Emulator</ActiveDebugProfile>
-    <ProjectView>ShowAllFiles</ProjectView>
+    <DefaultDevice>pixel_5_-_api_30</DefaultDevice>
   </PropertyGroup>
 </Project>

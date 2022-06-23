@@ -3,11 +3,8 @@ public class MonoPackageManager_Resources {
 	public static String[] Assemblies = new String[]{
 		/* We need to ensure that "azure-m.Android.dll" comes first in this list. */
 		"azure-m.Android.dll",
-		"azure_m.dll",
-		"Flurl.dll",
-		"Flurl.Http.dll",
+		"azure-m.dll",
 		"FormsViewGroup.dll",
-		"Newtonsoft.Json.dll",
 		"Xamarin.AndroidX.Activity.dll",
 		"Xamarin.AndroidX.Annotation.dll",
 		"Xamarin.AndroidX.Annotation.Experimental.dll",
