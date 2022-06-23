@@ -29,22 +29,23 @@
         </StackLayout>-->
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="5,0,5,0" Spacing="10">
+                <!--#region 服务-->
                 <Label Text="Azure服务" FontSize="Title"/>
                 <Grid Margin="20,0,20,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.16*" />
-                        <ColumnDefinition Width="0.16*" />
-                        <ColumnDefinition Width="0.16*" />
-                        <ColumnDefinition Width="0.16*" />
-                        <ColumnDefinition Width="0.16*" />
-                        <ColumnDefinition Width="0.16*" />
-                        <ColumnDefinition Width="0.16*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.1*" />
-                        <RowDefinition Height="0.01*" />
-                        <RowDefinition Height="0.1*" />
-                        <RowDefinition Height="0.01*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <ImageButton Source="add1.png" Grid.Row="0" Grid.Column="0" BackgroundColor="White"/>
                     <Label Text="创建资源" Grid.Row="1" Grid.Column="0"/>
@@ -60,20 +61,9 @@
                     <ImageButton Source="more6.png"  Grid.Row="2" Grid.Column="6" BackgroundColor="White"/>
                     <Label Text="更多服务" Grid.Row="3" Grid.Column="6"/>
                 </Grid>
-                <!--<Label FontSize="16" Padding="0,24,0,0">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="Learn more at "/>
-                                <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Button Margin="0,10,0,0" Text="Learn more"
-                        Command="{Binding OpenWebCommand}"
-                        BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" />-->
+                <!--#endRegion-->
+                
+                <!--#region Resources-->
                 <Label Text="Resources" FontSize="Title"  />
                 <Grid Margin="20,0,20,0">
                     <Grid.ColumnDefinitions>
@@ -89,6 +79,7 @@
                     <Button x:Name="RecentBtn" Text="Recent" FontSize="10" TextColor="white" BorderColor="white" BackgroundColor="#1e6ede" Grid.Column="0" Clicked="onRecentBtn_Clicked"/>
                     <Button x:Name="FavoriteBtn" Text="Favorite" FontSize="10" TextColor="#1e6ede" BorderColor="#1e6ede" BackgroundColor="LightGray" Grid.Column="1" Clicked="onFavoriteBtn_Clicked"/>
                  </Grid>
+                <!--#endRegion-->
             </StackLayout>
         </ScrollView>
     </Grid>

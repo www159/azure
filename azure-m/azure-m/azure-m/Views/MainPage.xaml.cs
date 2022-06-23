@@ -19,8 +19,8 @@ namespace azure_m.Views
             RecentBtn.TextColor = FavoriteBtn.TextColor;
             RecentBtn.BorderColor = FavoriteBtn.BorderColor;
             FavoriteBtn.BackgroundColor = (Color)bgc; 
-            FavoriteBtn.BackgroundColor = (Color)tc;
-            FavoriteBtn.BackgroundColor = (Color)bc;
+            FavoriteBtn.TextColor = (Color)tc;
+            FavoriteBtn.BorderColor = (Color)bc;
 
         }
 
