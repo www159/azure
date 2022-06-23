@@ -55,11 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
-<<<<<<< HEAD
     <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
-=======
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
->>>>>>> dk
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -91,7 +87,6 @@
     <AndroidResource Include="Resources\drawable\icon_feed.png" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ProjectReference Include="..\azure_m\azure_m.csproj">
       <Project>{F485F160-DB1E-40DB-9044-C0E8487CB3AC}</Project>
       <Name>azure_m</Name>
@@ -219,18 +214,4 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
-=======
-<<<<<<<< HEAD:testJ/testJ/testJ.Android/testJ.Android.csproj
-    <ProjectReference Include="..\testJ\testJ.csproj">
-      <Project>{8013ACDF-E8D5-48B3-AAC6-253336821821}</Project>
-      <Name>testJ</Name>
-========
-    <ProjectReference Include="..\azure_m\azure_m.csproj">
-      <Project>{F485F160-DB1E-40DB-9044-C0E8487CB3AC}</Project>
-      <Name>azure_m</Name>
->>>>>>>> dk:azure_m/azure_m/azure_m.Android/azure_m.Android.csproj
-    </ProjectReference>
-  </ItemGroup>
- <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
-</Project>
->>>>>>> dk
+
