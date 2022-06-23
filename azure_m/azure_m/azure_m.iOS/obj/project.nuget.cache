@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gLLr86gO8choK91WPLThkdQ3M18eO76PPX6YTF2b6s3JUIsbxe48RMfK6UfH6r2xwRvY3GM2HNs/4UGIgBnC5A==",
+  "dgSpecHash": "Zr2WmcI43htWWz8JYIvXVVcOQwT48D3h4odXVHnGGKSjK7DS9iWj0g35c6EfI5Idw33b6y0pZk3ztWmE2PvKNw==",
   "success": true,
-  "projectFilePath": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
+  "projectFilePath": "G:\\Users\\21077\\source\\repos\\azure\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
   "expectedPackageFiles": [
     "G:\\Users\\21077\\.nuget\\packages\\flurl\\3.0.6\\flurl.3.0.6.nupkg.sha512",
     "G:\\Users\\21077\\.nuget\\packages\\flurl.http\\3.2.4\\flurl.http.3.2.4.nupkg.sha512",

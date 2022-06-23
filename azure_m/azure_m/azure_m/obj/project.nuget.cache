@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VRG3icAGpinBGSSTp6xwKzJp4RjpYhK2OHhGt0pFFpxBhhQ/0rYkVROROg0Vk7YGETMXYzyKFLnslEiad6N5yw==",
+  "dgSpecHash": "vLk2Hb/g/kDdBNVYdjejy5ILMLbeh5hxjQ73qdElwr0KxOwebKbnWa6BumEPIYCdVHYz4zxekPGzEQVaV4EL3Q==",
   "success": true,
-  "projectFilePath": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj",
+  "projectFilePath": "G:\\Users\\21077\\source\\repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj",
   "expectedPackageFiles": [
     "G:\\Users\\21077\\.nuget\\packages\\flurl\\3.0.6\\flurl.3.0.6.nupkg.sha512",
     "G:\\Users\\21077\\.nuget\\packages\\flurl.http\\3.2.4\\flurl.http.3.2.4.nupkg.sha512",

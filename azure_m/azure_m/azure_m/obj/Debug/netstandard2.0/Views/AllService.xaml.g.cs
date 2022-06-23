@@ -8,17 +8,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("azure_m.Views.AllService.xaml", "Views/AllService.xaml", typeof(global::azure_m.Views.AboutPage))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("azure_m.Views.AllService.xaml", "Views/AllService.xaml", typeof(global::azure_m.Views.AllService))]
 
 namespace azure_m.Views {
     
     
     [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\AllService.xaml")]
-    public partial class AboutPage : global::Xamarin.Forms.ContentPage {
+    public partial class AllService : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(AboutPage));
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(AllService));
         }
     }
 }

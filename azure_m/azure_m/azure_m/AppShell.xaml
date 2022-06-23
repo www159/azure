@@ -120,8 +120,6 @@
         <ShellContent Route="Stars" ContentTemplate="{DataTemplate local:ItemsPage}" Icon="star1.png" />
     </FlyoutItem>
 
-    <!--#endregion-->
-    
     <FlyoutItem Title="监视器">
         <ShellContent Route="MonitorPage" ContentTemplate="{DataTemplate local:MonitorPage}" />
     </FlyoutItem>

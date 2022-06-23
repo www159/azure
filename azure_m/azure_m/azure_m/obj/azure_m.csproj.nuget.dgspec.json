@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {}
+    "G:\\Users\\21077\\source\\repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {}
   },
   "projects": {
-    "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {
+    "G:\\Users\\21077\\source\\repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj",
+        "projectUniqueName": "G:\\Users\\21077\\source\\repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj",
         "projectName": "azure_m",
-        "projectPath": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj",
+        "projectPath": "G:\\Users\\21077\\source\\repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj",
         "packagesPath": "G:\\Users\\21077\\.nuget\\packages\\",
-        "outputPath": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m\\obj\\",
+        "outputPath": "G:\\Users\\21077\\source\\repos\\azure\\azure_m\\azure_m\\azure_m\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -25,7 +25,7 @@
           "netstandard2.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "G:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -73,7 +73,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "G:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
