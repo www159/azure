@@ -54,6 +54,18 @@ namespace azure_m.Views
             //this.Navigation.PushAsync(new AlertsPage());
         }
 
+        public void OnAdd_Clicked(object sender, EventArgs e)
+        {
+
+        }
+        public void OnSubscribe_Clicked(object sender, EventArgs e)
+        {
+
+        }
+        public void OnVM_Clicked(object sender, EventArgs e)
+        {
+            //Navigation.PushAsync(new VirtualMachinePage());
+        }
 
     }
 }

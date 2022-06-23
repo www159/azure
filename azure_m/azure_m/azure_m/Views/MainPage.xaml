@@ -49,10 +49,10 @@
                         <RowDefinition Height="50" />
                         <RowDefinition Height="50" />
                     </Grid.RowDefinitions>
-                    <ImageButton Source="add1.png" Grid.Row="0" Grid.Column="0" BackgroundColor="White" />
+                    <ImageButton Source="add1.png" Grid.Row="0" Grid.Column="0" BackgroundColor="White" Clicked="OnAdd_Btn"/>
                     <Label Text="创建资源" Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="Center" />
                     <ImageButton Source="subscribe5.png" Grid.Row="0" Grid.Column="1" BackgroundColor="White" 
-                                 WidthRequest="50">
+                                 WidthRequest="50" Clicked="OnSubscribe_Btn">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
@@ -72,7 +72,7 @@
                         </VisualStateManager.VisualStateGroups>
                     </ImageButton>
                     <Label Text="订阅" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" />
-                    <ImageButton Source="vm2" Grid.Row="0" Grid.Column="2" BackgroundColor="White" />
+                    <ImageButton Source="vm2" Grid.Row="0" Grid.Column="2" BackgroundColor="White" Clicked="OnVM_Btn"/>
                     <Label Text="虚拟机" Grid.Row="1" Grid.Column="2" HorizontalTextAlignment="Center"/>
 
                     <ImageButton Source="dashboard2.png" Grid.Row="2" Grid.Column="0" BackgroundColor="White" />
@@ -114,19 +114,8 @@
                 </Grid>
                 <ListView>
                     <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid Margin="20,0,20,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Text="名称" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
-                                    <Label Text="类型" FontSize="15" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="1"/>
-                                    <Label Text="上次查看" FontSize="15" Grid.Row="0" Grid.Column="2"/>
-                                </Grid>
-                            </ViewCell> 
+                        <DataTemplate >
+
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
