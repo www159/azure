@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("azure-m.Views.MonitorPage.xaml", "Views/MonitorPage.xaml", typeof(global::azure_m.Views.MonitorPage))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("azure_m.Views.MonitorPage.xaml", "Views/MonitorPage.xaml", typeof(global::azure_m.Views.MonitorPage))]
 
 namespace azure_m.Views {
     

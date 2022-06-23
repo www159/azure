@@ -11,8 +11,7 @@ namespace azure_m.Views
         {
             InitializeComponent();
         }
-<<<<<<< HEAD
-=======
+
 
         private void swapBtnColors()
         {
@@ -38,6 +37,6 @@ namespace azure_m.Views
             swapBtnColors();
             //异步 querying datas, 在此期间出现一个刷新标志
         }
->>>>>>> b5e6993588256e3aad7af262862f1720b725f942
+
     }
 }

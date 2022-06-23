@@ -1257,43 +1257,21 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD:azure-m/azure-m/azure-m.iOS/obj/project.assets.json
-    "C:\\Users\\86181\\.nuget\\packages\\": {}
-=======
-    "G:\\Users\\21077\\.nuget\\packages\\": {},
-    "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
->>>>>>> 870fc16871bea5f79261bd739aae3e346d2551f3:azure_m/azure_m/azure_m.iOS/obj/project.assets.json
+    "C:\\Users\\wusiye\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD:azure-m/azure-m/azure-m.iOS/obj/project.assets.json
-      "projectUniqueName": "D:\\大二下\\暑期实训\\AzureCore\\azure\\azure-m\\azure-m\\azure-m.iOS\\azure-m.iOS.csproj",
+      "projectUniqueName": "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
       "projectName": "azure-m.iOS",
-      "projectPath": "D:\\大二下\\暑期实训\\AzureCore\\azure\\azure-m\\azure-m\\azure-m.iOS\\azure-m.iOS.csproj",
-      "packagesPath": "C:\\Users\\86181\\.nuget\\packages\\",
-      "outputPath": "D:\\大二下\\暑期实训\\AzureCore\\azure\\azure-m\\azure-m\\azure-m.iOS\\obj\\",
-=======
-      "projectUniqueName": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
-      "projectName": "azure-m.iOS",
-      "projectPath": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
-      "packagesPath": "G:\\Users\\21077\\.nuget\\packages\\",
-      "outputPath": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m.iOS\\obj\\",
->>>>>>> 870fc16871bea5f79261bd739aae3e346d2551f3:azure_m/azure_m/azure_m.iOS/obj/project.assets.json
+      "projectPath": "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
+      "packagesPath": "C:\\Users\\wusiye\\.nuget\\packages\\",
+      "outputPath": "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
-      "fallbackFolders": [
-        "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-<<<<<<< HEAD:azure-m/azure-m/azure-m.iOS/obj/project.assets.json
-        "C:\\Users\\86181\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\wusiye\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-=======
-        "G:\\Users\\21077\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> 870fc16871bea5f79261bd739aae3e346d2551f3:azure_m/azure_m/azure_m.iOS/obj/project.assets.json
       ],
       "originalTargetFrameworks": [
         "xamarinios10"
@@ -1305,13 +1283,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-<<<<<<< HEAD:azure-m/azure-m/azure-m.iOS/obj/project.assets.json
-            "D:\\大二下\\暑期实训\\AzureCore\\azure\\azure-m\\azure-m\\azure-m\\azure-m.csproj": {
-              "projectPath": "D:\\大二下\\暑期实训\\AzureCore\\azure\\azure-m\\azure-m\\azure-m\\azure-m.csproj"
-=======
-            "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {
-              "projectPath": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj"
->>>>>>> 870fc16871bea5f79261bd739aae3e346d2551f3:azure_m/azure_m/azure_m.iOS/obj/project.assets.json
+            "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {
+              "projectPath": "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj"
             }
           }
         }

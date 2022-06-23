@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {}
+    "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {}
   },
   "projects": {
-    "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {
+    "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj",
+        "projectUniqueName": "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj",
         "projectName": "azure_m",
-        "projectPath": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj",
-        "packagesPath": "G:\\Users\\21077\\.nuget\\packages\\",
-        "outputPath": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m\\obj\\",
+        "projectPath": "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj",
+        "packagesPath": "C:\\Users\\wusiye\\.nuget\\packages\\",
+        "outputPath": "D:\\github_project\\azure\\azure_m\\azure_m\\azure_m\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "G:\\Users\\21077\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\wusiye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
@@ -73,7 +69,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
