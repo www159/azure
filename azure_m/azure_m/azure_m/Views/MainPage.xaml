@@ -5,9 +5,17 @@
              xmlns:vm="clr-namespace:azure_m.ViewModels"
              Title="主页">
     
-    <ContentPage.BindingContext>
+    <!--#region 设置导航栏-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="Alert" IconImageSource="alert0.png" Clicked="OnAlert_Clicked" />
+        <ToolbarItem x:Name="Setting" IconImageSource="setting0.png" Clicked="OnSetting_Clicked" />
+        <ToolbarItem x:Name="My" IconImageSource="user0.png" Clicked="OnMy_Clicked" />
+    </ContentPage.ToolbarItems>
+    <!--#endregion-->
+    
+    <!--<ContentPage.BindingContext>
         <vm:AboutViewModel />
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
     
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -20,51 +28,65 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <!--<StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
-                    <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />
-                </ContentView>
-            </StackLayout>
-        </StackLayout>-->
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="5,0,5,0" Spacing="10">
+                
                 <!--#region 服务-->
                 <Label Text="Azure服务" FontSize="Title"/>
                 <Grid Margin="20,0,20,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
+                        <!--<ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />-->
+                        <ColumnDefinition Width="2*" />
+                        <!--<ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />-->
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
                     </Grid.RowDefinitions>
-                    <ImageButton Source="add1.png" Grid.Row="0" Grid.Column="0" BackgroundColor="White"/>
-                    <Label Text="创建资源" Grid.Row="1" Grid.Column="0"/>
-                    <ImageButton Source="subscribe5.png" Grid.Row="0" Grid.Column="3" BackgroundColor="White"/>
-                    <Label Text="订阅" Grid.Row="1" Grid.Column="3"/>
-                    <ImageButton Source="vm2" Grid.Row="0" Grid.Column="6" BackgroundColor="White"/>
-                    <Label Text="虚拟机" Grid.Row="1" Grid.Column="6"/>
+                    <ImageButton Source="add1.png" Grid.Row="0" Grid.Column="0" BackgroundColor="White" />
+                    <Label Text="创建资源" Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="Center" />
+                    <ImageButton Source="subscribe5.png" Grid.Row="0" Grid.Column="1" BackgroundColor="White" 
+                                 WidthRequest="50">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale"
+                            Value="1" />
+                                    </VisualState.Setters>
+                                </VisualState>
 
-                    <ImageButton Source="dashboard2.png" Grid.Row="2" Grid.Column="0" BackgroundColor="White"/>
-                    <Label Text="仪表盘" Grid.Row="3" Grid.Column="0"/>
-                    <ImageButton Source="monitor2.png"   Grid.Row="2" Grid.Column="3" BackgroundColor="White"/>
-                    <Label Text="Azure Monitor" Grid.Row="3" Grid.Column="3"/>
-                    <ImageButton Source="more6.png"  Grid.Row="2" Grid.Column="6" BackgroundColor="White"/>
-                    <Label Text="更多服务" Grid.Row="3" Grid.Column="6"/>
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale"
+                            Value="0.8" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+                    <Label Text="订阅" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" />
+                    <ImageButton Source="vm2" Grid.Row="0" Grid.Column="2" BackgroundColor="White" />
+                    <Label Text="虚拟机" Grid.Row="1" Grid.Column="2" HorizontalTextAlignment="Center"/>
+
+                    <ImageButton Source="dashboard2.png" Grid.Row="2" Grid.Column="0" BackgroundColor="White" />
+                    <Label Text="仪表盘" Grid.Row="3" Grid.Column="0" HorizontalTextAlignment="Center" />
+                    <ImageButton Source="monitor2.png"   Grid.Row="2" Grid.Column="1" BackgroundColor="White" />
+                    <Label Text="Azure Monitor" Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="Center" />
+                    <ImageButton Source="more6.png"  Grid.Row="2" Grid.Column="2" BackgroundColor="White" />
+                    <Label Text="更多服务" Grid.Row="3" Grid.Column="2" HorizontalTextAlignment="Center" />
                 </Grid>
                 <!--#endRegion-->
                 
                 <!--#region Resources-->
-                <Label Text="Resources" FontSize="Title"  />
+                
+                <Label Text="Resources" FontSize="Title"  Margin="0,40,0,0"/>
                 <Grid Margin="20,0,20,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.11*"/>
@@ -78,7 +100,38 @@
                     </Grid.RowDefinitions>
                     <Button x:Name="RecentBtn" Text="Recent" FontSize="10" TextColor="white" BorderColor="white" BackgroundColor="#1e6ede" Grid.Column="0" Clicked="onRecentBtn_Clicked"/>
                     <Button x:Name="FavoriteBtn" Text="Favorite" FontSize="10" TextColor="#1e6ede" BorderColor="#1e6ede" BackgroundColor="LightGray" Grid.Column="1" Clicked="onFavoriteBtn_Clicked"/>
-                 </Grid>
+                </Grid>
+
+                <Grid Margin="20,0,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="名称" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
+                    <Label Text="类型" FontSize="15" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="1"/>
+                    <Label Text="上次查看" FontSize="15" Grid.Row="0" Grid.Column="2"/>
+                </Grid>
+                <ListView>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Margin="20,0,20,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="名称" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
+                                    <Label Text="类型" FontSize="15" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="1"/>
+                                    <Label Text="上次查看" FontSize="15" Grid.Row="0" Grid.Column="2"/>
+                                </Grid>
+                            </ViewCell> 
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button x:Name="MoreResourceBtn" BackgroundColor="White" Text="查看全部" TextColor="#1e6ede" HorizontalOptions="Start"/>
+
                 <!--#endRegion-->
             </StackLayout>
         </ScrollView>

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:local="clr-namespace:azure_m.Views"
-       Title="azure_m"
-       x:Class="azure_m.AppShell">
+       xmlns:local="clr-namespace:azure_m.Views" xmlns:azure_m="clr-namespace:azure_m" x:DataType="azure_m:AppShell"
+       Title="Azure"
+       Shell.NavBarHasShadow="True"
+       x:Class="azure_m.AppShell"
+       >
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
@@ -83,92 +85,42 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <ImageButton x:Name="MenuBtn" Source="menu1.png" IsEnabled="True" Clicked="onMenuBtn_Clicked"
+            <ImageButton x:Name="MenuBtn" Source="menu1.png" IsEnabled="True" 
                      HeightRequest="50" WidthRequest="50" HorizontalOptions="Start"
                          BackgroundColor="White"
-                         Grid.Column="0" Grid.Row="0"/>
-
+                         Grid.Column="0" Grid.Row="0"
+                         Clicked="onMenuBtn_Clicked"
+                         />
         </Grid>
-        
     </Shell.FlyoutHeader>
-    
+
     <!--#endregion-->
-    
+
     <!--#region FlyoutItems-->
     <!-- 
         When the Flyout is visible this defines the content to display in the flyout.
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-    <FlyoutItem Title="创建资源" Icon="icon_feed.png">
-        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
+    <FlyoutItem Title="创建资源" Icon="add2.png">
+        <ShellContent Route="AddSource" ContentTemplate="{DataTemplate local:ItemsPage}" FlyoutIcon="add2.png" />
     </FlyoutItem>
-    <FlyoutItem Title="主页" Icon="icon_about.png">
-        <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}" />
+    <FlyoutItem Title="主页" Icon="home1.png">
+        <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}" Icon="home1.png"/>
     </FlyoutItem>
-    <FlyoutItem Title="仪表盘" Icon="icon_feed.png">
-        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
+    <FlyoutItem Title="仪表盘" Icon="dashboard2.png">
+        <ShellContent Route="Monitor" ContentTemplate="{DataTemplate local:ItemsPage}" Icon="dashboard2.png" />
     </FlyoutItem>
-    
-    <FlyoutItem Title="所有服务" Icon="icon_feed.png">
-        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
+
+    <FlyoutItem Title="所有服务" Icon="allresources.png">
+        <ShellContent Route="AllResourcesPage" ContentTemplate="{DataTemplate local:AllResourcesPage}" Icon="allresources.png"/>
     </FlyoutItem>
-    
-    <FlyoutItem Title="收藏夹" Icon="icon_feed.png">
-        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
+
+    <FlyoutItem Title="收藏夹" Icon="star1.png" IsEnabled="False">
+        <ShellContent Route="Stars" ContentTemplate="{DataTemplate local:ItemsPage}" Icon="star1.png" />
     </FlyoutItem>
-    <!--<FlyoutItem Title="收藏夹" Icon="star1.png">
-        <ShellContent Route="Stars" ContentTemplate="{DataTemplate local:ItemsPage}" />
-    </FlyoutItem>-->
-    
+
     <!--#endregion-->
-    
-    <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
-    <!--<MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
-    </MenuItem>-->
 
-    <!--
-        TabBar lets you define content that won't show up in a flyout menu. When this content is active
-        the flyout menu won't be available. This is useful for creating areas of the application where 
-        you don't want users to be able to navigate away from. If you would like to navigate to this 
-        content you can do so by calling 
-        await Shell.Current.GoToAsync("//LoginPage");
-    -->
-    <TabBar>
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
-    </TabBar>
-
-    <!-- Optional Templates 
-    // These may be provided inline as below or as separate classes.
-
-    // This header appears at the top of the Flyout.
-    // https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/flyout#flyout-header
-    <Shell.FlyoutHeaderTemplate>
-        <DataTemplate>
-            <Grid>ContentHere</Grid>
-        </DataTemplate>
-    </Shell.FlyoutHeaderTemplate>
-
-    // ItemTemplate is for ShellItems as displayed in a Flyout
-    // https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/flyout#define-flyoutitem-appearance
-    <Shell.ItemTemplate>
-        <DataTemplate>
-            <ContentView>
-                Bindable Properties: Title, Icon
-            </ContentView>
-        </DataTemplate>
-    </Shell.ItemTemplate>
-
-    // MenuItemTemplate is for MenuItems as displayed in a Flyout
-    // https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/flyout#define-menuitem-appearance
-    <Shell.MenuItemTemplate>
-        <DataTemplate>
-            <ContentView>
-                Bindable Properties: Text, Icon
-            </ContentView>
-        </DataTemplate>
-    </Shell.MenuItemTemplate>
-
-    -->
 
 </Shell>

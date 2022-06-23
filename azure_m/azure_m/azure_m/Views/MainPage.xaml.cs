@@ -18,10 +18,9 @@ namespace azure_m.Views
             RecentBtn.BackgroundColor = FavoriteBtn.BackgroundColor;
             RecentBtn.TextColor = FavoriteBtn.TextColor;
             RecentBtn.BorderColor = FavoriteBtn.BorderColor;
-            FavoriteBtn.BackgroundColor = (Color)bgc; 
+            FavoriteBtn.BackgroundColor = (Color)bgc;
             FavoriteBtn.TextColor = (Color)tc;
             FavoriteBtn.BorderColor = (Color)bc;
-
         }
 
         public void onFavoriteBtn_Clicked(object sender, EventArgs e)
@@ -36,5 +35,25 @@ namespace azure_m.Views
             swapBtnColors();
             //异步 querying datas, 在此期间出现一个刷新标志
         }
+
+        /// <summary>
+        /// 跳转“我的”页面
+        /// </summary>
+        public void OnMy_Clicked(object sender, EventArgs e)
+        {
+            //this.Navigation.PushAsync(new MyPage());
+        }
+
+        public void OnSetting_Clicked(object sender, EventArgs e)
+        {
+            //this.Navigation.PushAsync(new SettingsPage());
+        }
+
+        public void OnAlert_Clicked(object sender, EventArgs e)
+        {
+            //this.Navigation.PushAsync(new AlertsPage());
+        }
+
+
     }
 }
