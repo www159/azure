@@ -1,14 +1,27 @@
+<<<<<<< HEAD
 ﻿<?xml version="1.0" encoding="utf-8"?>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+>>>>>>> dk
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+<<<<<<< HEAD
     <ProjectGuid>{45C70E22-DA84-44EF-B0F3-D1A489E64DB4}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{6968b3a4-1835-46a3-ac5c-1ae33b475983}</TemplateGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>azure_m.Droid</RootNamespace>
     <AssemblyName>azure-m.Android</AssemblyName>
+=======
+    <ProjectGuid>{B524A553-F67D-4519-84F0-2BAB993B2A02}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{6968b3a4-1835-46a3-ac5c-1ae33b475983}</TemplateGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>testJ.Droid</RootNamespace>
+    <AssemblyName>testJ.Android</AssemblyName>
+>>>>>>> dk
     <Deterministic>True</Deterministic>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
@@ -55,7 +68,11 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
+<<<<<<< HEAD
     <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
+=======
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+>>>>>>> dk
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -87,6 +104,7 @@
     <AndroidResource Include="Resources\drawable\icon_feed.png" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ProjectReference Include="..\azure_m\azure_m.csproj">
       <Project>{F485F160-DB1E-40DB-9044-C0E8487CB3AC}</Project>
       <Name>azure_m</Name>
@@ -214,3 +232,18 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
+=======
+<<<<<<<< HEAD:testJ/testJ/testJ.Android/testJ.Android.csproj
+    <ProjectReference Include="..\testJ\testJ.csproj">
+      <Project>{8013ACDF-E8D5-48B3-AAC6-253336821821}</Project>
+      <Name>testJ</Name>
+========
+    <ProjectReference Include="..\azure_m\azure_m.csproj">
+      <Project>{F485F160-DB1E-40DB-9044-C0E8487CB3AC}</Project>
+      <Name>azure_m</Name>
+>>>>>>>> dk:azure_m/azure_m/azure_m.Android/azure_m.Android.csproj
+    </ProjectReference>
+  </ItemGroup>
+ <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+</Project>
+>>>>>>> dk

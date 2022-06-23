@@ -87,9 +87,16 @@
     <AndroidResource Include="Resources\drawable\icon_feed.png" />
   </ItemGroup>
   <ItemGroup>
+
     <ProjectReference Include="..\testJ\testJ.csproj">
       <Project>{8013ACDF-E8D5-48B3-AAC6-253336821821}</Project>
       <Name>testJ</Name>
+
+
+    <ProjectReference Include="..\azure_m\azure_m.csproj">
+      <Project>{F485F160-DB1E-40DB-9044-C0E8487CB3AC}</Project>
+      <Name>azure_m</Name>
+
     </ProjectReference>
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

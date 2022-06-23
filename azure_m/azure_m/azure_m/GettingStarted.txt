@@ -9,7 +9,11 @@ This is the most productive way to preview and iteratively create your UI.
 Try it out:
 
 1. Run the app by clicking the Start Debugging (play) button in the above toolbar. 
+<<<<<<< HEAD
 2. Open <MainProject>\Views\MainPage.xaml.
+=======
+2. Open <MainProject>\Views\AboutPage.xaml.
+>>>>>>> dk
    Don't stop the app - keep it running while making changes.
 3. Change something! Hint: change the Accent color on line 14 from "#96d1ff" to "Pink".
 4. Watch the About screen update on the device or emulator, with the logo background now pink.
