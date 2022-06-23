@@ -5,12 +5,20 @@
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
+<<<<<<< HEAD:azure-m/azure-m/azure-m.Android/obj/azure-m.Android.csproj.nuget.g.props
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\86181\.nuget\packages\</NuGetPackageFolders>
+=======
     <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\董锟的小天地\.nuget\packages\</NuGetPackageFolders>
+>>>>>>> 870fc16871bea5f79261bd739aae3e346d2551f3:azure_m/azure_m/azure_m.Android/obj/azure-m.Android.csproj.nuget.g.props
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
     <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.2.1</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+<<<<<<< HEAD:azure-m/azure-m/azure-m.Android/obj/azure-m.Android.csproj.nuget.g.props
+    <SourceRoot Include="C:\Users\86181\.nuget\packages\" />
+=======
     <SourceRoot Include="C:\Users\董锟的小天地\.nuget\packages\" />
+>>>>>>> 870fc16871bea5f79261bd739aae3e346d2551f3:azure_m/azure_m/azure_m.Android/obj/azure-m.Android.csproj.nuget.g.props
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)xamarin.androidx.migration\1.0.8\buildTransitive\monoandroid90\Xamarin.AndroidX.Migration.props" Condition="Exists('$(NuGetPackageRoot)xamarin.androidx.migration\1.0.8\buildTransitive\monoandroid90\Xamarin.AndroidX.Migration.props')" />
