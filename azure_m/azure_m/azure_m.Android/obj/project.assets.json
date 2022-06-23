@@ -1439,7 +1439,7 @@
           "buildTransitive/monoandroid90/Xamarin.AndroidX.ViewPager2.targets": {}
         }
       },
-      "Xamarin.Essentials/1.7.0": {
+      "Xamarin.Essentials/1.7.1": {
         "type": "package",
         "dependencies": {
           "System.Numerics.Vectors": "4.5.0",
@@ -2859,10 +2859,10 @@
         "xamarin.androidx.viewpager2.nuspec"
       ]
     },
-    "Xamarin.Essentials/1.7.0": {
-      "sha512": "xfUJNxtfMC05VBej7fVUg6Zd9VwM2kqW9LH0tcrSA6IsBTl0EsIGkYUOz1BoKT2rseWW8o3kTi5WH/yZV4GgJw==",
+    "Xamarin.Essentials/1.7.1": {
+      "sha512": "u7pUgvHJKTYo5ATiwRZvYviq2O0AQXIqxdna+sMxqidfWpbD7FBgFOLNAZzWKSll/AQBPeDrqLAWZNLq+ztpmQ==",
       "type": "package",
-      "path": "xamarin.essentials/1.7.0",
+      "path": "xamarin.essentials/1.7.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2897,7 +2897,7 @@
         "lib/xamarinwatchos10/Xamarin.Essentials.pdb",
         "lib/xamarinwatchos10/Xamarin.Essentials.xml",
         "readme.txt",
-        "xamarin.essentials.1.7.0.nupkg.sha512",
+        "xamarin.essentials.1.7.1.nupkg.sha512",
         "xamarin.essentials.nuspec"
       ]
     },
@@ -3166,40 +3166,45 @@
   },
   "projectFileDependencyGroups": {
     "MonoAndroid,Version=v12.0": [
-      "Xamarin.Essentials >= 1.7.0",
+      "Xamarin.Essentials >= 1.7.1",
       "Xamarin.Forms >= 5.0.0.2196",
       "azure_m >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\董锟的小天地\\.nuget\\packages\\": {}
+    "G:\\Users\\21077\\.nuget\\packages\\": {},
+    "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m.Android\\azure_m.Android.csproj",
+      "projectUniqueName": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m.Android\\azure_m.Android.csproj",
       "projectName": "azure-m.Android",
-      "projectPath": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m.Android\\azure_m.Android.csproj",
-      "packagesPath": "C:\\Users\\董锟的小天地\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m.Android\\obj\\",
+      "projectPath": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m.Android\\azure_m.Android.csproj",
+      "packagesPath": "G:\\Users\\21077\\.nuget\\packages\\",
+      "outputPath": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
+      "fallbackFolders": [
+        "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\董锟的小天地\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "G:\\Users\\21077\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "monoandroid12.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "G:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "monoandroid12.0": {
           "projectReferences": {
-            "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {
-              "projectPath": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m\\azure_m.csproj"
+            "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {
+              "projectPath": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj"
             }
           }
         }
@@ -3210,7 +3215,7 @@
         "dependencies": {
           "Xamarin.Essentials": {
             "target": "Package",
-            "version": "[1.7.0, )"
+            "version": "[1.7.1, )"
           },
           "Xamarin.Forms": {
             "target": "Package",

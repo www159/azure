@@ -982,34 +982,39 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\董锟的小天地\\.nuget\\packages\\": {}
+    "G:\\Users\\21077\\.nuget\\packages\\": {},
+    "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
+      "projectUniqueName": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
       "projectName": "azure-m.iOS",
-      "projectPath": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
-      "packagesPath": "C:\\Users\\董锟的小天地\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m.iOS\\obj\\",
+      "projectPath": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m.iOS\\azure_m.iOS.csproj",
+      "packagesPath": "G:\\Users\\21077\\.nuget\\packages\\",
+      "outputPath": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
+      "fallbackFolders": [
+        "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\董锟的小天地\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "G:\\Users\\21077\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "xamarinios10"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "G:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {
-              "projectPath": "C:\\Users\\董锟的小天地\\resource\\azure_m\\azure_m\\azure_m\\azure_m.csproj"
+            "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj": {
+              "projectPath": "G:\\Users\\21077\\Source\\Repos\\azure\\azure_m\\azure_m\\azure_m\\azure_m.csproj"
             }
           }
         }
