@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("azure-m.App.xaml", "App.xaml", typeof(global::azure_m.App))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("azure_m.App.xaml", "App.xaml", typeof(global::azure_m.App))]
 
 namespace azure_m {
     
