@@ -14,7 +14,7 @@ namespace azure_m
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+            MainPage = new AllResourcesPage();
         }
 
         protected override void OnStart()

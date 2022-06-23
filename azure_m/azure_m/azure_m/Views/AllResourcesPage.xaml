@@ -2,9 +2,19 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="azure_m.Views.AllResourcesPage">
-  <ContentPage.Content>
-      <StackLayout>
-           
-      </StackLayout>
-  </ContentPage.Content>
+    <ContentPage.Content>
+        <StackLayout>
+            <!--<Frame BorderColor="Black" Padding="5" Margin="5">-->
+                <ScrollView Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal">
+                    <Button Text="创建"/>
+                    <Button Text="刷新"/>
+                    <Button Text="csv"/>
+                    <Button Text="标记"/>
+                    <Button Text="删除"/>
+                </StackLayout>
+                </ScrollView>
+            <!--</Frame>-->
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

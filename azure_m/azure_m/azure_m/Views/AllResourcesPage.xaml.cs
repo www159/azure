@@ -10,6 +10,7 @@ namespace azure_m.Views
         public AllResourcesPage()
         {
             InitializeComponent();
+
         }
     }   
 }

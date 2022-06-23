@@ -104,7 +104,7 @@
         <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
     </FlyoutItem>
     <FlyoutItem Title="主页" Icon="icon_about.png">
-        <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}" />
+        <!--<ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}" />-->
     </FlyoutItem>
     <FlyoutItem Title="仪表盘" Icon="icon_feed.png">
         <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
