@@ -16,7 +16,7 @@ namespace azure_m
 
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<ResourceDataStore>();
-            MainPage = new AllResourcesPage();
+            MainPage = new AppShell();
             //VirtualNetworkPage = new AppShell
         }
 

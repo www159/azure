@@ -15,6 +15,7 @@ namespace azure_m
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
             Routing.RegisterRoute(nameof(VirtualNetworkPage), typeof(VirtualNetworkPage));
             Routing.RegisterRoute(nameof(MonitorPage), typeof(MonitorPage));
+            Routing.RegisterRoute(nameof(AllResourcesPage), typeof(AllResourcesPage)); 
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

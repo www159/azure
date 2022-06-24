@@ -123,6 +123,9 @@
     <FlyoutItem Title="虚拟网络" Icon="icon_fee.png">
         <ShellContent Route="VirtualNetworkPage" ContentTemplate="{DataTemplate local:VirtualNetworkPage}" />
     </FlyoutItem>
+    <FlyoutItem Title="Res" >
+        <ShellContent Route="AllResourcesPage" ContentTemplate="{DataTemplate local:AllResourcesPage}" />
+    </FlyoutItem>
     <!--<FlyoutItem Title="收藏夹" Icon="star1.png">
         <ShellContent Route="Stars" ContentTemplate="{DataTemplate local:ItemsPage}" />
     </FlyoutItem>-->

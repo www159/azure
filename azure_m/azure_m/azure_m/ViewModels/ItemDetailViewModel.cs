@@ -1,4 +1,5 @@
 ﻿using azure_m.Models;
+using azure_m.Services;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace azure_m.ViewModels
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class ItemDetailViewModel : BaseViewModel
     {
+        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
         private string itemId;
         private string text;
         private string description;

@@ -19,11 +19,10 @@ namespace azure_m.Models
     /// <typeparam name="T">虚拟资源，对应虚拟资源类型</typeparam>
     public class Resource
     {
-        public string ChangeTime { get; set; }
-        public string CreatedTime { get; set; }
-        public string Kind { get; set; }
-        public string Location { get; set; }
-        public string ManagedBy { get; set; }
+        public string location { get; set; }
+        public string name { get; set; }
+        public string id { get; set; }
+        public string type { get; set; }
         //public object Properties { get; set; }
         //public string provisioningState { get; set; }
     }
