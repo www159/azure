@@ -8,6 +8,7 @@ namespace azure_m
 {
     public partial class AppShell : Xamarin.Forms.Shell
     {
+
         public AppShell()
         {
             InitializeComponent();
@@ -15,11 +16,7 @@ namespace azure_m
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
             Routing.RegisterRoute(nameof(VirtualNetworkPage), typeof(VirtualNetworkPage));
             Routing.RegisterRoute(nameof(MonitorPage), typeof(MonitorPage));
-        }
-
-        private async void OnMenuItemClicked(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync("//LoginPage");
+            this.CurrentItem = Home;
         }
 
         private  void onMenuBtn_Clicked(object sender, EventArgs e)
@@ -29,5 +26,12 @@ namespace azure_m
 
         }
 
+        private void StarFlyoutItem_Clicked(object sender, EventArgs e)
+        {
+            StarItems.IsVisible = !StarItems.IsVisible;
+            StarItems.IsEnabled = !StarItems.IsEnabled;
+            ///HACK: 通过数据绑定控制这里的ImageSource
+            StarFlyoutItem.IconImageSource = StarFlyoutItem.IconImageSource.ToString().Equals("File: up4.png") ? "down4.png" : "up4.png";
+        }
     }
 }
