@@ -112,14 +112,12 @@
                     <Label Text="类型" FontSize="15" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="1"/>
                     <Label Text="上次查看" FontSize="15" Grid.Row="0" Grid.Column="2"/>
                 </Grid>
-                <ListView>
-                    <ListView.ItemTemplate>
-                        <DataTemplate >
-
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <Button x:Name="MoreResourceBtn" BackgroundColor="White" Text="查看全部" TextColor="#1e6ede" HorizontalOptions="Start"/>
+                <ScrollView>
+                    <StackLayout x:Name="ResourceLayout" Margin="5,0,0,5" >
+                        
+                    </StackLayout>
+                </ScrollView>
+                <Button x:Name="MoreResourceBtn" BackgroundColor="White" Text="查看全部" TextColor="#1e6ede" HorizontalOptions="Start" Clicked="MoreResourceBtn_Clicked"/>
 
                 <!--#endRegion-->
             </StackLayout>

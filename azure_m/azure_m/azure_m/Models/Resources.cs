@@ -24,7 +24,23 @@ namespace azure_m.Models
         public string Kind { get; set; }
         public string Location { get; set; }
         public string ManagedBy { get; set; }
+        public string Name { get; set; }
         //public object Properties { get; set; }
         //public string provisioningState { get; set; }
+
+        public Resource()
+        {
+
+        }
+
+        public Resource(string changeTime, string createdTime, string kind, string location, string managedBy, string name)
+        {
+            ChangeTime = changeTime;
+            CreatedTime = createdTime;
+            Kind = kind;
+            Location = location;
+            ManagedBy = managedBy;
+            Name = name;
+        }
     }
 }
