@@ -16,5 +16,17 @@ public partial class MonitorPage : ContentPage
     {
         InitializeComponent();
     }
-}
+        public async void OnTargetViewClick(object obj,EventArgs e) 
+        {
+            await Navigation.PushAsync(new TargetViewPage());
+        }
+        public async void OnWarnViewClick(object obj, EventArgs e)
+        {
+            await Navigation.PushAsync(new WarnViewPage());
+        }
+        public async void OnLogViewClick(object obj, EventArgs e)
+        {
+            await Navigation.PushAsync(new LogViewPage());
+        }
+    }
 }
