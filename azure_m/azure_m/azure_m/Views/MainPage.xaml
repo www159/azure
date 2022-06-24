@@ -87,15 +87,14 @@
                 <!--#region Resources-->
                 
                 <Label Text="Resources" FontSize="Title"  Margin="0,40,0,0"/>
-                <Grid Margin="20,0,20,0">
+                <Grid Margin="20,0,20,0" ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.11*"/>
-                        <ColumnDefinition Width="0.15*"/>
-                        <ColumnDefinition Width="0.1*"/>
-                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.1*" />
                         <RowDefinition Height="0.1*" />
                     </Grid.RowDefinitions>
                     <Button x:Name="RecentBtn" Text="Recent" FontSize="10" TextColor="white" BorderColor="white" BackgroundColor="#1e6ede" Grid.Column="0" Clicked="onRecentBtn_Clicked"/>

@@ -23,14 +23,18 @@ namespace azure_m.Views
         /// <param name="type">0表示Recent，1表示Favorite</param>
         public void  GetResources(int type = 0)
         {
+            ResourceLayout.Children.Clear();
             List<azure_m.Models.Resource> resources = new List<azure_m.Models.Resource>();
             //查询指定资源，放置在ResourcesLayout中
             //resources = await GetResourcesByApi(type)...
             //resources.sort by type nad name 
 
             ///DEBUG
-            resources.Add(new Resource("1小时前", "", "虚拟机", "jp", "", "vm"));
-            resources.Add(new Resource("2小时前", "", "虚拟机", "jp", "", "vm"));
+            if(type == 0)
+            {
+                resources.Add(new Resource("1小时前", "", "虚拟机", "jp", "", "vm"));
+                resources.Add(new Resource("2小时前", "", "虚拟机", "jp", "", "vm"));
+            }
 
             resources.ForEach(o => {
                 Grid grid = new Grid
@@ -45,9 +49,9 @@ namespace azure_m.Views
                 }
                 };
                 grid.Children.Add(new Image { Source=getSourceByType(o.Kind), HeightRequest=15, VerticalOptions=LayoutOptions.Center},0,0);
-                grid.Children.Add(new Label { Text=o.Name, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center},1,0);
-                grid.Children.Add(new Label { Text = o.Kind, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center},2,0);
-                grid.Children.Add(new Label { Text = o.ChangeTime, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center},3,0);
+                grid.Children.Add(new Label { Text=o.Name, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions=LayoutOptions.Start},1,0);
+                grid.Children.Add(new Label { Text = o.Kind, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions=LayoutOptions.Center},2,0);
+                grid.Children.Add(new Label { Text = o.ChangeTime, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions= LayoutOptions.End},3,0);
 
                 ResourceLayout.Children.Add(grid);
             });
@@ -75,6 +79,7 @@ namespace azure_m.Views
         {
             swapBtnColors();
             //异步 querying datas, 在此期间出现一个刷新标志
+            GetResources(1);
 
         }
 
@@ -82,6 +87,7 @@ namespace azure_m.Views
         {
             swapBtnColors();
             //异步 querying datas, 在此期间出现一个刷新标志
+            GetResources(1);
         }
 
         public void OnMyIcon_Clicked(object sender, EventArgs e)

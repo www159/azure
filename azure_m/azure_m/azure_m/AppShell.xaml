@@ -9,7 +9,7 @@
        >
 
     
-    <Shell.MenuItemTemplate>
+    <!--<Shell.MenuItemTemplate>
         <DataTemplate>
             <Grid ColumnDefinitions="0.2*,0.6*,0.2*">
                 <Image 
@@ -59,7 +59,7 @@
                        HorizontalOptions="Start" />
             </Grid>
         </DataTemplate>
-    </Shell.MenuItemTemplate>
+    </Shell.MenuItemTemplate>-->
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
