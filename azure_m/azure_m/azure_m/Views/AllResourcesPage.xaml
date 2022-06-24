@@ -1,11 +1,19 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="azure_m.Views.AllResourcesPage">
+             x:Class="azure_m.Views.AllResourcesPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:azure_m.ViewModels"
+             xmlns:model="clr-namespace:azure_m.Models">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="test" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <!--<Frame BorderColor="Black" Padding="5" Margin="5">-->
-                <ScrollView Orientation="Horizontal">
+                <ScrollView 
+                    Orientation="Horizontal" 
+                    Margin="20">
                     <StackLayout Orientation="Horizontal">
                     <Button Text="创建"/>
                     <Button Text="刷新"/>
@@ -15,6 +23,38 @@
                 </StackLayout>
                 </ScrollView>
             <!--</Frame>-->
+            <StackLayout
+                HorizontalOptions="Center" 
+                Orientation="Horizontal">
+                <Entry Placeholder="模糊搜索" />
+                <Button Text="筛选器" />
+            </StackLayout>
+            <RefreshView
+                x:DataType="local:ResourceViewModel"
+                Command="{Binding LoadResourcesCommand}"
+                IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                <CollectionView
+                    x:Name="ResourceTabVIew"
+                    ItemsSource="{Binding Resources}"
+                    SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout 
+                                Padding="10" 
+                                x:DataType="model:Resource">
+                                <Frame 
+                                    BackgroundColor="Black"
+                                    Padding="5">
+                                    <Label 
+                                        Text="{Binding id}"
+                                        FontSize="20"/>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>

@@ -17,6 +17,12 @@ namespace azure_m
             Routing.RegisterRoute(nameof(VirtualNetworkPage), typeof(VirtualNetworkPage));
             Routing.RegisterRoute(nameof(MonitorPage), typeof(MonitorPage));
             this.CurrentItem = Home;
+            Routing.RegisterRoute(nameof(AllResourcesPage), typeof(AllResourcesPage)); 
+        }
+
+        private async void OnMenuItemClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//LoginPage");
         }
 
         private  void onMenuBtn_Clicked(object sender, EventArgs e)

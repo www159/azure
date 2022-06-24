@@ -1,4 +1,5 @@
 ﻿using azure_m.Models;
+using azure_m.Services;
 using azure_m.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -11,6 +12,7 @@ namespace azure_m.ViewModels
     public class ItemsViewModel : BaseViewModel
     {
         private Item _selectedItem;
+        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
         public ObservableCollection<Item> Items { get; }
         public Command LoadItemsCommand { get; }
