@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="azure_m.Views.WarnViewPage">
+    <ContentPage.Content>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="180"/>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--上方导航栏-->
+            <Label Grid.Row="1" BackgroundColor="Red"/>
+            <Label  Grid.Row="0"  HeightRequest="45" VerticalOptions="Start" HorizontalOptions="Start"  Margin="90,20,0,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="监视器"  FontSize="34" FontAttributes="Bold"  />
+                        <Span Text=" | 警报" FontSize="34" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="Microsoft" Grid.Row="0"  HeightRequest="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="90,60,0,0" />
+            <Image Source="dashboard2.png" Grid.Row="0" HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,20,0,0"/>
+            <ImageButton Source="add2.png" BackgroundColor="White" Grid.Row="0" HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="20,90,0,0"/>
+            <Label Text="创建" FontSize="20" HeightRequest="40" WidthRequest="100" VerticalOptions="Start" HorizontalOptions="Start" Margin="25,150,0,0"/>
+            <ImageButton Source="add2.png" BackgroundColor="White" Grid.Row="0" HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="120,90,0,0"/>
+            <Label Text="查看" FontSize="20" HeightRequest="40" WidthRequest="100" VerticalOptions="Start" HorizontalOptions="Start" Margin="125,150,0,0"/>
+            <ImageButton Source="add2.png" BackgroundColor="White" Grid.Row="0" HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="220,90,0,0"/>
+            <Label Text="列" FontSize="20" HeightRequest="40" WidthRequest="100" VerticalOptions="Start" HorizontalOptions="Start" Margin="235,150,0,0"/>
+            <ImageButton Source="add2.png" BackgroundColor="White" Grid.Row="0" HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="320,90,0,0"/>
+            <Label Text="刷新" FontSize="20" HeightRequest="40" WidthRequest="100" VerticalOptions="Start" HorizontalOptions="Start" Margin="325,150,0,0"/>
+            <!--第二分区-->
+            <Entry Grid.Row="1" Text="搜索" FontSize="17" VerticalOptions="Start" HorizontalOptions="Start" WidthRequest="200" Margin="20,0,0,0" />
+            <Button Grid.Row="1" Text="添加筛选器" VerticalOptions="Start" HorizontalOptions="Start"  Margin="20,40"/>
+            <Frame BorderColor="Black" Grid.Row="2"></Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
