@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace azure_m.Services
 {
-    partial class MockDataStore: IDataStore<Item>
+    public class ResourceDataStore
     {
         public async Task<Resource[]> GetResourcesAsync(string filter = "", int top = -1)
         {
-            return await QueryInfo.queryList.resources.listResources<Resource[]>(filter, top);
+            return await QueryInfo.queryList.resources.listResources(filter, top);
         }
     }
 }

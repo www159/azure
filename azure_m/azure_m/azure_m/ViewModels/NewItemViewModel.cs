@@ -1,4 +1,5 @@
 ﻿using azure_m.Models;
+using azure_m.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,7 @@ namespace azure_m.ViewModels
 {
     public class NewItemViewModel : BaseViewModel
     {
+        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
         private string text;
         private string description;
 

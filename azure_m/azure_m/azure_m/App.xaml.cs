@@ -3,6 +3,7 @@ using azure_m.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Microsoft.Identity.Client;
 
 namespace azure_m
 {
@@ -14,9 +15,12 @@ namespace azure_m
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
+            DependencyService.Register<ResourceDataStore>();
             MainPage = new AppShell();
-            //VirtualNetworkPage = new AppShell();
+            //VirtualNetworkPage = new AppShell
         }
+
+        
 
         protected override void OnStart()
         {

@@ -13,7 +13,7 @@ namespace azure_m.ViewModels
     public class ResourceViewModel: BaseViewModel
     {
 
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public ResourceDataStore resDataStore => DependencyService.Get<ResourceDataStore>();
         private Resource _selectedResource;
 
         public ObservableCollection<Resource> Resources { get; }
@@ -36,7 +36,18 @@ namespace azure_m.ViewModels
             try
             {
                 Resources.Clear();
-                var resources = await DataStore.GetResourcesAsync();
+                //QueryInfo._token.ToLower();
+                //var resources = await resDataStore.GetResourcesAsync();
+                var resources = new Resource[]
+                {
+                    new Resource
+                    {
+                        id = "1",
+                        name = "1",
+                        location = "1",
+                        type = "1",
+                    }
+                };
                 foreach (var resource in resources)
                 {
                     Resources.Add(resource);
