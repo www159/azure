@@ -174,12 +174,6 @@
         <ShellContent Route="Stars" ContentTemplate="{DataTemplate local:ItemsPage}" Icon="star1.png" />
     </FlyoutItem>
 
-    <FlyoutItem Title="虚拟网络" Icon="icon_fee.png">
-        <ShellContent Route="VirtualNetworkPage" ContentTemplate="{DataTemplate local:VirtualNetworkPage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="Res" >
-        <ShellContent Route="AllResourcesPage" ContentTemplate="{DataTemplate local:AllResourcesPage}" />
-    </FlyoutItem>
     <!--<FlyoutItem Title="收藏夹" Icon="star1.png">
         <ShellContent Route="Stars" ContentTemplate="{DataTemplate local:ItemsPage}" />
     </FlyoutItem>-->
@@ -188,7 +182,7 @@
 
     <!--#region 收藏夹内容-->
     <FlyoutItem x:Name="StarItems" FlyoutDisplayOptions="AsMultipleItems" >
-        <ShellContent Title="所有资源" Route="VirtualNetworkPage" ContentTemplate="{DataTemplate local:VirtualNetworkPage}" />
+        <ShellContent Title="所有资源" Route="AllService" ContentTemplate="{DataTemplate local:AllService}" />
         <ShellContent Title="资源组" Route="VirtualNetworkPage" ContentTemplate="{DataTemplate local:VirtualNetworkPage}" />
         <ShellContent Title="虚拟机" Route="VirtualNetworkPage" ContentTemplate="{DataTemplate local:VirtualNetworkPage}" />
         <ShellContent Title="虚拟网络" Route="VirtualNetworkPage" ContentTemplate="{DataTemplate local:VirtualNetworkPage}" />
