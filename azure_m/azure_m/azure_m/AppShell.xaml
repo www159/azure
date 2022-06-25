@@ -174,9 +174,9 @@
         <ShellContent Route="Stars" ContentTemplate="{DataTemplate local:ItemsPage}" Icon="star1.png" />
     </FlyoutItem>
 
-    <!--<FlyoutItem Title="收藏夹" Icon="star1.png">
-        <ShellContent Route="Stars" ContentTemplate="{DataTemplate local:ItemsPage}" />
-    </FlyoutItem>-->
+
+    <MenuItem x:Name="StarFlyoutItem" Text="收藏夹" Icon="down4.png"  Clicked="StarFlyoutItem_Clicked" >
+    </MenuItem>
     
     
 
