@@ -32,8 +32,8 @@ namespace azure_m.Views
             ///DEBUG
             if(type == 0)
             {
-                resources.Add(new Resource("1小时前", "", "虚拟机", "jp", "", "vm"));
-                resources.Add(new Resource("2小时前", "", "虚拟机", "jp", "", "vm"));
+                resources.Add(new Resource( "jp", "vm", "1", "虚拟机"));
+                resources.Add(new Resource( "jp", "vm", "1", "虚拟机"));
             }
 
             resources.ForEach(o => {
@@ -48,10 +48,10 @@ namespace azure_m.Views
                     new ColumnDefinition { Width = GridLength.Auto }
                 }
                 };
-                grid.Children.Add(new Image { Source=getSourceByType(o.Kind), HeightRequest=15, VerticalOptions=LayoutOptions.Center},0,0);
-                grid.Children.Add(new Label { Text=o.Name, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions=LayoutOptions.Start},1,0);
-                grid.Children.Add(new Label { Text = o.Kind, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions=LayoutOptions.Center},2,0);
-                grid.Children.Add(new Label { Text = o.ChangeTime, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions= LayoutOptions.End},3,0);
+                grid.Children.Add(new Image { Source=getSourceByType(o.type), HeightRequest=15, VerticalOptions=LayoutOptions.Center},0,0);
+                grid.Children.Add(new Label { Text=o.name, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions=LayoutOptions.Start},1,0);
+                grid.Children.Add(new Label { Text = o.type, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions=LayoutOptions.Center},2,0);
+                //grid.Children.Add(new Label { Text = o.ChangeTime, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions= LayoutOptions.End},3,0);
 
                 ResourceLayout.Children.Add(grid);
             });

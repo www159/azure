@@ -26,6 +26,17 @@ namespace azure_m.Models
         //public object Properties { get; set; }
         //public string provisioningState { get; set; }
 
-      
+        public Resource()
+        {
+
+        }
+
+        public Resource(string location, string name, string id, string type)
+        {
+            this.location = location;
+            this.name = name;
+            this.id = id;
+            this.type = type;
+        }
     }
 }
