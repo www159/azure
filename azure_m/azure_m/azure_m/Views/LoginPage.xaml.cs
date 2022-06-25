@@ -15,7 +15,8 @@ namespace azure_m.Views
         public LoginPage()
         {
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
+            this.BindingContext = new LoginViewModel();           
         }
+        
     }
 }

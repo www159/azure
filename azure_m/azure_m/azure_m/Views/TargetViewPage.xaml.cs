@@ -23,7 +23,7 @@ namespace azure_m.Views
             var layout = new StackLayout();
             MainLayout.Children.Add(layout);
             var entry = new Entry 
-            { Text = "图表标题",
+            { Placeholder = "图表标题",
               FontSize=30
             };
             layout.Children.Add(entry);
@@ -40,8 +40,7 @@ namespace azure_m.Views
                 WidthRequest=80,HeightRequest=40,
                 Margin=new Thickness(10,0,0,0),
                 Padding=new Thickness(0,6),
-                BorderColor=Color.Black,
-                BorderWidth=1
+                
             };
             grid.Children.Add(AddTargetbutton);
             //图表选择器（未写触发）
@@ -67,7 +66,7 @@ namespace azure_m.Views
             //保存选择器（未写触发）
             var SaveList = new List<string>();
             SaveList.Add("固定到仪表盘");
-            SaveList.Add("固定到grafna");
+            SaveList.Add("固定到grafana");
             SaveList.Add("发送到工作簿");
             var Savepicker = new Picker
             {
@@ -93,8 +92,7 @@ namespace azure_m.Views
                 HeightRequest = 40,
                 Margin=new Thickness(340,0,0,0),
                 Padding=new Thickness(0,6),
-                BorderColor = Color.Black,
-                BorderWidth = 1
+               
             };
             grid.Children.Add(ImageBtn);
             //图表显示区

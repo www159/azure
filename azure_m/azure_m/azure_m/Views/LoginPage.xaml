@@ -7,8 +7,15 @@
              x:Class="azure_m.Views.LoginPage"
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="400"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Image Source="azure.png" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="250" WidthRequest="600"  />
+            <Label Text="Azure" TextColor="#1e6ede" FontSize="50" HorizontalOptions="Center" VerticalOptions="Center"  Margin="0,120,0,0"  />
+            <Button  x:Name="Btn" Grid.Row="1" BackgroundColor="#1e6ede" VerticalOptions="Center" Text="登录" Margin="0,0,0,0" CornerRadius="20" HorizontalOptions="Center" WidthRequest="120"
+                    />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -6,11 +6,11 @@
         <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="180"/>
-                <RowDefinition Height="120"/>
+                <RowDefinition Height="180"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <!--上方导航栏-->
-            <Label Grid.Row="1" BackgroundColor="Red"/>
+            
             <Label  Grid.Row="0"  HeightRequest="45" VerticalOptions="Start" HorizontalOptions="Start"  Margin="90,20,0,0">
                 <Label.FormattedText>
                     <FormattedString>
@@ -30,9 +30,28 @@
             <ImageButton Source="add2.png" BackgroundColor="White" Grid.Row="0" HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="320,90,0,0"/>
             <Label Text="刷新" FontSize="20" HeightRequest="40" WidthRequest="100" VerticalOptions="Start" HorizontalOptions="Start" Margin="325,150,0,0"/>
             <!--第二分区-->
-            <Entry Grid.Row="1" Text="搜索" FontSize="17" VerticalOptions="Start" HorizontalOptions="Start" WidthRequest="200" Margin="20,0,0,0" />
-            <Button Grid.Row="1" Text="添加筛选器" VerticalOptions="Start" HorizontalOptions="Start"  Margin="20,40"/>
-            <Frame  Grid.Row="2" BorderColor="White"></Frame>
+            <Grid Grid.Row="1">
+                <Entry  Placeholder="搜索" FontSize="17" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="50" WidthRequest="200" Margin="20,0,0,0" />
+                <Button  Text="添加筛选器 +" TextColor="Black" FontSize="17" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="45"  Margin="20,80,0,0" CornerRadius="20"/>
+                <Picker x:Name="Group"
+                                    Title="分组选择"
+                                    TitleColor="Red" FontSize="17" BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="130" HeightRequest="40" Margin="260,80,0,0">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>不进行分组</x:String>
+                            <x:String>按订阅分组</x:String>
+                            <x:String>按资源分组</x:String>
+                            <x:String>按资源名称分组</x:String>
+                            <x:String>按严重性分组</x:String>
+                            <x:String>按监视服务分组</x:String>
+                            <x:String>按用户响应分组</x:String>
+                            <x:String>按警报条件分组</x:String>
+                            <x:String>按名称分组</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </Grid>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

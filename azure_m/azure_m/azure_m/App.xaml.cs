@@ -16,11 +16,11 @@ namespace azure_m
 
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<ResourceDataStore>();
+            //MainPage = new NavigationPage(new AppShell());
             MainPage = new AppShell();
-            //VirtualNetworkPage = new AppShell
-        }
+        }      
 
-        
+
 
         protected override void OnStart()
         {
