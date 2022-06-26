@@ -14,7 +14,7 @@ namespace azure_m.Droid
 {
 	
 	
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.2.4.160")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.3.0.26")]
 	public partial class Resource
 	{
 		
@@ -16739,16 +16739,19 @@ namespace azure_m.Droid
 			public const int tooltip_frame_light = 2131165352;
 			
 			// aapt resource value: 0x7F0700A9
-			public const int user0 = 2131165353;
+			public const int up4 = 2131165353;
 			
 			// aapt resource value: 0x7F0700AA
-			public const int view3 = 2131165354;
+			public const int user0 = 2131165354;
 			
 			// aapt resource value: 0x7F0700AB
-			public const int vm2 = 2131165355;
+			public const int view3 = 2131165355;
 			
 			// aapt resource value: 0x7F0700AC
-			public const int xamarin_logo = 2131165356;
+			public const int vm2 = 2131165356;
+			
+			// aapt resource value: 0x7F0700AD
+			public const int xamarin_logo = 2131165357;
 			
 			static Drawable()
 			{

@@ -32,25 +32,28 @@ namespace azure_m.Views
             ///DEBUG
             if(type == 0)
             {
-                //resources.Add(new Resource("1小时前", "", "虚拟机", "jp", "", "vm"));
-                //resources.Add(new Resource("2小时前", "", "虚拟机", "jp", "", "vm"));
+                resources.Add(new Resource( "jp", "vm", "1", "虚拟机"));
+                resources.Add(new Resource( "jp", "vm", "1", "虚拟机"));
             }
 
             resources.ForEach(o => {
                 Grid grid = new Grid
                 {
+                    Margin = new Thickness(20, 0, 20, 0),
                     HorizontalOptions = LayoutOptions.FillAndExpand,
+                    BackgroundColor = Color.MintCream,
+                    RowSpacing = 10,
                     ColumnDefinitions =
                 {
-                    new ColumnDefinition { Width = GridLength.Auto },
-                    new ColumnDefinition { Width = GridLength.Auto },
-                    new ColumnDefinition { Width = GridLength.Auto },
-                    new ColumnDefinition { Width = GridLength.Auto }
+                    //new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) }
                 }
                 };
-                //grid.Children.Add(new Image { Source=getSourceByType(o.Kind), HeightRequest=15, VerticalOptions=LayoutOptions.Center},0,0);
-                //grid.Children.Add(new Label { Text=o.Name, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions=LayoutOptions.Start},1,0);
-                //grid.Children.Add(new Label { Text = o.Kind, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions=LayoutOptions.Center},2,0);
+                grid.Children.Add(new Image { Source=getSourceByType(o.type), HeightRequest=15, VerticalOptions=LayoutOptions.Start},0,0);
+                grid.Children.Add(new Label { Text=o.name, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions=LayoutOptions.Start},0,0);
+                grid.Children.Add(new Label { Text = o.type, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions=LayoutOptions.Center},1,0);
                 //grid.Children.Add(new Label { Text = o.ChangeTime, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions= LayoutOptions.End},3,0);
 
                 ResourceLayout.Children.Add(grid);
@@ -87,7 +90,7 @@ namespace azure_m.Views
         {
             swapBtnColors();
             //异步 querying datas, 在此期间出现一个刷新标志
-            GetResources(1);
+            GetResources(0);
         }
 
         public void OnMyIcon_Clicked(object sender, EventArgs e)
