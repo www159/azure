@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Newtonsoft.Json;
 
 namespace azure_m.Models
 {
@@ -19,9 +19,13 @@ namespace azure_m.Models
     /// <typeparam name="T">虚拟资源，对应虚拟资源类型</typeparam>
     public class Resource
     {
+        [JsonProperty("location")]
         public string location { get; set; }
+        [JsonProperty("name")]
         public string name { get; set; }
+        [JsonProperty("id")]
         public string id { get; set; }
+        [JsonProperty("type")]
         public string type { get; set; }
         //public object Properties { get; set; }
         //public string provisioningState { get; set; }

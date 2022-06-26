@@ -17,5 +17,16 @@ namespace azure_m.Views
             InitializeComponent();
             this.BindingContext = new LoginViewModel();
         }
+
+        public event EventHandler<string> LoginCompleted;
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            var loginCompleted = LoginCompleted;
+            if(loginCompleted != null)
+            {
+                loginCompleted(this, "funck");
+            }
+        }
     }
 }

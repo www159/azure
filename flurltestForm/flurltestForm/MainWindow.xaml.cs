@@ -18,6 +18,7 @@ using Flurl.Util;
 using Flurl;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using Azure.Identity;
 
 namespace flurltestForm
 {
@@ -29,6 +30,7 @@ namespace flurltestForm
         public MainWindow()
         {
             InitializeComponent();
+            var cred = new 
         }
 
         public async Task<string> GetHttpContentWithToken(string url, string token)
@@ -107,40 +109,40 @@ namespace flurltestForm
             var accounts = await app.GetAccountsAsync();
             var firstAccount = accounts.FirstOrDefault();
 
-            //try
-            //{
-            //    authResult = await app.AcquireTokenSilent(scopes, firstAccount)
-            //        .ExecuteAsync();
-            //}
-            //catch (MsalUiRequiredException ex)
-            //{
-            //    // A MsalUiRequiredException happened on AcquireTokenSilent.
-            //    // This indicates you need to call AcquireTokenInteractive to acquire a token
-            //    System.Diagnostics.Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
+            try
+            {
+                authResult = await app.AcquireTokenSilent(scopes, firstAccount)
+                    .ExecuteAsync();
+            }
+            catch (MsalUiRequiredException ex)
+            {
+                // A MsalUiRequiredException happened on AcquireTokenSilent.
+                // This indicates you need to call AcquireTokenInteractive to acquire a token
+                System.Diagnostics.Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
 
-            //    try
-            //    {
-            //        authResult = await app.AcquireTokenInteractive(scopes)
-            //            .WithAccount(accounts.FirstOrDefault())
-            //            .WithPrompt(Prompt.SelectAccount)
-            //            .ExecuteAsync();
-            //    }
-            //    catch (MsalException msalex)
-            //    {
-            //        ResultText.Text = $"Error Acquiring Token:{System.Environment.NewLine}{msalex}";
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    ResultText.Text = $"Error Acquiring Token Silently:{System.Environment.NewLine}{ex}";
-            //    return;
-            //}
+                try
+                {
+                    authResult = await app.AcquireTokenInteractive(scopes)
+                        .WithAccount(accounts.FirstOrDefault())
+                        .WithPrompt(Prompt.SelectAccount)
+                        .ExecuteAsync();
+                }
+                catch (MsalException msalex)
+                {
+                    ResultText.Text = $"Error Acquiring Token:{System.Environment.NewLine}{msalex}";
+                }
+            }
+            catch (Exception ex)
+            {
+                ResultText.Text = $"Error Acquiring Token Silently:{System.Environment.NewLine}{ex}";
+                return;
+            }
 
             //if (authResult != null)
             //{
-            //ResultText.Text = await GetHttpContentWithToken(graphAPIEndpoint, authResult.AccessToken);
-            var ret = await QueryInfo.queryList.resources.listResources("", -1);
-            ResultText.Text = ret.ToString();
+            ResultText.Text = await GetHttpContentWithToken(graphAPIEndpoint, authResult.AccessToken);
+            //var ret = await QueryInfo.queryList.resources.listResources("", -1);
+            //ResultText.Text = ret.ToString();
             DisplayBasicTokenInfo(authResult);
             this.SignOutButton.Visibility = Visibility.Visible;
             //}
@@ -158,8 +160,7 @@ namespace flurltestForm
         //public static string apiPrefixAd { get { return queryPrefix + subscriptionId; } }
         public static string apiVersionAd { get { return "api-version=" + apiVersion; } }
 
-        public static string _token { get; set; } = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyIsImtpZCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC80NTNkODYyOC0zNDNkLTQ4YjktYjRkOS1jMGE5N2U0YmUzYjcvIiwiaWF0IjoxNjU2MDkzNTM1LCJuYmYiOjE2NTYwOTM1MzUsImV4cCI6MTY1NjA5OTExOSwiYWNyIjoiMSIsImFpbyI6IkFVUUF1LzhUQUFBQWxEZnMxS0ppQ0tKaSszWjZPSUs0WVBqbWw2U3BhV2djMk5EWlVnbzlQUitKQ2gvUEpSRm1JR3oyenhRMVgrWTVUV0tySzVsMUZyWVhLQTgzRTdKVlNnPT0iLCJhbHRzZWNpZCI6IjE6bGl2ZS5jb206MDAwMzQwMDEwMkZERUZBMiIsImFtciI6WyJwd2QiXSwiYXBwaWQiOiJjNDRiNDA4My0zYmIwLTQ5YzEtYjQ3ZC05NzRlNTNjYmRmM2MiLCJhcHBpZGFjciI6IjIiLCJlbWFpbCI6IjIxMDc3OTUyNDRAcXEuY29tIiwiZmFtaWx5X25hbWUiOiJwZXRlciIsImdpdmVuX25hbWUiOiJmdSIsImdyb3VwcyI6WyJjMmRiNzk0My1lNWZiLTQ2YzItYWMyZC0yY2Y0M2VkYTNiMzEiXSwiaWRwIjoibGl2ZS5jb20iLCJpcGFkZHIiOiIxMDMuMTUyLjExMi4xNTAiLCJuYW1lIjoicGV0ZXIgZnUiLCJvaWQiOiJmYWQ1OTE2ZS0xNjk4LTQ5NmMtYmVlNi1iNjMxOTI0Mjc3NWMiLCJwdWlkIjoiMTAwMzIwMDIwNzQ3OTM5MSIsInJoIjoiMC5BVlVBS0lZOVJUMDB1VWkwMmNDcGZrdmp0MFpJZjNrQXV0ZFB1a1Bhd2ZqMk1CT0lBTm8uIiwic2NwIjoidXNlcl9pbXBlcnNvbmF0aW9uIiwic3ViIjoiLXRXcUk5ZDlkX1BmTFFETkZQd3hfUjlRQjNXWWswN25KbzZPdkxyU2ZyUSIsInRpZCI6IjQ1M2Q4NjI4LTM0M2QtNDhiOS1iNGQ5LWMwYTk3ZTRiZTNiNyIsInVuaXF1ZV9uYW1lIjoibGl2ZS5jb20jMjEwNzc5NTI0NEBxcS5jb20iLCJ1dGkiOiJBRnR0UkszX1pFdTJoUHVYbXBBLUFBIiwidmVyIjoiMS4wIiwid2lkcyI6WyI2MmU5MDM5NC02OWY1LTQyMzctOTE5MC0wMTIxNzcxNDVlMTAiXSwieG1zX3RjZHQiOjE2NTU3MDM0NjV9.rPr2cTLbDI8iUfdXPmPAAClP9R-sue_kx3hkNtMaUlWSTrXmm6zC7ZpA-AOvCObG-t-3tS_IvTu9wDV2mYfsfIW1uFBNmP60mphJ4-s34beq3yZQXOnscmUo50hD0IVLWi6RDqow4i5PbZEr3ainBlKg5qv_61XGKLMUi-7vX5QVi6tdmchBxrIyaPheMRP0gAHRlcvwwCFk65fE3Qwk0L32-78sSZjkEDWpyYo5aGWS-qkXLcqnSTHWMAlhnluelNkxMuoOn95GPXYCRspbQ77nj7M1_Z-cUGGF-mCfi9Tgsyd35oanDb-sNLN_G6lleQiGFMYye5kHcWXhIYQLtA";
-        public static IFlurlRequest baseRequest { get; set; } = new Url(apiPrefixAd)
+        public static string _token { get; set; } = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyIsImtpZCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC80NTNkODYyOC0zNDNkLTQ4YjktYjRkOS1jMGE5N2U0YmUzYjcvIiwiaWF0IjoxNjU2MTMzNjAxLCJuYmYiOjE2NTYxMzM2MDEsImV4cCI6MTY1NjEzODg0OCwiYWNyIjoiMSIsImFpbyI6IkFVUUF1LzhUQUFBQWpCNm0reTRsVkQvcVRoWkp1dnN4MVFqZmZad2ZuYzdXWFdXSDJYTnFaalJ4WU5MYzVVVS9KRG9MRUs0aHpnVEhnakFsYi9GMEFKL09lUmlEUW1VMDNRPT0iLCJhbHRzZWNpZCI6IjE6bGl2ZS5jb206MDAwMzQwMDEwMkZERUZBMiIsImFtciI6WyJwd2QiXSwiYXBwaWQiOiJjNDRiNDA4My0zYmIwLTQ5YzEtYjQ3ZC05NzRlNTNjYmRmM2MiLCJhcHBpZGFjciI6IjIiLCJlbWFpbCI6IjIxMDc3OTUyNDRAcXEuY29tIiwiZmFtaWx5X25hbWUiOiJwZXRlciIsImdpdmVuX25hbWUiOiJmdSIsImdyb3VwcyI6WyJjMmRiNzk0My1lNWZiLTQ2YzItYWMyZC0yY2Y0M2VkYTNiMzEiXSwiaWRwIjoibGl2ZS5jb20iLCJpcGFkZHIiOiIxMDMuMTUyLjExMi4xNTAiLCJuYW1lIjoicGV0ZXIgZnUiLCJvaWQiOiJmYWQ1OTE2ZS0xNjk4LTQ5NmMtYmVlNi1iNjMxOTI0Mjc3NWMiLCJwdWlkIjoiMTAwMzIwMDIwNzQ3OTM5MSIsInJoIjoiMC5BVlVBS0lZOVJUMDB1VWkwMmNDcGZrdmp0MFpJZjNrQXV0ZFB1a1Bhd2ZqMk1CT0lBTm8uIiwic2NwIjoidXNlcl9pbXBlcnNvbmF0aW9uIiwic3ViIjoiLXRXcUk5ZDlkX1BmTFFETkZQd3hfUjlRQjNXWWswN25KbzZPdkxyU2ZyUSIsInRpZCI6IjQ1M2Q4NjI4LTM0M2QtNDhiOS1iNGQ5LWMwYTk3ZTRiZTNiNyIsInVuaXF1ZV9uYW1lIjoibGl2ZS5jb20jMjEwNzc5NTI0NEBxcS5jb20iLCJ1dGkiOiI2Y1cxTXlMRk4wT3pMLTE2MmVrUUFBIiwidmVyIjoiMS4wIiwid2lkcyI6WyI2MmU5MDM5NC02OWY1LTQyMzctOTE5MC0wMTIxNzcxNDVlMTAiXSwieG1zX3RjZHQiOjE2NTU3MDM0NjV9.CsUdUvvoaUlx3weuQNpVrnF0DRwkerCGT9nj6LG-ZqucCamO-gnCohhE8Fm6oSF7Mo8JkkaJ7eD-SVJ-ItYhhZlmRvUHJsKpuRhRKCH4rZrVjSn_6kViRIhMhRXtYeAs_QkYOYjgpYLRKDcAqmx4XQ1dlultKTemDDO24EqN7QJNMUoLGENPkN8-xKHmmUa6fXt5z20yrNcWIZaeYkU_FiMRGAA0n9lpJlcN5BV26tu8st1Y60Tm_m-8UCKmimQx4qAHCSURnZhnrLo0-VAYysLuq1PLUCDJSmeduFd71dblGVfAi_m8_eJiMWn8_0XQzzRsY1O__dcO7DbdBxFvWQ";    public static IFlurlRequest baseRequest { get; set; } = new Url(apiPrefixAd)
             .SetQueryParam("api-version", apiVersion)
             .WithOAuthBearerToken(_token);
         public static QueryList queryList { get; set; } = new QueryList();
@@ -200,9 +201,11 @@ namespace flurltestForm
             dynamic res;
             if (filter is "" && top is -1)
             {
+                var ret = await new Url("http://localhost:8080/test/resources").GetStringAsync();
                 //res = await baseRequest.GetStringAsync();
                 //res = JsonConvert.DeserializeObject<IResType<Resource[]>>(res);
                 res = await baseRequest.GetJsonAsync<IResType<Resource[]>>();
+
             }
             else if (filter is "")
             {

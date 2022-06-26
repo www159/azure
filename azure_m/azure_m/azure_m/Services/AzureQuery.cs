@@ -9,7 +9,8 @@ using azure_m.Models;
 using azure_m.Views;
 using System.Diagnostics;
 using Xamarin.Forms;
-
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 namespace azure_m.Services
 {
 
@@ -23,7 +24,7 @@ namespace azure_m.Services
         //public static string apiPrefixAd { get { return queryPrefix + subscriptionId; } }
         public static string apiVersionAd { get { return "api-version=" + apiVersion; } }
 
-        public static string _token { get; set; } = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyIsImtpZCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC80NTNkODYyOC0zNDNkLTQ4YjktYjRkOS1jMGE5N2U0YmUzYjcvIiwiaWF0IjoxNjU2MDkzNTM1LCJuYmYiOjE2NTYwOTM1MzUsImV4cCI6MTY1NjA5OTExOSwiYWNyIjoiMSIsImFpbyI6IkFVUUF1LzhUQUFBQWxEZnMxS0ppQ0tKaSszWjZPSUs0WVBqbWw2U3BhV2djMk5EWlVnbzlQUitKQ2gvUEpSRm1JR3oyenhRMVgrWTVUV0tySzVsMUZyWVhLQTgzRTdKVlNnPT0iLCJhbHRzZWNpZCI6IjE6bGl2ZS5jb206MDAwMzQwMDEwMkZERUZBMiIsImFtciI6WyJwd2QiXSwiYXBwaWQiOiJjNDRiNDA4My0zYmIwLTQ5YzEtYjQ3ZC05NzRlNTNjYmRmM2MiLCJhcHBpZGFjciI6IjIiLCJlbWFpbCI6IjIxMDc3OTUyNDRAcXEuY29tIiwiZmFtaWx5X25hbWUiOiJwZXRlciIsImdpdmVuX25hbWUiOiJmdSIsImdyb3VwcyI6WyJjMmRiNzk0My1lNWZiLTQ2YzItYWMyZC0yY2Y0M2VkYTNiMzEiXSwiaWRwIjoibGl2ZS5jb20iLCJpcGFkZHIiOiIxMDMuMTUyLjExMi4xNTAiLCJuYW1lIjoicGV0ZXIgZnUiLCJvaWQiOiJmYWQ1OTE2ZS0xNjk4LTQ5NmMtYmVlNi1iNjMxOTI0Mjc3NWMiLCJwdWlkIjoiMTAwMzIwMDIwNzQ3OTM5MSIsInJoIjoiMC5BVlVBS0lZOVJUMDB1VWkwMmNDcGZrdmp0MFpJZjNrQXV0ZFB1a1Bhd2ZqMk1CT0lBTm8uIiwic2NwIjoidXNlcl9pbXBlcnNvbmF0aW9uIiwic3ViIjoiLXRXcUk5ZDlkX1BmTFFETkZQd3hfUjlRQjNXWWswN25KbzZPdkxyU2ZyUSIsInRpZCI6IjQ1M2Q4NjI4LTM0M2QtNDhiOS1iNGQ5LWMwYTk3ZTRiZTNiNyIsInVuaXF1ZV9uYW1lIjoibGl2ZS5jb20jMjEwNzc5NTI0NEBxcS5jb20iLCJ1dGkiOiJBRnR0UkszX1pFdTJoUHVYbXBBLUFBIiwidmVyIjoiMS4wIiwid2lkcyI6WyI2MmU5MDM5NC02OWY1LTQyMzctOTE5MC0wMTIxNzcxNDVlMTAiXSwieG1zX3RjZHQiOjE2NTU3MDM0NjV9.rPr2cTLbDI8iUfdXPmPAAClP9R-sue_kx3hkNtMaUlWSTrXmm6zC7ZpA-AOvCObG-t-3tS_IvTu9wDV2mYfsfIW1uFBNmP60mphJ4-s34beq3yZQXOnscmUo50hD0IVLWi6RDqow4i5PbZEr3ainBlKg5qv_61XGKLMUi-7vX5QVi6tdmchBxrIyaPheMRP0gAHRlcvwwCFk65fE3Qwk0L32-78sSZjkEDWpyYo5aGWS-qkXLcqnSTHWMAlhnluelNkxMuoOn95GPXYCRspbQ77nj7M1_Z-cUGGF-mCfi9Tgsyd35oanDb-sNLN_G6lleQiGFMYye5kHcWXhIYQLtA";
+        public static string _token { get; set; } = "EwCIA8l6BAAUkj1NuJYtTVha%2bMogk%2bHEiPbQo04AATKbxvuuGpWneXHKSoiUENnv7jfhrRVyXeQjPQLD4R4Cz0/qH%2bZU2mD0bI8KIfDDeQnMM%2bjajXtlu%2bCg%2bgEoIv7SY4FjhpdW9ZWYdKRJ0GPcxQCl%2bkxEgFtBE/8QGj/xb9nPhWtZzmKQlvqSKZW2CtX0mksd6yxtC8/cVPnw34%2bC051oWPtQ6KcHY3GphIH8seWPP2R/CzRdXlQFLJRV2KgOni1aDFaz2Zqmqc9JrNH4qt4TEi3lLwi4yB4hpc51Tyyw521uZkrStHYh80pPi03eNAht4okysKehMiWLlxXZFNutnOen5Gb%2b%2bJyygKavLB4cIJSX2YaRJMq3g0vvijUDZgAACI5Mc0k8/2TsWALC1LriL7252yAMSZOHolK6VPuijlMcKHa%2btG7dG4AZl9/TwRUxg68wreH4CmVz9mZ5/n/hRD5sxaOvmjkmpdUX7EHARzVwWW7FrOZnOd76UHiHZUgQle9t56Ei6DXjLDY10cWJEs9ExPNE9gyd7wZ7qjKBzMMJMS6wgypfqSFYwYa/azdiBdQqQKxmy%2b2F3W1qZmjeaqg36H4AiUm6R9VrZ/KZE5TG3gCg4HXWvlmy6g0qYATrcK9O2bVOgs9f/tNH2xrWC%2bklGevpEiTvlxOQaH8kAGkKG%2bS7PUxGmvkch3aY38y5VQXRwkmmoM1YvYJzOPyMJ4XcAEeFx2BaU4PrKZ2F9xp4aNzD%2bB07RDpRXWIDwieVIrZWju70cfB/Y4MeMwpVw3L5KE6nh2xihHHCXI4MI3shsLDcsR73P96yZiBA%2buuqASw7DuUIlsbSCSjkhVx0w46DY1FskDQs/F24gYRKhk6PMwdiOGidsw97ocitTlpKnQ%2bVFh5ejY83n%2bOWVe4XUkUSoIR%2bqTUQ4s%2bWlNfbfOU8h%2b39TD0MQuRRUGs6P8%2boqMQ6n6GCiXneitzmhNCAbsSRfYVmVhzVm1pVfv5z4IBtm/%2bZsbxOpelwFzNTrJQrQZza2TsjyfrRKjnoRXQt/7bYG/AQUZAjhPUKw2nUe%2bCqk7GjRXB%2bgrV5Qq3P0uDmxXGRt1gR6HOZkok4FKfK1H%2betChmL3NUA39UPq391/UCCE9tXNFdAya8%2bkEfA2gzc9Jn8ijHmxqZtOufygDaFOTqasPknqWCGUz5EZYpJPJErzBxAg%3d%3d";
         public static IFlurlRequest baseRequest { get; set; } = new Url(apiPrefixAd)
             .SetQueryParam("api-version", apiVersion)
             .WithOAuthBearerToken(_token);
@@ -31,9 +32,9 @@ namespace azure_m.Services
 
         
     }
-    public interface IResponseType<T>
+    public class IResponseType<T>
     {
-        T value { get; set; }
+        public T value { get; set; }
     }
 
     public class QueryList
@@ -52,7 +53,11 @@ namespace azure_m.Services
             IResponseType<Resource[]> res;
             if(filter is "" && top is -1)
             {
-                res = await baseRequest.GetJsonAsync();
+                //res = await baseRequest.GetJsonAsync();
+                //var ret = await new Url("http://localhost:8080/test/resources").GetStringAsync();
+                //res = await new Url("http://localhost:8080/test/resources").GetJsonAsync();
+                //res = JsonConvert.DeserializeObject(res);
+                res = await baseRequest.GetJsonAsync<IResponseType<Resource[]>>();
 
             }
             else if(filter is "")

@@ -36,18 +36,17 @@ namespace azure_m.ViewModels
             try
             {
                 Resources.Clear();
-                //QueryInfo._token.ToLower();
-                //var resources = await resDataStore.GetResourcesAsync();
-                var resources = new Resource[]
-                {
-                    new Resource
-                    {
-                        id = "1",
-                        name = "1",
-                        location = "1",
-                        type = "1",
-                    }
-                };
+                var resources = await resDataStore.GetResourcesAsync();
+                //var resources = new Resource[]
+                //{
+                //    new Resource
+                //    {
+                //        id = "1",
+                //        name = "1",
+                //        location = "1",
+                //        type = "1",
+                //    }
+                //};
                 foreach (var resource in resources)
                 {
                     Resources.Add(resource);

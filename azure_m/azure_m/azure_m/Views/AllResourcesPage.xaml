@@ -29,7 +29,13 @@
                 <Entry Placeholder="模糊搜索" />
                 <Button Text="筛选器" />
             </StackLayout>
-            <RefreshView
+            <StackLayout>
+                <Button 
+                    Text="test api"
+                    Command="{Binding LoadResourcesCommand}"/>
+
+            </StackLayout>
+            <!--<RefreshView
                 x:DataType="local:ResourceViewModel"
                 Command="{Binding LoadResourcesCommand}"
                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
@@ -53,7 +59,7 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </RefreshView>
+            </RefreshView>-->
         </StackLayout>
         
     </ContentPage.Content>

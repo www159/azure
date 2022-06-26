@@ -37,7 +37,7 @@ namespace azure_m
             StarItems.IsVisible = !StarItems.IsVisible;
             StarItems.IsEnabled = !StarItems.IsEnabled;
             ///HACK: 通过数据绑定控制这里的ImageSource
-            StarFlyoutItem.IconImageSource = StarFlyoutItem.IconImageSource.ToString().Equals("File: up4.png") ? "down4.png" : "up4.png";
+            //StarFlyoutItem.IconImageSource = StarFlyoutItem.IconImageSource.ToString().Equals("File: up4.png") ? "down4.png" : "up4.png";
         }
     }
 }
