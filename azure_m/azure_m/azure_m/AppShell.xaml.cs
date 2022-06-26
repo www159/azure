@@ -14,10 +14,10 @@ namespace azure_m
             InitializeComponent();
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
-            Routing.RegisterRoute(nameof(VirtualNetworkPage), typeof(VirtualNetworkPage));
             Routing.RegisterRoute(nameof(MonitorPage), typeof(MonitorPage));
             Routing.RegisterRoute(nameof(AllResourcesPage), typeof(AllResourcesPage)); 
             Routing.RegisterRoute(nameof(AllService), typeof(AllService));
+            Routing.RegisterRoute(nameof(VirtualNetworkPage), typeof(VirtualNetworkPage));
             this.CurrentItem = Home;
         }
 

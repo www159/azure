@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="azure_m.Views.MainPage"
              xmlns:vm="clr-namespace:azure_m.ViewModels"
-             Title="主页">
+             Title="主页"
+             >
     
     <!--#region 设置导航栏-->
     <ContentPage.ToolbarItems>
@@ -113,7 +114,7 @@
                 </Grid>
                 <ScrollView>
                     <StackLayout x:Name="ResourceLayout" Margin="5,0,0,5" >
-                        
+
                     </StackLayout>
                 </ScrollView>
                 <Button x:Name="MoreResourceBtn" BackgroundColor="White" Text="查看全部" TextColor="#1e6ede" HorizontalOptions="Start" Clicked="MoreResourceBtn_Clicked"/>

@@ -39,18 +39,21 @@ namespace azure_m.Views
             resources.ForEach(o => {
                 Grid grid = new Grid
                 {
+                    Margin = new Thickness(20, 0, 20, 0),
                     HorizontalOptions = LayoutOptions.FillAndExpand,
+                    BackgroundColor = Color.MintCream,
+                    RowSpacing = 10,
                     ColumnDefinitions =
                 {
-                    new ColumnDefinition { Width = GridLength.Auto },
-                    new ColumnDefinition { Width = GridLength.Auto },
-                    new ColumnDefinition { Width = GridLength.Auto },
-                    new ColumnDefinition { Width = GridLength.Auto }
+                    //new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) }
                 }
                 };
-                grid.Children.Add(new Image { Source=getSourceByType(o.type), HeightRequest=15, VerticalOptions=LayoutOptions.Center},0,0);
-                grid.Children.Add(new Label { Text=o.name, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions=LayoutOptions.Start},1,0);
-                grid.Children.Add(new Label { Text = o.type, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions=LayoutOptions.Center},2,0);
+                grid.Children.Add(new Image { Source=getSourceByType(o.type), HeightRequest=15, VerticalOptions=LayoutOptions.Start},0,0);
+                grid.Children.Add(new Label { Text=o.name, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions=LayoutOptions.Start},0,0);
+                grid.Children.Add(new Label { Text = o.type, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions=LayoutOptions.Center},1,0);
                 //grid.Children.Add(new Label { Text = o.ChangeTime, HeightRequest=grid.Height, VerticalOptions=LayoutOptions.Center, HorizontalOptions= LayoutOptions.End},3,0);
 
                 ResourceLayout.Children.Add(grid);
@@ -87,7 +90,7 @@ namespace azure_m.Views
         {
             swapBtnColors();
             //异步 querying datas, 在此期间出现一个刷新标志
-            GetResources(1);
+            GetResources(0);
         }
 
         public void OnMyIcon_Clicked(object sender, EventArgs e)
