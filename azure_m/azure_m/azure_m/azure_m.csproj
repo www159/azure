@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.6.0" />
+    <PackageReference Include="Azure.ResourceManager" Version="1.1.1" />
     <PackageReference Include="Flurl.Http" Version="3.2.4" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.45.0" />
     <PackageReference Include="NUnit" Version="3.13.2" />

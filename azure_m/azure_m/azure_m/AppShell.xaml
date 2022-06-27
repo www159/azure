@@ -2,6 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:azure_m.Views" xmlns:azure_m="clr-namespace:azure_m" x:DataType="azure_m:AppShell"
+       Title="Azure"
        Shell.NavBarHasShadow="True"
        
        x:Class="azure_m.AppShell"
@@ -158,7 +159,7 @@
     <FlyoutItem Title="创建资源" Icon="add2.png">
         <ShellContent Route="AddSource" ContentTemplate="{DataTemplate local:ItemsPage}" FlyoutIcon="add2.png" />
     </FlyoutItem>
-    <FlyoutItem x:Name="Home" Title="主页" Icon="home1.png" >
+    <FlyoutItem x:Name="Home" Title="主页" Icon="home1.png">
         <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}" Icon="home1.png"/>
     </FlyoutItem>
     <FlyoutItem Title="仪表盘" Icon="dashboard2.png">
@@ -166,7 +167,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="所有服务" Icon="allresources.png">
-        <ShellContent Route="AllResourcesPage" ContentTemplate="{DataTemplate local:AllResourcesPage}" Icon="allresources.png"/>
+        <ShellContent Route="AllServidcePage" ContentTemplate="{DataTemplate local:AllServicePage}" Icon="allresources.png"/>
     </FlyoutItem>
 
     <FlyoutItem Title="收藏夹" Icon="star1.png" IsEnabled="False">
@@ -181,7 +182,7 @@
 
     <!--#region 收藏夹内容-->
     <FlyoutItem x:Name="StarItems" FlyoutDisplayOptions="AsMultipleItems" >
-        <ShellContent Title="所有资源" Route="AllService" ContentTemplate="{DataTemplate local:AllService}" />
+        <ShellContent Title="所有资源" Route="AllResourcesPage" ContentTemplate="{DataTemplate local:AllResourcesPage}" />
         <ShellContent Title="资源组" Route="VirtualNetworkPage" ContentTemplate="{DataTemplate local:VirtualNetworkPage}" />
         <ShellContent Title="虚拟机" Route="VirtualNetworkPage" ContentTemplate="{DataTemplate local:VirtualNetworkPage}" />
         <ShellContent Title="虚拟网络" Route="VirtualNetworkPage" ContentTemplate="{DataTemplate local:VirtualNetworkPage}" />

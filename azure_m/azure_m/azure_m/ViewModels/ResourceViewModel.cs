@@ -36,7 +36,7 @@ namespace azure_m.ViewModels
             try
             {
                 Resources.Clear();
-                var resources = await resDataStore.GetResourcesAsync();
+                //var resources = await resDataStore.GetResourcesAsync();
                 //var resources = new Resource[]
                 //{
                 //    new Resource
@@ -47,10 +47,10 @@ namespace azure_m.ViewModels
                 //        type = "1",
                 //    }
                 //};
-                foreach (var resource in resources)
-                {
-                    Resources.Add(resource);
-                }
+                //foreach (var resource in resources)
+                //{
+                //    Resources.Add(resource);
+                //}
             }
             catch(Exception ex)
             {

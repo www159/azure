@@ -8,9 +8,9 @@ namespace azure_m.Services
 {
     public class ResourceDataStore
     {
-        public async Task<Resource[]> GetResourcesAsync(string filter = "", int top = -1)
-        {
-            return await QueryInfo.queryList.resources.listResources(filter, top);
-        }
+        //public async Task<Resource[]> GetResourcesAsync(string filter = "", int top = -1)
+        //{
+        //    return await QueryInfo.queryList.resources.listResources(filter, top);
+        //}
     }
 }

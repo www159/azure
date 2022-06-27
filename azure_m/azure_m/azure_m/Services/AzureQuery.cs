@@ -11,6 +11,11 @@ using System.Diagnostics;
 using Xamarin.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+
+using Azure.Core;
+using Azure.Identity;
+using Azure.ResourceManager;
+
 namespace azure_m.Services
 {
 
@@ -18,7 +23,6 @@ namespace azure_m.Services
     public static class QueryInfo
     {
         public const string queryPrefix = "https://management.azure.com/subscriptions/";
-        public static string subscriptionId = "219b2431-594f-47fa-8e85-664196aa3f92";
         public const string apiVersion = "2021-04-01";
         public static string apiPrefixAd = queryPrefix + subscriptionId;
         //public static string apiPrefixAd { get { return queryPrefix + subscriptionId; } }
@@ -30,12 +34,61 @@ namespace azure_m.Services
             .WithOAuthBearerToken(_token);
         public static QueryList queryList { get; set; } = new QueryList();
 
-        
+        public static class Envs
+        {
+            public static string clientId => "AZURE_CLIENT_ID";
+            public static string tenantId => "AZURE_TENANT_ID";
+            public static string secret => "AZURE_CLIENT_SECRET";
+        }
+
+        public static string clientId { get; set; } = "05ef5f8a-169a-462a-a19a-c1f32a506780";
+        public static string tenantId { get; set; } = "453d8628-343d-48b9-b4d9-c0a97e4be3b7";
+        public static string secret { get; set; } = "sBZ8Q~Uf0Ov6gtSdPx2ViIq1uP4gpt8AwQTucaKe";
+        public static string subscriptionId { get; set; } = "219b2431-594f-47fa-8e85-664196aa3f92";
+
+        public static TokenCredential credential { get; set; }
+        public static ArmClient armClient { get; set; }
+
+        private static void checkInProdEnv()
+        {
+            if(
+                Environment.GetEnvironmentVariable(Envs.clientId) is null ||
+                Environment.GetEnvironmentVariable(Envs.tenantId) is null ||
+                Environment.GetEnvironmentVariable(Envs.secret)   is null)
+            {
+                throw new Exception("no env var set");
+            }
+        }
+        /// <summary>
+        /// 新的接口实现
+        /// </summary>
+        public static async Task initEnv()
+        {
+            Environment.SetEnvironmentVariable(Envs.clientId, clientId);
+            Environment.SetEnvironmentVariable(Envs.tenantId, tenantId);
+            Environment.SetEnvironmentVariable(Envs.secret, secret);
+            try
+            {
+                checkInProdEnv();
+                credential = new DefaultAzureCredential();
+                armClient = new ArmClient(credential);
+                var subscription = await armClient.GetDefaultSubscriptionAsync();
+            }
+            catch (Exception ex)
+            {
+                Utils.error(ex);
+            }
+        }
     }
-    public class IResponseType<T>
+
+    public class AzureClient
     {
-        public T value { get; set; }
+        public ArmClient resourceClient;
     }
+    //public class IResponseType<T>
+    //{
+    //    public T value { get; set; }
+    //}
 
     public class QueryList
     {
@@ -46,44 +99,49 @@ namespace azure_m.Services
 
     public class ResourcesQuery
     {
+
+        //public async Task<Resource[]> listResources()
+        //{
+
+        //}
         //IFlurlRequest baseRequest = new FlurlRequest();
-        IFlurlRequest baseRequest = QueryInfo.baseRequest.AppendPathSegment("resources");
-        public async Task<Resource[]> listResources(string filter, int top)
-        {
-            IResponseType<Resource[]> res;
-            if(filter is "" && top is -1)
-            {
-                //res = await baseRequest.GetJsonAsync();
-                //var ret = await new Url("http://localhost:8080/test/resources").GetStringAsync();
-                //res = await new Url("http://localhost:8080/test/resources").GetJsonAsync();
-                //res = JsonConvert.DeserializeObject(res);
-                res = await baseRequest.GetJsonAsync<IResponseType<Resource[]>>();
+        //    IFlurlRequest baseRequest = QueryInfo.baseRequest.AppendPathSegment("resources");
+        //    public async Task<Resource[]> listResources(string filter, int top)
+        //    {
+        //        IResponseType<Resource[]> res;
+        //        if(filter is "" && top is -1)
+        //        {
+        //            //res = await baseRequest.GetJsonAsync();
+        //            //var ret = await new Url("http://localhost:8080/test/resources").GetStringAsync();
+        //            //res = await new Url("http://localhost:8080/test/resources").GetJsonAsync();
+        //            //res = JsonConvert.DeserializeObject(res);
+        //            res = await baseRequest.GetJsonAsync<IResponseType<Resource[]>>();
 
-            }
-            else if(filter is "")
-            {
-                res = await baseRequest.SetQueryParams(new
-                {
-                    top = top,
-                }).GetJsonAsync();
-            }
-            else if(top is -1)
-            {
-                res = await baseRequest.SetQueryParams(new
-                {
-                    filter = filter
-                }).GetJsonAsync();
-            }
-            else
-            {
-                res = await baseRequest.SetQueryParams(new
-                {
-                    filter = filter,
-                    top = top
-                }).GetJsonAsync();
-            }
+        //        }
+        //        else if(filter is "")
+        //        {
+        //            res = await baseRequest.SetQueryParams(new
+        //            {
+        //                top = top,
+        //            }).GetJsonAsync();
+        //        }
+        //        else if(top is -1)
+        //        {
+        //            res = await baseRequest.SetQueryParams(new
+        //            {
+        //                filter = filter
+        //            }).GetJsonAsync();
+        //        }
+        //        else
+        //        {
+        //            res = await baseRequest.SetQueryParams(new
+        //            {
+        //                filter = filter,
+        //                top = top
+        //            }).GetJsonAsync();
+        //        }
 
-            return res.value;
-        }
+        //        return res.value;
+        //    }
     }
 }
