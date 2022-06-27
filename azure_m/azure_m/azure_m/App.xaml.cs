@@ -17,8 +17,16 @@ namespace azure_m
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<ResourceDataStore>();
             //MainPage = new NavigationPage(new AppShell());
+            MainPage = new LoginPage();
+            (MainPage as LoginPage).LoginComplete += App_LoginComplete;
+            
+        }
+
+       
+        private void App_LoginComplete(object sender,EventArgs e)
+        {
             MainPage = new AppShell();
-        }      
+        }
 
 
 
