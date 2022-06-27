@@ -32,9 +32,9 @@
             <ScrollView Grid.Row="1">
                 <StackLayout x:Name="MainLayout" Padding="5,0,5,0" >
                     <StackLayout>
-                        <Entry Text="图表标题" FontSize="30"/>
+                        <Entry Placeholder="图表标题" FontSize="30"/>
                         <Grid>
-                            <Button Text="添加指标" TextColor="Black" FontSize="17" BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="80" HeightRequest="40" Margin="10,0,0,0" Padding="0,6" BorderColor="Black" BorderWidth="1"/>
+                            <Button Text="添加指标" TextColor="Black" FontSize="17" BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="80" HeightRequest="40" Margin="10,0,0,0" Padding="0,6" />
                             <Picker x:Name="chart"
                                     Title="图表类型"
                                     TitleColor="Red" FontSize="17" BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="80" HeightRequest="40" Margin="120,0,0,0">
@@ -54,12 +54,12 @@
                                 <Picker.ItemsSource>
                                     <x:Array Type="{x:Type x:String}">
                                         <x:String>固定到仪表盘</x:String>
-                                        <x:String>固定到grafna</x:String>
+                                        <x:String>固定到grafana</x:String>
                                         <x:String>发送到工作簿</x:String>
                                     </x:Array>
                                 </Picker.ItemsSource>
                             </Picker>
-                            <ImageButton Source="more4.png" BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="40" HeightRequest="40" Margin="340,0,0,0" Padding="0,6" BorderColor="Black" BorderWidth="1"/>
+                            <ImageButton Source="more4.png" BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="40" HeightRequest="40" Margin="340,0,0,0" Padding="0,6" />
                             <Label Text="这是视图产生区域" BackgroundColor="Green" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="370" HeightRequest="300" Margin="10,50,0,0"/>
                         </Grid>
                     </StackLayout>

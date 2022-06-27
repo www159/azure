@@ -16,28 +16,19 @@ namespace azure_m
 
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<ResourceDataStore>();
-            QueryInfo.initEnv();
+            //MainPage = new NavigationPage(new AppShell());
             MainPage = new LoginPage();
-            ((LoginPage)MainPage).LoginCompleted += h;
-            startBack();
-            //LoginPage loginPage = new LoginPage();
-            ////VirtualNetworkPage = new AppShell
-            //loginPage.LoginCompleted += h;
+            (MainPage as LoginPage).LoginComplete += App_LoginComplete;
+            
         }
 
-        public void h(object sender, string e)
+       
+        private void App_LoginComplete(object sender,EventArgs e)
         {
-            Console.WriteLine(e);
-            MainPage=new AppShell();
+            MainPage = new AppShell();
         }
-        
-        public void startBack()
-        {
-            System.Diagnostics.Process backProc = new System.Diagnostics.Process();
-            var current = System.IO.Directory.GetCurrentDirectory();
-            //backProc.StartInfo.FileName = @System.Environment.CurrentDirectory + @"..\..\presudo_back\bin\Release\net6.0\publish\pesudo_back.dll";
-            //backProc.Start();
-        }
+
+
 
         protected override void OnStart()
         {
