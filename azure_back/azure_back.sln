@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "azure_back", "azure_back\azure_back.csproj", "{7638958D-CD1A-4411-9CB3-77BFB9EE0BDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7638958D-CD1A-4411-9CB3-77BFB9EE0BDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7638958D-CD1A-4411-9CB3-77BFB9EE0BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7638958D-CD1A-4411-9CB3-77BFB9EE0BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7638958D-CD1A-4411-9CB3-77BFB9EE0BDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E0BD79AE-CD1E-4B35-BFE3-ABADBE803F01}
+	EndGlobalSection
+EndGlobal
