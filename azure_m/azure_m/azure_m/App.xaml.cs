@@ -1,6 +1,9 @@
-﻿using azure_m.Services;
+﻿#define DEBUG
+
+using azure_m.Services;
 using azure_m.Views;
 using System;
+using System.Threading;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Microsoft.Identity.Client;
@@ -16,18 +19,19 @@ namespace azure_m
 
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<ResourceDataStore>();
+            
             QueryInfo.initEnv();
+#if DEBUG
+            MainPage = new AppShell();
+#else
             MainPage = new LoginPage();
             ((LoginPage)MainPage).LoginCompleted += h;
+#endif
             startBack();
-            //LoginPage loginPage = new LoginPage();
-            ////VirtualNetworkPage = new AppShell
-            //loginPage.LoginCompleted += h;
         }
 
         public void h(object sender, string e)
         {
-            Console.WriteLine(e);
             MainPage=new AppShell();
         }
         

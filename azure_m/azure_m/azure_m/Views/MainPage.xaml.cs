@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
 using azure_m.Models;
 
 namespace azure_m.Views
@@ -27,7 +28,7 @@ namespace azure_m.Views
             List<azure_m.Models.Resource> resources = new List<azure_m.Models.Resource>();
             //查询指定资源，放置在ResourcesLayout中
             //resources = await GetResourcesByApi(type)...
-            //resources.sort by type nad name 
+            //resources.sort by type nad name (or linq
 
             ///DEBUG
             if(type == 0)
@@ -36,26 +37,55 @@ namespace azure_m.Views
                 resources.Add(new Resource( "jp", "vm", "1", "虚拟机"));
             }
 
-            resources.ForEach(o => {
+            //no resources
+            if (resources.Count == 0)
+            {
                 Grid grid = new Grid
                 {
                     Margin = new Thickness(20, 0, 20, 0),
                     HorizontalOptions = LayoutOptions.FillAndExpand,
                     BackgroundColor = Color.MintCream,
                     RowSpacing = 10,
-                    ColumnDefinitions =
+                    RowDefinitions =
+                {
+                    //new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
+                    new RowDefinition { Height = new GridLength (2, GridUnitType.Star) },
+                    new RowDefinition { Height = new GridLength (1, GridUnitType.Star) }
+                }
+                };
+                var formattedString = new FormattedString();
+                formattedString.Spans.Add(new Span { Text = "No resources have been favorited\n", FontAttributes = FontAttributes.Bold });
+
+                var span = new Span { Text = "Favorite resources to quickly navigate to them from the home page." };
+                formattedString.Spans.Add(span);
+                grid.Children.Add(new Label { FormattedText = formattedString },0,0);
+                ResourceLayout.Children.Add(grid);
+            }
+
+            else
+            {
+                resources.ForEach(o =>
+                {
+                    Grid grid = new Grid
+                    {
+                        Margin = new Thickness(20, 0, 20, 0),
+                        HorizontalOptions = LayoutOptions.FillAndExpand,
+                        BackgroundColor = Color.MintCream,
+                        RowSpacing = 10,
+                        ColumnDefinitions =
                 {
                     //new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
                     new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
-                    new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength (2, GridUnitType.Star) },
                     new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) }
                 }
-                };
-                grid.Children.Add(new Image { Source = getSourceByType(o.type), HeightRequest = 15, VerticalOptions = LayoutOptions.Start }, 0, 0);
-                grid.Children.Add(new Label { Text = o.name, HeightRequest = grid.Height, VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Start }, 0, 0);
-                grid.Children.Add(new Label { Text = o.type, HeightRequest = grid.Height, VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Center }, 1, 0);
-                ResourceLayout.Children.Add(grid);
-            });
+                    };
+                    grid.Children.Add(new Image { Source = getSourceByType(o.type), HeightRequest = 15, VerticalOptions = LayoutOptions.Start }, 0, 0);
+                    grid.Children.Add(new Label { Text = o.name, HeightRequest = grid.Height, VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Start }, 0, 0);
+                    grid.Children.Add(new Label { Text = o.type, HeightRequest = grid.Height, VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Center }, 1, 0);
+                    ResourceLayout.Children.Add(grid);
+                });
+            }
 
         }
 
@@ -88,7 +118,7 @@ namespace azure_m.Views
         {
             swapBtnColors();
             //异步 querying datas, 在此期间出现一个刷新标志
-            GetResources(1);
+            GetResources(0);
         }
 
         public void OnMyIcon_Clicked(object sender, EventArgs e)
@@ -112,17 +142,20 @@ namespace azure_m.Views
         public void OnAdd_Clicked(object sender, EventArgs e)
         {
             //this.Navigation.PushAsync(new AddPage());
-            DisplayAlert("Alert", "AddPage", "OK");
+            Xamarin.Essentials.Vibration.Vibrate(500);
+            Navigation.PushAsync(new AddPage());
+
+
         }
         public void OnSubscribe_Clicked(object sender, EventArgs e)
         {
             //this.Navigation.PushAsync(new SubscribePage());
-            DisplayAlert("Alert", "SubscribePage", "OK");
+            Navigation.PushAsync(new SubscribePage());
         }
         public void OnVM_Clicked(object sender, EventArgs e)
         {
             //Navigation.PushAsync(new VirtualMachinePage());
-            DisplayAlert("Alert", "VMPage", "OK");
+            Navigation.PushAsync(new VirtualMachinePage());
         }
         public void OnDashboard_Clicked(object sender, EventArgs e)
         {
@@ -136,7 +169,7 @@ namespace azure_m.Views
         public void OnMoreService_Clicked(object sender, EventArgs e)
         {
             //Navigation.PushAsync(new AllService());
-            DisplayAlert("Alert", "AllService", "OK");
+            Navigation.PushAsync(new AllServicePage());
         }
 
         private void MoreResourceBtn_Clicked(object sender, EventArgs e)
