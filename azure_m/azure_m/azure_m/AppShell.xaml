@@ -156,7 +156,7 @@
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
     <FlyoutItem Title="创建资源" Icon="add2.png">
-        <ShellContent Route="AddSource" ContentTemplate="{DataTemplate local:ItemsPage}" FlyoutIcon="add2.png" />
+        <ShellContent Route="AddPage" ContentTemplate="{DataTemplate local:AddPage}" FlyoutIcon="add2.png" />
     </FlyoutItem>
     <FlyoutItem x:Name="Home" Title="主页" Icon="home1.png">
         <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}" Icon="home1.png"/>
