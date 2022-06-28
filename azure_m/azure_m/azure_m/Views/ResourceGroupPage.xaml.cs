@@ -48,11 +48,11 @@ namespace azure_m.Views
                     BackgroundColor = Color.MintCream,
                     RowSpacing = 10,
                     RowDefinitions =
-                {
-                    //new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
-                    new RowDefinition { Height = new GridLength (2, GridUnitType.Star) },
-                    new RowDefinition { Height = new GridLength (1, GridUnitType.Star) }
-                }
+                    {
+                        //new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
+                        new RowDefinition { Height = new GridLength (2, GridUnitType.Star) },
+                        new RowDefinition { Height = new GridLength (1, GridUnitType.Star) }
+                    }
                 };
                 var formattedString = new FormattedString();
                 formattedString.Spans.Add(new Span { Text = "No resources have been favorited\n", FontAttributes = FontAttributes.Bold });
@@ -74,12 +74,12 @@ namespace azure_m.Views
                         BackgroundColor = Color.MintCream,
                         RowSpacing = 10,
                         ColumnDefinitions =
-                {
-                    //new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
-                    new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
-                    new ColumnDefinition { Width = new GridLength (2, GridUnitType.Star) },
-                    new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) }
-                }
+                        {
+                            //new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
+                            new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
+                            new ColumnDefinition { Width = new GridLength (2, GridUnitType.Star) },
+                            new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) }
+                        }
                     };
                     grid.Children.Add(new Image { Source = getSourceByType(o.type), HeightRequest = 15, VerticalOptions = LayoutOptions.Start }, 0, 0);
                     grid.Children.Add(new Label { Text = o.name, HeightRequest = grid.Height, VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Start }, 0, 0);
@@ -92,10 +92,8 @@ namespace azure_m.Views
 
         private ImageSource getSourceByType(string type)
         {
-
             //DEBUG
             return "vm2.png";
-
         }
     }
 }
