@@ -26,6 +26,7 @@
                 <Image Source="dashboard2.png"  HeightRequest="45" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start"  Margin="10,0,0,0"/>
         <Label  Text="指标" FontSize="30"  HeightRequest="45" VerticalOptions="Start" HorizontalOptions="Start" Margin="60,0,0,0"/>
         <Label  Text="创建图表以监视并调查Azure资源的使用情况和性能" HeightRequest="35" VerticalOptions="Start" HorizontalOptions="Start" Margin="10,70,0,0"/>
+        <Line X1="10" X2="320" Y1="10" Y2="10" Margin="0,100,0,0" StrokeThickness="2" Stroke="lightgray"/>
         <Image Source="view3.png"  HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start"  Margin="10,120,0,0"/>
         <Button  Text="视图" TextColor="Black" BackgroundColor="White" FontSize="15"  HeightRequest="60" WidthRequest="60" VerticalOptions="Start" HorizontalOptions="Start" Margin="60,110,0,0"
                 Clicked="OnTargetViewClick"/>
@@ -39,6 +40,7 @@
                 <Image Source="dashboard2.png"  HeightRequest="45" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start"  Margin="10,0,0,0"/>
                 <Label  Text="警报" FontSize="30"  HeightRequest="45" VerticalOptions="Start" HorizontalOptions="Start" Margin="60,0,0,0"/>
                 <Label  Text="获取通知并使用警报和操作进行响应" HeightRequest="35" VerticalOptions="Start" HorizontalOptions="Start" Margin="10,70,0,0"/>
+                <Line X1="10" X2="320" Y1="10" Y2="10" Margin="0,100,0,0" StrokeThickness="2" Stroke="lightgray"/>
                 <Image Source="view3.png"  HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start"  Margin="10,120,0,0"/>
                 <Button  Text="视图" TextColor="Black" BackgroundColor="White" FontSize="15"  HeightRequest="60" WidthRequest="60" VerticalOptions="Start" HorizontalOptions="Start" Margin="60,110,0,0"
                 Clicked="OnWarnViewClick"/>
@@ -52,6 +54,7 @@
                 <Image Source="dashboard2.png"  HeightRequest="45" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start"  Margin="10,0,0,0"/>
                 <Label  Text="日志" FontSize="30"  HeightRequest="45" VerticalOptions="Start" HorizontalOptions="Start" Margin="60,0,0,0"/>
                 <Label  Text="分析并诊断日志查询的问题。" HeightRequest="35" VerticalOptions="Start" HorizontalOptions="Start" Margin="10,70,0,0"/>
+                <Line X1="10" X2="320" Y1="10" Y2="10" Margin="0,100,0,0" StrokeThickness="2" Stroke="lightgray"/>
                 <Image Source="view3.png"  HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start"  Margin="10,120,0,0"/>
                 <Button  Text="视图" TextColor="Black" BackgroundColor="White" FontSize="15"  HeightRequest="60" WidthRequest="60" VerticalOptions="Start" HorizontalOptions="Start" Margin="60,110,0,0"
                 Clicked="OnLogViewClick"/>

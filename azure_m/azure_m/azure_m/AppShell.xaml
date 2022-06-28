@@ -2,7 +2,6 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:azure_m.Views" xmlns:azure_m="clr-namespace:azure_m" x:DataType="azure_m:AppShell"
-       Title="Azure"
        Shell.NavBarHasShadow="True"
        Shell.TabBarIsVisible="False"
        x:Class="azure_m.AppShell"
@@ -192,6 +191,12 @@
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     <!--<MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem>-->
+
+    <!--<MenuItem Text="Log out" Clicked="onMenuBtn_Clicked"></MenuItem>
+
+    <TabBar>
+        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}"></ShellContent>
+    </TabBar>-->
 
 
 </Shell>

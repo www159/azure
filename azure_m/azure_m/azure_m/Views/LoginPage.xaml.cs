@@ -15,7 +15,14 @@ namespace azure_m.Views
         public LoginPage()
         {
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
+            this.BindingContext = new LoginViewModel();           
+        }
+
+        public event EventHandler LoginComplete;
+
+        private void Btn_Clicked(object sender,EventArgs e)
+        {
+            LoginComplete?.Invoke(this, EventArgs.Empty);
         }
 
         public event EventHandler<string> LoginCompleted;
