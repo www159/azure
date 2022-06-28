@@ -23,6 +23,7 @@ namespace azure_m.Services
         private static string token { get; set; }
         public static string clientId { get; set; } = "89924e36-f70a-43c3-86c5-51bc7b5e8136";
         public static string tenantId { get; set; } = "453d8628-343d-48b9-b4d9-c0a97e4be3b7";
+        public static string redirectUrl { get; set; } = "http://localhost";
         public static IFlurlRequest baseRequest { get; set; }
         private static string[] scopes { get; set; } = new string[]
         {
@@ -34,7 +35,8 @@ namespace azure_m.Services
             var app = PublicClientApplicationBuilder
                 .Create(clientId)
                 .WithAuthority(AzureCloudInstance.AzurePublic, tenantId)
-                .WithDefaultRedirectUri()
+                .WithRedirectUri(redirectUrl)
+                //.WithDefaultRedirectUri()
                 .WithBroker()
                 .Build();
 
@@ -54,7 +56,7 @@ namespace azure_m.Services
                 {
                     authResult = await app
                         .AcquireTokenInteractive(scopes)
-                        //.WithParentActivityOrWindow()
+                        .WithParentActivityOrWindow(App.parentWindow)
                         .ExecuteAsync();
 
                 }

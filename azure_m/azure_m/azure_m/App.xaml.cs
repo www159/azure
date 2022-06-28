@@ -25,6 +25,8 @@ namespace azure_m
             
         }
 
+        public static object parentWindow { get; set; } 
+
        
         private void App_LoginComplete(object sender,EventArgs e)
         {

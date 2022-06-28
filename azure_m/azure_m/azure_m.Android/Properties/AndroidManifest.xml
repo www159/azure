@@ -4,4 +4,13 @@
     <application android:label="azure_m.Android" android:theme="@style/MainTheme"></application>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+	
+	<!--<activity android:name="microsoft.identity.client.BrowserTabActivity" android:configChanges="orientation|screenSize">
+		<intent-filter>
+			<action android:name="android.intent.action.VIEW" />
+			<category android:name="android.intent.category.DEFAULT" />
+			<category android:name="android.intent.category.BROWSABLE" />
+			<data android:scheme="msal89924e36-f70a-43c3-86c5-51bc7b5e8136" android:host="auth" />
+		</intent-filter>
+	</activity>-->
 </manifest>
