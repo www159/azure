@@ -29,7 +29,6 @@ namespace azure_m.Services
             {
                 if (filter == "")
                 {
-                    var resString = await req.GetStringAsync();
                     res = await req.GetJsonAsync<IResponseType<Resource[]>>();
                 }
                 else

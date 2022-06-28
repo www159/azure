@@ -10,8 +10,19 @@
         <Style x:Key="id_input" TargetType="StackLayout">
             <Setter 
                 Property="Margin"
-                Value="10,0,0,10"/>
-            
+                Value="0,-80,0,0"/>
+            <Setter
+                Property="BackgroundColor"
+                Value="Wheat"/>
+            <Setter
+                Property="Grid.Row"
+                Value="1"/>
+            <Setter
+                Property="WidthRequest"
+                Value="80%"/>
+            <Setter
+                Property="HorizontalOptions"
+                Value="Center"/>
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -32,11 +43,9 @@
                 FontSize="50" 
                 HorizontalOptions="Center" 
                 VerticalOptions="Center"  
-                Margin="0,120,0,0"  />
+                Margin="0,120,0,0"/>
             <StackLayout
-                Style="{StaticResource id_input}"
-                Grid.Row="1"
-                Margin="0,-80,0,0">
+                Style="{StaticResource id_input}">
 
                 <StackLayout>
                     <Label
