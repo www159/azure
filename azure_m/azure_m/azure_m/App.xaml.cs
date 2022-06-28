@@ -1,6 +1,9 @@
-﻿using azure_m.Services;
+﻿#define DEBUG
+
+using azure_m.Services;
 using azure_m.Views;
 using System;
+using System.Threading;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Microsoft.Identity.Client;
@@ -15,6 +18,7 @@ namespace azure_m
 
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<ResourceDataStore>();
+
             //MainPage = new NavigationPage(new AppShell());
             MainPage = new LoginPage();
             (MainPage as LoginPage).LoginComplete += App_LoginComplete;
@@ -24,7 +28,17 @@ namespace azure_m
        
         private void App_LoginComplete(object sender,EventArgs e)
         {
-            MainPage = new AppShell();
+
+            MainPage=new AppShell();
+        }
+        
+        public void startBack()
+        {
+            System.Diagnostics.Process backProc = new System.Diagnostics.Process();
+            var current = System.IO.Directory.GetCurrentDirectory();
+            //backProc.StartInfo.FileName = @System.Environment.CurrentDirectory + @"..\..\presudo_back\bin\Release\net6.0\publish\pesudo_back.dll";
+            //backProc.Start();
+
         }
 
 

@@ -3,7 +3,7 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:azure_m.Views" xmlns:azure_m="clr-namespace:azure_m" x:DataType="azure_m:AppShell"
        Shell.NavBarHasShadow="True"
-       
+       Shell.TabBarIsVisible="False"
        x:Class="azure_m.AppShell"
        >
 
@@ -182,8 +182,8 @@
     <!--#region 收藏夹内容-->
     <FlyoutItem x:Name="StarItems" FlyoutDisplayOptions="AsMultipleItems" >
         <ShellContent Title="所有资源" Route="AllResourcesPage" ContentTemplate="{DataTemplate local:AllResourcesPage}" />
-        <ShellContent Title="资源组" Route="VirtualNetworkPage" ContentTemplate="{DataTemplate local:VirtualNetworkPage}" />
-        <ShellContent Title="虚拟机" Route="VirtualNetworkPage" ContentTemplate="{DataTemplate local:VirtualNetworkPage}" />
+        <ShellContent Title="资源组" Route="ResourceGroupPage" ContentTemplate="{DataTemplate local:ResourceGroupPage}" />
+        <ShellContent Title="虚拟机" Route="VirtualMachinePage" ContentTemplate="{DataTemplate local:VirtualMachinePage}" />
         <ShellContent Title="虚拟网络" Route="VirtualNetworkPage" ContentTemplate="{DataTemplate local:VirtualNetworkPage}" />
         <ShellContent Title="监视器" Route="MonitorPage" ContentTemplate="{DataTemplate local:MonitorPage}" />
         <!--#endregion-->
