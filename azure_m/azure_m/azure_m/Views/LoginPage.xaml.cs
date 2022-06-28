@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using azure_m.Services;
+using Xamarin.Forms.StyleSheets;
 
 namespace azure_m.Views
 {

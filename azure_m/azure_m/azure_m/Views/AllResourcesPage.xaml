@@ -35,31 +35,38 @@
                     Command="{Binding LoadResourcesCommand}"/>
 
             </StackLayout>
-            <!--<RefreshView
+            <RefreshView
                 x:DataType="local:ResourceViewModel"
                 Command="{Binding LoadResourcesCommand}"
                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
                 <CollectionView
                     x:Name="ResourceTabVIew"
                     ItemsSource="{Binding Resources}"
-                    SelectionMode="None">
+                    SelectionMode="None"
+                    ItemsLayout="VerticalGrid, 2">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout 
                                 Padding="10" 
                                 x:DataType="model:Resource">
                                 <Frame 
-                                    BackgroundColor="Black"
+                                    BorderColor="Gray"
+                                    HasShadow="True"
                                     Padding="5">
-                                    <Label 
-                                        Text="{Binding id}"
+                                    <StackLayout BackgroundColor="{StaticResource Primary}">
+                                        <Label
+                                        Text="{Binding name}"
                                         FontSize="20"/>
+                                        <Label
+                                        Text="{Binding location}"
+                                        FontSize="15"/>
+                                    </StackLayout>
                                 </Frame>
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </RefreshView>-->
+            </RefreshView>
         </StackLayout>
         
     </ContentPage.Content>

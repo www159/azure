@@ -27,6 +27,7 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+            <Thickness x:Key="GMargin">10,0,0,10</Thickness>
         </ResourceDictionary>        
     </Application.Resources>
     
