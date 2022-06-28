@@ -21,8 +21,8 @@ namespace azure_m.Services
     public static class QueryInfo
     {
         private static string token { get; set; }
-        public static string clientId { get; set; }
-        public static string tenantId { get; set; }
+        public static string clientId { get; set; } = "89924e36-f70a-43c3-86c5-51bc7b5e8136";
+        public static string tenantId { get; set; } = "453d8628-343d-48b9-b4d9-c0a97e4be3b7";
         public static IFlurlRequest baseRequest { get; set; }
         private static string[] scopes { get; set; } = new string[]
         {
@@ -35,24 +35,26 @@ namespace azure_m.Services
                 .Create(clientId)
                 .WithAuthority(AzureCloudInstance.AzurePublic, tenantId)
                 .WithDefaultRedirectUri()
+                .WithBroker()
                 .Build();
 
-            var accounts = await app.GetAccountsAsync();
-            var firstAccount = accounts.FirstOrDefault();
+            //var accounts = await app.GetAccountsAsync();
+            //var firstAccount = accounts.FirstOrDefault();
             AuthenticationResult authResult = null;
 
-            try
-            {
-                authResult = await app.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
-            } 
-            catch(MsalUiRequiredException ex)
-            {
-                Utils.error(ex);
+            //try
+            //{
+            //    authResult = await app.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
+            //} 
+            //catch(MsalUiRequiredException ex)
+            //{
+            //    Utils.error(ex);
 
-                try
+            try
                 {
                     authResult = await app
                         .AcquireTokenInteractive(scopes)
+                        //.WithParentActivityOrWindow()
                         .ExecuteAsync();
 
                 }
@@ -64,7 +66,7 @@ namespace azure_m.Services
                 {
                     Utils.error(simpleEx);
                 }
-            }
+            //}
             if(authResult != null)
             {
                 token = authResult.AccessToken;

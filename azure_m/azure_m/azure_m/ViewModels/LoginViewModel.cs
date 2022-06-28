@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
+using System.Threading.Tasks;
+
 
 namespace azure_m.ViewModels
 {
@@ -12,11 +14,12 @@ namespace azure_m.ViewModels
 
         public LoginViewModel()
         {
-            LoginCommand = new Command(OnLoginClicked);
+            LoginCommand = new Command(async (object obj) => await OnLoginClicked(obj));
         }
 
-        private async void OnLoginClicked(object obj)
+        private async Task OnLoginClicked(object obj)
         {
+           
             // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
             //await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
         }

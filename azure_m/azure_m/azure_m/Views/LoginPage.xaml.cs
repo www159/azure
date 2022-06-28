@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using azure_m.Services;
 
 namespace azure_m.Views
 {
@@ -20,11 +21,19 @@ namespace azure_m.Views
 
         public event EventHandler LoginComplete;
 
-        private void Btn_Clicked(object sender,EventArgs e)
+        private async void Btn_Clicked(object sender,EventArgs e)
         {
-            LoginComplete?.Invoke(this, EventArgs.Empty);
+            try
+            {
+                //await QueryInfo.getToken();
+                LoginComplete?.Invoke(this, EventArgs.Empty);
+            }
+            catch(Exception ex)
+            {
+                Utils.error(ex);
+            }
         }
-
+        
         public event EventHandler<string> LoginCompleted;
 
         private void Button_Clicked(object sender, EventArgs e)

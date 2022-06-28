@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
+using Flurl.Http;
 
 namespace azure_m.Services
 {
@@ -23,5 +24,11 @@ namespace azure_m.Services
         {
             errorMethod.Invoke(new Exception(s));
         }
+
+        public static IFlurlRequest withApiVersion(IFlurlRequest req, string apiVersion)
+        {
+            return req.SetQueryParam("api-version", apiVersion);
+        }
     }
+
 }

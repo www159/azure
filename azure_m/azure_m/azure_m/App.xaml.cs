@@ -9,7 +9,6 @@ namespace azure_m
 {
     public partial class App : Application
     {
-
         public App()
         {
             InitializeComponent();
