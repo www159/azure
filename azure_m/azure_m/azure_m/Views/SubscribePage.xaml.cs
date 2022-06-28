@@ -16,5 +16,28 @@ namespace azure_m.Views
         {
             InitializeComponent();
         }
+
+        private void OnAddFilterClicked(object sender, EventArgs e)
+        {
+           
+        }
+        private void OnMoreClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void OnAddSubscribeClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void OnManageClicked(object sender, EventArgs e)
+        {
+
+        }
+        private void OnCheckClicked(object sender, EventArgs e)
+        {
+            
+        }
+
+
     }
 }

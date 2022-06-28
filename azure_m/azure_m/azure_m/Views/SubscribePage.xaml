@@ -2,11 +2,44 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="azure_m.Views.SubscribePage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <Grid>
+        <Label Text="订阅" FontSize="45" FontAttributes="Bold"  VerticalOptions="Start" HorizontalOptions="Start" Margin="20,20,0,0" />
+        <ImageButton x:Name="More" Source="more4.png" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Start" WidthRequest="40" Margin="180,30,0,0"
+                     Clicked="OnMoreClicked"/>
+        <ImageButton Source="add1.png" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Start" WidthRequest="40" Margin="20,100,0,0"
+                     Clicked="OnAddSubscribeClicked"/>
+        <Label Text="添加订阅" FontSize="18" VerticalOptions="Start" HorizontalOptions="Start" Margin="60,107,0,0">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnAddSubscribeClicked"/>
+            </Label.GestureRecognizers>
+        </Label>
+        <ImageButton Source="add1.png" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Start" WidthRequest="40" Margin="150,100,0,0"
+                     Clicked="OnManageClicked"/>
+        <Label Text="管理策略" FontSize="18" VerticalOptions="Start" HorizontalOptions="Start" Margin="190,107,0,0">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnManageClicked"/>
+            </Label.GestureRecognizers>
+        </Label>
+        <ImageButton Source="add1.png" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Start" WidthRequest="40" Margin="270,100,0,0"
+                     Clicked="OnCheckClicked"/>
+        <Label Text="查看请求" FontSize="18" VerticalOptions="Start" HorizontalOptions="Start" Margin="310,107,0,0">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnCheckClicked"/>
+            </Label.GestureRecognizers>
+        </Label>
+        <Line X1="0" X2="400" Y1="150" Y2="150" StrokeThickness="2" Stroke="lightgray" />
+        <Entry Placeholder="搜索任何字段" VerticalOptions="Start" HorizontalOptions="Start" Margin="20,160,0,0"/>
+        <ImageButton Source="add1.png" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Start"  WidthRequest="40" Margin="240,160,0,0"
+                     Clicked="OnAddFilterClicked"/>
+        <Label x:Name="AddFilter" Text="添加筛选器" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="280,165,0,0">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnAddFilterClicked"/>
+            </Label.GestureRecognizers>
+        </Label>
+        <Label Text="订阅名称"  VerticalOptions="Start" HorizontalOptions="Start" Margin="20,240,0,0"/>
+        <Label Text="订阅ID"  VerticalOptions="Start" HorizontalOptions="Start" Margin="100,240,0,0"/>
+        <Label Text="我的角色"  VerticalOptions="Start" HorizontalOptions="Start" Margin="180,240,0,0"/>
+        <Label Text="当前成本"  VerticalOptions="Start" HorizontalOptions="Start" Margin="260,240,0,0"/>
+        <Label Text="状态"  VerticalOptions="Start" HorizontalOptions="Start" Margin="340,240,0,0"/>
+    </Grid>
 </ContentPage>

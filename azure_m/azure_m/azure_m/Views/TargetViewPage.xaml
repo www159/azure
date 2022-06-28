@@ -21,13 +21,13 @@
             <Image Source="dashboard2.png" Grid.Row="0" HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,20,0,0"/>
             <ImageButton Source="add2.png" BackgroundColor="White" Grid.Row="0" HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="20,90,0,0"
                          Clicked="CreateNewChat"/>
-            <Label Text="新图表" FontSize="20" HeightRequest="40" WidthRequest="100" VerticalOptions="Start" HorizontalOptions="Start" Margin="20,150,0,0"/>
+            <Label Text="新图表" FontSize="15" HeightRequest="40" WidthRequest="100" VerticalOptions="Start" HorizontalOptions="Start" Margin="20,150,0,0"/>
             <ImageButton Source="add2.png" BackgroundColor="White" Grid.Row="0" HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="120,90,0,0"/>
-            <Label Text="刷新" FontSize="20" HeightRequest="40" WidthRequest="100" VerticalOptions="Start" HorizontalOptions="Start" Margin="125,150,0,0"/>
+            <Label Text="刷新" FontSize="15" HeightRequest="40" WidthRequest="100" VerticalOptions="Start" HorizontalOptions="Start" Margin="125,150,0,0"/>
             <ImageButton Source="add2.png" BackgroundColor="White" Grid.Row="0" HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="220,90,0,0"/>
-            <Label Text="共享" FontSize="20" HeightRequest="40" WidthRequest="100" VerticalOptions="Start" HorizontalOptions="Start" Margin="225,150,0,0"/>
+            <Label Text="共享" FontSize="15" HeightRequest="40" WidthRequest="100" VerticalOptions="Start" HorizontalOptions="Start" Margin="225,150,0,0"/>
             <ImageButton Source="add2.png" BackgroundColor="White" Grid.Row="0" HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="320,90,0,0"/>
-            <Label Text="反馈" FontSize="20" HeightRequest="40" WidthRequest="100" VerticalOptions="Start" HorizontalOptions="Start" Margin="325,150,0,0"/>
+            <Label Text="反馈" FontSize="15" HeightRequest="40" WidthRequest="100" VerticalOptions="Start" HorizontalOptions="Start" Margin="325,150,0,0"/>
             <!--图表显示区-->
             <ScrollView Grid.Row="1">
                 <StackLayout x:Name="MainLayout" Padding="5,0,5,0" >
