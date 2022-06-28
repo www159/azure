@@ -50,7 +50,13 @@
                         <RowDefinition Height="50" />
                     </Grid.RowDefinitions>
                     <ImageButton Source="add1.png" Grid.Row="0" Grid.Column="0" BackgroundColor="White" Clicked="OnAdd_Clicked"/>
-                    <Label Text="创建资源" Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="Center" />
+
+                    <Label Text="创建资源" Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="Center" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAdd_Clicked"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
                     <ImageButton Source="subscribe5.png" Grid.Row="0" Grid.Column="1" BackgroundColor="White" 
                                  WidthRequest="50" Clicked="OnSubscribe_Clicked">
                         <VisualStateManager.VisualStateGroups>
