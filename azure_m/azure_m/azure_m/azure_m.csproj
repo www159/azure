@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Resources\新文件夹\**" />
+    <EmbeddedResource Remove="Resources\新文件夹\**" />
+    <None Remove="Resources\新文件夹\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.6.0" />
     <PackageReference Include="Azure.ResourceManager" Version="1.1.1" />
     <PackageReference Include="Flurl.Http" Version="3.2.4" />

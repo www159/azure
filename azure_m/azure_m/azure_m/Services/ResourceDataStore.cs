@@ -24,18 +24,30 @@ namespace azure_m.Services
         public async Task<Resource[]> ListResourcesAsync(string filter = "", int top = -1)
         {
             var req = Utils.withApiVersion(baseRequest, apiVersion.listResources);
-            IResponseType<Resource[]> res;
-            if(filter == "")
+            IResponseType<Resource[]> res = null;
+            try
             {
-                res = await req.GetJsonAsync();
-            }
-            else
-            {
-                res = await req.SetQueryParams(new
+                if (filter == "")
                 {
-                    filter = filter,
-                    top = top,
-                }).GetJsonAsync();
+                    res = await req.GetJsonAsync<IResponseType<Resource[]>>();
+                }
+                else
+                {
+                    res = await req.SetQueryParams(new
+                    {
+                        filter = filter,
+                        top = top,
+                    }).GetJsonAsync<IResponseType<Resource[]>>();
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.error(ex);
+            }
+
+            if(res == null)
+            {
+                throw new FetchExecption();
             }
 
             return res.value;

@@ -21,6 +21,7 @@ namespace azure_m.Services
         private static string token { get; set; }
         public static string clientId { get; set; } = "89924e36-f70a-43c3-86c5-51bc7b5e8136";
         public static string tenantId { get; set; } = "453d8628-343d-48b9-b4d9-c0a97e4be3b7";
+        public static string redirectUrl { get; set; } = "http://localhost";
         public static IFlurlRequest baseRequest { get; set; }
         private static string[] scopes { get; set; } = new string[]
         {
@@ -32,27 +33,26 @@ namespace azure_m.Services
             var app = PublicClientApplicationBuilder
                 .Create(clientId)
                 .WithAuthority(AzureCloudInstance.AzurePublic, tenantId)
-                .WithDefaultRedirectUri()
+                .WithRedirectUri(redirectUrl)
                 .WithBroker()
                 .Build();
 
-            //var accounts = await app.GetAccountsAsync();
-            //var firstAccount = accounts.FirstOrDefault();
             AuthenticationResult authResult = null;
-
-            //try
-            //{
-            //    authResult = await app.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
-            //} 
-            //catch(MsalUiRequiredException ex)
-            //{
-            //    Utils.error(ex);
+            var accounts = await app.GetAccountsAsync();
 
             try
-                {
+            {
+                authResult = await app.AcquireTokenSilent(scopes, accounts.FirstOrDefault()).ExecuteAsync();
+            }
+            catch (MsalUiRequiredException ex)
+            {
+                Utils.error(ex);
+
+                try
+            {
                     authResult = await app
                         .AcquireTokenInteractive(scopes)
-                        //.WithParentActivityOrWindow()
+                        .WithParentActivityOrWindow(App.parentWindow)
                         .ExecuteAsync();
 
                 }
@@ -64,13 +64,18 @@ namespace azure_m.Services
                 {
                     Utils.error(simpleEx);
                 }
-            //}
-            if(authResult != null)
+            }
+            if (authResult != null)
             {
                 token = authResult.AccessToken;
-                baseRequest = new Url("https://management.azure.com/subscriptions")
+                baseRequest = new Url("https://management.azure.com/subscriptions/219b2431-594f-47fa-8e85-664196aa3f92/")
                     .WithOAuthBearerToken(token);
             }
+        }
+
+        public static void setSubscriptions(string subscriptionId)
+        {
+            baseRequest = baseRequest.AppendPathSegment(subscriptionId);
         }
     }
 }
