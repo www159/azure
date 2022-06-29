@@ -11,18 +11,47 @@
             <Setter 
                 Property="Margin"
                 Value="0,-80,0,0"/>
-            <Setter
+            <!--<Setter
                 Property="BackgroundColor"
-                Value="Wheat"/>
+                Value="Wheat"/>-->
             <Setter
                 Property="Grid.Row"
                 Value="1"/>
             <Setter
                 Property="WidthRequest"
-                Value="200"/>
+                Value="360"/>
             <Setter
                 Property="HorizontalOptions"
                 Value="Center"/>
+        </Style>
+        <Style TargetType="Entry">
+            <Style.Triggers>
+                <Trigger
+                    TargetType="Entry"
+                    Property="Entry.IsFocused"
+                    Value="False">
+                    <Setter
+                        Property="Opacity"
+                        Value="0.6"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button">
+            <Style.Triggers>
+                <MultiTrigger TargetType="Button">
+                    <MultiTrigger.Conditions>
+                        <BindingCondition
+                            Binding="{Binding Source={x:Reference clientID}, Path=Text.Length}"
+                            Value="0"/>
+                        <BindingCondition
+                            Binding="{Binding Source={x:Reference tenantID}, Path=Text.Length}"
+                            Value="0"/>
+                    </MultiTrigger.Conditions>
+                    <Setter
+                        Property="IsEnabled"
+                        Value="False"/>
+                </MultiTrigger>
+            </Style.Triggers>
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -50,12 +79,25 @@
                 <StackLayout>
                     <Label
                         Text="客户端ID"/>
-                    <Entry/>
+                    <Entry
+                        x:Name="clientID"
+                        Text=""/>
                 </StackLayout>
                 <StackLayout>
                     <Label
                         Text="租户ID"/>
-                    <Entry/>
+                    <Entry
+                        x:Name="tenantID"
+                        Text=""/>
+                </StackLayout>
+                <StackLayout 
+                    Orientation="Horizontal"
+                    Margin="0,10,0,0">
+                    <CheckBox
+                        x:Name="remeberID"/>
+                    <Label
+                        Text="记住ID"
+                        VerticalTextAlignment="Center"/>
                 </StackLayout>
             </StackLayout>
             <Button  
