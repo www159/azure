@@ -5,6 +5,28 @@
              Title="{Binding Title}"
              xmlns:local="clr-namespace:azure_m.ViewModels"
              xmlns:model="clr-namespace:azure_m.Models">
+    <ContentPage.Resources>
+        <Style
+            TargetType="StackLayout"
+            x:Key="resourceCard">
+            <Setter
+                Property="Padding"
+                Value="5,5,5,5"/>
+            <Setter
+                Property="VerticalOptions"
+                Value="Center" />
+        </Style>
+        <Style
+            TargetType="StackLayout"
+            x:Key="resourceCardInner">
+            <Setter
+                Property="HeightRequest"
+                Value="100"/>
+            <Setter
+                Property="BackgroundColor"
+                Value="{StaticResource Primary}"/>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="test" />
     </ContentPage.ToolbarItems>
@@ -30,10 +52,6 @@
                 <Button Text="筛选器" />
             </StackLayout>
             <StackLayout>
-                <Button 
-                    Text="test api"
-                    Command="{Binding LoadResourcesCommand}"/>
-
             </StackLayout>
             <RefreshView
                 x:DataType="local:ResourceViewModel"
@@ -47,15 +65,16 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout 
-                                Padding="10" 
+                                Style="{StaticResource resourceCard}"
                                 x:DataType="model:Resource">
                                 <Frame 
                                     BorderColor="Gray"
                                     HasShadow="True"
                                     Padding="5">
-                                    <StackLayout BackgroundColor="{StaticResource Primary}">
+                                    <StackLayout 
+                                        Style="{StaticResource resourceCardInner}">
                                         <Label
-                                        Text="{Binding name}"
+                                        Text="{Binding type}"
                                         FontSize="20"/>
                                         <Label
                                         Text="{Binding location}"

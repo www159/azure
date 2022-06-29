@@ -29,6 +29,19 @@ namespace azure_m.Services
         {
             return req.SetQueryParam("api-version", apiVersion);
         }
+
+        public static class ImgMap
+        {
+            public static string networkWatchers = "";
+            public static string storageAccounts = "";
+            public static string disks = "";
+            public static string sshPublicKeys = "";
+            public static string virtualMachines = "";
+            public static string networkInterfaces = "";
+            public static string netWorkSecurityGroups = "";
+            public static string publicIPAddresses = "";
+            public static string virtualNetworks = "";
+        }
     }
 
 }
