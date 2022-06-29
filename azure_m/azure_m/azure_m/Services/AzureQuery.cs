@@ -9,8 +9,6 @@ using azure_m.Models;
 using azure_m.Views;
 using System.Linq;
 using Microsoft.Identity.Client;
-using Flurl.Http;
-using Flurl;
 
 
 

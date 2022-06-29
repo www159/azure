@@ -144,8 +144,6 @@ namespace azure_m.Views
             //this.Navigation.PushAsync(new AddPage());
             Xamarin.Essentials.Vibration.Vibrate(500);
             Navigation.PushAsync(new AddPage());
-
-
         }
         public void OnSubscribe_Clicked(object sender, EventArgs e)
         {

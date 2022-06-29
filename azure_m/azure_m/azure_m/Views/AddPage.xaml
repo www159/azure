@@ -2,11 +2,136 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="azure_m.Views.AddPage">
+
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label   HeightRequest="45" VerticalOptions="Start" HorizontalOptions="Start"  Margin="5,20,0,0"  Text="创建资源"  FontSize="30" FontAttributes="Bold" />
+            <!--#region 服务-->
+            <Label Text="热门Auzre服务" FontSize="15" Margin="10,0,0,5"/>
+            <Grid ColumnDefinitions="*,3*" Grid.Row="0" Margin="10,0,0,5">
+                <Image Source="vm1.png" HeightRequest="60" WidthRequest="60" HorizontalOptions="Start" />
+                <Label HeightRequest="60" WidthRequest="60" Grid.Column="1" VerticalTextAlignment="Center">
+                        <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="虚拟机"  FontSize="20" >
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="CreateServiceVM" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <!--<Span Text=" | " FontSize="20" />
+                            <Span Text="了解详细信息" FontSize="15">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="GetInformation" CommandParameter="hello world"/>
+                                </Span.GestureRecognizers>
+                            </Span>-->
+                        </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+            </Grid>
+            <Grid ColumnDefinitions="*,3*" Grid.Row="1" Margin="10,0,0,5">
+                <Image Source="func_app.png" HeightRequest="60" WidthRequest="60" HorizontalOptions="Start" />
+                <Label HeightRequest="60" WidthRequest="60" Grid.Column="1" VerticalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                            <Span Text="函数应用&#13;"  FontSize="20" >
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="CreateServiceFuncApp" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <Span Text="帮助文档" FontSize="15">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="GetInformation" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            </Grid>
+            <Grid ColumnDefinitions="*,3*" Grid.Row="2" Margin="10,0,0,5">
+            <Image Source="web_app.png" HeightRequest="60" WidthRequest="60" HorizontalOptions="Start" />
+                <Label HeightRequest="60" WidthRequest="60" Grid.Column="1" VerticalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                            <Span Text="Web应用&#13;"  FontSize="20" >
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="CreateServiceWebApp" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <Span Text="帮助文档" FontSize="15">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="GetInformation" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            </Grid>
+            <!--#endRegion-->
+            
+            
+            <!--#region 产品-->
+            <Label Text="&#13;&#13;热门市场产品" FontSize="15" Margin="10,0,0,5"/>
+            <Grid ColumnDefinitions="*,3*" Grid.Row="0" Margin="10,10,10,5">
+                <Image Source="win_server_2019.png" HeightRequest="60" WidthRequest="60" HorizontalOptions="Start" />
+                <Label HeightRequest="60" WidthRequest="60" Grid.Column="1">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Windows Server 2019 Datacenter&#13;"  FontSize="20" >
+                            <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Createwin19" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <!--<Span Text=" | " FontSize="20" />
+                        <Span Text="了解详细信息" FontSize="15">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="GetInformation" CommandParameter="hello world"/>
+                            </Span.GestureRecognizers>
+                        </Span>-->
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                </Grid>
+            <Grid ColumnDefinitions="*,3*" Grid.Row="1" Margin="10,10,10,5">
+                    <Image Source="ubuntu_server20_04.png" HeightRequest="60" WidthRequest="60" HorizontalOptions="Start" />
+                    <Label HeightRequest="60" WidthRequest="60" Grid.Column="1">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Ubuntu Server 20.04 LTS&#13;"  FontSize="20" >
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Createubuntu20" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <!--<Span Text=" | " FontSize="20" />
+                            <Span Text="了解详细信息" FontSize="15">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="GetInformation" CommandParameter="hello world"/>
+                                </Span.GestureRecognizers>
+                            </Span>-->
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                </Grid>
+            <Grid ColumnDefinitions="*,3*" Grid.Row="2" Margin="10,10,10,5">
+                <Image Source="win10pro.png" HeightRequest="60" WidthRequest="60" HorizontalOptions="Start" />
+                <Label HeightRequest="60" WidthRequest="60" Grid.Column="1" VerticalTextAlignment="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Windows 10 Pro"  FontSize="20" >
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Createwin10" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <!--<Span Text=" | " FontSize="20" />
+                        <Span Text="了解详细信息" FontSize="15">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="GetInformation" CommandParameter="hello world"/>
+                            </Span.GestureRecognizers>
+                        </Span>-->
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+            <!--#endRegion 产品-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
