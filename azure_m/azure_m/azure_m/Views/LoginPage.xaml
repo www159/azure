@@ -19,7 +19,7 @@
                 Value="1"/>
             <Setter
                 Property="WidthRequest"
-                Value="80%"/>
+                Value="200"/>
             <Setter
                 Property="HorizontalOptions"
                 Value="Center"/>
