@@ -16,7 +16,7 @@ namespace azure_m.ViewModels
 
         ContentView basic, disk, net, manage, adv, tag, create;
 
-        public ObservableCollection<ContentView> pages;
+        public ObservableCollection<ContentView> pages { get; set; }
 
         public VMDetailsViewModel()
         {

@@ -2,14 +2,10 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="azure_m.Views.VMDetails.Basic">
-    <ContentView.Resources>
-        <ControlTemplate x:Key="basicTemplate">
-            <Button/>
-        </ControlTemplate>
-    </ContentView.Resources>
+
   <ContentView.Content>
       <StackLayout>
-          <Label Text="basic" />
-      </StackLayout>
+            <Label Text="basic" />
+        </StackLayout>
   </ContentView.Content>
 </ContentView>

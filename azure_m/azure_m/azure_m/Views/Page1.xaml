@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="azure_m.Views.Page1"
+             Title="创建虚拟机：基本">
+    <ContentPage.Content>
+        <StackLayout Margin="5,5,0,5">
+            <ScrollView>
+                <Grid ColumnDefinitions="*,2*">
+                    <!--#region 项目详细信息-->
+                    <Label VerticalTextAlignment="Center" Text="项目详细信息" FontSize="20"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="1">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="订阅"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Picker Grid.Row="1" Grid.Column="1" x:Name="subscribe" ItemsSource="{Binding subscribes}" ItemDisplayBinding="{Binding Name}"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="2">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="资源组"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Picker Grid.Row="2" Grid.Column="1" x:Name="resourcesGroup" ItemsSource="{Binding resourcesGroup}" ItemDisplayBinding="{Binding Name}"/>
+                    <!--#endregion-->
+
+                    <!--#region 项目详细信息-->
+                    <Label VerticalTextAlignment="Center" Text="实例详细信息" FontSize="Large" Grid.Row="3"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="4">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="虚拟机名称"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Entry Grid.Row="4" Grid.Column="1" x:Name="VMName"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="5">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="区域"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Picker Grid.Row="5" x:Name="areas" Grid.Column="1" >
+                        <Picker.Items>
+                            <x:String>(Asia Pacific)Australia East</x:String>
+                            <x:String>(Asia Pacific)Southest Asia(有资格免费试用服务)</x:String>
+                            <x:String>To be added</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <Label VerticalTextAlignment="Center" Grid.Row="6" Text="可用性选项"/>
+                    <Picker Grid.Row="6" x:Name="access" Grid.Column="1">
+                        <Picker.Items>
+                            <x:String>无需基础结构冗余</x:String>
+                            <x:String>可用性区域</x:String>
+                            <x:String>虚拟机规模集</x:String>
+                            <x:String>可用性集</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label VerticalTextAlignment="Center" Grid.Row="7" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="可用性区域"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Picker Grid.Row="7" x:Name="accessAreas" Grid.Column="1" ItemsSource="{Binding accesses}" ItemDisplayBinding="{Binding Mode}"/>
+
+                    <Label VerticalTextAlignment="Center" Grid.Row="8" Text="安全类型"/>
+                    <Picker Grid.Row="8" x:Name="safetymode" Grid.Column="1">
+                        <Picker.Items>
+                            <x:String>标准</x:String>
+                            <x:String>受信任启动虚拟机</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label VerticalTextAlignment="Center" Grid.Row="9" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="镜像"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Picker Grid.Row="9" x:Name="iamges" Grid.Column="1" ItemsSource="{Binding iamges}" ItemDisplayBinding="{Binding Name}"/>
+
+                    <Label VerticalTextAlignment="Center" Grid.Row="10" Text="Azure现成VM实例"/>
+                    <CheckBox Grid.Row="10" x:Name="ready_instance" Grid.Column="1"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="11" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="大小"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Picker Grid.Row="11" x:Name="size" Grid.Column="1" ItemsSource="{Binding sizes}" ItemDisplayBinding="{Binding Name}"/>
+
+                    <!--#endregion-->
+
+                    <!--#region 管理员账户-->
+                    <Label VerticalTextAlignment="Center" Text="管理员账户" FontSize="20" Grid.Row="12"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="13">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="身份验证类型"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Picker Grid.Row="1" Grid.Column="13" x:Name="valid" SelectedIndex="0">
+                        <Picker.Items>
+                            <x:String>SSH公钥</x:String>
+                            <x:String>密码</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label VerticalTextAlignment="Center" Grid.Row="14">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="用户名"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Entry Grid.Row="14" Grid.Column="1" x:Name="UserName" Text="{Binding UserName}" />
+
+                    <Label VerticalTextAlignment="Center" Grid.Row="15" IsVisible="{Binding SelectedIndex }" BindingContext="{x:Reference valid}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="SSH公钥源"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Picker Grid.Row="1" Grid.Column="15" x:Name="SSHsource" SelectedIndex="0">
+                        <Picker.Items>
+                            <x:String>生成新秘钥对</x:String>
+                            <x:String>使用Azure中存储的现有秘钥</x:String>
+                            <x:String>使用现有公钥</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label VerticalTextAlignment="Center" Grid.Row="16">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="秘钥对名称"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Entry Grid.Row="16" Grid.Column="1" x:Name="SSHKeyName" Text="{Binding SSHKeyName}" />
+                    <!--#endregion-->
+
+                    <!--#region 入站端口规则-->
+                    <Label VerticalTextAlignment="Center" Text="入站端口规则" FontSize="20" Grid.Row="17"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="18">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="公共入站端口"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Picker Grid.Row="18" Grid.Column="18" x:Name="openentryPort" SelectedIndex="1">
+                        <Picker.Items>
+                            <x:String>无</x:String>
+                            <x:String>允许选定的端口</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label VerticalTextAlignment="Center" Grid.Row="19">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="选择入站端口"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Grid Grid.Row="19" ColumnDefinitions="2*,*,2*,*,2*,*" BindingContext="{x:Reference openentryPort}" IsVisible="{Binding SelectedIndex}">
+                        <Label Text="HTTP(80)" Grid.Column="1"/>
+                        <CheckBox x:Name="HTTP" Grid.Column="2" />
+                        <Label Text="HTTPS(443)" Grid.Column="3"/>
+                        <CheckBox x:Name="HTTPS"  Grid.Column="4" />
+                        <Label Text="SSH(22)" Grid.Column="5"/>
+                        <CheckBox x:Name="SSH" Grid.Column="6"/>
+                    </Grid>
+
+
+
+                    <!--#endregion-->
+                </Grid>
+            </ScrollView>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
