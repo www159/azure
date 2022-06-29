@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using azure_m.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,6 +12,7 @@ namespace azure_m.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddPage : ContentPage
     {
+        
         public AddPage()
         {
             InitializeComponent();
@@ -20,6 +21,7 @@ namespace azure_m.Views
         public void CreateServiceVM(object sender, EventArgs e)
         {
             DisplayAlert("VM", "", "OK");
+            Navigation.PushAsync(new AddVMDetailsPage());
         }
         public void CreateServiceFuncApp(object sender, EventArgs e)
         {
