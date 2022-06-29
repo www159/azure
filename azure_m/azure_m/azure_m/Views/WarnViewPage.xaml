@@ -6,7 +6,7 @@
         <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="180"/>
-                <RowDefinition Height="180"/>
+                <RowDefinition Height="160"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <!--上方导航栏-->
@@ -32,7 +32,7 @@
             <!--第二分区-->
             <Grid Grid.Row="1">
                 <Entry  Placeholder="搜索" FontSize="17" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="50" WidthRequest="200" Margin="20,0,0,0" />
-                <Button  Text="添加筛选器 +" TextColor="Black" FontSize="17" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="45"  Margin="20,80,0,0" CornerRadius="20"/>
+                <Button  Text="添加筛选器 +" TextColor="Black" FontSize="17" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="45"  Margin="20,70,0,0" CornerRadius="20"/>
                 <Picker x:Name="Group"
                                     Title="分组选择"
                                     TitleColor="Red" FontSize="17" BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="130" HeightRequest="40" Margin="260,80,0,0">
@@ -51,7 +51,13 @@
                     </Picker.ItemsSource>
                 </Picker>
             </Grid>
-
+            <Grid Grid.Row="2" >
+                <Label Text="名称" VerticalOptions="Start" HorizontalOptions="Start" Margin="20,0,0,0"/>
+                <Label Text="严重性" VerticalOptions="Start" HorizontalOptions="Start" Margin="80,0,0,0"/>
+                <Label Text="警报条件" VerticalOptions="Start" HorizontalOptions="Start" Margin="150,0,0,0" />
+                <Label Text="用户响应" VerticalOptions="Start" HorizontalOptions="Start" Margin="240,0,0,0"/>
+                <Label Text="出发时间" VerticalOptions="Start" HorizontalOptions="Start" Margin="320,0,0,0" />
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
