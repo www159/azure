@@ -29,17 +29,79 @@
         </Label>
         <Line X1="0" X2="400" Y1="150" Y2="150" StrokeThickness="2" Stroke="lightgray" />
         <Entry Placeholder="搜索任何字段" VerticalOptions="Start" HorizontalOptions="Start" Margin="20,160,0,0"/>
+        <!--筛选器区域-->
         <ImageButton Source="add1.png" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Start"  WidthRequest="40" Margin="240,160,0,0"
                      Clicked="OnAddFilterClicked"/>
-        <Label x:Name="AddFilter" Text="添加筛选器" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="280,165,0,0">
+        <Label x:Name="AddFilter" Text="添加筛选器" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="280,165,0,0" >
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Tapped="OnAddFilterClicked"/>
             </Label.GestureRecognizers>
         </Label>
-        <Label Text="订阅名称"  VerticalOptions="Start" HorizontalOptions="Start" Margin="20,240,0,0"/>
-        <Label Text="订阅ID"  VerticalOptions="Start" HorizontalOptions="Start" Margin="100,240,0,0"/>
-        <Label Text="我的角色"  VerticalOptions="Start" HorizontalOptions="Start" Margin="180,240,0,0"/>
-        <Label Text="当前成本"  VerticalOptions="Start" HorizontalOptions="Start" Margin="260,240,0,0"/>
-        <Label Text="状态"  VerticalOptions="Start" HorizontalOptions="Start" Margin="340,240,0,0"/>
+        <ScrollView Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start" Margin="20,220,0,0"  HeightRequest="40">
+            <StackLayout Orientation="Horizontal" x:Name="Choose" >
+                <Button Text="订阅==全局筛选器" CornerRadius="20"/>
+                <Button Text="我的角色==全部" CornerRadius="20"/>
+                <Button Text="状态==全部" CornerRadius="20"/>
+            </StackLayout>
+        </ScrollView>
+        <!--下方显示区域-->
+        <Label Text="订阅名称"  VerticalOptions="Start" HorizontalOptions="Start" Margin="20,270,0,0"/>
+        <Label Text="订阅ID"  VerticalOptions="Start" HorizontalOptions="Start" Margin="100,270,0,0"/>
+        <Label Text="我的角色"  VerticalOptions="Start" HorizontalOptions="Start" Margin="180,270,0,0"/>
+        <Label Text="当前成本"  VerticalOptions="Start" HorizontalOptions="Start" Margin="260,270,0,0"/>
+        <Label Text="状态"  VerticalOptions="Start" HorizontalOptions="Start" Margin="340,270,0,0"/>
+        <!--添加订阅展开区域-->
+        <Frame BorderColor="Black" Margin="40,0,0,0" IsVisible="false" x:Name="Subscribe" >
+            <FlexLayout Direction="Column">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="选择订阅的产品/服务" FontSize="20" FontAttributes="Bold"/>
+                    <Button Text="关闭" HeightRequest="40" Clicked="OnShutDownClicked"/>
+                </StackLayout>
+
+                <Grid  HeightRequest="25" Margin="0,50,0,0">
+                    <Image Source="down4.png" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="20" WidthRequest="20">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="最受欢迎的产品/服务" FontSize="18" Margin="20,0,0,0"/>
+                </Grid>
+                <Grid x:Name="Favorite" >
+                    <Frame BorderColor="Black" >
+                        <Grid>
+                            <Label Text="Azure For Students" FontSize="20" FontAttributes="Bold"/>
+                            <Label Text="使用 Azure 信用额度进行创新、研究，并推动事业发展，还可获得热门产品 12 个月免费使用权" Margin="0,50" />
+                            <Button Text="选择产品/服务" VerticalOptions="Start" Margin="0,120,0,0"/>
+                        </Grid>
+                    </Frame>
+                </Grid>
+                <Grid HeightRequest="25" Margin="0,50,0,0">
+                    <Image Source="down4.png" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="20" >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="所有其他产品/服务" FontSize="18" Margin="20,0,0,0"/>
+                </Grid>
+                <Grid x:Name="All" >
+
+
+                    <Frame BorderColor="Black">
+                        <Grid>
+                            <Label Text="Azure For Students" FontSize="20" FontAttributes="Bold"/>
+                            <Label Text="使用 Azure 信用额度进行创新、研究，并推动事业发展，还可获得热门产品 12 个月免费使用权" Margin="0,50" />
+                            <Button Text="选择产品/服务" VerticalOptions="Start" Margin="0,120,0,0"/>
+                        </Grid>
+                    </Frame>
+                    <Frame BorderColor="Black">
+                        <Grid>
+                            <Label Text="Azure For Students" FontSize="20" FontAttributes="Bold"/>
+                            <Label Text="使用 Azure 信用额度进行创新、研究，并推动事业发展，还可获得热门产品 12 个月免费使用权" Margin="0,50" />
+                            <Button Text="选择产品/服务" VerticalOptions="Start" Margin="0,120,0,0"/>
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </FlexLayout>
+        </Frame>
     </Grid>
 </ContentPage>
