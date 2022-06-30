@@ -7,16 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace azure_m.Views
+namespace azure_m.Views.VMDetails
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Page1 : ContentPage
+    public partial class Tag : ContentView
     {
-        public Page1()
+        public Tag()
         {
             InitializeComponent();
         }
-
-        
     }
 }

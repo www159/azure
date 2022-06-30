@@ -23,10 +23,16 @@ namespace azure_m.ViewModels
             Title = "创建虚拟机";
             basic = new Views.VMDetails.Basic();
             disk = new Views.VMDetails.Disk();
+            net = new Views.VMDetails.Net();
+            manage = new Views.VMDetails.Manage();
+            adv = new Views.VMDetails.Advance();
+            tag = new Views.VMDetails.Tag();
+            create = new Views.VMDetails.Create();
             pages = new ObservableCollection<ContentView>
             {
-                basic,
-                disk
+                basic, disk, 
+                //net, 
+                //manage, adv, tag, create
             };
 
         }
