@@ -173,6 +173,7 @@ namespace azure_m.Views
         private void MoreResourceBtn_Clicked(object sender, EventArgs e)
         {
             DisplayAlert("MoreResourceBtn_Clicked", "", "ok");
+            Navigation.PushAsync(new AllResourcesPage());
         }
     }
 }

@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="azure_m.Views.VMDetails.Net">
+  <ContentView.Content>
+        <StackLayout Margin="10,5,0,10">
+            <Grid ColumnDefinitions="*,2*" >
+                    <!--#region 网络接口-->
+                    <Label VerticalTextAlignment="Center" Text="网络接口" Grid.ColumnSpan="2" FontSize="20"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="1">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="虚拟网络"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Picker Grid.Row="1" Grid.Column="1" x:Name="subscribe" ItemsSource="{Binding vmnetworks}" ItemDisplayBinding="{Binding Name}"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="2">
+                        <Label.FormattedText>
+                            <FormattedString>
+                            <Span Text="公用IP"/>
+                        </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Picker Grid.Row="2" Grid.Column="1" x:Name="resourcesGroup" ItemsSource="{Binding publicIPs}" ItemDisplayBinding="{Binding Name}"/>
+
+                    <Label VerticalTextAlignment="Center" Grid.Row="3" Grid.RowSpan="3" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                            <Span Text="NIC网络安全组"/>
+                        </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Grid Grid.Row="3" Grid.RowSpan="3" Grid.Column="1" ColumnDefinitions="3*,*"  
+                        BindingContext="{x:Reference openentryPort}" IsVisible="{Binding SelectedIndex}" 
+                        HeightRequest="10" RadioButtonGroup.GroupName="nic_group" RadioButtonGroup.SelectedValue="1">
+                        <RadioButton x:Name="nic_none" Grid.Column="0" Grid.Row="0"/>
+                        <Label Text="无" Grid.Column="1" Grid.Row="0"/>
+                        <RadioButton x:Name="nic_basic"  Grid.Column="0" Grid.Row="1"/>
+                        <Label Text="基本" Grid.Column="1" Grid.Row="1"/>
+                        <RadioButton x:Name="nic_adv" Grid.Column="0" Grid.Row="2"/>
+                        <Label Text="高级" Grid.Column="1" Grid.Row="2"/>
+                    </Grid>
+
+                    <Label VerticalTextAlignment="Center" Grid.Row="4" Grid.RowSpan="4" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="选择入站端口"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <StackLayout Grid.Row="4" Grid.RowSpan="4" Grid.Column="1" 
+                            BindingContext="{x:Reference openentryPort}" IsVisible="{Binding SelectedIndex}" 
+                            RadioButtonGroup.GroupName="entryport_group" RadioButtonGroup.SelectedValue="1">
+                    <RadioButton x:Name="http" Grid.Column="0" Grid.Row="0" Content="HTTP(80)"/>
+                    <RadioButton x:Name="https"  Grid.Column="0" Grid.Row="1" Content="HTTPS(443)"/>
+                    <RadioButton x:Name="ssh" Grid.Column="0" Grid.Row="2" Content="SSH(22)"/>
+                    <RadioButton x:Name="rdp" Grid.Column="0" Grid.Row="2" Content="RDP(3389)"/>
+                </StackLayout>
+
+                <Label VerticalTextAlignment="Center" Grid.Row="5">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="删除VM时删除NIC"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <CheckBox Grid.Row="5" Grid.Column="1" x:Name="delete_nic_when_delete_vm" />
+
+                <Label VerticalTextAlignment="Center" Grid.Row="6">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="更快的网络连接"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <CheckBox Grid.Row="6" Grid.Column="1" x:Name="faster_network" />
+                <!--#endregion-->
+
+                <!--#region 负载均衡-->
+                <Label VerticalTextAlignment="Center" Text="负载均衡" Grid.ColumnSpan="2" FontSize="20" Grid.Row="7"/>
+                <Label VerticalTextAlignment="Center" Grid.Row="8">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="负载均衡选项"/>
+                            <Span Text="*" TextColor="Maroon"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <StackLayout Grid.Column="1" Grid.Row="8" RadioButtonGroup.GroupName="load_balance">
+                    <RadioButton Content="无"/>
+                    <RadioButton Content="Azure负载均衡器"/>
+                    <RadioButton Content="应用程序网关"/>
+                </StackLayout>
+                <!--#endregion-->
+            </Grid>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

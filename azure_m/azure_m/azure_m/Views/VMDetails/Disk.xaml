@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="azure_m.Views.VMDetails.Disk">
+  <ContentView.Content>
+        <StackLayout Margin="5,5,0,5">
+            <ScrollView>
+                <Grid ColumnDefinitions="*,2*">
+                    <!--#region 磁盘选项-->
+                    <Label VerticalTextAlignment="Center" Text="磁盘选项" Grid.ColumnSpan="2" FontSize="20"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="1">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="OS磁盘类型"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Picker Grid.Row="1" Grid.Column="1" x:Name="disk_type" SelectedIndex="1">
+                        <Picker.Items>
+                            <x:String>高级SSD</x:String>
+                            <x:String>标准SSD</x:String>
+                            <x:String>标准HDD</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label VerticalTextAlignment="Center" Grid.Row="2">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="使用VM删除"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <CheckBox x:Name="vm_delete" IsChecked="True" Grid.Row="2" Grid.Column="1"/>
+
+                    <Label VerticalTextAlignment="Center" Grid.Row="3">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="主机加密"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <CheckBox Grid.Row="3" Grid.Column="1" x:Name="secreted" IsEnabled="False" Color="LightSlateGray"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="4">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="加密类型"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Picker Grid.Row="4" x:Name="secretType" Grid.Column="1" SelectedIndex="0">
+                        <Picker.Items>
+                            <x:String>（默认）使用平台管理的秘钥进行加密</x:String>
+                            <x:String>使用客户管理的秘钥进行静态加密</x:String>
+                            <x:String>使用平台托管秘钥和客户管理的秘钥进行双重加密</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label VerticalTextAlignment="Center" Grid.Row="5">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="启用超级磁盘兼容性"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <CheckBox Grid.Row="5" Grid.Column="1" x:Name="super_disk_compatible" />
+                    <!--#endregion-->
+
+                    <!--#region 数据磁盘-->
+                    <Label VerticalTextAlignment="Center" Text="数据磁盘" Grid.Row="6" Grid.ColumnSpan="2" FontSize="20"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="7">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="To be added"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <!--#endregion-->
+                </Grid>
+            </ScrollView>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>
