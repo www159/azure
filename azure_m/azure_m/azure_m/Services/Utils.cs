@@ -4,6 +4,7 @@ using System.Text;
 using System.Diagnostics;
 using Flurl.Http;
 using System.Security;
+using Newtonsoft.Json;
 
 namespace azure_m.Services
 {
@@ -51,6 +52,13 @@ namespace azure_m.Services
                 secureStr.AppendChar(ch);
             }
             return secureStr;
+    
+        }
+            public static T readMock<T>(string jsonStr)
+        {
+
+            var json = JsonConvert.DeserializeObject<T>(jsonStr);
+            return json;
         }
     }
 

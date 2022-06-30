@@ -19,10 +19,14 @@ namespace azure_m
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<ResourceDataStore>();
 
-            //MainPage = new NavigationPage(new AppShell());
+            //MainPage = new Page1();
+
             MainPage = new LoginPage();
             (MainPage as LoginPage).LoginComplete += App_LoginComplete;
+
+            var ret = Utils.readMock<azure_m.Models.MockModels.Index>(azure_m.Mocks.Mocks.index);
             
+
         }
 
         public static object parentWindow { get; set; } 

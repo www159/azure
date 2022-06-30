@@ -34,10 +34,14 @@
                     <StackLayout>
                         <Entry Placeholder="图表标题" FontSize="30"/>
                         <Grid>
-                            <Button Text="添加指标" TextColor="Black" FontSize="17" BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="80" HeightRequest="40" Margin="10,0,0,0" Padding="0,6" />
-                            <Picker x:Name="chart"
+                            <ScrollView  Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="40">
+                                <StackLayout Orientation="Horizontal" >
+                                    <Button x:Name="Test" Text="添加指标"  FontSize="17"  BackgroundColor="#1e6ede" HorizontalOptions="Start" VerticalOptions="Start"  HeightRequest="40"  Padding="0,6"/>
+                                    <Button Text="添加筛选器"  FontSize="17"  BackgroundColor="#1e6ede" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40"  Padding="0,6"/>
+                                    <Button Text="应用拆分"  FontSize="17"  BackgroundColor="#1e6ede" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40"  Padding="0,6"/>
+                                    <Picker x:Name="chart"
                                     Title="图表类型"
-                                    TitleColor="Red" FontSize="17" BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="80" HeightRequest="40" Margin="120,0,0,0">
+                                    TitleColor="White" TextColor="White" FontSize="17" BackgroundColor="#1e6ede" HorizontalOptions="Start" VerticalOptions="Start"  HeightRequest="40" >
                                 <Picker.ItemsSource>
                                     <x:Array Type="{x:Type x:String}">
                                         <x:String>折线图</x:String>
@@ -48,19 +52,37 @@
                                     </x:Array>
                                 </Picker.ItemsSource>
                             </Picker>
+                            <Button Text="深入查看日志"  FontSize="17"  BackgroundColor="#1e6ede" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40"  Padding="0,6"/>
+                            <Button Text="新建警报规则"  FontSize="17"  BackgroundColor="#1e6ede" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40"  Padding="0,6"/>
                             <Picker x:Name="Save"
                                     Title="保存到仪表盘"
-                                    TitleColor="Red" FontSize="17" BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="110" HeightRequest="40" Margin="210,0,0,0">
+                                    TitleColor="White" TextColor="White" FontSize="17" BackgroundColor="#1e6ede" HorizontalOptions="Start" VerticalOptions="Start"  HeightRequest="40" >
                                 <Picker.ItemsSource>
-                                    <x:Array Type="{x:Type x:String}">
+                                    <x:Array Type="{x:Type x:String}" > 
                                         <x:String>固定到仪表盘</x:String>
                                         <x:String>固定到grafana</x:String>
                                         <x:String>发送到工作簿</x:String>
                                     </x:Array>
                                 </Picker.ItemsSource>
                             </Picker>
-                            <ImageButton Source="more4.png" BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="40" HeightRequest="40" Margin="340,0,0,0" Padding="0,6" />
-                            <Label Text="这是视图产生区域" BackgroundColor="Green" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="370" HeightRequest="300" Margin="10,50,0,0"/>
+                                    <ImageButton Source="more4.png" BackgroundColor="#1e6ede" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="40" HeightRequest="40"  Padding="0,6" />
+                             </StackLayout>
+                          </ScrollView>
+                            <StackLayout Margin="0,50,0,0">
+                                <Frame  VerticalOptions="Start" CornerRadius="40" BorderColor="Black">
+                                    <Grid  >
+                                        <Label Text="范围" Margin="0,0,0,0"></Label>
+                                        <Button Text="选择一个范围" FontSize="10" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="32" Margin="0,20,0,0"/>
+                                        <Label Text="指标命名空间" Margin="90,0,0,0"/>
+                                        <Button Text="选择命名范围" FontSize="10" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="32" Margin="90,20,0,0"/>
+                                        <Label Text="度量值" Margin="180,0,0,0"/>
+                                        <Button Text="选择指标" FontSize="10" VerticalOptions="Start" HorizontalOptions="Start" WidthRequest="75" HeightRequest="32" Margin="180,20,0,0"/>
+                                        <Label Text="聚合" Margin="260,0,0,0"/>
+                                        <Button Text="选择聚合" FontSize="10" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="32" WidthRequest="75" Margin="260,20,0,0"/>
+                                    </Grid>
+                                </Frame>
+                                <Label Text="这是视图产生区域" BackgroundColor="Green" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="370" HeightRequest="300"/>
+                            </StackLayout>
                         </Grid>
                     </StackLayout>
                 </StackLayout>
