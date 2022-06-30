@@ -22,6 +22,7 @@ namespace azure_m
             //MainPage = new NavigationPage(new AppShell());
             MainPage = new LoginPage();
             (MainPage as LoginPage).LoginComplete += App_LoginComplete;
+            var ret = Utils.readMock<azure_m.Models.MockModels.Index>(azure_m.Mocks.Mocks.index);
             
         }
 
