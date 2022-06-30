@@ -29,20 +29,54 @@ namespace azure_m.Views
             layout.Children.Add(entry);
             var grid = new Grid();
             layout.Children.Add(grid);
+            var scrollview = new ScrollView
+            {
+                Orientation = ScrollOrientation.Horizontal,
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions=LayoutOptions.Start,
+                HeightRequest=40
+            };
+            grid.Children.Add(scrollview);
+            var layout2 = new StackLayout { Orientation = StackOrientation.Horizontal };
+            scrollview.Content = layout2;
             //添加指标按钮（未写触发）
             var AddTargetbutton = new Button 
             {Text="添加指标", 
-                TextColor=Color.Black, 
+                TextColor=Color.White, 
                 FontSize=17, 
-                BackgroundColor=Color.White, 
-                HorizontalOptions=LayoutOptions.Start, 
+                BackgroundColor= Test.BackgroundColor, 
+                HorizontalOptions =LayoutOptions.Start, 
                 VerticalOptions=LayoutOptions.Start,
-                WidthRequest=80,HeightRequest=40,
-                Margin=new Thickness(10,0,0,0),
-                Padding=new Thickness(0,6),
-                
+                HeightRequest=40,
+                Padding=new Thickness(0,6),                
             };
-            grid.Children.Add(AddTargetbutton);
+            layout2.Children.Add(AddTargetbutton);
+            //
+            var AddChoosebutton = new Button
+            {
+                Text = "添加筛选器",
+                TextColor = Color.White,
+                FontSize = 17,
+                BackgroundColor = Test.BackgroundColor,
+                HorizontalOptions = LayoutOptions.Start,
+                VerticalOptions = LayoutOptions.Start,
+                HeightRequest = 40,
+                Padding = new Thickness(0, 6),
+            };
+            layout2.Children.Add(AddChoosebutton);
+            //
+            var Applybutton = new Button
+            {
+                Text = "应用拆分",
+                TextColor = Color.White,
+                FontSize = 17,
+                BackgroundColor = Test.BackgroundColor,
+                HorizontalOptions = LayoutOptions.Start,
+                VerticalOptions = LayoutOptions.Start,
+                HeightRequest = 40,
+                Padding = new Thickness(0, 6),
+            };
+            layout2.Children.Add(Applybutton);
             //图表选择器（未写触发）
             var ChartList = new List<string>();
             ChartList.Add("折线图");
@@ -52,17 +86,42 @@ namespace azure_m.Views
             ChartList.Add("网格");
             var Chartpicker = new Picker 
             { Title = "图表类型", 
-                TitleColor = Color.Red,
+                TitleColor = Color.White,
+                TextColor = Color.White,
                 FontSize=17,
-                BackgroundColor=Color.White,
+                BackgroundColor=Test.BackgroundColor,
                 HorizontalOptions = LayoutOptions.Start,
                 VerticalOptions = LayoutOptions.Start,
-                WidthRequest=80,
-                HeightRequest=40,
-                Margin = new Thickness(120, 0, 0, 0)
+                HeightRequest=40,                
             };
             Chartpicker.ItemsSource =ChartList;
-            grid.Children.Add(Chartpicker);
+            layout2.Children.Add(Chartpicker);
+            //
+            var CheckLogbutton = new Button
+            {
+                Text = "深入查看日志",
+                TextColor = Color.White,
+                FontSize = 17,
+                BackgroundColor = Test.BackgroundColor,
+                HorizontalOptions = LayoutOptions.Start,
+                VerticalOptions = LayoutOptions.Start,
+                HeightRequest = 40,
+                Padding = new Thickness(0, 6),
+            };
+            layout2.Children.Add(CheckLogbutton);
+            //
+            var Warnbutton = new Button
+            {
+                Text = "新建警报规则",
+                TextColor = Color.White,
+                FontSize = 17,
+                BackgroundColor = Test.BackgroundColor,
+                HorizontalOptions = LayoutOptions.Start,
+                VerticalOptions = LayoutOptions.Start,
+                HeightRequest = 40,
+                Padding = new Thickness(0, 6),
+            };
+            layout2.Children.Add(Warnbutton);
             //保存选择器（未写触发）
             var SaveList = new List<string>();
             SaveList.Add("固定到仪表盘");
@@ -71,30 +130,26 @@ namespace azure_m.Views
             var Savepicker = new Picker
             {
                 Title = "保存到仪表盘",
-                TitleColor = Color.Red,
+                TitleColor = Color.White,
                 FontSize=17,
-                BackgroundColor = Color.White,
+                BackgroundColor = Test.BackgroundColor,
                 HorizontalOptions = LayoutOptions.Start,
                 VerticalOptions = LayoutOptions.Start,
-                WidthRequest = 110,
                 HeightRequest = 40,
-                Margin= new Thickness(210,0,0,0)
             };
             Savepicker.ItemsSource =SaveList;
-            grid.Children.Add(Savepicker);
+            layout2.Children.Add(Savepicker);
             //更多Button（未写触发）
             var ImageBtn = new ImageButton 
             { Source= "more4.png",
-              BackgroundColor= Color.White,
+              BackgroundColor=Test.BackgroundColor,
                 HorizontalOptions = LayoutOptions.Start,
                 VerticalOptions = LayoutOptions.Start,
-                WidthRequest = 40,
                 HeightRequest = 40,
-                Margin=new Thickness(340,0,0,0),
                 Padding=new Thickness(0,6),
                
             };
-            grid.Children.Add(ImageBtn);
+            layout2.Children.Add(ImageBtn);
             //图表显示区
             var Chartlabel = new Label
             {

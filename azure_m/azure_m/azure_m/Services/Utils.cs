@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 using Flurl.Http;
+using Newtonsoft.Json;
 
 namespace azure_m.Services
 {
@@ -28,6 +29,13 @@ namespace azure_m.Services
         public static IFlurlRequest withApiVersion(IFlurlRequest req, string apiVersion)
         {
             return req.SetQueryParam("api-version", apiVersion);
+        }
+
+        public static T readMock<T>(string jsonStr)
+        {
+
+            var json = JsonConvert.DeserializeObject<T>(jsonStr);
+            return json;
         }
     }
 

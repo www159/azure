@@ -21,7 +21,9 @@ namespace azure_m.Views
         public void CreateServiceVM(object sender, EventArgs e)
         {
             DisplayAlert("VM", "", "OK");
+
             Navigation.PushAsync(new AddVMDetailsPage());
+
         }
         public void CreateServiceFuncApp(object sender, EventArgs e)
         {

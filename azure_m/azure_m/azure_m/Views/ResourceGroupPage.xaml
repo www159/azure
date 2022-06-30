@@ -2,11 +2,45 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="azure_m.Views.ResourceGroupPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <Grid RowDefinitions="120, 40, auto, auto, auto">
+        <Grid Grid.Row="0" ColumnDefinitions="300, auto, auto">
+            <Label  Grid.Row="0"  HeightRequest="45" VerticalOptions="Start" HorizontalOptions="Start"  Margin="90,20,0,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="资源组"  FontSize="34" FontAttributes="Bold"  />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="Microsoft"  HeightRequest="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="90,60,0,0" />
+            <Label Text="默认目录" FontSize="18" Grid.Row="0" HeightRequest="30" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,80,0,0" />
+            <Image Source="res5.png"  HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,20,0,0"/>
+        </Grid>
+        <Grid Grid.Row="1" ColumnDefinitions="*,*,*">
+            <StackLayout Orientation="Horizontal" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Padding="0">
+                <ImageButton Source="add2.png" Margin="10,10,10,10" BackgroundColor="White"/>
+                <Label Text="创建" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20" BackgroundColor="White" TextColor="#000000" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                <ImageButton Source="icon_about.png" Margin="10,10,10,10" BackgroundColor="White"/>
+                <Label Text="管理" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20" BackgroundColor="White" TextColor="#000000" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
+                <ImageButton Source="refresh4.png" Margin="10,10,10,10" BackgroundColor="White"/>
+                <Label Text="刷新" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20" BackgroundColor="White" TextColor="#000000" />
+            </StackLayout>
+        </Grid>
+        <Grid Grid.Row="2" ColumnDefinitions="* , *" Margin="0,20,0,0">
+            <Button Grid.Column="0" BackgroundColor="#ffffff" Text="显示已有筛选器" TextColor="#161616" FontSize="18"></Button>
+        </Grid>
+        <Grid Grid.Row="3" ColumnDefinitions="*, 2*, *">
+            <Label Grid.Column="0" HorizontalOptions="Center" BackgroundColor="#ffffff" Text="名称" TextColor="#161616" FontSize="20"/>
+            <Label Grid.Column="1" HorizontalOptions="Center" BackgroundColor="#ffffff" Text="位置" TextColor="#161616" FontSize="20"/>
+            <Label Grid.Column="2" HorizontalOptions="Center" BackgroundColor="#ffffff" Text="状态" TextColor="#161616" FontSize="20"/>
+        </Grid>
+        <ScrollView Grid.Row="4">
+            <StackLayout x:Name="ResourceLayout" Margin="5,0,0,5" >
+
+            </StackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>
