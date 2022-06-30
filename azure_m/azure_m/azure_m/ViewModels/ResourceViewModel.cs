@@ -48,6 +48,9 @@ namespace azure_m.ViewModels
                 //};
                 foreach (var resource in resources)
                 {
+                    //get real type
+                    resource.type = resource.type.Split('/')[1];
+                    resource.imgUrl = Utils.ImgMap[resource.type];
                     Resources.Add(resource);
                 }
             }

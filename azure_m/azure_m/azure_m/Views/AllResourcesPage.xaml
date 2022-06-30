@@ -73,9 +73,10 @@
                                     Padding="5">
                                     <StackLayout 
                                         Style="{StaticResource resourceCardInner}">
-                                        <Label
+                                        <!--<Label
                                         Text="{Binding type}"
-                                        FontSize="20"/>
+                                        FontSize="20"/>-->
+                                        <Image Source="{Binding imgUrl}"/>
                                         <Label
                                         Text="{Binding location}"
                                         FontSize="15"/>

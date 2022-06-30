@@ -42,7 +42,8 @@ namespace azure_m.Services
 
             try
             {
-                authResult = await app.AcquireTokenSilent(scopes, accounts.FirstOrDefault()).ExecuteAsync();
+                //authResult = await app.AcquireTokenSilent(scopes, accounts.FirstOrDefault()).ExecuteAsync();
+                throw new MsalUiRequiredException("1", "test");
             }
             catch (MsalUiRequiredException ex)
             {
@@ -54,6 +55,10 @@ namespace azure_m.Services
                         .AcquireTokenInteractive(scopes)
                         .WithParentActivityOrWindow(App.parentWindow)
                         .ExecuteAsync();
+
+                    //authResult = await app
+                    //    .AcquireTokenByUsernamePassword(scopes, "217795244@qq.com", Utils.str2secStr("wpfman20020506"))
+                    //    .ExecuteAsync();
 
                 }
                 catch (MsalException msalEx)

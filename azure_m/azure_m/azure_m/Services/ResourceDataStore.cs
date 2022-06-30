@@ -50,6 +50,7 @@ namespace azure_m.Services
                 throw new FetchExecption();
             }
 
+
             return res.value;
         }
     }

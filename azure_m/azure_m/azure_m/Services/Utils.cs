@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 using Flurl.Http;
+using System.Security;
 
 namespace azure_m.Services
 {
@@ -30,17 +31,26 @@ namespace azure_m.Services
             return req.SetQueryParam("api-version", apiVersion);
         }
 
-        public static class ImgMap
+        public static Dictionary<string, string> ImgMap = new Dictionary<string, string>()
         {
-            public static string networkWatchers = "";
-            public static string storageAccounts = "";
-            public static string disks = "";
-            public static string sshPublicKeys = "";
-            public static string virtualMachines = "";
-            public static string networkInterfaces = "";
-            public static string netWorkSecurityGroups = "";
-            public static string publicIPAddresses = "";
-            public static string virtualNetworks = "";
+            ["networkWatchers"] = "networkWatchers.png",
+            ["storageAccounts"] = "storageAccounts.png",
+            ["disks"] = "disks.png",
+            ["sshPublicKeys"] = "sshPublicKeys.png",
+            ["virtualMachines"] = "virtualMachines.png",
+            ["networkInterfaces"] = "networkInterfaces.png",
+            ["netWorkSecurityGroups"] = "netWorkSecurityGroups.png",
+            ["publicIPAddresses"] = "publicIPAddresses.png",
+            ["virtualNetworks"] = "virtualNetworks.png",
+        };
+
+        public static SecureString str2secStr(string str)
+        {
+            SecureString secureStr = new SecureString();    
+            foreach(var ch in str) {
+                secureStr.AppendChar(ch);
+            }
+            return secureStr;
         }
     }
 
