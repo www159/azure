@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="azure_m.Views.VNDetails.IPAddress">
+    <ContentView.Content>
+        <StackLayout Margin="5,5,0,5">
+            <ScrollView>
+                <Grid ColumnDefinitions="*,2*">
+
+                    <!--#region 入站端口规则-->
+                    <Label VerticalTextAlignment="Center" Text="安全性" Grid.ColumnSpan="2" FontSize="20" Grid.Row="0"/>
+                    
+                    <Label VerticalTextAlignment="Center" Grid.Row="18">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="公共入站端口"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Picker Grid.Row="18" Grid.Column="1" x:Name="openentryPort" SelectedIndex="1">
+                        <Picker.Items>
+                            <x:String>无</x:String>
+                            <x:String>允许选定的端口</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label VerticalTextAlignment="Center" Grid.Row="19" Grid.RowSpan="3" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="选择入站端口"/>
+                                <Span Text="*" TextColor="Maroon"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Grid Grid.Row="19" Grid.RowSpan="3" Grid.Column="1" ColumnDefinitions="3*,*"  
+                          BindingContext="{x:Reference openentryPort}" IsVisible="{Binding SelectedIndex}" HeightRequest="10">
+                        <Label Text="HTTP(80)" Grid.Column="0" Grid.Row="0"/>
+                        <CheckBox x:Name="HTTP" Grid.Column="1" Grid.Row="0"/>
+                        <Label Text="HTTPS(443)" Grid.Column="0" Grid.Row="1"/>
+                        <CheckBox x:Name="HTTPS"  Grid.Column="1" Grid.Row="1"/>
+                        <Label Text="SSH(22)" Grid.Column="0" Grid.Row="2"/>
+                        <CheckBox x:Name="SSH" Grid.Column="1" Grid.Row="2"/>
+                    </Grid>
+
+
+
+                    <!--#endregion-->
+                </Grid>
+            </ScrollView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>
