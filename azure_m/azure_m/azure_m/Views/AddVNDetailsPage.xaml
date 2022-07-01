@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:azure_m.ViewModels"
+            xmlns:views="clr-namespace:azure_m.Views.VNDetails" 
+             x:Class="azure_m.Views.AddVNDetailsPage"
+             >
+
+    <ContentPage.BindingContext>
+        <viewmodels:VNDetailsViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <CarouselView  ItemsSource="{Binding pages}" IndicatorView="indicatorView"
+                       EmptyView="page not found">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <ContentView Content="{Binding Content}" ></ContentView>
+                    </StackLayout>
+                </DataTemplate>
+
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <IndicatorView x:Name="indicatorView"
+                       IndicatorsShape="Square"
+                       IndicatorColor="LightGray"
+                       SelectedIndicatorColor="DarkGray"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,40" />
+    </StackLayout>
+
+
+</ContentPage>
