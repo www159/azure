@@ -16538,33 +16538,25 @@ namespace azure_m.Droid
 			public const int dashboard2 = 2131165285;
 			
 			// aapt resource value: 0x7F070066
-			public const int design_fab_background = 2131165286;
+			public const int delete = 2131165286;
 			
 			// aapt resource value: 0x7F070067
-			public const int design_ic_visibility = 2131165287;
+			public const int design_fab_background = 2131165287;
 			
 			// aapt resource value: 0x7F070068
-			public const int design_ic_visibility_off = 2131165288;
+			public const int design_ic_visibility = 2131165288;
 			
 			// aapt resource value: 0x7F070069
-			public const int design_password_eye = 2131165289;
+			public const int design_ic_visibility_off = 2131165289;
 			
 			// aapt resource value: 0x7F07006A
-			public const int design_snackbar_background = 2131165290;
+			public const int design_password_eye = 2131165290;
 			
 			// aapt resource value: 0x7F07006B
-			public const int directory5 = 2131165291;
+			public const int design_snackbar_background = 2131165291;
 			
 			// aapt resource value: 0x7F07006C
-			public const int disks = 2131165292;
-			
-			// aapt resource value: 0x7F07006D
-			public const int down4 = 2131165293;
-			
 			// aapt resource value: 0x7F07006E
-			public const int down6 = 2131165294;
-			
-			// aapt resource value: 0x7F07006F
 			public const int func_app = 2131165295;
 			
 			// aapt resource value: 0x7F070070
@@ -16697,6 +16689,7 @@ namespace azure_m.Droid
 			public const int navigation_empty_icon = 2131165338;
 			
 			// aapt resource value: 0x7F07009B
+<<<<<<< HEAD
 			public const int networkInterfaces = 2131165339;
 			
 			// aapt resource value: 0x7F07009C
@@ -16836,6 +16829,123 @@ namespace azure_m.Droid
 			
 			// aapt resource value: 0x7F0700C9
 			public const int xamarin_logo = 2131165385;
+=======
+			public const int notification_action_background = 2131165339;
+			
+			// aapt resource value: 0x7F07009C
+			public const int notification_bg = 2131165340;
+			
+			// aapt resource value: 0x7F07009D
+			public const int notification_bg_low = 2131165341;
+			
+			// aapt resource value: 0x7F07009E
+			public const int notification_bg_low_normal = 2131165342;
+			
+			// aapt resource value: 0x7F07009F
+			public const int notification_bg_low_pressed = 2131165343;
+			
+			// aapt resource value: 0x7F0700A0
+			public const int notification_bg_normal = 2131165344;
+			
+			// aapt resource value: 0x7F0700A1
+			public const int notification_bg_normal_pressed = 2131165345;
+			
+			// aapt resource value: 0x7F0700A2
+			public const int notification_icon_background = 2131165346;
+			
+			// aapt resource value: 0x7F0700A3
+			public const int notification_template_icon_bg = 2131165347;
+			
+			// aapt resource value: 0x7F0700A4
+			public const int notification_template_icon_low_bg = 2131165348;
+			
+			// aapt resource value: 0x7F0700A5
+			public const int notification_tile_bg = 2131165349;
+			
+			// aapt resource value: 0x7F0700A6
+			public const int notify_panel_notification_icon_bg = 2131165350;
+			
+			// aapt resource value: 0x7F0700A7
+			public const int preference_list_divider_material = 2131165351;
+			
+			// aapt resource value: 0x7F0700A8
+			public const int recent5 = 2131165352;
+			
+			// aapt resource value: 0x7F0700A9
+			public const int refresh4 = 2131165353;
+			
+			// aapt resource value: 0x7F0700AA
+			public const int res5 = 2131165354;
+			
+			// aapt resource value: 0x7F0700AB
+			public const int security6 = 2131165355;
+			
+			// aapt resource value: 0x7F0700AC
+			public const int service5 = 2131165356;
+			
+			// aapt resource value: 0x7F0700AD
+			public const int setting0 = 2131165357;
+			
+			// aapt resource value: 0x7F0700AE
+			public const int settings4 = 2131165358;
+			
+			// aapt resource value: 0x7F0700AF
+			public const int sql_db = 2131165359;
+			
+			// aapt resource value: 0x7F0700B0
+			public const int star1 = 2131165360;
+			
+			// aapt resource value: 0x7F0700B1
+			public const int subscribe5 = 2131165361;
+			
+			// aapt resource value: 0x7F0700B2
+			public const int test_custom_background = 2131165362;
+			
+			// aapt resource value: 0x7F0700B3
+			public const int tooltip_frame_dark = 2131165363;
+			
+			// aapt resource value: 0x7F0700B4
+			public const int tooltip_frame_light = 2131165364;
+			
+			// aapt resource value: 0x7F0700B5
+			public const int ubuntu_server20_04 = 2131165365;
+			
+			// aapt resource value: 0x7F0700B6
+			public const int ubuntu_server_18_04 = 2131165366;
+			
+			// aapt resource value: 0x7F0700B7
+			public const int up4 = 2131165367;
+			
+			// aapt resource value: 0x7F0700B8
+			public const int user0 = 2131165368;
+			
+			// aapt resource value: 0x7F0700B9
+			public const int view3 = 2131165369;
+			
+			// aapt resource value: 0x7F0700BA
+			public const int vm1 = 2131165370;
+			
+			// aapt resource value: 0x7F0700BB
+			public const int vm2 = 2131165371;
+			
+			// aapt resource value: 0x7F0700BC
+			public const int vm5 = 2131165372;
+			
+			// aapt resource value: 0x7F0700BD
+			public const int vm_insights_90 = 2131165373;
+			
+			// aapt resource value: 0x7F0700BE
+			public const int web_app = 2131165374;
+			
+			// aapt resource value: 0x7F0700BF
+			public const int win10pro = 2131165375;
+			
+			// aapt resource value: 0x7F0700C0
+			public const int win_server_2019 = 2131165376;
+			
+			// aapt resource value: 0x7F0700C1
+			public const int xamarin_logo = 2131165377;
+>>>>>>> dk1
 			
 			static Drawable()
 			{

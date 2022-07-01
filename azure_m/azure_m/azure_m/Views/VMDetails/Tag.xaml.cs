@@ -16,5 +16,17 @@ namespace azure_m.Views.VMDetails
         {
             InitializeComponent();
         }
+
+        
+        private void delete_Clicked(object sender, EventArgs e)
+        {
+            allStack.Children.RemoveAt(1);
+
+        }
+
+        private void delete2_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
