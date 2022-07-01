@@ -6,16 +6,111 @@
              mc:Ignorable="d"
              x:Class="azure_m.Views.LoginPage"
              Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <Style x:Key="id_input" TargetType="StackLayout">
+            <Setter 
+                Property="Margin"
+                Value="0,-80,0,0"/>
+            <!--<Setter
+                Property="BackgroundColor"
+                Value="Wheat"/>-->
+            <Setter
+                Property="Grid.Row"
+                Value="1"/>
+            <Setter
+                Property="WidthRequest"
+                Value="360"/>
+            <Setter
+                Property="HorizontalOptions"
+                Value="Center"/>
+        </Style>
+        <Style TargetType="Entry">
+            <Style.Triggers>
+                <Trigger
+                    TargetType="Entry"
+                    Property="Entry.IsFocused"
+                    Value="False">
+                    <Setter
+                        Property="Opacity"
+                        Value="0.6"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button">
+            <Style.Triggers>
+                <MultiTrigger TargetType="Button">
+                    <MultiTrigger.Conditions>
+                        <BindingCondition
+                            Binding="{Binding Source={x:Reference clientID}, Path=Text.Length}"
+                            Value="0"/>
+                        <BindingCondition
+                            Binding="{Binding Source={x:Reference tenantID}, Path=Text.Length}"
+                            Value="0"/>
+                    </MultiTrigger.Conditions>
+                    <Setter
+                        Property="IsEnabled"
+                        Value="False"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="400"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Image Source="azure.png" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="250" WidthRequest="600"  />
-            <Label Text="Azure" TextColor="#1e6ede" FontSize="50" HorizontalOptions="Center" VerticalOptions="Center"  Margin="0,120,0,0"  />
-            <Button  x:Name="Btn" Grid.Row="1" BackgroundColor="#1e6ede" VerticalOptions="Center" Text="登录" Margin="0,0,0,0" CornerRadius="20" HorizontalOptions="Center" WidthRequest="120"
-                    Clicked="Btn_Clicked"/>
+            <Image 
+                Source="azure.png" 
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" 
+                HeightRequest="250" 
+                WidthRequest="600"/>
+            <Label 
+                Text="Azure" 
+                TextColor = "{StaticResource Primary}" 
+                FontSize="50" 
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"  
+                Margin="0,120,0,0"/>
+            <StackLayout
+                Style="{StaticResource id_input}">
+
+                <StackLayout>
+                    <Label
+                        Text="客户端ID"/>
+                    <Entry
+                        x:Name="clientID"
+                        Text=""/>
+                </StackLayout>
+                <StackLayout>
+                    <Label
+                        Text="租户ID"/>
+                    <Entry
+                        x:Name="tenantID"
+                        Text=""/>
+                </StackLayout>
+                <StackLayout 
+                    Orientation="Horizontal"
+                    Margin="0,10,0,0">
+                    <CheckBox
+                        x:Name="remeberID"/>
+                    <Label
+                        Text="记住ID"
+                        VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </StackLayout>
+            <Button  
+                x:Name="Btn" 
+                Grid.Row="2" 
+                BackgroundColor = "{StaticResource Primary}" 
+                VerticalOptions="Center" 
+                Text="登录" 
+                Margin="0,0,0,0" 
+                CornerRadius="20" 
+                HorizontalOptions="Center" 
+                WidthRequest="120"
+                Clicked="Btn_Clicked"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

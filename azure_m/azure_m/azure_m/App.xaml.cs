@@ -19,7 +19,7 @@ namespace azure_m
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<ResourceDataStore>();
 
-            //MainPage = new Page1();
+           // MainPage = new Page1();
 
             MainPage = new LoginPage();
             (MainPage as LoginPage).LoginComplete += App_LoginComplete;
@@ -28,6 +28,8 @@ namespace azure_m
             
 
         }
+
+        public static object parentWindow { get; set; } 
 
        
         private void App_LoginComplete(object sender,EventArgs e)

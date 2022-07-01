@@ -5,6 +5,55 @@
              Title="{Binding Title}"
              xmlns:local="clr-namespace:azure_m.ViewModels"
              xmlns:model="clr-namespace:azure_m.Models">
+    <ContentPage.Resources>
+        <Color x:Key="cardBack">#fffbf0</Color>
+        <Style
+            TargetType="StackLayout"
+            x:Key="resourceCard">
+            <Setter
+                Property="Padding"
+                Value="5,5,5,5"/>
+            <Setter
+                Property="VerticalOptions"
+                Value="Center" />
+        </Style>
+        <Style
+            TargetType="StackLayout"
+            x:Key="resourceCardInner">
+            <Setter
+                Property="HeightRequest"
+                Value="100"/>
+            <Setter
+                Property="BackgroundColor"
+                Value="{StaticResource cardBack}"/>
+            <Setter 
+                Property="VerticalOptions"
+                Value="Center"/>
+        </Style>
+        <Style
+            TargetType="Image">
+            <Setter
+                Property="HeightRequest"
+                Value="50"/>
+            <Setter
+                Property="WidthRequest"
+                Value="50"/>
+            <Setter
+                Property="HorizontalOptions"
+                Value="Center"/>
+            <Setter
+                Property="Margin"
+                Value="0,0,0,0"/>
+        </Style>
+        <Style
+            TargetType="Label"
+            x:Key="innerCardLabel">
+            <Setter
+                Property="HorizontalOptions"
+                Value="Center"/>
+        </Style>
+
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="test" />
     </ContentPage.ToolbarItems>
@@ -30,36 +79,44 @@
                 <Button Text="筛选器" />
             </StackLayout>
             <StackLayout>
-                <Button 
-                    Text="test api"
-                    Command="{Binding LoadResourcesCommand}"/>
-
             </StackLayout>
-            <!--<RefreshView
+            <RefreshView
                 x:DataType="local:ResourceViewModel"
                 Command="{Binding LoadResourcesCommand}"
                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
                 <CollectionView
                     x:Name="ResourceTabVIew"
                     ItemsSource="{Binding Resources}"
-                    SelectionMode="None">
+                    SelectionMode="None"
+                    ItemsLayout="VerticalGrid, 2">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout 
-                                Padding="10" 
+                                Style="{StaticResource resourceCard}"
                                 x:DataType="model:Resource">
                                 <Frame 
-                                    BackgroundColor="Black"
-                                    Padding="5">
-                                    <Label 
-                                        Text="{Binding id}"
-                                        FontSize="20"/>
+                                    BorderColor="{StaticResource Primary}"
+                                    HasShadow="True"
+                                    Padding="5"
+                                    CornerRadius="5">
+                                    <StackLayout 
+                                        Style="{StaticResource resourceCardInner}">
+                                        <Image Source="{Binding imgUrl}"/>
+                                        <Label
+                                            Style="{StaticResource innerCardLabel}"
+                                            Text="{Binding type}"
+                                            FontAttributes="Bold"
+                                            Margin="0,-5,0,0"/>
+                                        <Label
+                                            Style="{StaticResource innerCardLabel}"
+                                            Text="{Binding location}"/>
+                                    </StackLayout>
                                 </Frame>
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </RefreshView>-->
+            </RefreshView>
         </StackLayout>
         
     </ContentPage.Content>

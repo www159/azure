@@ -30,6 +30,8 @@ namespace azure_m.Models
         //public object Properties { get; set; }
         //public string provisioningState { get; set; }
 
+        public string imgUrl { get; set; }  
+
         public Resource()
         {
 

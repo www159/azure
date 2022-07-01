@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 using Flurl.Http;
+using System.Security;
 using Newtonsoft.Json;
 
 namespace azure_m.Services
@@ -31,7 +32,18 @@ namespace azure_m.Services
             return req.SetQueryParam("api-version", apiVersion);
         }
 
-        public static T readMock<T>(string jsonStr)
+
+
+        public static SecureString str2secStr(string str)
+        {
+            SecureString secureStr = new SecureString();    
+            foreach(var ch in str) {
+                secureStr.AppendChar(ch);
+            }
+            return secureStr;
+    
+        }
+            public static T readMock<T>(string jsonStr)
         {
 
             var json = JsonConvert.DeserializeObject<T>(jsonStr);

@@ -31,8 +31,10 @@ namespace azure_m.ViewModels
             pages = new ObservableCollection<ContentView>
             {
                 basic, disk, 
-                //net, 
-                //manage, adv, tag, create
+                net, 
+                manage, adv,
+                tag,
+                create
             };
 
         }
