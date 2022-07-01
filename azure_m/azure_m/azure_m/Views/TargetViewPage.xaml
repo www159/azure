@@ -1,15 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:local="clr-namespace:azure_m.ViewModels"
              x:Class="azure_m.Views.TargetViewPage">
     <ContentPage.Content>
-        <Grid >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="180"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+        <Grid>
+            <Grid x:Name="grid" >
             <!--上方导航栏-->
-            <Label  Grid.Row="0"  HeightRequest="45" VerticalOptions="Start" HorizontalOptions="Start"  Margin="90,20,0,0">
+            <Label  HeightRequest="45" VerticalOptions="Start" HorizontalOptions="Start"  Margin="90,20,0,0">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="监视器"  FontSize="34" FontAttributes="Bold"  />
@@ -17,76 +16,67 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Label Text="Microsoft" Grid.Row="0"  HeightRequest="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="90,60,0,0" />
-            <Image Source="dashboard2.png" Grid.Row="0" HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,20,0,0"/>
-            <ImageButton Source="add2.png" BackgroundColor="White" Grid.Row="0" HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="20,90,0,0"
-                         Clicked="CreateNewChat"/>
-            <Label Text="新图表" FontSize="15" HeightRequest="40" WidthRequest="100" VerticalOptions="Start" HorizontalOptions="Start" Margin="20,150,0,0"/>
-            <ImageButton Source="add2.png" BackgroundColor="White" Grid.Row="0" HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="120,90,0,0"/>
-            <Label Text="刷新" FontSize="15" HeightRequest="40" WidthRequest="100" VerticalOptions="Start" HorizontalOptions="Start" Margin="125,150,0,0"/>
-            <ImageButton Source="add2.png" BackgroundColor="White" Grid.Row="0" HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="220,90,0,0"/>
-            <Label Text="共享" FontSize="15" HeightRequest="40" WidthRequest="100" VerticalOptions="Start" HorizontalOptions="Start" Margin="225,150,0,0"/>
-            <ImageButton Source="add2.png" BackgroundColor="White" Grid.Row="0" HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="320,90,0,0"/>
-            <Label Text="反馈" FontSize="15" HeightRequest="40" WidthRequest="100" VerticalOptions="Start" HorizontalOptions="Start" Margin="325,150,0,0"/>
+            <Label Text="Microsoft"  HeightRequest="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="90,60,0,0" />
+            <Image Source="dashboard2.png"  HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,20,0,0"/>
+            <Button Text="选择一个范围" HorizontalOptions="Start" VerticalOptions="Start" Margin="30,100" Clicked="ChooseTargetClicked"/>
+            <Button Text="度量值"  HorizontalOptions="Start" VerticalOptions="Start" Margin="160,100,0,0" />
+            <Button Text="条形图"  HorizontalOptions="Start" VerticalOptions="Start" Margin="270,100,0,0" />
             <!--图表显示区-->
-            <ScrollView Grid.Row="1">
-                <StackLayout x:Name="MainLayout" Padding="5,0,5,0" >
-                    <StackLayout>
-                        <Entry Placeholder="图表标题" FontSize="30"/>
-                        <Grid>
-                            <ScrollView  Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="40">
-                                <StackLayout Orientation="Horizontal" >
-                                    <Button x:Name="Test" Text="添加指标"  FontSize="17"  BackgroundColor="#1e6ede" HorizontalOptions="Start" VerticalOptions="Start"  HeightRequest="40"  Padding="0,6"/>
-                                    <Button Text="添加筛选器"  FontSize="17"  BackgroundColor="#1e6ede" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40"  Padding="0,6"/>
-                                    <Button Text="应用拆分"  FontSize="17"  BackgroundColor="#1e6ede" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40"  Padding="0,6"/>
-                                    <Picker x:Name="chart"
-                                    Title="图表类型"
-                                    TitleColor="White" TextColor="White" FontSize="17" BackgroundColor="#1e6ede" HorizontalOptions="Start" VerticalOptions="Start"  HeightRequest="40" >
-                                <Picker.ItemsSource>
-                                    <x:Array Type="{x:Type x:String}">
-                                        <x:String>折线图</x:String>
-                                        <x:String>分区图</x:String>
-                                        <x:String>条形图</x:String>
-                                        <x:String>散点图</x:String>
-                                        <x:String>网格</x:String>
-                                    </x:Array>
-                                </Picker.ItemsSource>
-                            </Picker>
-                            <Button Text="深入查看日志"  FontSize="17"  BackgroundColor="#1e6ede" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40"  Padding="0,6"/>
-                            <Button Text="新建警报规则"  FontSize="17"  BackgroundColor="#1e6ede" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40"  Padding="0,6"/>
-                            <Picker x:Name="Save"
-                                    Title="保存到仪表盘"
-                                    TitleColor="White" TextColor="White" FontSize="17" BackgroundColor="#1e6ede" HorizontalOptions="Start" VerticalOptions="Start"  HeightRequest="40" >
-                                <Picker.ItemsSource>
-                                    <x:Array Type="{x:Type x:String}" > 
-                                        <x:String>固定到仪表盘</x:String>
-                                        <x:String>固定到grafana</x:String>
-                                        <x:String>发送到工作簿</x:String>
-                                    </x:Array>
-                                </Picker.ItemsSource>
-                            </Picker>
-                                    <ImageButton Source="more4.png" BackgroundColor="#1e6ede" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="40" HeightRequest="40"  Padding="0,6" />
-                             </StackLayout>
-                          </ScrollView>
-                            <StackLayout Margin="0,50,0,0">
-                                <Frame  VerticalOptions="Start" CornerRadius="40" BorderColor="Black">
-                                    <Grid  >
-                                        <Label Text="范围" Margin="0,0,0,0"></Label>
-                                        <Button Text="选择一个范围" FontSize="10" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="32" Margin="0,20,0,0"/>
-                                        <Label Text="指标命名空间" Margin="90,0,0,0"/>
-                                        <Button Text="选择命名范围" FontSize="10" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="32" Margin="90,20,0,0"/>
-                                        <Label Text="度量值" Margin="180,0,0,0"/>
-                                        <Button Text="选择指标" FontSize="10" VerticalOptions="Start" HorizontalOptions="Start" WidthRequest="75" HeightRequest="32" Margin="180,20,0,0"/>
-                                        <Label Text="聚合" Margin="260,0,0,0"/>
-                                        <Button Text="选择聚合" FontSize="10" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="32" WidthRequest="75" Margin="260,20,0,0"/>
-                                    </Grid>
-                                </Frame>
-                                <Label Text="这是视图产生区域" BackgroundColor="Green" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="370" HeightRequest="300"/>
-                            </StackLayout>
-                        </Grid>
-                    </StackLayout>
-                </StackLayout>
-            </ScrollView>
+                <chart:SfChart VerticalOptions="Start"  Margin="0,180,0,0" x:Name="Chart" >
+
+                    <chart:SfChart.BindingContext>
+                        <local:TargetViewModel/>
+                    </chart:SfChart.BindingContext>
+
+                    <chart:SfChart.Legend>
+                        <chart:ChartLegend />
+                    </chart:SfChart.Legend>
+
+
+                    <chart:SfChart.ChartBehaviors>
+
+                        <chart:ChartZoomPanBehavior EnableSelectionZooming="True"/>
+
+                    </chart:SfChart.ChartBehaviors>
+
+                    <chart:SfChart.Title>
+                        <chart:ChartTitle Text="Chart"/>
+                    </chart:SfChart.Title>
+
+                    <chart:SfChart.PrimaryAxis>
+                        <chart:CategoryAxis>
+                            <chart:CategoryAxis.Title>
+                                <chart:ChartAxisTitle Text="Time"/>
+                            </chart:CategoryAxis.Title>
+                        </chart:CategoryAxis>
+                    </chart:SfChart.PrimaryAxis>
+
+                    <chart:SfChart.SecondaryAxis>
+                        <chart:NumericalAxis>
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="MiB"/>
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfChart.SecondaryAxis>
+
+                    <chart:SfChart.Series>
+                        <chart:ColumnSeries ItemsSource="{Binding Data}" Label="MiB" XBindingPath="TimeStamp" YBindingPath="Average" EnableTooltip="True" Color="LightBlue">
+                            <chart:ColumnSeries.DataMarker>
+                                <chart:ChartDataMarker/>
+                            </chart:ColumnSeries.DataMarker>
+                        </chart:ColumnSeries>
+                    </chart:SfChart.Series>
+                </chart:SfChart>
+            </Grid>
+        <Frame x:Name="ChooseTarget" Margin="30,0,0,0" BorderColor="Black" IsVisible="false">
+            <Grid>
+                <Label Text="选择一个范围" FontSize="30"></Label>
+                <Label Text="名称" FontSize="25" Margin="20,100,0,0"/>
+                <Label Text="资源类型" FontSize="25" Margin="180,100,0,0"/>
+                <Button Text="应用" VerticalOptions="Start" HorizontalOptions="Start" Margin="0,700,0,0" Clicked="ApplyTargetClicked"/>
+                <Button Text="取消" VerticalOptions="Start" HorizontalOptions="Start" Margin="100,700,0,0" Clicked="CancelTargetClicked"/>
+            </Grid>
+        </Frame>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

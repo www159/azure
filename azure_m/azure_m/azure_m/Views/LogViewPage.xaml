@@ -1,26 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:local="clr-namespace:azure_m.ViewModels"
              x:Class="azure_m.Views.LogViewPage">
 
     <StackLayout>
-        <Label Text="ROTATION"
-               BindingContext="{x:Reference Name=slider}"
-               Rotation="{Binding Path=Value}"
-               FontAttributes="Bold"
-               FontSize="Large"
-               HorizontalOptions="Center"
-               VerticalOptions="CenterAndExpand" />
+        <chart:SfChart VerticalOptions="FillAndExpand" >
 
-        <Slider x:Name="slider"
-                Maximum="360"
-                VerticalOptions="CenterAndExpand" />
+            <chart:SfChart.BindingContext>
+                <local:LogViewModel/>
+            </chart:SfChart.BindingContext>
 
-        <Label BindingContext="{x:Reference slider}"
-               Text="{Binding Value, StringFormat='The angle is {0:F0} degrees'}"
-               FontAttributes="Bold"
-               FontSize="Large"
-               HorizontalOptions="Center"
-               VerticalOptions="CenterAndExpand" />
+            <chart:SfChart.Legend>
+                <chart:ChartLegend />
+            </chart:SfChart.Legend>
+            
+
+                <chart:SfChart.ChartBehaviors>
+
+                    <chart:ChartZoomPanBehavior EnableSelectionZooming="True"/>
+
+                </chart:SfChart.ChartBehaviors>
+
+            
+
+            <chart:SfChart.Title>
+                <chart:ChartTitle Text="Chart"/>
+            </chart:SfChart.Title>
+
+            <chart:SfChart.PrimaryAxis>
+                <chart:CategoryAxis>
+                    <chart:CategoryAxis.Title>
+                        <chart:ChartAxisTitle Text="Name"/>
+                    </chart:CategoryAxis.Title>
+                </chart:CategoryAxis>
+            </chart:SfChart.PrimaryAxis>
+
+            <chart:SfChart.SecondaryAxis>
+                <chart:NumericalAxis>
+                    <chart:NumericalAxis.Title>
+                        <chart:ChartAxisTitle Text="Height (in cm)"/>
+                    </chart:NumericalAxis.Title>
+                </chart:NumericalAxis>
+            </chart:SfChart.SecondaryAxis>
+
+            <chart:SfChart.Series>
+                <chart:ColumnSeries ItemsSource="{Binding Data}" Label="Heights" XBindingPath="TimeStamp" YBindingPath="Average" EnableTooltip="True">
+                    <chart:ColumnSeries.DataMarker>
+                        <chart:ChartDataMarker/>
+                    </chart:ColumnSeries.DataMarker>
+                </chart:ColumnSeries>
+            </chart:SfChart.Series>
+        </chart:SfChart>
     </StackLayout>
 </ContentPage>

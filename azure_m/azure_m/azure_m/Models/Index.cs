@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using azure_m.Services;
 
 namespace azure_m.Models
 {
-    partial class MockModels
+    namespace MockModels
     {
         public class Data
         {
-            public string timeStamp;
-            public string average;
-        }
+            public string TimeStamp { get; set; }
+            public double Average { get; set; }
+        }       
         public class Index
-        {
-            public List<Data> data;
+        {        
+            public List<Data> Data { get; set; }
         }
     }
+
 }
