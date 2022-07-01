@@ -26,7 +26,7 @@ namespace azure_m.Views
         {
             try
             {
-                await QueryInfo.getToken();
+                //await QueryInfo.getToken();
                 LoginComplete?.Invoke(this, EventArgs.Empty);
             }
             catch(Exception ex)
