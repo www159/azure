@@ -2,19 +2,34 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Collections.ObjectModel;
-using azure_m.Models;
+using azure_m.Models.RequestModels;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 using azure_m.Services;
 using System.Diagnostics;
+using azure_m.Models;
 
 namespace azure_m.ViewModels
+    
 {
     public class ResourceViewModel: BaseViewModel
     {
 
         public ResourceDataStore resourceDataStore => DependencyService.Get<ResourceDataStore>();
         private Resource _selectedResource;
+
+        public static Dictionary<string, string> ImgMap = new Dictionary<string, string>()
+        {
+            ["networkWatchers"] = "networkWatchers.png",
+            ["storageAccounts"] = "storageAccounts.png",
+            ["disks"] = "disks.png",
+            ["sshPublicKeys"] = "sshPublicKeys.png",
+            ["virtualMachines"] = "virtualMachines.png",
+            ["networkInterfaces"] = "networkInterfaces.png",
+            ["netWorkSecurityGroups"] = "netWorkSecurityGroups.png",
+            ["publicIPAddresses"] = "publicIPAddresses.png",
+            ["virtualNetworks"] = "virtualNetworks.png",
+        };
 
         public ObservableCollection<Resource> Resources { get; }
         public Command ResourceTapped { get; }
@@ -36,7 +51,8 @@ namespace azure_m.ViewModels
             try
             {
                 Resources.Clear();
-                var resources = await resourceDataStore.ListResourcesAsync();
+                await resourceDataStore.refreshResourceAsync();
+                var resources = resourceDataStore.resources;
                 //{
                 //    new Resource
                 //    {
@@ -50,7 +66,7 @@ namespace azure_m.ViewModels
                 {
                     //get real type
                     resource.type = resource.type.Split('/')[1];
-                    resource.imgUrl = Utils.ImgMap[resource.type];
+                    resource.imgUrl = ImgMap[resource.type];
                     Resources.Add(resource);
                 }
             }

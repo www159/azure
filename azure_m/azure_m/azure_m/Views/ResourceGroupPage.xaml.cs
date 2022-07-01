@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using azure_m.Models;
 
 namespace azure_m.Views
 {
@@ -26,7 +27,7 @@ namespace azure_m.Views
         public void GetResources(int type = 0)
         {
             ResourceLayout.Children.Clear();
-            List<azure_m.Models.Resource> resources = new List<azure_m.Models.Resource>();
+            List<Resource> resources = new List<azure_m.Models.Resource>();
             //查询指定资源，放置在ResourcesLayout中
             //resources = await GetResourcesByApi(type)...
             //resources.sort by type nad name (or linq

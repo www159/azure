@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:azure_m.ViewModels"
              xmlns:model="clr-namespace:azure_m.Models">
     <ContentPage.Resources>
+        <Color x:Key="cardBack">#fffbf0</Color>
         <Style
             TargetType="StackLayout"
             x:Key="resourceCard">
@@ -24,8 +25,34 @@
                 Value="100"/>
             <Setter
                 Property="BackgroundColor"
-                Value="{StaticResource Primary}"/>
+                Value="{StaticResource cardBack}"/>
+            <Setter 
+                Property="VerticalOptions"
+                Value="Center"/>
         </Style>
+        <Style
+            TargetType="Image">
+            <Setter
+                Property="HeightRequest"
+                Value="50"/>
+            <Setter
+                Property="WidthRequest"
+                Value="50"/>
+            <Setter
+                Property="HorizontalOptions"
+                Value="Center"/>
+            <Setter
+                Property="Margin"
+                Value="0,0,0,0"/>
+        </Style>
+        <Style
+            TargetType="Label"
+            x:Key="innerCardLabel">
+            <Setter
+                Property="HorizontalOptions"
+                Value="Center"/>
+        </Style>
+
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="test" />
@@ -68,18 +95,21 @@
                                 Style="{StaticResource resourceCard}"
                                 x:DataType="model:Resource">
                                 <Frame 
-                                    BorderColor="Gray"
+                                    BorderColor="{StaticResource Primary}"
                                     HasShadow="True"
-                                    Padding="5">
+                                    Padding="5"
+                                    CornerRadius="5">
                                     <StackLayout 
                                         Style="{StaticResource resourceCardInner}">
-                                        <!--<Label
-                                        Text="{Binding type}"
-                                        FontSize="20"/>-->
                                         <Image Source="{Binding imgUrl}"/>
                                         <Label
-                                        Text="{Binding location}"
-                                        FontSize="15"/>
+                                            Style="{StaticResource innerCardLabel}"
+                                            Text="{Binding type}"
+                                            FontAttributes="Bold"
+                                            Margin="0,-5,0,0"/>
+                                        <Label
+                                            Style="{StaticResource innerCardLabel}"
+                                            Text="{Binding location}"/>
                                     </StackLayout>
                                 </Frame>
                             </StackLayout>

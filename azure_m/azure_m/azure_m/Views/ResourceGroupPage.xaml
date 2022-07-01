@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="azure_m.Views.ResourceGroupPage">
+             x:Class="azure_m.Views.ResourceGroupPage"
+             xmlns:local="clr-namespace:azure_m.ViewModels"
+             xmlns:model="clr-namespace:azure_m.Models">
     <Grid RowDefinitions="120, 40, auto, auto, auto">
         <Grid Grid.Row="0" ColumnDefinitions="300, auto, auto">
             <Label  Grid.Row="0"  HeightRequest="45" VerticalOptions="Start" HorizontalOptions="Start"  Margin="90,20,0,0">

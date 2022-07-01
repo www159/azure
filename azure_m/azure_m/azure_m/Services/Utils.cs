@@ -32,18 +32,7 @@ namespace azure_m.Services
             return req.SetQueryParam("api-version", apiVersion);
         }
 
-        public static Dictionary<string, string> ImgMap = new Dictionary<string, string>()
-        {
-            ["networkWatchers"] = "networkWatchers.png",
-            ["storageAccounts"] = "storageAccounts.png",
-            ["disks"] = "disks.png",
-            ["sshPublicKeys"] = "sshPublicKeys.png",
-            ["virtualMachines"] = "virtualMachines.png",
-            ["networkInterfaces"] = "networkInterfaces.png",
-            ["netWorkSecurityGroups"] = "netWorkSecurityGroups.png",
-            ["publicIPAddresses"] = "publicIPAddresses.png",
-            ["virtualNetworks"] = "virtualNetworks.png",
-        };
+
 
         public static SecureString str2secStr(string str)
         {
