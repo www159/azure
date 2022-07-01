@@ -2,9 +2,224 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="azure_m.Views.VMDetails.Create">
-  <ContentView.Content>
-      <StackLayout>
-          <Label Text="create" />
-      </StackLayout>
+    <ContentView.Content>
+        <StackLayout>
+            <ScrollView>
+                <StackLayout Orientation="Vertical" Margin="10,0,0,0">
+                    <Frame Margin="10,5,10,0">
+                        <StackLayout>
+                            <Label Text="TERMS"></Label>
+                            <Label Text="clicking '创建',I (a) agree to the legal terms and privacy statement(s) associated with the Marketplace offering(s) listed above; (b) authorize Microsoft to bill my current payment method for the fees associated with the offering(s), with the same billing frequency as my Azure subscription; and (c) agree that Microsoft may share my contact, usage and transactional information with the provider(s) of the offering(s) for support, billing and other transactional activities. Microsoft does not provide rights for third-party offerings. See the Azure Marketplace Terms for additional details."/>
+                        </StackLayout>
+                    </Frame>
+
+                    <StackLayout Orientation="Vertical" Margin="0,10,0,0">
+                        <Label Text="Name"/>
+                        <Entry IsReadOnly="True"/>
+                    </StackLayout>
+                    
+                    <StackLayout Orientation="Vertical" Margin="0,10,0,0">
+                        <Label Text="Preferred e-mail address" WidthRequest="180"/>
+                        <Entry Placeholder="输入邮箱"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" Margin="0,10,0,0">
+                        <Label Text="Preferred phone number"/>
+                        <Entry Placeholder="请输入电话号码"/>
+                    </StackLayout>
+                    
+                    <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
+                        <Label Text="基本" FontAttributes="Bold" FontSize="20"/>
+                    </StackLayout>
+                    
+                    <Grid RowSpacing="0">                        
+                        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                            <Label Text="订阅"/>
+                            <Label Text="免费试用"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                            <Label Text="资源组"/>
+                            <Label Text="ubuntu"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                            <Label Text="虚拟机名称"/>
+                            <Label Text="vm"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+                            <Label Text="区域"/>
+                            <Label Text="Japan"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
+                            <Label Text="可用性选项"/>
+                            <Label Text="可用区域"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
+                            <Label Text="可用性区域"/>
+                            <Label Text="1"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="6" Grid.Column="0">
+                            <Label Text="安全类型"/>
+                            <Label Text="标准"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="7" Grid.Column="0">
+                            <Label Text="映像"/>
+                            <Label Text="Ubuntu Server 20.04 LTS - Gen2"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="8" Grid.Column="0">
+                            <Label Text="大小"/>
+                            <Label Text="Standard B1s (1 vcpu、1 GiB 内存)"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="9" Grid.Column="0">
+                            <Label Text="身份认证类型"/>
+                            <Label Text="SSH 公钥"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="10" Grid.Column="0">
+                            <Label Text="用户名"/>
+                            <Label Text="azureuser"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="11" Grid.Column="0">
+                            <Label Text="密钥对名称"/>
+                            <Label Text="ubuntu_key"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="12" Grid.Column="0">
+                            <Label Text="公共入站端口"/>
+                            <Label Text="SSH"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="13" Grid.Column="0">
+                            <Label Text="Azure现成VM"/>
+                            <Label Text="否"/>
+                        </StackLayout>
+                    </Grid>
+                    
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="磁盘" FontAttributes="Bold" FontSize="20"/>
+                    </StackLayout>
+                    
+                    <Grid RowSpacing="0">
+                        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                            <Label Text="OS 磁盘类型"/>
+                            <Label Text="高级 SSD LRS"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                            <Label Text="使用托管的磁盘"/>
+                            <Label Text="是"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                            <Label Text="使用 VM 删除 OS 磁盘"/>
+                            <Label Text="已启用"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+                            <Label Text="临时 OS 磁盘"/>
+                            <Label Text="否"/>
+                        </StackLayout>
+                    </Grid>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="网络" FontSize="20" FontAttributes="Bold"/>
+                    </StackLayout>
+                    
+                    <Grid RowSpacing="0">
+                        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                            <Label Text="虚拟网络"/>
+                            <Label Text="vm_group-vnet"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                            <Label Text="子网"/>
+                            <Label Text="default (10.0.0.0/24)"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                            <Label Text="公用 IP"/>
+                            <Label Text="(新) ubuntu-ip"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+                            <Label Text="更快的网络连接"/>
+                            <Label Text="关"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
+                            <Label Text="是否将此虚拟机置于现有负载均衡解决方案之后?"/>
+                            <Label Text="否"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
+                            <Label Text="删除 VM 时删除公共 IP 和 NIC"/>
+                            <Label Text="已禁用"/>
+                        </StackLayout>
+                    </Grid>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="管理" FontSize="20" FontAttributes="Bold"/>
+                    </StackLayout>
+
+                    <Grid RowSpacing="0">
+                        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                            <Label Text="Azure 安全中心"/>
+                            <Label Text="基本(免费)"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                            <Label Text="启动诊断"/>
+                            <Label Text="开"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                            <Label Text="启用 OS 来宾诊断"/>
+                            <Label Text="关"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+                            <Label Text="系统分配的托管标识"/>
+                            <Label Text="关"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
+                            <Label Text="使用 Azure AD 登录"/>
+                            <Label Text="关"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
+                            <Label Text="自动关闭"/>
+                            <Label Text="关"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="6" Grid.Column="0">
+                            <Label Text="备份"/>
+                            <Label Text="已禁用"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="7" Grid.Column="0">
+                            <Label Text="启用热补丁"/>
+                            <Label Text="关"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="8" Grid.Column="0">
+                            <Label Text="补丁编排选项"/>
+                            <Label Text="映像默认"/>
+                        </StackLayout>
+                    </Grid>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="高级" FontAttributes="Bold" FontSize="20"/>
+                    </StackLayout>
+                    
+                    <Grid RowSpacing="0">
+                        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                            <Label Text="扩展"/>
+                            <Label Text="无"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                            <Label Text="VM 应用程序(预览版)"/>
+                            <Label Text="无"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                            <Label Text="云 init"/>
+                            <Label Text="否"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+                            <Label Text="用户数据"/>
+                            <Label Text="否"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
+                            <Label Text="邻近放置组"/>
+                            <Label Text="无"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
+                            <Label Text="产能预留组"/>
+                            <Label Text="无"/>
+                        </StackLayout>
+                    </Grid>
+                    <Button BackgroundColor="#2196F3" Text="创建" Margin="250,0,10,10"/>
+                </StackLayout>
+            </ScrollView>
+       </StackLayout>
   </ContentView.Content>
 </ContentView>

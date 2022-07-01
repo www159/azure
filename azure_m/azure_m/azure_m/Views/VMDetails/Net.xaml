@@ -4,8 +4,8 @@
              x:Class="azure_m.Views.VMDetails.Net">
   <ContentView.Content>
         <StackLayout Margin="10,5,0,10">
-            <Grid ColumnDefinitions="*,2*" >
-                    <!--#region 网络接口-->
+            <!--<Grid ColumnDefinitions="*,2*" >
+                    --><!--#region 网络接口--><!--
                     <Label VerticalTextAlignment="Center" Text="网络接口" Grid.ColumnSpan="2" FontSize="20"/>
                     <Label VerticalTextAlignment="Center" Grid.Row="1">
                         <Label.FormattedText>
@@ -76,9 +76,9 @@
                     </Label.FormattedText>
                 </Label>
                 <CheckBox Grid.Row="6" Grid.Column="1" x:Name="faster_network" />
-                <!--#endregion-->
+                --><!--#endregion
 
-                <!--#region 负载均衡-->
+                #region 负载均衡--><!--
                 <Label VerticalTextAlignment="Center" Text="负载均衡" Grid.ColumnSpan="2" FontSize="20" Grid.Row="7"/>
                 <Label VerticalTextAlignment="Center" Grid.Row="8">
                     <Label.FormattedText>
@@ -93,8 +93,8 @@
                     <RadioButton Content="Azure负载均衡器"/>
                     <RadioButton Content="应用程序网关"/>
                 </StackLayout>
-                <!--#endregion-->
-            </Grid>
+                --><!--#endregion--><!--
+            </Grid>-->
         </StackLayout>
   </ContentView.Content>
 </ContentView>
