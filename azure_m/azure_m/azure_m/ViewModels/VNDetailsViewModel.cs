@@ -29,8 +29,7 @@ namespace azure_m.ViewModels
             pages = new ObservableCollection<ContentView>
             {
                 basic, ipAddress, security, tag, checkAndCreate
-                //net, 
-                //manage, adv, tag, create
+
             };
 
         }

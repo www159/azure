@@ -14,7 +14,11 @@ namespace azure_m.Droid
 {
 	
 	
+<<<<<<< HEAD
 	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.2.4.160")]
+=======
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.2.0.155")]
+>>>>>>> github/VNPageAdding7-1
 	public partial class Resource
 	{
 		
@@ -16689,7 +16693,6 @@ namespace azure_m.Droid
 			public const int navigation_empty_icon = 2131165338;
 			
 			// aapt resource value: 0x7F07009B
-<<<<<<< HEAD
 			public const int networkInterfaces = 2131165339;
 			
 			// aapt resource value: 0x7F07009C
@@ -16829,7 +16832,6 @@ namespace azure_m.Droid
 			
 			// aapt resource value: 0x7F0700C9
 			public const int xamarin_logo = 2131165385;
-=======
 			public const int notification_action_background = 2131165339;
 			
 			// aapt resource value: 0x7F07009C
@@ -16945,7 +16947,6 @@ namespace azure_m.Droid
 			
 			// aapt resource value: 0x7F0700C1
 			public const int xamarin_logo = 2131165377;
->>>>>>> dk1
 			
 			static Drawable()
 			{
