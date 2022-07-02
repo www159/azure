@@ -1,6 +1,14 @@
 ﻿namespace azure_m.Models.RequestModels
 {
 
+    namespace PublicIPAddressRequestModels {
+        // TODO
+    }
+
+    namespace NetworkInterfaceRequestModels {
+        // TODO
+    }
+
     namespace VMRequestModels
     {
 
