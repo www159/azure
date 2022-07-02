@@ -5,7 +5,27 @@
   <ContentView.Content>
         <StackLayout Margin="5,5,0,5">
             <ScrollView>
-
+                <Grid ColumnDefinitions="*,2*">
+                    <!--#region IP地址-->
+                    <Label VerticalTextAlignment="End" Margin="5" Text="IPV4地址" Grid.ColumnSpan="2" FontSize="20"/>
+                    <Label Grid.Row="1" Text="虚拟网络的地址空间，采用 CIDR 表示法(例如 192.168.1.0/24)指定为一个或多个地址前缀。" Grid.ColumnSpan="2" Margin="5,5,5,5"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="2" Margin="5">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="默认"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <!--<Entry Grid.Row="2" Grid.Column="1" x:Name="VMName"/>-->
+                    <Label VerticalTextAlignment="Center" Grid.Row="2" Grid.Column="1">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="10.2.0.0/16"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <!--#endregion-->
+                </Grid>
             </ScrollView>
         </StackLayout>
     </ContentView.Content>
