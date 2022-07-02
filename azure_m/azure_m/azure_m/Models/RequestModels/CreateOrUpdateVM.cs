@@ -3,10 +3,152 @@
 
     namespace PublicIPAddressRequestModels {
         // TODO
+        
+
+        public class PublicIPAddressProperties
+        {
+            public IPAlloctionMethod publicIPAllocationMethod;
+
+            public int idleTimeoutInMinutes;
+
+            public IPVersion publicIPAddressVersion;
+
+            public PublicIPAddressDnsSettings dnsSettings;
+        }
+
+        public class PublicIPAddressDnsSettings
+        {
+            public string domainNameLabel;
+        }
+
+        public class IPVersion
+        {
+            public string IPv4;
+
+            public string IPv6;
+        }
+
+        public class IPAlloctionMethod
+        {
+            public string Dynamic;
+
+            public string Static;
+        }
+
+        public class PublicIPAddress
+        {
+            public string id;
+
+            public string location;
+
+            public PublicIPAddressProperties properties;
+
+
+        }
+        public class PublicIPAddressSku
+        {
+            public PublicIPAddressSkuName name;
+
+            public PublicIPAddressSkuTier tier;
+        }
+
+        public class PublicIPAddressSkuTier
+        {
+            public string Basic;
+
+            public string Standard;
+        }
+
+        public class PublicIPAddressSkuName
+        {
+            public string Global;
+
+            public string Regional;
+        }
+
+        public class CreateOrUpdatePublicIPAddressBody
+        {
+            public string id;
+
+            public string location;
+
+            public PublicIPAddressProperties properties;
+
+            public PublicIPAddressSku sku;
+        }
+
+        public class CreateOrUpdatePublicIPAddressUri {
+            public string publicIpAddressName;
+
+            public string resourceGroupName;
+        }
+
+        public class CreateOrUpdatePublicIPAddressRequest:IRequest<
+            CreateOrUpdatePublicIPAddressBody,CreateOrUpdatePublicIPAddressUri
+            >
+        { }
     }
 
     namespace NetworkInterfaceRequestModels {
         // TODO
+        using PublicIPAddressRequestModels;
+        public class NetworkInterfacesProperties
+        {
+           public bool enableAcceleratedNetworking;
+
+           public NetworkInterfaceIPConfiguration ipConfigurations;
+         }
+        public class NetworkInterfaceIPConfiguration
+        {
+            public string name;
+
+            public NetworkInterfaceIPConfigurationProperties properties;
+        }
+        public class NetworkInterfaceIPConfigurationProperties
+        {
+            public PublicIPAddress publicIPAddress;
+
+            public Subnet subnet;
+
+            public SubResource gatewayLoadBalancer;
+        }
+
+        public class SubResource
+        {
+            public string id;
+        }
+
+        public class Subnet
+        {
+            //public string etag;
+
+            public string id;
+
+            //public string name;
+        }
+
+        public class CreateOrUpdateNIBody
+        {  public string location;
+
+            //public string id;
+
+            //public string extendedLocation;
+
+            public NetworkInterfacesProperties properties;
+        }
+        public class CreateOrUpdateNIUri
+        {
+            public string networkInterfaceName;
+
+            public string resourceGroupName;
+
+        }
+
+        public class CreateOrUpdateNIRequest : IRequest<
+               CreateOrUpdateNIUri,
+               CreateOrUpdateNIBody>
+        { }
+
     }
 
     namespace VMRequestModels
