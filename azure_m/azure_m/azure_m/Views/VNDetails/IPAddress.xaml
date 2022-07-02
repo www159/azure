@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="azure_m.Views.VNDetails.IPAddress">
+  <ContentView.Content>
+        <StackLayout Margin="5,5,0,5">
+            <ScrollView>
+
+            </ScrollView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

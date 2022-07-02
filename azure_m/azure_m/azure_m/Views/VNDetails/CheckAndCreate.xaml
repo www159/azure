@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="azure_m.Views.VNDetails.CheckAndCreate">
+  <ContentView.Content>
+        <StackLayout Margin="15,15,15,15">
+            <ScrollView>
+                <Grid ColumnDefinitions="*,2*">
+                    <!--#region 基本-->
+                    <Label VerticalTextAlignment="End" Text="基本" Grid.ColumnSpan="2" FontSize="20"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="1">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="订阅"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="1">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="免费试用"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label VerticalTextAlignment="Center" Grid.Row="2">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="资源组"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label VerticalTextAlignment="Center" Grid.Row="2" Grid.Column="1">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="默认资源组"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label VerticalTextAlignment="Center" Grid.Row="3">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="名称"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label VerticalTextAlignment="Center" Grid.Row="3" Grid.Column="1">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="test"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label VerticalTextAlignment="Center" Grid.Row="4">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="区域"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label VerticalTextAlignment="Center" Grid.Row="4" Grid.Column="1">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="East US"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <!--#endregion-->
+                    
+                    <!--#region IP地址--> 
+                    <Label Grid.Row="6" Margin="0, 0, 0, 0" VerticalTextAlignment="End" Text="IP地址" Grid.ColumnSpan="2" FontSize="20"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="7">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="地址空间"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label VerticalTextAlignment="Center" Grid.Row="7" Grid.Column="1">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="10.2.0.0/16"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Grid.Row="6" Margin="0, 0, 0, 0" VerticalTextAlignment="End" Text="IP地址" Grid.ColumnSpan="2" FontSize="20"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="7">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="地址空间"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label VerticalTextAlignment="Center" Grid.Row="7" Grid.Column="1">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="10.2.0.0/16"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label VerticalTextAlignment="Center" Grid.Row="8">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="子网"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label VerticalTextAlignment="Center" Grid.Row="8" Grid.Column="1">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="default (10.2.0.0/24)"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <!--#endregion-->
+                    
+                    <!--#region 标记-->
+                    
+                    <!--#endregion-->
+                    <Label Grid.Row="10" Margin="0, 0, 0, 0" VerticalTextAlignment="End" Text="标记" Grid.ColumnSpan="2" FontSize="20"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="11" Grid.Column="0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="无"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                </Grid>
+            </ScrollView>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

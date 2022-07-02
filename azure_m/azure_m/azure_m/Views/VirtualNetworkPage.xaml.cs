@@ -111,6 +111,7 @@ namespace azure_m.Views
         }
         private void CreateTapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
+            Navigation.PushAsync(new AddVNDetailsPage());
             DisplayAlert("Alert", "创建成功", "OK");
         }
     }

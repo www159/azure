@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="azure_m.Views.VNDetails.Security">
+  <ContentView.Content>
+        <StackLayout Margin="10,35,0,10">
+            <Grid ColumnDefinitions="*,2*">
+                <Label VerticalTextAlignment="End" Text="安全性" Grid.Row="0" Grid.ColumnSpan="2" FontSize="20"/>
+
+                <Label VerticalTextAlignment="Center" Grid.Row="1" Grid.RowSpan="2">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="BastionHost"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" ColumnDefinitions="*,3*"  Margin="0, 15, 0, 0"
+                        HeightRequest="10" RadioButtonGroup.GroupName="bh_group" RadioButtonGroup.SelectedValue="0">
+                    <RadioButton x:Name="bh_false" Grid.Column="0" Grid.Row="0" Value="0" IsChecked="True"/>
+                    <Label Text="禁用" Grid.Column="1" Grid.Row="0" />
+                    <RadioButton x:Name="bh_true"   Grid.Column="0" Grid.Row="1" IsEnabled="False" Value="1"/>
+                    <Label Text="启用" Grid.Column="1" Grid.Row="1" />
+                </Grid>
+
+                <Label VerticalTextAlignment="Center" Grid.Row="3" Grid.RowSpan="2">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="DDos保护标准"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Grid Grid.Row="3" Grid.RowSpan="2" Grid.Column="1" ColumnDefinitions="*,3*" Margin="0, 15, 0, 0"
+                        HeightRequest="10" RadioButtonGroup.GroupName="ddos_group" RadioButtonGroup.SelectedValue="0">
+                    <RadioButton x:Name="ddos_false" Grid.Column="0" Grid.Row="0" Value="0" IsChecked="True"/>
+                    <Label Text="禁用" Grid.Column="1" Grid.Row="0"/>
+                    <RadioButton x:Name="ddos_true"  Grid.Column="0" Grid.Row="1" IsEnabled="False" Value="1"/>
+                    <Label Text="启用" Grid.Column="1" Grid.Row="1"/>
+                </Grid>
+
+                <Label VerticalTextAlignment="Center" Grid.Row="5" Grid.RowSpan="2">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="防火墙"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Grid Grid.Row="5" Grid.RowSpan="2" Grid.Column="1" ColumnDefinitions="*,3*" Margin="0, 15, 0, 0"
+                        HeightRequest="10" RadioButtonGroup.GroupName="firewall_group" RadioButtonGroup.SelectedValue="0">
+                    <RadioButton x:Name="firewall_false" Grid.Column="0" Grid.Row="0" Value="0" IsChecked="True"/>
+                    <Label Text="禁用" Grid.Column="1" Grid.Row="0"/>
+                    <RadioButton x:Name="fire_true"  Grid.Column="0" Grid.Row="1" IsEnabled="False" Value="1"/>
+                    <Label Text="启用" Grid.Column="1" Grid.Row="1"/>
+                </Grid>
+
+
+
+            </Grid>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

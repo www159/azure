@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="azure_m.Views.VNDetails.Tag">
+  <ContentView.Content>
+        <StackLayout Margin="10,10,10,10">
+            <!--<Label VerticalTextAlignment="End" Text="标记" Grid.Row="0" Grid.ColumnSpan="3" FontSize="20"/>
+            <Label Grid.Row="1" Grid.ColumnSpan="3" Text="标记是名称/值对，通过将相同的标记应用到多个资源和资源组可以对资源进行分类并查看合并的帐单。" Margin="5,5,5,5" />
+            <Grid ColumnDefinitions="*, *, 30">
+                <Label Grid.Row="0" Grid.Column="0" Text="名称" VerticalOptions="Center" HorizontalOptions="Center" FontSize="18"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="值" VerticalOptions="Center" HorizontalOptions="Center" FontSize="18"/>
+                
+                <Entry Text="" WidthRequest="100" x:Name="Trigger1" FontSize="20" Grid.Row="1" Grid.Column="0"/>
+                <Entry Text="" WidthRequest="100" x:Name="Trigger2" FontSize="20"  Grid.Row="1" Grid.Column="1"/>
+                <Image Source="refresh4.png" x:Name="delete1" Background="white" Grid.Row="1" Grid.Column="2" />
+            </Grid>-->
+            <Label VerticalTextAlignment="End" Text="标记" Grid.Row="0" Grid.ColumnSpan="3" FontSize="20"/>
+            <Label Text="标记是名称/值对，通过将相同的标记应用到多个资源和资源组可以对资源进行分类并查看合并的帐单。" Margin="5,5,5,5"/>
+            <ScrollView>
+                <StackLayout  x:Name="allStack" Orientation="Vertical">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="名称" WidthRequest="170" FontSize="20"/>
+                        <Label Text="值" WidthRequest="170" FontSize="20"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="1">
+                        <Entry Text="" WidthRequest="170" x:Name="Trigger1" FontSize="20"/>
+                        <Entry Text="" WidthRequest="170" x:Name="Trigger2" FontSize="20"/>
+                        <Image Source="refresh4.png" x:Name="delete" Background="white" WidthRequest="30" >
+                            <Image.Triggers>
+                                <DataTrigger TargetType="Image" Binding="{Binding Source={x:Reference Trigger1},Path=Text.Length}" Value="0">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                            </Image.Triggers>
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="delete_Clicked" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout.Triggers>
+                            <DataTrigger TargetType="StackLayout" Binding="{Binding Source={x:Reference Trigger1}, Path=Text.Length}" Value="0">
+                                <Setter Property="IsVisible" Value="False"/>
+                            </DataTrigger>
+                        </StackLayout.Triggers>
+                        <Entry Text="" WidthRequest="170" FontSize="24"/>
+                        <Entry Text="" WidthRequest="170" FontSize="24"/>
+                        <Image Source="refresh4.png" x:Name="delete2" Background="white" WidthRequest="30" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="delete2_Clicked" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>
