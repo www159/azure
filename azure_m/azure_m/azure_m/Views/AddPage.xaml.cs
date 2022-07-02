@@ -22,7 +22,7 @@ namespace azure_m.Views
         {
             DisplayAlert("VM", "", "OK");
 
-            Navigation.PushAsync(new AddVMDetailsPage());
+            Navigation.PushAsync(new AddVmDetailsPage());
 
         }
         public void CreateServiceFuncApp(object sender, EventArgs e)

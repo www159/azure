@@ -6,21 +6,35 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using azure_m.ViewModels;
-using azure_m.Views;
 
 namespace azure_m.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddVMDetailsPage : ContentPage
+    public partial class AddVmDetailsPage : CarouselPage
     {
-        
-        public AddVMDetailsPage()
+        public AddVmDetailsPage()
         {
             InitializeComponent();
-            
         }
 
+        private void valid_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void UserName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void passwd_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void passwd2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

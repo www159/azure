@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\AddVMDetailsPage.xaml.cs">
-      <DependentUpon>AddVMDetailsPage.xaml</DependentUpon>
+    <Compile Update="Views\AddVMDetailsPage~.xaml.cs">
+      <DependentUpon>AddVMDetailsPage~.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\VirtualMachinePage.xaml.cs">
       <DependentUpon>VirtualMachinePage.xaml</DependentUpon>
@@ -31,7 +31,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\AddVMDetailsPage.xaml">
+    <EmbeddedResource Update="Views\AddVmDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AddVMDetailsPage~.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\AddPage.xaml">
