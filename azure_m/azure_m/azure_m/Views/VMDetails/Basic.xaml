@@ -56,7 +56,7 @@
                     </Picker>
 
                     <Label VerticalTextAlignment="Center" Grid.Row="6" Text="可用性选项"/>
-                    <Picker Grid.Row="6" x:Name="access" Grid.Column="1" SelectedIndex="1">
+                    <Picker Grid.Row="6" x:Name="availabilty" Grid.Column="1" SelectedIndex="1">
                         <Picker.Items>
                             <x:String>无需基础结构冗余</x:String>
                             <x:String>可用性区域</x:String>
