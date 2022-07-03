@@ -1,9 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="azure_m.Views.AddVmDetailsPage">
-    
-    <ContentPage BackgroundColor="Black" x:Name="Basic">
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:viewmodel="clr-namespace:azure_m.ViewModels"
+              x:Class="azure_m.Views.AddVmDetailsPage">
+    <CarouselPage.BindingContext>
+        <viewmodel:VMDetailsViewModel/>
+    </CarouselPage.BindingContext>
+
+    <ContentPage BackgroundColor="Honeydew" x:Name="Basic">
         <StackLayout Margin="5,5,0,5">
             <ScrollView>
                 <Grid ColumnDefinitions="*,2*">
@@ -17,7 +21,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="1" Grid.Column="1" x:Name="subscribe" ItemsSource="{Binding subscribes}" ItemDisplayBinding="{Binding Name}"/>
+                    <Picker Grid.Row="1" Grid.Column="1" x:Name="subscribe" ItemsSource="{Binding subscribesNames}" SelectedIndexChanged="subscribe_SelectedIndexChanged"/>
                     <Label VerticalTextAlignment="Center" Grid.Row="2">
                         <Label.FormattedText>
                             <FormattedString>
@@ -26,7 +30,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="2" Grid.Column="1" x:Name="resourcesGroup" ItemsSource="{Binding resourcesGroup}" ItemDisplayBinding="{Binding Name}"/>
+                    <Picker Grid.Row="2" Grid.Column="1" x:Name="resourcesGroup" ItemsSource="{Binding resourceGroups}" SelectedIndexChanged="resourcesGroup_SelectedIndexChanged"/>
                     <!--#endregion-->
 
                     <!--#region 实例详细信息-->

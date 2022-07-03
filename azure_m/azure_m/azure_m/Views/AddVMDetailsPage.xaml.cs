@@ -36,5 +36,16 @@ namespace azure_m.Views
         {
 
         }
+
+        private void resourcesGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public static event EventHandler<int> SubscribeIndexChange;
+        private void subscribe_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SubscribeIndexChange?.Invoke(sender, subscribe.SelectedIndex);
+        }
     }
 }
