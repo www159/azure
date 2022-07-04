@@ -23,7 +23,7 @@ namespace azure_m.Services
         {
             var baseStrUrl = string.Format(baseFormatUrlWithResurceGroup, createOrUpdateVMRequest.uri.resourceGroupName, createOrUpdateVMRequest.uri.vmName);
             var url = Utils.withApiVersion(
-                    new Url(baseStrUrl).WithHeader(QueryInfo.methodHead, "PUT"),
+                    baseStrUrl,
                     apiVersion.createOrUpdate);
 
             try

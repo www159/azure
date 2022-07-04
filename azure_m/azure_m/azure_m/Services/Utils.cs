@@ -5,6 +5,7 @@ using System.Diagnostics;
 using Flurl.Http;
 using System.Security;
 using Newtonsoft.Json;
+using Flurl;
 
 namespace azure_m.Services
 {
@@ -27,9 +28,14 @@ namespace azure_m.Services
             errorMethod.Invoke(new Exception(s));
         }
 
-        public static IFlurlRequest withApiVersion(IFlurlRequest req, string apiVersion)
+         public static IFlurlRequest withApiVersion(IFlurlRequest req, string apiVersion)
         {
             return req.SetQueryParam("api-version", apiVersion);
+        }
+
+        public static Url withApiVersion(Url url, string apiVersion)
+        {
+            return url.SetQueryParam("api-version", apiVersion);
         }
 
 
