@@ -10,27 +10,26 @@ namespace azure_m.Models.RequestModels
         {
             public class CreateOrUpdateVNBody
             {
-                public CreateOrUpdateVNProperties properties;
+                public CreateOrUpdateVNProperties properties { get; set; }
 
-                public string location;
+                public string location {get;set;}
             }
-
             public class CreateOrUpdateVNProperties
             {
-                public AddressSpace addressSpace;
+                public AddressSpace addressSpace { get;set;}
 
-                public Subnet[] subnets;
+                public Subnet[] subnets { get; set;}
 
-                public VirtualNetworkBgpCommunities bgpCommunities;
+                public VirtualNetworkBgpCommunities bgpCommunities { get; set;}
 
-                public int flowTimeOutInMinutes;
+                public int flowTimeOutInMinutes { get; set;}
 
-                public VirtualNetworkEncryption encryption;
+                public VirtualNetworkEncryption encryption { get; set;}
             }
 
             public class AddressSpace
             {
-                public string[] addressPrefixes;
+                public string[] addressPrefixes { get; set;}
             }
 
             public class Subnet
@@ -39,87 +38,87 @@ namespace azure_m.Models.RequestModels
 
                 //public string id;
                 
-                public string name;
+                public string name { get; set;}
 
-                public SubnetProperties properties;
+                public SubnetProperties properties { get; set; }
 
             }
 
             public class SubnetProperties
             {
-                public string addressPrefix;
+                public string addressPrefix { get; set;}
 
-                public string[] addressPrefixes;
+                public string[] addressPrefixes { get;  set; }
 
-                public Delegation[] delegations;
+                public Delegation[] delegations { get; set; }
 
-                public ServiceEndpointPropertiesFormat[] serviceEndpoints;
+                public ServiceEndpointPropertiesFormat[] serviceEndpoints { get; set; }
 
-                public ServiceEndpointPolicy[] serviceEndpointPolicies;
+                public ServiceEndpointPolicy[] serviceEndpointPolicies { get; set; }
             }
 
             public class Delegation
             {
-                public string etag;
+                public string etag { get; set; }
 
-                public string id;
+                public string id { get; set; }
 
-                public string name;
+                public string name { get; set;}
 
-                public DelegationProperties properties;
+                public DelegationProperties properties { get; set; }
 
-                public string type;
+                public string type { get; set; }
             }
 
             public class DelegationProperties
             {
-                public string[] actions;
+                public string[] actions { get; set; }
 
-                public string serviceName;
+                public string serviceName { get; set; }
 
                 //public ProvisioningState provisioningState;
             }
 
             public class ServiceEndpointPropertiesFormat
             {
-                public string[] locations;
+                public string[] locations { get; set; }
 
-                public string service;
+                public string service { get; set; }
 
                 //public ProvisioningState provisioning;
             }
 
             public class ServiceEndpointPolicy
             {
-                public string id;
+                public string id { get; set;}
 
-                public string etag;
+                public string etag { get; set;}
 
-                public string kind;
+                public string kind { get; set; }
 
-                public string location;
+                public string location { get; set; }
 
-                public string name;
+                public string name { get; set;}
 
-                public object tags;
+                public object tags { get; set; }
 
-                public string type;
+                public string type { get; set; }
 
                 //public ServiceEndpointPolicyProperties ServiceEndpointPolicy;
             }
 
             public class VirtualNetworkBgpCommunities
             {
-                public string regionalCommunity;
+                public string regionalCommunity { get; set; }
 
-                public string virtualNetworkCommunity;
+                public string virtualNetworkCommunity { get; set; }
             }
 
             public class VirtualNetworkEncryption
             {
-                public bool enabled;
+                public bool enabled { get; set; }
 
-                public string enforcement;
+                public string enforcement { get; set; }
             }
 
         }
