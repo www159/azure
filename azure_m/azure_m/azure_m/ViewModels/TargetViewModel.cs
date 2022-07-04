@@ -8,13 +8,25 @@ using azure_m.Views;
 
 namespace azure_m.ViewModels
 {
-    public class TargetViewModel : ContentView
+    public class TargetViewModel : BaseViewModel
     {
-        public List<Models.MockModels.Data> Data { get; set; }
+        public List<Sourse> Sourses { get; set; }
+
+        public string targetName { get; set; }
+
+        public static int _checkedIndex { get; set; }
+
+        
+        
+        public List<Models.MockModels.Data> Ccr { get; set; }
+        public List<Models.MockModels.Data> Ccc { get; set; }
+        public List<Models.MockModels.Data> Amb { get; set; }
         public TargetViewModel()
         {
-            var ret = Utils.readMock<azure_m.Models.MockModels.Index>(azure_m.Mocks.Mocks.index);
-            ret.Data.ForEach(o =>
+            var ccr = Utils.readMock<azure_m.Models.MockModels.Index>(azure_m.Mocks.Mocks.ccr);
+            var ccc = Utils.readMock<azure_m.Models.MockModels.Index>(azure_m.Mocks.Mocks.ccc);
+            var amb = Utils.readMock<azure_m.Models.MockModels.Index>(azure_m.Mocks.Mocks.amb);
+            ccr.Data.ForEach(o =>
             {
                 if (o.Average >= 1024&&o.Average<(1024*1024)) 
                 { 
@@ -29,7 +41,25 @@ namespace azure_m.ViewModels
                     o.Average =o.Average/ (1024*1024*1024);
                 }
             });
-            Data = ret.Data;
-        }
+            Ccr = ccr.Data;
+            Ccc = ccc.Data;
+            Amb = amb.Data;
+
+            Sourses = new List<Sourse>()
+            {
+               new Sourse{Name="Vm",SourseType="虚拟机"},
+               new Sourse{Name="Disc",SourseType="磁盘"},
+            };            
+    }
+       
+
+      
+
+    }
+    public class Sourse
+    {
+        public string Name { get; set; }
+        public string SourseType { get; set; }
+
     }
 }
