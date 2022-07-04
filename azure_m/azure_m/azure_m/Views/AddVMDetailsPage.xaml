@@ -7,13 +7,13 @@
         <viewmodel:VMDetailsViewModel/>
     </CarouselPage.BindingContext>
 
-    <ContentPage BackgroundColor="Honeydew" x:Name="Basic">
+    <ContentPage BackgroundColor="white" x:Name="Basic">
         <StackLayout Margin="5,5,0,5">
             <ScrollView>
-                <Grid ColumnDefinitions="*,2*">
+                <Grid ColumnDefinitions="*,2*" >
                     <!--#region 项目详细信息-->
-                    <Label VerticalTextAlignment="Center" Text="项目详细信息" Grid.ColumnSpan="2" FontSize="20"/>
-                    <Label VerticalTextAlignment="Center" Grid.Row="1">
+                    <Label VerticalTextAlignment="Center" Text="项目详细信息" Grid.ColumnSpan="2" FontSize="20" />
+                    <Label VerticalTextAlignment="Center" Grid.Row="1" >
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="订阅"/>
@@ -43,7 +43,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Entry Grid.Row="4" Grid.Column="1" x:Name="VMName" Text="{Binding vm.uri.vmName}"/>
+                    <Entry Grid.Row="4" Grid.Column="1" x:Name="VMName" ReturnCommand="{Binding vmNameComplete}" ReturnCommandParameter="{x:Reference VMName}"/>
                     <Label VerticalTextAlignment="Center" Grid.Row="5">
                         <Label.FormattedText>
                             <FormattedString>
@@ -72,7 +72,13 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <CollectionView Grid.Row="7" x:Name="accessAreas" Grid.Column="1" ItemsSource="{Binding Zones}" SelectionMode="Multiple" SelectionChangedCommand="{Binding ZonesIndexChange}"/>
+                    <Frame Grid.Row="7" Grid.Column="1">
+                        <CollectionView HeightRequest="70" x:Name="accessAreas" ItemsSource="{Binding Zones}" SelectionMode="Multiple" SelectionChangedCommand="{Binding ZonesIndexChange}" VerticalOptions="Center" SelectionChangedCommandParameter="{x:Reference accessAreas}">
+                            <CollectionView.ItemsLayout >
+                                <GridItemsLayout Orientation="Vertical" Span="1" />
+                            </CollectionView.ItemsLayout>
+                        </CollectionView>
+                    </Frame>
 
                     <Label VerticalTextAlignment="Center" Grid.Row="8" Text="安全类型"/>
                     <Picker Grid.Row="8" x:Name="safetymode" Grid.Column="1" SelectedIndexChanged="safetymode_SelectedIndexChanged">
@@ -89,7 +95,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="9" x:Name="images" Grid.Column="1" ItemsSource="{Binding Images}" ItemDisplayBinding="{Binding offer,sku}" SelectedIndexChanged="images_SelectedIndexChanged" />
+                    <Picker Grid.Row="9" x:Name="images" Grid.Column="1" ItemsSource="{Binding Images}"  SelectedIndexChanged="images_SelectedIndexChanged" />
 
                     <Label VerticalTextAlignment="Center" Grid.Row="10" Text="Azure现成VM实例"/>
                     <CheckBox Grid.Row="10" x:Name="ready_instance" Grid.Column="1"/>
@@ -204,7 +210,7 @@
                             <x:String>允许选定的端口</x:String>
                         </Picker.Items>
                     </Picker>
-                    <Label VerticalTextAlignment="Center" Grid.Row="19" Grid.RowSpan="3" >
+                    <Label VerticalTextAlignment="Center" Grid.Row="19"  >
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="选择入站端口"/>
@@ -221,15 +227,15 @@
                         <Label Text="SSH(22)" Grid.Column="0" Grid.Row="2"/>
                         <CheckBox x:Name="SSH" Grid.Column="1" Grid.Row="2"/>
                     </Grid>-->
-                    <CollectionView x:Name="port" Grid.Row="19" Grid.RowSpan="3" Grid.Column="1" SelectionChangedCommand="{Binding portsChange}" ItemsSource="{Binding ports}"/>
+                    <CollectionView x:Name="port" Grid.Row="19" HeightRequest="80" Grid.Column="1" SelectionChangedCommand="{Binding portsChange}" ItemsSource="{Binding ports}" VerticalOptions="Center" SelectionMode="Multiple" />
 
                     <!--#endregion-->
                 </Grid>
             </ScrollView>
         </StackLayout>
     </ContentPage>
-    
-    <ContentPage BackgroundColor="Azure" x:Name="Disk">
+
+    <ContentPage BackgroundColor="white" x:Name="Disk">
         <StackLayout Margin="5,5,0,5">
             <ScrollView>
                 <Grid ColumnDefinitions="*,2*">
@@ -243,7 +249,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="1" Grid.Column="1" x:Name="disk_type" SelectedIndex="1">
+                    <Picker Grid.Row="1" Grid.Column="1" x:Name="disk_type" SelectedIndex="-1" SelectedIndexChanged="disk_type_SelectedIndexChanged">
                         <Picker.Items>
                             <x:String>高级SSD</x:String>
                             <x:String>标准SSD</x:String>
@@ -303,29 +309,465 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
+                    <Label VerticalTextAlignment="Center" Text="创建并添加新磁盘" Grid.Row="8" TextColor="#1e6ede"/>
+                    <Label VerticalTextAlignment="Center" Text="添加现有磁盘" Grid.Row="8" Grid.Column="1" TextColor="#1e6ede"/>
                     <!--#endregion-->
                 </Grid>
             </ScrollView>
         </StackLayout>
     </ContentPage >
-    
-    <ContentPage BackgroundColor="OrangeRed" x:Name="Net">
-        
+
+    <ContentPage BackgroundColor="white" x:Name="Net">
+        <StackLayout Margin="10,5,0,10">
+            <Grid ColumnDefinitions="*,2*" >
+                <!--#region 网络接口-->
+                <Label VerticalTextAlignment="Center" Text="网络接口" Grid.ColumnSpan="2" FontSize="20"/>
+                <Label VerticalTextAlignment="Center" Grid.Row="1">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="虚拟网络"/>
+                            <Span Text="*" TextColor="Maroon"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Picker Grid.Row="1" Grid.Column="1" x:Name="vnetworks" ItemsSource="{Binding vnetworks}" SelectedIndexChanged="nic_SelectedIndexChanged"/>
+                <Label VerticalTextAlignment="Center" Grid.Row="1">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="子网"/>
+                            <Span Text="*" TextColor="Maroon"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Picker Grid.Row="1" Grid.Column="1" x:Name="subnet" ItemsSource="{Binding subnets}" SelectedIndexChanged="nic_SelectedIndexChanged"/>
+                <Label VerticalTextAlignment="Center" Grid.Row="2">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="公用IP"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Picker Grid.Row="2" Grid.Column="1" x:Name="publicIPs" ItemsSource="{Binding publicIPs}" SelectedIndexChanged="nic_SelectedIndexChanged"/>
+
+                <Label VerticalTextAlignment="Center" Grid.Row="3" Grid.RowSpan="3" >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="NIC网络安全组"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Grid Grid.Row="3" Grid.RowSpan="3" Grid.Column="1" ColumnDefinitions="3*,*"  
+                        BindingContext="{x:Reference openentryPort}" IsVisible="{Binding SelectedIndex}" 
+                        HeightRequest="10" RadioButtonGroup.GroupName="nic_group" RadioButtonGroup.SelectedValue="1">
+                    <RadioButton x:Name="nic_none" Grid.Column="0" Grid.Row="0"/>
+                    <Label Text="无" Grid.Column="1" Grid.Row="0"/>
+                    <RadioButton x:Name="nic_basic"  Grid.Column="0" Grid.Row="1"/>
+                    <Label Text="基本" Grid.Column="1" Grid.Row="1"/>
+                    <RadioButton x:Name="nic_adv" Grid.Column="0" Grid.Row="2"/>
+                    <Label Text="高级" Grid.Column="1" Grid.Row="2"/>
+                </Grid>
+
+                <Label VerticalTextAlignment="Center" Grid.Row="4" Grid.RowSpan="4" >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="选择入站端口"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <StackLayout Grid.Row="4" Grid.RowSpan="4" Grid.Column="1" 
+                            BindingContext="{x:Reference openentryPort}" IsVisible="{Binding SelectedIndex}" 
+                            RadioButtonGroup.GroupName="entryport_group" RadioButtonGroup.SelectedValue="1">
+                    <RadioButton x:Name="http" Grid.Column="0" Grid.Row="0" Content="HTTP(80)"/>
+                    <RadioButton x:Name="https"  Grid.Column="0" Grid.Row="1" Content="HTTPS(443)"/>
+                    <RadioButton x:Name="ssh" Grid.Column="0" Grid.Row="2" Content="SSH(22)"/>
+                    <RadioButton x:Name="rdp" Grid.Column="0" Grid.Row="2" Content="RDP(3389)"/>
+                </StackLayout>
+
+                <Label VerticalTextAlignment="Center" Grid.Row="5">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="删除VM时删除NIC"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <CheckBox Grid.Row="5" Grid.Column="1" x:Name="delete_nic_when_delete_vm" />
+
+                <Label VerticalTextAlignment="Center" Grid.Row="6">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="更快的网络连接"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <CheckBox Grid.Row="6" Grid.Column="1" x:Name="faster_network" />
+                <!--#endregion-->
+
+                <!--#region 负载均衡-->
+                <Label VerticalTextAlignment="Center" Text="负载均衡" Grid.ColumnSpan="2" FontSize="20" Grid.Row="7"/>
+                <Label VerticalTextAlignment="Center" Grid.Row="8">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="负载均衡选项"/>
+                            <Span Text="*" TextColor="Maroon"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <StackLayout Grid.Column="1" Grid.Row="8" RadioButtonGroup.GroupName="load_balance">
+                    <RadioButton Content="无"/>
+                    <RadioButton Content="Azure负载均衡器"/>
+                    <RadioButton Content="应用程序网关"/>
+                </StackLayout>
+                <!--#endregion-->
+            </Grid>
+        </StackLayout>
     </ContentPage>
 
-    <ContentPage BackgroundColor="AliceBlue" x:Name="Manage">
-        
+    <ContentPage BackgroundColor="white" x:Name="Manage">
+        <StackLayout>
+            <ScrollView>
+                <Grid ColumnDefinitions="*,2*">
+                    <Label Text="监视" FontSize="Large" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
+                    <Label Text="启动诊断" Grid.Row="1" Grid.RowSpan="2" VerticalTextAlignment="Center"/>
+                    <StackLayout Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" RadioButtonGroup.SelectedValue="0">
+                        <RadioButton Content="使用托管存储账户启用（推荐）"/>
+                        <RadioButton Content="使用自定义存储账户启用"/>
+                        <RadioButton Content="禁用"/>
+                    </StackLayout>
+                    <Label Text="启用OS来宾诊断" Grid.Row="4" VerticalTextAlignment="Center"/>
+                    <CheckBox Grid.Row="4" Grid.Column="1" x:Name="os_guest"/>
+
+                    <Label Text="标识" FontSize="Large" Grid.Row="5" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
+                    <Label Text="系统分配的托管标识" Grid.Row="6" VerticalTextAlignment="Center"/>
+                    <CheckBox Grid.Row="6" Grid.Column="1" x:Name="trusteeship"/>
+
+                    <Label Text="Azure AD" FontSize="Large" Grid.Row="7" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
+                    <Label Text="使用Azure AD登录" Grid.Row="8" VerticalTextAlignment="Center"/>
+                    <CheckBox Grid.Row="8" Grid.Column="1" x:Name="AzureAD"/>
+
+                    <Label Text="自动关闭" FontSize="Large" Grid.Row="9" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
+                    <Label Text="启用自动关闭" Grid.Row="10" VerticalTextAlignment="Center"/>
+                    <CheckBox Grid.Row="10" Grid.Column="1" x:Name="auto_shutdown"/>
+
+                    <Label Text="备份" FontSize="Large" Grid.Row="11" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
+                    <Label Text="启用备份" Grid.Row="12" VerticalTextAlignment="Center"/>
+                    <CheckBox Grid.Row="12" Grid.Column="1" x:Name="backup"/>
+
+                    <Label Text="来宾OS更新" FontSize="Large" Grid.Row="13" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
+                    <Label Text="补丁编排选项" Grid.Row="14" VerticalTextAlignment="Center"/>
+                    <Picker Grid.Row="14" Grid.Column="1" x:Name="plugin" ItemsSource="{Binding plugins}" />
+                </Grid>
+            </ScrollView>
+        </StackLayout>
     </ContentPage>
 
-    <ContentPage BackgroundColor="BlanchedAlmond" x:Name="Adv">
-        
+    <ContentPage BackgroundColor="white" x:Name="Adv">
+        <StackLayout>
+            <ScrollView>
+                <Grid ColumnDefinitions="*,2*">
+                    <Label Text="扩展" FontSize="Large" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
+                    <Label Text="扩展" Grid.Row="1" VerticalTextAlignment="Center"/>
+                    <Label Text="选择要安装的扩展" TextColor="#303F9F" Grid.Row="1" Grid.Column="1" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="pluggin_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="VM应用程序（预览版）" FontSize="Large" Grid.Row="2" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
+                    <Label Text="选择要安装的VM应用程序" TextColor="#303F9F" Grid.Row="3" Grid.ColumnSpan="2" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="vmapp_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="自定义数据和云初始化" FontSize="Large" Grid.Row="4" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
+                    <Label Text="自定义数据" Grid.Row="5" VerticalTextAlignment="Center"/>
+                    <Frame Grid.Row="5" Grid.RowSpan="2" Grid.Column="1" BorderColor="#303F9F" >
+                        <Editor x:Name="Define_data_edt" />
+                    </Frame>
+
+                    <Label Text="用户数据" FontSize="Large" Grid.Row="7" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
+                    <Label Text="启用用户数据" Grid.Row="8" VerticalTextAlignment="Center"/>
+                    <CheckBox x:Name="user_data_cbx" Grid.Row="8" Grid.Column="1"/>
+
+                    <Label Text="主机" FontSize="Large" Grid.Row="9" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
+                    <Label Text="主机组" Grid.Row="10" VerticalTextAlignment="Center"/>
+                    <Picker x:Name="host_picker" Grid.Row="10" Grid.Column="1" ItemsSource="{Binding SourceGroup}" ItemDisplayBinding="{Binding Name}"/>
+
+                    <Label Text="产能预留" FontSize="Large" Grid.Row="11" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
+                    <Label Text="产能预留组" Grid.Row="12" VerticalTextAlignment="Center"/>
+                    <Picker x:Name="capacity_picker" Grid.Row="12" Grid.Column="1" ItemsSource="{Binding capacity}" ItemDisplayBinding="{Binding Name}"/>
+                    <Label Text="邻近放置组" FontSize="Large" Grid.Row="13" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
+                    <Label Text="邻近放置组" Grid.Row="14" VerticalTextAlignment="Center"/>
+                    <Picker x:Name="nearby_picker" Grid.Row="14" Grid.Column="1" ItemsSource="{Binding NearGroup}" ItemDisplayBinding="{Binding Name}"/>
+                </Grid>
+            </ScrollView>
+        </StackLayout>
     </ContentPage>
 
-    <ContentPage BackgroundColor="DarkViolet" x:Name="Tag">
-        
+    <ContentPage BackgroundColor="white" x:Name="Tag">
+        <StackLayout Margin="5,0,5,5">
+            <Label Text="标记是名称/值对，通过将相同的标记应用到多个资源和资源组可以对资源进行分类并查看合并的帐单。" Margin="5,5,5,5"/>
+            <ScrollView>
+                <StackLayout  x:Name="allStack" Orientation="Vertical">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="名称" WidthRequest="100" FontSize="24"/>
+                        <Label Text="值" WidthRequest="100" FontSize="24"/>
+                        <Label Text="资源" WidthRequest="100" FontSize="24"/>
+                        <Label WidthRequest="30"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="1">
+                        <Entry Text="" WidthRequest="100" x:Name="Trigger1" FontSize="24"/>
+                        <Entry Text="" WidthRequest="100" x:Name="Trigger2" FontSize="24"/>
+                        <Picker WidthRequest="100" />
+                        <Image Source="delete.png" x:Name="delete" Background="white" WidthRequest="20" >
+                            <Image.Triggers>
+                                <DataTrigger TargetType="Image" Binding="{Binding Source={x:Reference Trigger1},Path=Text.Length}" Value="0">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                            </Image.Triggers>
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="delete_Clicked" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout.Triggers>
+                            <DataTrigger TargetType="StackLayout" Binding="{Binding Source={x:Reference Trigger1}, Path=Text.Length}" Value="0">
+                                <Setter Property="IsVisible" Value="False"/>
+                            </DataTrigger>
+                        </StackLayout.Triggers>
+                        <Entry Text="" WidthRequest="100" FontSize="24"/>
+                        <Entry Text="" WidthRequest="100" FontSize="24"/>
+                        <Entry Text="" WidthRequest="100" FontSize="24"/>
+                        <Image Source="delete.png" x:Name="delete2" Background="white" WidthRequest="20" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="delete2_Clicked" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
     </ContentPage>
 
-    <ContentPage BackgroundColor="Coral" x:Name="Create">
-        
+    <ContentPage BackgroundColor="white" x:Name="Create">
+        <StackLayout>
+            <ScrollView>
+                <StackLayout Orientation="Vertical" Margin="10,0,0,0">
+                    <Frame Margin="10,5,10,0">
+                        <StackLayout>
+                            <Label Text="TERMS"></Label>
+                            <Label Text="clicking '创建',I (a) agree to the legal terms and privacy statement(s) associated with the Marketplace offering(s) listed above; (b) authorize Microsoft to bill my current payment method for the fees associated with the offering(s), with the same billing frequency as my Azure subscription; and (c) agree that Microsoft may share my contact, usage and transactional information with the provider(s) of the offering(s) for support, billing and other transactional activities. Microsoft does not provide rights for third-party offerings. See the Azure Marketplace Terms for additional details."/>
+                        </StackLayout>
+                    </Frame>
+
+                    <StackLayout Orientation="Vertical" Margin="0,10,0,0">
+                        <Label Text="Name"/>
+                        <Entry IsReadOnly="True"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" Margin="0,10,0,0">
+                        <Label Text="Preferred e-mail address" WidthRequest="180"/>
+                        <Entry Placeholder="输入邮箱"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" Margin="0,10,0,0">
+                        <Label Text="Preferred phone number"/>
+                        <Entry Placeholder="请输入电话号码"/>
+                    </StackLayout>
+
+                    <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
+                        <Label Text="基本" FontAttributes="Bold" FontSize="20"/>
+                    </StackLayout>
+
+                    <Grid RowSpacing="0">
+                        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                            <Label Text="订阅"/>
+                            <Label Text="免费试用"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                            <Label Text="资源组"/>
+                            <Label Text="ubuntu"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                            <Label Text="虚拟机名称"/>
+                            <Label Text="vm"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+                            <Label Text="区域"/>
+                            <Label Text="Japan"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
+                            <Label Text="可用性选项"/>
+                            <Label Text="可用区域"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
+                            <Label Text="可用性区域"/>
+                            <Label Text="1"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="6" Grid.Column="0">
+                            <Label Text="安全类型"/>
+                            <Label Text="标准"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="7" Grid.Column="0">
+                            <Label Text="映像"/>
+                            <Label Text="Ubuntu Server 20.04 LTS - Gen2"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="8" Grid.Column="0">
+                            <Label Text="大小"/>
+                            <Label Text="Standard B1s (1 vcpu、1 GiB 内存)"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="9" Grid.Column="0">
+                            <Label Text="身份认证类型"/>
+                            <Label Text="SSH 公钥"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="10" Grid.Column="0">
+                            <Label Text="用户名"/>
+                            <Label Text="azureuser"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="11" Grid.Column="0">
+                            <Label Text="密钥对名称"/>
+                            <Label Text="ubuntu_key"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="12" Grid.Column="0">
+                            <Label Text="公共入站端口"/>
+                            <Label Text="SSH"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="13" Grid.Column="0">
+                            <Label Text="Azure现成VM"/>
+                            <Label Text="否"/>
+                        </StackLayout>
+                    </Grid>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="磁盘" FontAttributes="Bold" FontSize="20"/>
+                    </StackLayout>
+
+                    <Grid RowSpacing="0">
+                        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                            <Label Text="OS 磁盘类型"/>
+                            <Label Text="高级 SSD LRS"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                            <Label Text="使用托管的磁盘"/>
+                            <Label Text="是"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                            <Label Text="使用 VM 删除 OS 磁盘"/>
+                            <Label Text="已启用"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+                            <Label Text="临时 OS 磁盘"/>
+                            <Label Text="否"/>
+                        </StackLayout>
+                    </Grid>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="网络" FontSize="20" FontAttributes="Bold"/>
+                    </StackLayout>
+
+                    <Grid RowSpacing="0">
+                        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                            <Label Text="虚拟网络"/>
+                            <Label Text="vm_group-vnet"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                            <Label Text="子网"/>
+                            <Label Text="default (10.0.0.0/24)"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                            <Label Text="公用 IP"/>
+                            <Label Text="(新) ubuntu-ip"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+                            <Label Text="更快的网络连接"/>
+                            <Label Text="关"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
+                            <Label Text="是否将此虚拟机置于现有负载均衡解决方案之后?"/>
+                            <Label Text="否"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
+                            <Label Text="删除 VM 时删除公共 IP 和 NIC"/>
+                            <Label Text="已禁用"/>
+                        </StackLayout>
+                    </Grid>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="管理" FontSize="20" FontAttributes="Bold"/>
+                    </StackLayout>
+
+                    <Grid RowSpacing="0">
+                        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                            <Label Text="Azure 安全中心"/>
+                            <Label Text="基本(免费)"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                            <Label Text="启动诊断"/>
+                            <Label Text="开"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                            <Label Text="启用 OS 来宾诊断"/>
+                            <Label Text="关"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+                            <Label Text="系统分配的托管标识"/>
+                            <Label Text="关"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
+                            <Label Text="使用 Azure AD 登录"/>
+                            <Label Text="关"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
+                            <Label Text="自动关闭"/>
+                            <Label Text="关"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="6" Grid.Column="0">
+                            <Label Text="备份"/>
+                            <Label Text="已禁用"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="7" Grid.Column="0">
+                            <Label Text="启用热补丁"/>
+                            <Label Text="关"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="8" Grid.Column="0">
+                            <Label Text="补丁编排选项"/>
+                            <Label Text="映像默认"/>
+                        </StackLayout>
+                    </Grid>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="高级" FontAttributes="Bold" FontSize="20"/>
+                    </StackLayout>
+
+                    <Grid RowSpacing="0">
+                        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                            <Label Text="扩展"/>
+                            <Label Text="无"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                            <Label Text="VM 应用程序(预览版)"/>
+                            <Label Text="无"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                            <Label Text="云 init"/>
+                            <Label Text="否"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+                            <Label Text="用户数据"/>
+                            <Label Text="否"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
+                            <Label Text="邻近放置组"/>
+                            <Label Text="无"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
+                            <Label Text="产能预留组"/>
+                            <Label Text="无"/>
+                        </StackLayout>
+                    </Grid>
+                    <Button BackgroundColor="#2196F3" Text="创建" Margin="250,0,10,10"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
     </ContentPage>
 </CarouselPage>
