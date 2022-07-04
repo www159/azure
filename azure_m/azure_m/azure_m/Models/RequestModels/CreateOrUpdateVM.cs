@@ -1,156 +1,6 @@
 ﻿namespace azure_m.Models.RequestModels
 {
 
-    namespace PublicIPAddressRequestModels {
-        // TODO
-        
-
-        public class PublicIPAddressProperties
-        {
-            public IPAlloctionMethod publicIPAllocationMethod;
-
-            public int idleTimeoutInMinutes;
-
-            public IPVersion publicIPAddressVersion;
-
-            public PublicIPAddressDnsSettings dnsSettings;
-        }
-
-        public class PublicIPAddressDnsSettings
-        {
-            public string domainNameLabel;
-        }
-
-        public class IPVersion
-        {
-            public string IPv4;
-
-            public string IPv6;
-        }
-
-        public class IPAlloctionMethod
-        {
-            public string Dynamic;
-
-            public string Static;
-        }
-
-        public class PublicIPAddress
-        {
-            public string id;
-
-            public string location;
-
-            public PublicIPAddressProperties properties;
-
-
-        }
-        public class PublicIPAddressSku
-        {
-            public PublicIPAddressSkuName name;
-
-            public PublicIPAddressSkuTier tier;
-        }
-
-        public class PublicIPAddressSkuTier
-        {
-            public string Basic;
-
-            public string Standard;
-        }
-
-        public class PublicIPAddressSkuName
-        {
-            public string Global;
-
-            public string Regional;
-        }
-
-        public class CreateOrUpdatePublicIPAddressBody
-        {
-            public string id;
-
-            public string location;
-
-            public PublicIPAddressProperties properties;
-
-            public PublicIPAddressSku sku;
-        }
-
-        public class CreateOrUpdatePublicIPAddressUri {
-            public string publicIpAddressName;
-
-            public string resourceGroupName;
-        }
-
-        public class CreateOrUpdatePublicIPAddressRequest:IRequest<
-            CreateOrUpdatePublicIPAddressBody,CreateOrUpdatePublicIPAddressUri
-            >
-        { }
-    }
-
-    namespace NetworkInterfaceRequestModels {
-        // TODO
-        using PublicIPAddressRequestModels;
-        public class NetworkInterfacesProperties
-        {
-           public bool enableAcceleratedNetworking;
-
-           public NetworkInterfaceIPConfiguration ipConfigurations;
-         }
-        public class NetworkInterfaceIPConfiguration
-        {
-            public string name;
-
-            public NetworkInterfaceIPConfigurationProperties properties;
-        }
-        public class NetworkInterfaceIPConfigurationProperties
-        {
-            public PublicIPAddress publicIPAddress;
-
-            public Subnet subnet;
-
-            public SubResource gatewayLoadBalancer;
-        }
-
-        public class SubResource
-        {
-            public string id;
-        }
-
-        public class Subnet
-        {
-            //public string etag;
-
-            public string id;
-
-            //public string name;
-        }
-
-        public class CreateOrUpdateNIBody
-        {  public string location;
-
-            //public string id;
-
-            //public string extendedLocation;
-
-            public NetworkInterfacesProperties properties;
-        }
-        public class CreateOrUpdateNIUri
-        {
-            public string networkInterfaceName;
-
-            public string resourceGroupName;
-
-        }
-
-        public class CreateOrUpdateNIRequest : IRequest<
-               CreateOrUpdateNIUri,
-               CreateOrUpdateNIBody>
-        { }
-
-    }
-
     namespace VMRequestModels
     {
 
@@ -575,7 +425,127 @@
                 CreateOrUpdateVMUri,
                 CreateOrUpdateVMBody>
             { }
-        }
+        }//创建或更新虚拟机
+
+        namespace Get
+        {   
+            public class GetVMBody
+            {
+
+            }
+            public class GetVMUri
+            {
+                public string resourceGroupName;
+
+                public string vmName;
+            }
+            public class GetVMRequest : IRequest<GetVMUri, GetVMBody>
+            {
+
+            }
+        }//获取特定资源组特定名称的虚拟机的信息
+
+        namespace List
+        {
+            public class ListBody
+            {
+
+            }
+            public class ListUri
+            {
+                public string resourceGroupName;
+            }
+            public class ListRequest:IRequest<ListUri,ListBody>
+            {              
+
+            }
+        }//列出某个资源组的虚拟机
+
+        namespace ListAll
+        {
+            public class ListAllBody
+            {
+
+            }
+            public class ListAllUri
+            {
+
+            }
+            public class ListAllRequest:IRequest<ListAllUri,ListAllBody>
+            {
+
+            }
+        }//列出所有的虚拟机
+
+        namespace Start
+        {
+            public class StartBody
+            {
+
+            }
+            public class StartUri
+            {
+                public string resourceGroupName;
+
+                public string vmName;
+            }
+            public class StartRequest : IRequest<StartUri,StartBody>
+            {
+            }
+        }//启动虚拟机
+        
+        namespace Dellocate
+        {
+            public class DellocateBody
+            {
+
+            }
+            public class DellocateUri
+            {
+                public string resourceGroupName;
+
+                public string vmName;
+            }
+            public class DellocateRequest : IRequest<DellocateUri,DellocateBody> { }
+
+        }//关闭虚拟机并释放计算资源
+        
+        namespace Delete
+        {
+            public class DeleteBody
+            {
+
+            }
+            public class DeleteUri
+            {
+                public string resourceGroupName;
+
+                public string vmName;
+            }
+            public class DeleteRequest : IRequest<DeleteUri, DeleteBody>
+            {
+
+            }
+        }//删除虚拟机
+        
+        namespace Restart
+        {
+            public class RestartBody
+            {
+
+            }
+            public class RestartUri
+            {
+                public string resourceGroupName;
+                
+                public string vmName;
+
+            }
+            public class RestartRequest : IRequest<RestartUri,RestartBody>
+            {
+
+            }
+        }//重启虚拟机
     }
 
 
