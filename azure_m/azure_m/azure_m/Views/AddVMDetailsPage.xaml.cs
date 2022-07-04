@@ -19,8 +19,8 @@ namespace azure_m.Views
 
         private void valid_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(valid.SelectedIndex == 0) { sshFrame.IsVisible = true; pswdFrame.IsVisible = false; }
-            else { sshFrame.IsVisible = false; pswdFrame.IsVisible = true; }
+            if(valid.SelectedIndex == 0) { sshFrame.IsVisible =c_sshkey.IsVisible= true; pswdFrame.IsVisible = c_pswd.IsVisible=false; }
+            else { sshFrame.IsVisible = c_sshkey.IsVisible = false; pswdFrame.IsVisible = c_pswd.IsVisible = true; }
         }
 
         private void UserName_Completed(object sender, EventArgs e)
@@ -44,12 +44,14 @@ namespace azure_m.Views
         private void resourcesGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
             ResourceGroupIndexChanged?.Invoke(sender, EventArgs.Empty);
+            c_resGroup.Text = resourcesGroup.SelectedItem.ToString();
         }
 
         public static event EventHandler<int> SubscribeIndexChange;
         private void subscribe_SelectedIndexChanged(object sender, EventArgs e)
         {
             SubscribeIndexChange?.Invoke(sender, subscribe.SelectedIndex);
+            c_subscribeName.Text = subscribe.SelectedItem.ToString();
         }
 
         public static event EventHandler AreaChanged;
@@ -63,7 +65,6 @@ namespace azure_m.Views
         {
             if (availabilty.SelectedIndex != -1) { accessIndexChanged?.Invoke(sender, EventArgs.Empty); }
         }
-
         
         private void safetymode_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -93,12 +94,6 @@ namespace azure_m.Views
             diskTypeIndexChanged?.Invoke(sender, EventArgs.Empty);
         }
 
-        public static event EventHandler nicChanged;
-        private void nic_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (vnetworks.SelectedIndex != -1 && subnet.SelectedIndex != -1 && publicIPs.SelectedIndex != -1) { nicChanged?.Invoke(sender, EventArgs.Empty); }
-        }
-
         private void delete_Clicked(object sender, EventArgs e)
         {
             allStack.Children.RemoveAt(1);
@@ -117,6 +112,58 @@ namespace azure_m.Views
         private void vmapp_Tapped(object sender, EventArgs e)
         {
 
+        }
+
+        private void accessAreas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (accessAreas.SelectedItems.Count == 0) {
+                c_have_zone.Text = "无";
+                c_zone.IsVisible = false;
+                return;
+            }
+            c_have_zone.Text = "选择区域";
+            StringBuilder sb = new StringBuilder();
+            foreach (var area in accessAreas.SelectedItems) { sb.Append(area.ToString()); sb.Append(" "); }
+            c_zone.Text = sb.ToString();
+        }
+
+        private void port_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach(var port in port.SelectedItems) { sb.Append(port.ToString() + " "); }
+            c_ports.Text = sb.ToString();
+        }
+
+        private void net_port_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        public static event EventHandler vnetChanged;
+        private void vnetworks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            c_vnet.Text = vnetworks.SelectedItem.ToString();
+            vnetChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        public static event EventHandler subnetChanged;
+        private void subnet_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            c_subnet.Text = subnet.SelectedItem.ToString();
+            subnetChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        public static event EventHandler publicIPChanged;
+        private void publicIPs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            c_pubIP.Text = publicIPs.SelectedItem.ToString();
+            publicIPChanged?.Invoke(sender, EventArgs.Empty);
+        }
+
+        public static event EventHandler DeleteOptionChanged;
+        private void CascadDeleteNic_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            DeleteOptionChanged?.Invoke(sender, EventArgs.Empty);
         }
     }
 }
