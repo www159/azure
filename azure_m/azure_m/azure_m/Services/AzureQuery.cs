@@ -19,6 +19,7 @@ namespace azure_m.Services
     {
         private static string token { get; set; }
         private static string baseUri { get; set; } = "https://management.azure.com/";
+        private static string subscriptionSql { get; set; } = "resourcecontainers\n        | where type == \"microsoft.resources/subscriptions\"\n        | join kind=leftouter (securityresources \n            | where type == \"microsoft.security/securescores\"\n            | where properties.environment == \"Azure\" and properties.displayName == \"ASC score\"\n            ) on subscriptionId\n        | extend secureScore=properties1.score.percentage,\n            managementGroup=properties.managementGroupAncestorsChain,\n            subscriptionName=name,\n            status=properties.state\n        | project id, subscriptionId, subscriptionName, status, managementGroup, secureScore";
         public static string subscriptionId { get; set; } = "219b2431-594f-47fa-8e85-664196aa3f92";
         public static string baseStrUrl
         {
@@ -51,7 +52,9 @@ namespace azure_m.Services
 
             try
             {
-                authResult = await app.AcquireTokenSilent(scopes, accounts.FirstOrDefault()).ExecuteAsync();
+                authResult = await app
+                    .AcquireTokenSilent(scopes, accounts.FirstOrDefault())
+                    .ExecuteAsync();
             }
             catch (MsalUiRequiredException ex)
             {
@@ -79,24 +82,34 @@ namespace azure_m.Services
                 token = authResult.AccessToken;
                 baseRequest = new Url(baseStrUrl)
                     .WithOAuthBearerToken(token);
+
+                await getSubscriptionsAsync(token);
             }
         }
 
-        public static void setSubscriptions(string subscriptionId)
-        {
-            baseRequest = baseRequest.AppendPathSegment(subscriptionId);
-        }
+        //public static void setSubscriptions(string subscriptionId)
+        //{
+        //    baseRequest = baseRequest.AppendPathSegment(subscriptionId);
+        //}
 
-        public static async Task getSubscriptionsAsync()
+        private static async Task getSubscriptionsAsync(string token)
         {
             //https://management.azure.com/providers/Microsoft.ResourceGraph/resources?api-version=2021-03-01
             var url = new Url(baseUri)
                 .AppendPathSegments(new[] {
                     "providers",
                     "Microsoft.ResourceGraph",
-                    "resurces"
+                    "resources"
                 });
-            var res = await Utils.withApiVersion(url, "2021-03-01").GetJsonAsync<Subscriptions>();
+
+            var res = await Utils
+                .withApiVersion(url, "2021-03-01")
+                .WithOAuthBearerToken(token)
+                .PostJsonAsync(new
+                {
+                    query = subscriptionSql,
+                })
+                .ReceiveJson<Subscriptions>();
 
             subscriptionId = res.data[0].subscriptionId;
         }
