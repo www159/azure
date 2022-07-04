@@ -8,6 +8,10 @@ namespace azure_m.Models.RequestModels
     {
         namespace CreateOrUpdate
         {
+
+            public class CreateOrupdateVNRequest<CreateOrupdateVNUri, CreateOrUpdateNIBody>{}
+
+            public class CreateOrupdateVNUri {}
             public class CreateOrUpdateVNBody
             {
                 public CreateOrUpdateVNProperties properties { get; set; }
