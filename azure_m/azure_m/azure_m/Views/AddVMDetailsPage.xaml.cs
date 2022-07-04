@@ -19,7 +19,8 @@ namespace azure_m.Views
 
         private void valid_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if(valid.SelectedIndex == 0) { sshFrame.IsVisible = true; pswdFrame.IsVisible = false; }
+            else { sshFrame.IsVisible = false; pswdFrame.IsVisible = true; }
         }
 
         private void UserName_Completed(object sender, EventArgs e)
@@ -84,6 +85,29 @@ namespace azure_m.Views
         private void openentryPort_SelectedIndexChanged(object sender, EventArgs e)
         {
             port.IsVisible = openentryPort.SelectedIndex==0?false:true;
+        }
+
+        public static event EventHandler diskTypeIndexChanged;
+        private void disk_type_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            diskTypeIndexChanged?.Invoke(sender, EventArgs.Empty);
+        }
+
+        public static event EventHandler nicChanged;
+        private void nic_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (vnetworks.SelectedIndex != -1 && subnet.SelectedIndex != -1 && publicIPs.SelectedIndex != -1) { nicChanged?.Invoke(sender, EventArgs.Empty); }
+        }
+
+        private void delete_Clicked(object sender, EventArgs e)
+        {
+            allStack.Children.RemoveAt(1);
+
+        }
+
+        private void delete2_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -19,7 +19,9 @@ namespace azure_m.Services
     public static class QueryInfo
     {
         private static string token { get; set; }
-        public static string baseStrUrl { get; set; } = "https://management.azure.com/subscriptions/219b2431-594f-47fa-8e85-664196aa3f92/";
+
+        public static string subid { get; set; } = "219b2431-594f-47fa-8e85-664196aa3f92";
+        public static string baseStrUrl { get; set; } = $"https://management.azure.com/subscriptions/{subid}/";
         public static string clientId { get; set; } = "89924e36-f70a-43c3-86c5-51bc7b5e8136";
         public static string tenantId { get; set; } = "453d8628-343d-48b9-b4d9-c0a97e4be3b7";
         public static string redirectUrl { get; set; } = "http://localhost";

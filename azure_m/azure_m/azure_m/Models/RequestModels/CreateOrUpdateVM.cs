@@ -6,7 +6,21 @@
     }
 
     namespace NetworkInterfaceRequestModels {
-        // TODO
+        namespace CreateOrUpdate
+        {
+            public class CreateOrUpdateNIUri
+            {
+
+            }
+            public class CreateOrUpdateNIBody
+            {
+
+            }
+            public class CreateOrUpdateNIRequest:IRequest<CreateOrUpdateNIUri,CreateOrUpdateNIBody>
+            {
+
+            }
+        }
     }
 
     namespace VMRequestModels
@@ -336,6 +350,11 @@
                 public string sku;
 
                 public string verison;
+
+                public override string ToString()
+                {
+                    return offer + sku;
+                }
             }
 
             public class StorageProfile {
@@ -429,10 +448,25 @@
 
             }
 
-            public class CreateOrUpdateVMRequest: IRequest<
+            public class CreateOrUpdateVMRequest : IRequest<
                 CreateOrUpdateVMUri,
                 CreateOrUpdateVMBody>
-            { }
+            {
+                public CreateOrUpdateVMRequest()
+                {
+                    body = new CreateOrUpdateVMBody
+                    {
+                        properties = new CreateOrUpdateVMProperties
+                        {
+                            storageProfile = new StorageProfile { imageReference = new ImageReference() },
+                            hardWareProfile = new HardWareProfile { vmSizeProperties = new VMSizeProperties() },
+                            osProfile = new OSProfile { computerName = "", adminUsername = "", adminPassword = "" },
+                            networkProfile = new NetworkProfile()
+                        }
+                    };
+                    uri = new CreateOrUpdateVMUri { resourceGroupName = "", vmName = "" };
+                }
+            }
         }
     }
 
