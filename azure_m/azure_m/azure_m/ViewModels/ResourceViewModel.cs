@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace azure_m.ViewModels
 {
-    using Models.ResponseModels;
+    using Models;
 
     public class ResourceViewModel: BaseViewModel
     {

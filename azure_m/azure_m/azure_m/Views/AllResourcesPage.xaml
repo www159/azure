@@ -4,7 +4,7 @@
              x:Class="azure_m.Views.AllResourcesPage"
              Title="{Binding Title}"
              xmlns:local="clr-namespace:azure_m.ViewModels"
-             xmlns:model="clr-namespace:azure_m.Models.ResponseModels">
+             xmlns:model="clr-namespace:azure_m.Models">
     <ContentPage.Resources>
         <Color x:Key="cardBack">#fffbf0</Color>
         <Style

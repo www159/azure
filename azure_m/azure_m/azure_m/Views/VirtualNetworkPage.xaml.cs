@@ -7,7 +7,7 @@ using Xamarin.Forms.Xaml;
 
 namespace azure_m.Views
 {
-    using Models.ResponseModels;
+    using Models;
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VirtualNetworkPage : ContentPage
@@ -36,8 +36,20 @@ namespace azure_m.Views
             ///DEBUG
             if (type == 0)
             {
-                resources.Add(new Resource("jp", "vm", "1", "虚拟机"));
-                resources.Add(new Resource("jp", "vm", "1", "虚拟机"));
+                resources.Add(new Resource
+                {
+                    id = "1",
+                    location = "jp",
+                    type = "vm",
+                    name = "虚拟机"
+                });
+                resources.Add(new Resource
+                {
+                    id = "1",
+                    location = "jp",
+                    type = "vm",
+                    name = "虚拟机"
+                });
             }
 
             //no resources
