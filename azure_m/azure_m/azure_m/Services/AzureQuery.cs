@@ -87,7 +87,7 @@ namespace azure_m.Services
             baseRequest = baseRequest.AppendPathSegment(subscriptionId);
         }
 
-        public static async Task getSubscriptionsAsync()
+        private static async Task getSubscriptionsAsync()
         {
             //https://management.azure.com/providers/Microsoft.ResourceGraph/resources?api-version=2021-03-01
             var url = new Url(baseUri)
@@ -96,9 +96,15 @@ namespace azure_m.Services
                     "Microsoft.ResourceGraph",
                     "resurces"
                 });
-            var res = await Utils.withApiVersion(url, "2021-03-01").GetJsonAsync<Subscriptions>();
+            var res = await Utils.withApiVersion(url, "2021-03-01").GetJsonAsync<SubscriptionsResponse>();
 
             subscriptionId = res.data[0].subscriptionId;
+        }
+
+        public static async Task<T> queryWithNextLink<T>(string url)
+        {
+            var req = new Url(url).WithOAuthBearerToken(token);
+            return await req.GetJsonAsync<T>();
         }
     }
 }

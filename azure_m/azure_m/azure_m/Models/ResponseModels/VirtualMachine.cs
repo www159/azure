@@ -6,7 +6,7 @@ namespace azure_m.Models
 {
     namespace ResponseModels
     {
-        public class VirtualMachine
+        public class VirtualMachineResopnse
         {
             //public ExtendedLocation extendedLocation { get; set; }
 
