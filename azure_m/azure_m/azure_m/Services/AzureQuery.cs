@@ -109,9 +109,15 @@ namespace azure_m.Services
                 {
                     query = subscriptionSql,
                 })
-                .ReceiveJson<Subscriptions>();
+                .ReceiveJson<SubscriptionsResponse>();
 
             subscriptionId = res.data[0].subscriptionId;
+        }
+
+        public static async Task<T> queryWithNextLink<T>(string url)
+        {
+            var req = new Url(url).WithOAuthBearerToken(token);
+            return await req.GetJsonAsync<T>();
         }
     }
 }

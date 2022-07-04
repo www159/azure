@@ -6,7 +6,7 @@ namespace azure_m.Models
 {
     namespace ResponseModels
     {
-        public class Subscriptions
+        public class SubscriptionsResponse
         {
             public int count { get; set; }
 

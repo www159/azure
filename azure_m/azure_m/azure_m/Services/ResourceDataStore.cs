@@ -8,17 +8,13 @@ using Flurl.Http;
 namespace azure_m.Services
 {
     using Models.ResponseModels;
-
-    public class IResponseType<T>
-    {
-        public T value;
-    }
+    using Models;
 
     public class ResourceDataStore
     {
         private IFlurlRequest baseRequest = QueryInfo.baseRequest.AppendPathSegment("resources");
 
-        public Resource[] resources { get; private set; }
+        public List<Resource> resources { get; private set; }
 
         private static class apiVersion
         {
@@ -27,23 +23,41 @@ namespace azure_m.Services
 
         public ResourceDataStore()
         {
-            resources = new Resource[]{ };
+            resources = new List<Resource>{ };
         }
 
         public async Task refreshResourceAsync()
         {
-            resources = await queryResourcesAsync();
+            resources.Clear();
+            ResourceResponse res;
+            while(true)
+            {
+                res = await queryResourcesAsync();
+                foreach(var resource in res.value)
+                {
+                    var simplifiedResource = new Resource
+                    {
+                        id = resource.id,
+                        name = resource.name,
+                        type = resource.type,
+                        location = resource.location,
+                    };
+                    resources.Add(simplifiedResource);
+                }
+                if (res.nextLink == null) break;
+                res = await QueryInfo.queryWithNextLink<ResourceResponse>(res.nextLink);
+            }
         }
 
-        private async Task<Resource[]> queryResourcesAsync(string filter = "", int top = -1)
+        private async Task<ResourceResponse> queryResourcesAsync(string filter = "", int top = -1)
         {
             var req = Utils.withApiVersion(baseRequest, apiVersion.listResources);
-            IResponseType<Resource[]> res = null;
+            ResourceResponse res = null;
             try
             {
                 if (filter == "")
                 {
-                    res = await req.GetJsonAsync<IResponseType<Resource[]>>();
+                    res = await req.GetJsonAsync<ResourceResponse>();
                 }
                 else
                 {
@@ -51,7 +65,7 @@ namespace azure_m.Services
                     {
                         filter = filter,
                         top = top,
-                    }).GetJsonAsync<IResponseType<Resource[]>>();
+                    }).GetJsonAsync<ResourceResponse>();
                 }
             }
             catch (Exception ex)
@@ -65,7 +79,7 @@ namespace azure_m.Services
             }
 
 
-            return res.value;
+            return res;
         }
     }
 }

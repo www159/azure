@@ -8,7 +8,7 @@ namespace azure_m.Models
     namespace ResponseModels
     {
 
-        public class VirtualNetwork
+        public class VirtualNetworkResponse
         {
             public string etag { get; set; }
 
