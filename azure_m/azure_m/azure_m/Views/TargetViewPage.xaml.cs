@@ -4,164 +4,127 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using azure_m.ViewModels;
+using Syncfusion.SfChart.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace azure_m.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+
     public partial class TargetViewPage : ContentPage
     {
+
+        int checkedIndex;
+
+        List<bool> checks;
+
+        StackLayout stackLayout;
         public TargetViewPage()
         {
             InitializeComponent();
             
+            //Resource();
         }
-        //创建新图表事件
-        public void CreateNewChat(object obj,EventArgs e)
+        
+        //public void Resource()
+        //{
+            
+        //    stackLayout=new StackLayout 
+        //    {
+        //        Margin=new Thickness(0,140,0,0),
+        //        BackgroundColor=Color.Red,
+        //        VerticalOptions=LayoutOptions.Start,
+        //        HorizontalOptions=LayoutOptions.Start,
+        //        BindingContext=checks
+        //    };
+        //    StaticGrid.Children.Add(stackLayout);
+        //    int index = 0;
+        //    Sourses.ForEach(o =>
+        //    {
+        //        checks.Add(false);
+        //        var radioBtn = new RadioButton { GroupName = "Same", };
+        //        // grid = new Grid();
+        //        var RadioGrid = new Grid();
+        //        var label = new Label { Text = o.Name, Margin = new Thickness(20, 0, 0, 0) };
+        //        var TypeLabel = new Label { Text = o.SourseType, Margin = new Thickness(200, 0, 0, 0) };
+        //        //stackLayout.Children.Add(grid);
+        //        //grid.Children.Add(radioBtn);
+
+        //        radioBtn.Content = RadioGrid;
+        //        RadioGrid.Children.Add(label);
+        //        RadioGrid.Children.Add(TypeLabel);
+        //    });
+        //}
+
+
+        private void ChooseTargetClicked(object sender, EventArgs e)
         {
-            var layout = new StackLayout();
-            MainLayout.Children.Add(layout);
-            var entry = new Entry 
-            { Placeholder = "图表标题",
-              FontSize=30
-            };
-            layout.Children.Add(entry);
-            var grid = new Grid();
-            layout.Children.Add(grid);
-            var scrollview = new ScrollView
+            ChooseTarget.IsVisible = !ChooseTarget.IsVisible;
+        }
+
+        private void ApplyTargetClicked(object sender, EventArgs e)
+        {     
+            ChooseTarget.IsVisible = false;           
+        }
+
+        private void CancelTargetClicked(object sender, EventArgs e)
+        {
+            
+            ChooseTarget.IsVisible = false;
+        }
+   
+
+        private void Collection_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ChooseRange.Text = (Collection.SelectedItem as azure_m.ViewModels.Sourse).Name;
+            ShowType.Text= (Collection.SelectedItem as azure_m.ViewModels.Sourse).SourseType;
+            ChooseTarget.IsVisible = false;
+            if(ShowType.Text=="虚拟机")
             {
-                Orientation = ScrollOrientation.Horizontal,
-                VerticalOptions = LayoutOptions.Start,
-                HorizontalOptions=LayoutOptions.Start,
-                HeightRequest=40
-            };
-            grid.Children.Add(scrollview);
-            var layout2 = new StackLayout { Orientation = StackOrientation.Horizontal };
-            scrollview.Content = layout2;
-            //添加指标按钮（未写触发）
-            var AddTargetbutton = new Button 
-            {Text="添加指标", 
-                TextColor=Color.White, 
-                FontSize=17, 
-                BackgroundColor= Test.BackgroundColor, 
-                HorizontalOptions =LayoutOptions.Start, 
-                VerticalOptions=LayoutOptions.Start,
-                HeightRequest=40,
-                Padding=new Thickness(0,6),                
-            };
-            layout2.Children.Add(AddTargetbutton);
-            //
-            var AddChoosebutton = new Button
+                VirtualMachine.IsVisible = true;
+            }
+            if(ShowType.Text=="磁盘")
             {
-                Text = "添加筛选器",
-                TextColor = Color.White,
-                FontSize = 17,
-                BackgroundColor = Test.BackgroundColor,
-                HorizontalOptions = LayoutOptions.Start,
-                VerticalOptions = LayoutOptions.Start,
-                HeightRequest = 40,
-                Padding = new Thickness(0, 6),
-            };
-            layout2.Children.Add(AddChoosebutton);
-            //
-            var Applybutton = new Button
+                Disk.IsVisible= true;
+            }
+        }
+
+        private void CcrClicked(object sender, EventArgs e)
+        {
+            VirtualMachine.IsVisible= false;
+            CcrChart.IsVisible = true;
+            CccChart.IsVisible = false;
+            AmbChart.IsVisible = false;
+        }
+
+        private void CccClicked(object sender, EventArgs e)
+        {
+            VirtualMachine.IsVisible = false;
+            CccChart.IsVisible = true;
+            CcrChart.IsVisible = false;
+            AmbChart.IsVisible = false;
+        }
+
+        private void AmbClicked(object sender, EventArgs e)
+        {
+            VirtualMachine.IsVisible = false;
+            AmbChart.IsVisible = true;
+            CccChart.IsVisible=false;
+            CcrChart.IsVisible=false;
+        }
+
+        private void ValueChooseClicked(object sender,EventArgs e)
+        {
+            if (ShowType.Text == "虚拟机")
             {
-                Text = "应用拆分",
-                TextColor = Color.White,
-                FontSize = 17,
-                BackgroundColor = Test.BackgroundColor,
-                HorizontalOptions = LayoutOptions.Start,
-                VerticalOptions = LayoutOptions.Start,
-                HeightRequest = 40,
-                Padding = new Thickness(0, 6),
-            };
-            layout2.Children.Add(Applybutton);
-            //图表选择器（未写触发）
-            var ChartList = new List<string>();
-            ChartList.Add("折线图");
-            ChartList.Add("分区图");
-            ChartList.Add("条形图");
-            ChartList.Add("散点图");
-            ChartList.Add("网格");
-            var Chartpicker = new Picker 
-            { Title = "图表类型", 
-                TitleColor = Color.White,
-                TextColor = Color.White,
-                FontSize=17,
-                BackgroundColor=Test.BackgroundColor,
-                HorizontalOptions = LayoutOptions.Start,
-                VerticalOptions = LayoutOptions.Start,
-                HeightRequest=40,                
-            };
-            Chartpicker.ItemsSource =ChartList;
-            layout2.Children.Add(Chartpicker);
-            //
-            var CheckLogbutton = new Button
+                VirtualMachine.IsVisible = true;
+            }
+            if (ShowType.Text == "磁盘")
             {
-                Text = "深入查看日志",
-                TextColor = Color.White,
-                FontSize = 17,
-                BackgroundColor = Test.BackgroundColor,
-                HorizontalOptions = LayoutOptions.Start,
-                VerticalOptions = LayoutOptions.Start,
-                HeightRequest = 40,
-                Padding = new Thickness(0, 6),
-            };
-            layout2.Children.Add(CheckLogbutton);
-            //
-            var Warnbutton = new Button
-            {
-                Text = "新建警报规则",
-                TextColor = Color.White,
-                FontSize = 17,
-                BackgroundColor = Test.BackgroundColor,
-                HorizontalOptions = LayoutOptions.Start,
-                VerticalOptions = LayoutOptions.Start,
-                HeightRequest = 40,
-                Padding = new Thickness(0, 6),
-            };
-            layout2.Children.Add(Warnbutton);
-            //保存选择器（未写触发）
-            var SaveList = new List<string>();
-            SaveList.Add("固定到仪表盘");
-            SaveList.Add("固定到grafana");
-            SaveList.Add("发送到工作簿");
-            var Savepicker = new Picker
-            {
-                Title = "保存到仪表盘",
-                TitleColor = Color.White,
-                FontSize=17,
-                BackgroundColor = Test.BackgroundColor,
-                HorizontalOptions = LayoutOptions.Start,
-                VerticalOptions = LayoutOptions.Start,
-                HeightRequest = 40,
-            };
-            Savepicker.ItemsSource =SaveList;
-            layout2.Children.Add(Savepicker);
-            //更多Button（未写触发）
-            var ImageBtn = new ImageButton 
-            { Source= "more4.png",
-              BackgroundColor=Test.BackgroundColor,
-                HorizontalOptions = LayoutOptions.Start,
-                VerticalOptions = LayoutOptions.Start,
-                HeightRequest = 40,
-                Padding=new Thickness(0,6),
-               
-            };
-            layout2.Children.Add(ImageBtn);
-            //图表显示区
-            var Chartlabel = new Label
-            {
-                Text = "这是视图产生区域",
-                BackgroundColor=Color.Green,
-                HorizontalOptions = LayoutOptions.Start,
-                VerticalOptions = LayoutOptions.Start,
-                WidthRequest = 370,
-                HeightRequest = 300,
-                Margin = new Thickness(10, 50, 0, 0),
-            };
-            grid.Children.Add(Chartlabel);
-        }        
+                Disk.IsVisible = true;
+            }
+        }
     }
 }

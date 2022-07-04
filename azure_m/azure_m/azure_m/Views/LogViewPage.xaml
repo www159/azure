@@ -1,26 +1,102 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:local="clr-namespace:azure_m.ViewModels"
              x:Class="azure_m.Views.LogViewPage">
+    <ContentPage.BindingContext>
+        <local:LogViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ControlTemplate x:Key="RadioButtonTemplate">
+            <Frame BorderColor="#F3F2F1"
+                   BackgroundColor="#F3F2F1"
+                   HasShadow="False"
+                   HeightRequest="20"
+                   WidthRequest="800"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"
+                   Padding="0">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CheckedStates">
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderColor"
+                                            Value="#FF3300" />
+                                    <Setter TargetName="check"
+                                            Property="Opacity"
+                                            Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Unchecked">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                            Value="#F3F2F1" />
+                                    <Setter Property="BorderColor"
+                                            Value="#F3F2F1" />
+                                    <Setter TargetName="check"
+                                            Property="Opacity"
+                                            Value="0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+                <Grid Margin="4"
+                      WidthRequest="100">
+                    <Grid WidthRequest="18"
+                          HeightRequest="18"
+                          HorizontalOptions="Start"
+                          VerticalOptions="Start">
+                        <Ellipse Stroke="Blue"
+                                 Fill="White"
+                                 WidthRequest="16"
+                                 HeightRequest="16"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+                        <Ellipse x:Name="check"
+                                 Fill="Blue"
+                                 WidthRequest="8"
+                                 HeightRequest="8"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+                    </Grid>
+                    <ContentPresenter />
+                </Grid>
+            </Frame>
+        </ControlTemplate>
 
-    <StackLayout>
-        <Label Text="ROTATION"
-               BindingContext="{x:Reference Name=slider}"
-               Rotation="{Binding Path=Value}"
-               FontAttributes="Bold"
-               FontSize="Large"
-               HorizontalOptions="Center"
-               VerticalOptions="CenterAndExpand" />
-
-        <Slider x:Name="slider"
-                Maximum="360"
-                VerticalOptions="CenterAndExpand" />
-
-        <Label BindingContext="{x:Reference slider}"
-               Text="{Binding Value, StringFormat='The angle is {0:F0} degrees'}"
-               FontAttributes="Bold"
-               FontSize="Large"
-               HorizontalOptions="Center"
-               VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+        <Style TargetType="RadioButton">
+            <Setter Property="ControlTemplate"
+                    Value="{StaticResource RadioButtonTemplate}" />
+        </Style>
+    </ContentPage.Resources>
+    <Grid>
+        <Button Text="{Binding buttontmpname,Mode=TwoWay}" FontSize="25" VerticalOptions="Start" HorizontalOptions="Start" Clicked="Button_Clicked"/>
+        <Frame x:Name="ChooseTarget" Margin="30,0,0,0" BorderColor="Black" IsVisible="false">
+        <Grid x:Name="StaticGrid">
+                <Label Text="{Binding buttontmpname,Mode=TwoWay}" FontSize="30" x:Name="tmp3"/>
+                <Label Text="名称" FontSize="25" Margin="40,100,0,0"/>
+            <Label Text="资源类型" FontSize="25" Margin="180,100,0,0"/>
+            <Button Text="应用" VerticalOptions="Start" HorizontalOptions="Start" Margin="0,700,0,0" />
+            <Button Text="取消" VerticalOptions="Start" HorizontalOptions="Start" Margin="100,700,0,0"/>
+                <CollectionView x:Name="TMP" ItemsSource="{Binding Sourses}" VerticalOptions="Start" HorizontalOptions="Start" WidthRequest="880" HeightRequest="500" Margin="0,130,0,0" BackgroundColor="Red" >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Name}" FontSize="20" Grid.Column="1"/>
+                                <Label Text="{Binding SourseType}" FontSize="20" Grid.Column="2"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+    </Frame>
+    </Grid>
 </ContentPage>

@@ -79,6 +79,11 @@
                 <Button Text="筛选器" />
             </StackLayout>
             <StackLayout>
+                <Button 
+                    Text="test api"
+                    Command="{Binding LoadResourcesCommand}"/>
+
+
             </StackLayout>
             <RefreshView
                 x:DataType="local:ResourceViewModel"

@@ -14,6 +14,7 @@ namespace azure_m
     {
         public App()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjY0MzM5QDMyMzAyZTMxMmUzME5POGpvUUM2bGx6SGJscW5Xcm52Y3ZzdXhpQjc3OFV0TVYvTEM3SnRJUVk9");
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
@@ -23,10 +24,7 @@ namespace azure_m
 
             MainPage = new LoginPage();
             (MainPage as LoginPage).LoginComplete += App_LoginComplete;
-
-            var ret = Utils.readMock<azure_m.Models.MockModels.Index>(azure_m.Mocks.Mocks.index);
             
-
         }
 
         public static object parentWindow { get; set; } 
