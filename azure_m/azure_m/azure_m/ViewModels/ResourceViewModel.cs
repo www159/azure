@@ -7,11 +7,11 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using azure_m.Services;
 using System.Diagnostics;
-using azure_m.Models;
 
 namespace azure_m.ViewModels
-    
 {
+    using Models.responseModels;
+
     public class ResourceViewModel: BaseViewModel
     {
 

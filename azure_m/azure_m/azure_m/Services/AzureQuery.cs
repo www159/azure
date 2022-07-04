@@ -5,8 +5,6 @@ using System.Net.Http;
 using Flurl;
 using Flurl.Http;
 using System.Threading.Tasks;
-using azure_m.Models;
-using azure_m.Views;
 using System.Linq;
 using Microsoft.Identity.Client;
 
@@ -15,12 +13,13 @@ using Microsoft.Identity.Client;
 namespace azure_m.Services
 {
 
+    using Models.responseModels;
 
     public static class QueryInfo
     {
         private static string token { get; set; }
         private static string baseUri { get; set; } = "https://management.azure.com/";
-        private static string subscriptionId { get; set; } = "219b2431-594f-47fa-8e85-664196aa3f92";
+        public static string subscriptionId { get; set; } = "219b2431-594f-47fa-8e85-664196aa3f92";
         public static string baseStrUrl
         {
             get

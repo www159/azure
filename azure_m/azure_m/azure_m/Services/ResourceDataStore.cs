@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Flurl.Http;
-using azure_m.Models;
 
 namespace azure_m.Services
 {
+    using Models.responseModels;
 
     public class IResponseType<T>
     {

@@ -1,15 +1,13 @@
-﻿using azure_m.Models;
-using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace azure_m.Views
 {
+    using Models.responseModels;
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ResourceGroupPage : ContentPage
     {
@@ -26,7 +24,7 @@ namespace azure_m.Views
         public void GetResources(int type = 0)
         {
             ResourceLayout.Children.Clear();
-            List<Resource> resources = new List<azure_m.Models.Resource>();
+            List<Resource> resources = new List<Resource>();
             //查询指定资源，放置在ResourcesLayout中
             //resources = await GetResourcesByApi(type)...
             //resources.sort by type nad name (or linq

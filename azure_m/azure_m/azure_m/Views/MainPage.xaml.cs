@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Xamarin.Essentials;
-using azure_m.Models;
 
 namespace azure_m.Views
 {
+
+    using Models.responseModels;
+
     public partial class MainPage : ContentPage
     {
         List<StackLayout> ResourcesLayout = null;
@@ -25,7 +25,7 @@ namespace azure_m.Views
         public void  GetResources(int type = 0)
         {
             ResourceLayout.Children.Clear();
-            List<Resource> resources = new List<azure_m.Models.Resource>();
+            List<Resource> resources = new List<Resource>();
             //查询指定资源，放置在ResourcesLayout中
             //resources = await GetResourcesByApi(type)...
             //resources.sort by type nad name (or linq

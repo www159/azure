@@ -4,36 +4,39 @@ using System.Text;
 
 namespace azure_m.Models
 {
-    public class Subscriptions
+    namespace responseModels
     {
-        public int count { get; set; }
+        public class Subscriptions
+        {
+            public int count { get; set; }
 
-        public SubscriptionId[] data { get; set; }
+            public SubscriptionId[] data { get; set; }
 
-        /*
-            
-        public Facet[] facets;
+            /*
 
-        public string resultTruncated;
- 
-        */
-    }
+            public Facet[] facets;
 
-    public class SubscriptionId 
-    { 
-        public string id { get; set; }
+            public string resultTruncated;
 
-        public string subscriptionId { get; set; }
+            */
+        }
 
-        public string status { get; set; }  
+        public class SubscriptionId
+        {
+            public string id { get; set; }
 
-        /*
-         
-        public ManageGroup manageGroup;
+            public string subscriptionId { get; set; }
 
-        public string secureScore;
+            public string status { get; set; }
 
-        */
+            /*
 
+            public ManageGroup manageGroup;
+
+            public string secureScore;
+
+            */
+
+        }
     }
 }

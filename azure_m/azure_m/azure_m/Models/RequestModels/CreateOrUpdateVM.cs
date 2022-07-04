@@ -7,80 +7,80 @@
 
         public class PublicIPAddressProperties
         {
-            public IPAlloctionMethod publicIPAllocationMethod;
+            public IPAlloctionMethod publicIPAllocationMethod { get; set; }
 
-            public int idleTimeoutInMinutes;
+            public int idleTimeoutInMinutes { get; set; }
 
-            public IPVersion publicIPAddressVersion;
+            public IPVersion publicIPAddressVersion { get; set; }
 
-            public PublicIPAddressDnsSettings dnsSettings;
+            public PublicIPAddressDnsSettings dnsSettings { get; set; }
         }
 
         public class PublicIPAddressDnsSettings
         {
-            public string domainNameLabel;
+            public string domainNameLabel { get; set; }
         }
 
         public class IPVersion
         {
-            public string IPv4;
+            public string IPv4 { get; set; }
 
-            public string IPv6;
+            public string IPv6 { get; set; }
         }
 
         public class IPAlloctionMethod
         {
-            public string Dynamic;
+            public string Dynamic { get; set; }
 
-            public string Static;
+            public string Static { get; set; }
         }
 
         public class PublicIPAddress
         {
-            public string id;
+            public string id { get; set; }
 
-            public string location;
+            public string location { get; set; }
 
-            public PublicIPAddressProperties properties;
+            public PublicIPAddressProperties properties { get; set; }
 
 
         }
         public class PublicIPAddressSku
         {
-            public PublicIPAddressSkuName name;
+            public PublicIPAddressSkuName name { get; set; }
 
-            public PublicIPAddressSkuTier tier;
+            public PublicIPAddressSkuTier tier { get; set; }
         }
 
         public class PublicIPAddressSkuTier
         {
-            public string Basic;
+            public string Basic { get; set; }
 
-            public string Standard;
+            public string Standard { get; set; }
         }
 
         public class PublicIPAddressSkuName
         {
-            public string Global;
+            public string Global { get; set; }
 
-            public string Regional;
+            public string Regional { get; set; }
         }
 
         public class CreateOrUpdatePublicIPAddressBody
         {
-            public string id;
+            public string id { get; set; }
 
-            public string location;
+            public string location { get; set; }
 
-            public PublicIPAddressProperties properties;
+            public PublicIPAddressProperties properties { get; set; }
 
-            public PublicIPAddressSku sku;
+            public PublicIPAddressSku sku { get; set; }
         }
 
         public class CreateOrUpdatePublicIPAddressUri {
-            public string publicIpAddressName;
+            public string publicIpAddressName { get; set; }
 
-            public string resourceGroupName;
+            public string resourceGroupName { get; set; }
         }
 
         public class CreateOrUpdatePublicIPAddressRequest:IRequest<
@@ -92,55 +92,56 @@
     namespace NetworkInterfaceRequestModels {
         // TODO
         using PublicIPAddressRequestModels;
+
         public class NetworkInterfacesProperties
         {
-           public bool enableAcceleratedNetworking;
+           public bool enableAcceleratedNetworking { get; set; }
 
-           public NetworkInterfaceIPConfiguration ipConfigurations;
+           public NetworkInterfaceIPConfiguration ipConfigurations { get; set; }
          }
         public class NetworkInterfaceIPConfiguration
         {
-            public string name;
+            public string name { get; set; }
 
-            public NetworkInterfaceIPConfigurationProperties properties;
+            public NetworkInterfaceIPConfigurationProperties properties { get; set; }
         }
         public class NetworkInterfaceIPConfigurationProperties
         {
-            public PublicIPAddress publicIPAddress;
+            public PublicIPAddress publicIPAddress { get; set; }
 
-            public Subnet subnet;
+            public Subnet subnet { get; set; }
 
-            public SubResource gatewayLoadBalancer;
+            public SubResource gatewayLoadBalancer { get; set; }
         }
 
         public class SubResource
         {
-            public string id;
+            public string id { get; set; }
         }
 
         public class Subnet
         {
-            //public string etag;
+            //public string etag { get; set; }
 
-            public string id;
+            public string id { get; set; }
 
-            //public string name;
+            //public string name { get; set; }
         }
 
         public class CreateOrUpdateNIBody
-        {  public string location;
+        {  public string location { get; set; }
 
-            //public string id;
+            //public string id { get; set; }
 
-            //public string extendedLocation;
+            //public string extendedLocation { get; set; }
 
-            public NetworkInterfacesProperties properties;
+            public NetworkInterfacesProperties properties { get; set; }
         }
         public class CreateOrUpdateNIUri
         {
-            public string networkInterfaceName;
+            public string networkInterfaceName { get; set; }
 
-            public string resourceGroupName;
+            public string resourceGroupName { get; set; }
 
         }
 
@@ -160,15 +161,15 @@
             public class VMSizeProperties
             {
 
-                public int vCPUsAvailable;
+                public int vCPUsAvailable { get; set; }
 
-                public int vCPUsPerCore;
+                public int vCPUsPerCore { get; set; }
             }
             public class HardWareProfile
             {
-                public string[] vmSize;
+                public string[] vmSize { get; set; }
 
-                public VMSizeProperties vmSizeProperties;
+                public VMSizeProperties vmSizeProperties { get; set; }
 
             }
             #endregion
@@ -186,19 +187,19 @@
             public class NetworkInterfaceProperties
             {
 
-                public bool primary;
+                public bool primary { get; set; }
 
                 // Type:  DeleteOption
                 // Value: Delete, Detach
-                public string deleteOptions;
+                public string deleteOptions { get; set; }
             }
 
             public class NetworkInterface
             {
 
-                public string id;
+                public string id { get; set; }
 
-                public NetworkInterfaceProperties properties;
+                public NetworkInterfaceProperties properties { get; set; }
 
 
 
@@ -207,13 +208,13 @@
             public class NetworkProfile
             {
 
-                public NetworkInterface[] networkInterfaces;
+                public NetworkInterface[] networkInterfaces { get; set; }
 
                 /*
                 
-                public NetworkApiVersion networkApiVersion;
+                public NetworkApiVersion networkApiVersion { get; set; }
 
-                public List<VitualMachineNetworkInterfaceCOnfiguration> networkInterfaceConfigurations;
+                public List<VitualMachineNetworkInterfaceCOnfiguration> networkInterfaceConfigurations { get; set; }
                 
                 */
             }
@@ -245,7 +246,7 @@
                 若要重置密码，请参阅如何在 Windows VM 中重置远程桌面服务或其登录密码
 
                 */
-                public string adminPassword;
+                public string adminPassword { get; set; }
 
                 /*
                 创建 VM 后，无法更新此属性。
@@ -260,23 +261,23 @@
 
                 最大长度 (Windows) ：20 个字符。
                 */
-                public string adminUsername;
+                public string adminUsername { get; set; }
 
-                public bool alllowExtensionOperations;
+                public bool alllowExtensionOperations { get; set; }
 
-                public string computerName;
+                public string computerName { get; set; }
 
-                public string custmData;
+                public string custmData { get; set; }
 
-                public bool requireGuestProvisionSignal;
+                public bool requireGuestProvisionSignal { get; set; }
 
                 /*
                 
-                public LinuxConfiguration linuxConfiguration;
+                public LinuxConfiguration linuxConfiguration { get; set; }
 
-                public List<VailtSecretGroup> secrets;
+                public List<VailtSecretGroup> secrets { get; set; }
 
-                public WindowsConfiguration windowsConfiguration;
+                public WindowsConfiguration windowsConfiguration { get; set; }
                 
                 */
 
@@ -324,16 +325,16 @@
                 
                 // Type:  DiffDIskOptions
                 // Value: CacheDisk, ResourceDisk
-                public string placement;
+                public string placement { get; set; }
                 
                 // Type:  DiffDiskOptions
                 // Value: Local
-                public string options;
+                public string options { get; set; }
             }
 
             public class DiskEncryptionSetParameters {
                 
-                public string id;
+                public string id { get; set; }
 
             }
 
@@ -347,42 +348,42 @@
 
             public class VMDiskSecurityProfile {
 
-                public DiskEncryptionSetParameters diskEncryptionSet;
+                public DiskEncryptionSetParameters diskEncryptionSet { get; set; }
 
                 // Type:  SecurityENcrytionTypes
                 // Value DiskWithVMGuestState, VMGuestStateOnly
-                public string securityEncryptionType;
+                public string securityEncryptionType { get; set; }
 
             }
 
             public class StorageAccountTypes {
-                
-                public static string  PRemiumV2_LRS = "PRemiumV2_LRS";
-               
-                public static string  Premium_LRS = "Premium_LRS";
-               
-                public static string  Premium_ZRS = "Premium_ZRS";
 
-                public static string  StandardSSD_LRS = "StandardSSD_LRS";
+                public static string PRemiumV2_LRS = "PRemiumV2_LRS";
 
-                public static string  StandardSSD_ZRS = "StandardSSD_ZRS";
+                public static string Premium_LRS = "Premium_LRS";
 
-                public static string  Standard_LRS = "Standard_LRS";
+                public static string Premium_ZRS = "Premium_ZRS";
 
-                public static string  UltraSSD_LRS = "UltraSSD_LRS";
+                public static string StandardSSD_LRS = "StandardSSD_LRS";
+
+                public static string StandardSSD_ZRS = "StandardSSD_ZRS";
+
+                public static string Standard_LRS = "Standard_LRS";
+
+                public static string UltraSSD_LRS = "UltraSSD_LRS";
                 
             }
             public class ManagedDiskParameters {
                 
-                public DiskEncryptionSetParameters diskEncryptionSet;
+                public DiskEncryptionSetParameters diskEncryptionSet { get; set; }
 
-                public string id;
+                public string id { get; set; }
 
-                public VMDiskSecurityProfile securityProfile;
+                public VMDiskSecurityProfile securityProfile { get; set; }
 
                 // Type:  StorageAccountTypes
                 // Value: ...
-                public string storageAccountType;
+                public string storageAccountType { get; set; }
             }
 
             public class OperatingSystemTypes {
@@ -394,39 +395,39 @@
 
             public class VirtualHardDisk {
 
-                public string uri;
+                public string uri { get; set; }
             }
             public class Disk {
                 
                 // Type:  CachingTypes
                 // Value: None, ReadOnly, ReadWrite
-                public string caching;
+                public string caching { get; set; }
 
                 // Type:  DiskCreateOptionTypes
                 // Value: Attach, Empty, FromImage
-                public string createOptions;
+                public string createOptions { get; set; }
 
                 // Type:  DiskDeleteOptionTypes
                 // Value: Delete, Detach
-                public string deleteOption;
+                public string deleteOption { get; set; }
 
-                public int diskSizeGB;
+                public int diskSizeGB { get; set; }
 
                 /*
 
-                public VirtualHardDisk image;
+                public VirtualHardDisk image { get; set; }
 
                 */
 
-                public ManagedDiskParameters managedDisk;
+                public ManagedDiskParameters managedDisk { get; set; }
 
-                public string name;
+                public string name { get; set; }
 
 
 
-                public VirtualHardDisk vhd;
+                public VirtualHardDisk vhd { get; set; }
 
-                public bool writeAcceleratorEnabled;
+                public bool writeAcceleratorEnabled { get; set; }
 
             }
 
@@ -434,7 +435,7 @@
 
                 // Type:  OperatingSystemTypes
                 // Value: Linux, Windows
-                public string osType;
+                public string osType { get; set; }
 
                 /*
                 
@@ -452,32 +453,32 @@
 
                 // Type:  DiskDetachOptionTypes
                 // Value: ForceDetach
-                public string detachOption;
+                public string detachOption { get; set; }
 
-                public int diskIOSReadWrtite;
+                public int diskIOSReadWrtite { get; set; }
 
-                public int diskMBpsReadWrite;
+                public int diskMBpsReadWrite { get; set; }
 
-                public int lun;
+                public int lun { get; set; }
 
-                public bool toBeDetach;
+                public bool toBeDetach { get; set; }
             }
 
             public class ImageReference {
 
-                public string communityGalleryImageId;
+                public string communityGalleryImageId { get; set; }
 
-                public string exactVersion;
+                public string exactVersion { get; set; }
 
-                public string offer;
+                public string offer { get; set; }
 
-                public string publisher;
+                public string publisher { get; set; }
 
-                public string shareGalleryImageId;
+                public string shareGalleryImageId { get; set; }
 
-                public string sku;
+                public string sku { get; set; }
 
-                public string verison;
+                public string verison { get; set; }
 
                 public override string ToString()
                 {
@@ -487,11 +488,11 @@
 
             public class StorageProfile {
 
-                public DataDisk[] dataDisks;
+                public DataDisk[] dataDisks { get; set; }
 
-                public OSDisk oSDisk;
+                public OSDisk oSDisk { get; set; }
 
-                public ImageReference imageReference;
+                public ImageReference imageReference { get; set; }
             }
 
             #endregion
@@ -499,47 +500,47 @@
             #region 虚拟机配置汇总
             public class CreateOrUpdateVMProperties
             {
-                public HardWareProfile hardWareProfile;
+                public HardWareProfile hardWareProfile { get; set; }
 
-                public NetworkProfile networkProfile;
+                public NetworkProfile networkProfile { get; set; }
 
-                public OSProfile osProfile;
+                public OSProfile osProfile { get; set; }
 
-                public StorageProfile storageProfile;
+                public StorageProfile storageProfile { get; set; }
 
                 /*
                 
-                public AdditionalCapabilities addtionalCapabilities;
+                public AdditionalCapabilities addtionalCapabilities { get; set; }
 
-                public ApplicationProfile applicationProfile;
+                public ApplicationProfile applicationProfile { get; set; }
 
-                public SubResource availabilitySet;
+                public SubResource availabilitySet { get; set; }
 
-                public BillingProfile billingProfile;
+                public BillingProfile billingProfile { get; set; }
 
-                public CapacityReservationProfile capacityReservation;
+                public CapacityReservationProfile capacityReservation { get; set; }
 
-                public DiagnosticsProfile diagnosticProfile;
+                public DiagnosticsProfile diagnosticProfile { get; set; }
 
-                public VirtualMachineEvictionPolicyTypes evictionPolicy;
+                public VirtualMachineEvictionPolicyTypes evictionPolicy { get; set; }
 
-                public string extensionsTumeBuget;
+                public string extensionsTumeBuget { get; set; }
 
-                public SubResource host;
+                public SubResource host { get; set; }
 
-                public string licenseType;
+                public string licenseType { get; set; }
 
-                public int platformFaultDomain;;
+                public int platformFaultDomain { get; set; };
 
-                public VirtualMachinePrioityTypes priority;
+                public VirtualMachinePrioityTypes priority { get; set; }
 
-                public SubResource proximityPlacementGroup;
+                public SubResource proximityPlacementGroup { get; set; }
 
-                public SecurityProfile securityProfile;
+                public SecurityProfile securityProfile { get; set; }
 
-                public string userData;
+                public string userData { get; set; }
 
-                public SubResource virtualMachineScaleSet;
+                public SubResource virtualMachineScaleSet { get; set; }
 
                 */
 
@@ -549,30 +550,30 @@
 
             public class CreateOrUpdateVMBody
             {
-                public string location;
+                public string location { get; set; }
 
                 /*
                 
-                public ExtendedLocation extendedLocation;
+                public ExtendedLocation extendedLocation { get; set; }
 
-                public VirtualMachineIdentity identity;
+                public VirtualMachineIdentity identity { get; set; }
 
-                public Plan plan;
+                public Plan plan { get; set; }
                 
                 */
 
-                public CreateOrUpdateVMProperties properties;
+                public CreateOrUpdateVMProperties properties { get; set; }
 
-                public object tags;
+                public object tags { get; set; }
 
-                public string[] zones;
+                public string[] zones { get; set; }
             }
 
             public class CreateOrUpdateVMUri
             {
-                public string resourceGroupName;
+                public string resourceGroupName { get; set; }
 
-                public string vmName;
+                public string vmName { get; set; }
 
             }
 

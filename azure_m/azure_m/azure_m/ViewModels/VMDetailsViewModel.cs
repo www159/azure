@@ -98,7 +98,7 @@ namespace azure_m.ViewModels
             Views.AddVmDetailsPage.nicChanged += (sender, e) => {//新建一个nic
                 networkInterfaces.Add(new NetworkInterface
                 {
-                    id = $"/subscriptions/{azure_m.Services.QueryInfo.subid}/resourceGroups/{vm.uri.resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{UID}",
+                    id = $"/subscriptions/{QueryInfo.subscriptionId}/resourceGroups/{vm.uri.resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{UID}",
                     properties = new NetworkInterfaceProperties { primary = true }
                 });
             };
