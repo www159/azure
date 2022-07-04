@@ -7,7 +7,7 @@ using Flurl.Http;
 
 namespace azure_m.Services
 {
-    using Models.responseModels;
+    using Models.ResponseModels;
 
     public class IResponseType<T>
     {

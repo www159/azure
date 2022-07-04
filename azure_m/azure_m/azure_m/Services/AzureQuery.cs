@@ -13,7 +13,7 @@ using Microsoft.Identity.Client;
 namespace azure_m.Services
 {
 
-    using Models.responseModels;
+    using Models.ResponseModels;
 
     public static class QueryInfo
     {

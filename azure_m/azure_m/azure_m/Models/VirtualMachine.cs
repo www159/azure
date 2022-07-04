@@ -4,7 +4,7 @@ using System.Text;
 
 namespace azure_m.Models
 {
-    namespace responseModels
+    namespace ResponseModels
     {
         public class VirtualMachine
         {

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace azure_m.Models
 {
 
-    namespace responseModels
+    namespace ResponseModels
     {
         //public class BaseAzureItem
         //{

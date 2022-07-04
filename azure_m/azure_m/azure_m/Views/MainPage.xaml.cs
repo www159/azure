@@ -6,7 +6,7 @@ using Xamarin.Forms;
 namespace azure_m.Views
 {
 
-    using Models.responseModels;
+    using Models.ResponseModels;
 
     public partial class MainPage : ContentPage
     {

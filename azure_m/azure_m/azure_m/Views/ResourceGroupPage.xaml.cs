@@ -6,7 +6,7 @@ using Xamarin.Forms.Xaml;
 
 namespace azure_m.Views
 {
-    using Models.responseModels;
+    using Models.ResponseModels;
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ResourceGroupPage : ContentPage
