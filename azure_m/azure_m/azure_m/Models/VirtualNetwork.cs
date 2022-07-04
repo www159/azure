@@ -56,7 +56,7 @@ namespace azure_m.Models
 
         public Subnet[] subnets { get; set; }
 
-        public VirtualNetworkPeering[] virtualNetworkPeering { get; set; }
+        public VirtualNetworkPeering[] virtualNetworkPeerings { get; set; }
 
 
     }
