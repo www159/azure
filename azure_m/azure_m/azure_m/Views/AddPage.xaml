@@ -13,21 +13,14 @@
             <!--#region 服务-->
             <Label Text="热门Auzre服务" FontSize="15" Margin="10,0,0,5"/>
             <Grid ColumnDefinitions="*,3*" Grid.Row="0" Margin="10,0,0,5">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CreateServiceVM"/>
+                </Grid.GestureRecognizers>
                 <Image Source="vm1.png" HeightRequest="60" WidthRequest="60" HorizontalOptions="Start" />
                 <Label HeightRequest="60" WidthRequest="60" Grid.Column="1" VerticalTextAlignment="Center">
                         <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="虚拟机"  FontSize="20" >
-                                <Span.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="CreateServiceVM" />
-                                </Span.GestureRecognizers>
-                            </Span>
-                            <!--<Span Text=" | " FontSize="20" />
-                            <Span Text="了解详细信息" FontSize="15">
-                                <Span.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="GetInformation" CommandParameter="hello world"/>
-                                </Span.GestureRecognizers>
-                            </Span>-->
+                            <Span Text="虚拟机"  FontSize="20" />
                         </FormattedString>
                         </Label.FormattedText>
                     </Label>

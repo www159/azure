@@ -96,7 +96,7 @@
         {
            public bool enableAcceleratedNetworking;
 
-           public NetworkInterfaceIPConfiguration ipConfigurations;
+           public NetworkInterfaceIPConfiguration[] ipConfigurations;
          }
         public class NetworkInterfaceIPConfiguration
         {
@@ -147,7 +147,13 @@
         public class CreateOrUpdateNIRequest : IRequest<
                CreateOrUpdateNIUri,
                CreateOrUpdateNIBody>
-        { }
+        { 
+            public CreateOrUpdateNIRequest()
+            {
+                uri = new CreateOrUpdateNIUri();
+                body = new CreateOrUpdateNIBody{properties = new NetworkInterfacesProperties{ipConfigurations = new NetworkInterfaceIPConfiguration[1] }};
+            }
+        }
 
     }
 
@@ -589,7 +595,13 @@
                             storageProfile = new StorageProfile { imageReference = new ImageReference() },
                             hardWareProfile = new HardWareProfile { vmSizeProperties = new VMSizeProperties() },
                             osProfile = new OSProfile { computerName = "", adminUsername = "", adminPassword = "" },
-                            networkProfile = new NetworkProfile()
+                            networkProfile = new NetworkProfile { networkInterfaces = new NetworkInterface[1]
+                            {
+                                new NetworkInterface
+                                {
+                                    properties = new NetworkInterfaceProperties{ primary = true }
+                                }
+                            } }
                         }
                     };
                     uri = new CreateOrUpdateVMUri { resourceGroupName = "", vmName = "" };
