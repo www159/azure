@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Text;
 using Flurl;
 using Flurl.Http;
-using azure_m.Models.RequestModels.ResourceGroupRequestModels.CreateOrUpdateResourceGroup;
-using azure_m.Models.RequestModels.ResourceGroupRequestModels.DeleteResourceGroup;
-using azure_m.Models.RequestModels.ResourceGroupRequestModels.GetResourceGroup;
-using azure_m.Models.RequestModels.ResourceGroupRequestModels.ListResourceGroup;
-using azure_m.Models;
+
 using azure_m.Models.ResponseModels;
 using System.Threading.Tasks;
 namespace azure_m.Services
 {
+    using Models.RequestModels.ResourceGroup.CreateOrUpdate;
+    using Models.RequestModels.ResourceGroup.Delete;
+    using Models.RequestModels.ResourceGroup.Get;
+    using Models.RequestModels.ResourceGroup.List;
+
     public class ResourceGroupOperations
     {
         private static class apiVersion

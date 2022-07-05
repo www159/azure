@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using azure_m.Models.ResponseModels;
-
-namespace azure_m.Models.RequestModels
+﻿namespace azure_m.Models.RequestModels
 {
-   namespace SubnetRequest
+   namespace Subnet
     {
         namespace CreateOrUpdate
-        {           
+        {
+            using VN.CreateOrUpdate;
+
             public class CreateOrUpdateSubnetUri
             {
                 public string resourceGroupName;

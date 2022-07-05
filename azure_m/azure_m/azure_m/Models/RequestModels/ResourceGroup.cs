@@ -1,8 +1,8 @@
 ﻿namespace azure_m.Models.RequestModels
 {
-    namespace ResourceGroupRequestModels
+    namespace ResourceGroup
     {
-        namespace CreateOrUpdateResourceGroup
+        namespace CreateOrUpdate
         {
 
             public class CreateOrUpdateResourceGroupUri
@@ -19,7 +19,7 @@
             }
         }//创建/更新资源组
 
-        namespace GetResourceGroup
+        namespace Get
         {
             public class GetResourceGroupBody
             {
@@ -35,7 +35,7 @@
             }
         }//获取指定资源组信息
 
-        namespace DeleteResourceGroup
+        namespace Delete
         {
             public class DeleteResourceGroupBody
             {
@@ -51,7 +51,7 @@
             }
         }//删除指定资源组
 
-        namespace ListResourceGroup
+        namespace List
         {
             public class ListResourceGroupBody
             {

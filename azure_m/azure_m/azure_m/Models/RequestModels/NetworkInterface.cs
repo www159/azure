@@ -1,12 +1,14 @@
-﻿using azure_m.Models.RequestModels.VNReuestModels.CreateOrUpdate;
-namespace azure_m.Models.RequestModels
+﻿namespace azure_m.Models.RequestModels
 {
-    namespace NetworkInterfaceRequestModels
+    namespace NetworkInterface
     {
+
         // TODO
-        namespace CreateOrUpdateNI
+        namespace CreateOrUpdate
         {
-            using PublicIPAddressRequestModels;
+            using PublicIPAddress.CreateOrUpdate;
+            using VN.CreateOrUpdate;
+
             public class NetworkInterfacesProperties
             {
                 public bool enableAcceleratedNetworking;

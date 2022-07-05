@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace azure_m.Models
+﻿namespace azure_m.Models
 {
     namespace ResponseModels
     {
-        public class VirtualMachineResopnse
+        public class VirtualMachineResponse
         {
             //public ExtendedLocation extendedLocation { get; set; }
 

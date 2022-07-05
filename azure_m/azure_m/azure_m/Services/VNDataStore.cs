@@ -4,11 +4,11 @@ using System.Text;
 using Flurl;
 using Flurl.Http;
 using System.Threading.Tasks;
-using azure_m.Models.RequestModels.VNReuestModels.CreateOrUpdate;
-using azure_m.Models.RequestModels.VNReuestModels.Delete;
-using azure_m.Models.RequestModels.VNReuestModels.Get;
-using azure_m.Models.RequestModels.VNReuestModels.List;
-using azure_m.Models.RequestModels.VNReuestModels.ListAll;
+using azure_m.Models.RequestModels.VN.CreateOrUpdate;
+using azure_m.Models.RequestModels.VN.Delete;
+using azure_m.Models.RequestModels.VN.Get;
+using azure_m.Models.RequestModels.VN.List;
+using azure_m.Models.RequestModels.VN.ListAll;
 using azure_m.Models.ResponseModels;
 namespace azure_m.Services
 {

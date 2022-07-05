@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using azure_m.Models.RequestModels.PublicIPAddressRequestModels;
-using Flurl.Http;
+﻿using Flurl.Http;
 using Flurl;
 using System.Threading.Tasks;
 
 
 namespace azure_m.Services
 {
+    using Models.RequestModels.PublicIPAddress.CreateOrUpdate;
     public class PublicIPAdressOperations
     {
         private static class apiVersion

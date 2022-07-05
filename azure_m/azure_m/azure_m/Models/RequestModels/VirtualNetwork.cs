@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using azure_m.Models.RequestModels.SubnetRequest;
-namespace azure_m.Models.RequestModels
+﻿namespace azure_m.Models.RequestModels
 {
-    namespace VNReuestModels
+    namespace VN
     {
         namespace CreateOrUpdate
         {

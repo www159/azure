@@ -233,6 +233,70 @@ namespace azure_m.Models
 
             public IPConfigurationProperties properties { get; set; }
         }
+     
+        public class PublicIPAddress
+            {
+                public string id;
+
+                public string location;
+
+                public PublicIPAddressProperties properties;
+
+                public PublicIPAddressSku sku;
+
+
+            }
+
+        public class PublicIPAddressProperties
+            {
+                public IPAlloctionMethod publicIPAllocationMethod;
+
+                public int idleTimeoutInMinutes;
+
+                public IPVersion publicIPAddressVersion;
+
+                public PublicIPAddressDnsSettings dnsSettings;
+            }//创建更新公共IP地址的参数
+
+        public class PublicIPAddressDnsSettings
+            {
+                public string domainNameLabel;
+            }//DNS设置
+
+        public class IPVersion
+            {
+                public string IPv4;
+
+                public string IPv6;
+            }//IP版本4或6
+
+        public class IPAlloctionMethod
+            {
+                public string Dynamic;
+
+                public string Static;
+            }//IP分配策略
+
+        public class PublicIPAddressSku
+            {
+                public PublicIPAddressSkuName name;
+
+                public PublicIPAddressSkuTier tier;
+            }//创建/更新公共IP地址的主体的sku参数
+
+        public class PublicIPAddressSkuTier
+            {
+                public string Basic;
+
+                public string Standard;
+            }//sku参数的Tier参数
+
+        public class PublicIPAddressSkuName
+            {
+                public string Global;
+
+                public string Regional;
+            }//sku参数的name参数
 
         public class IPConfigurationProperties
         {
@@ -244,9 +308,8 @@ namespace azure_m.Models
 
             public string privateIPAllocationMethod { get; set; }
 
-            //public PublicIPAddress publicIPAddress { get; set; }
+            public PublicIPAddress publicIPAddress { get; set; }
         }
-
 
         public class NetworkSecurityGroup
         {
@@ -265,13 +328,48 @@ namespace azure_m.Models
             public string type { get; set; }
         }
 
+        public class NetworkInterfaceProperties
+        {
+            public bool enableAcceleratedNetworking;
+
+            public NetworkInterfaceIPConfiguration[] ipConfigurations;
+        }
+
+        public class NetworkInterfaceIPConfiguration
+        {
+            public string name;
+
+            public NetworkInterfaceIPConfigurationProperties properties;
+        }
+
+        public class NetworkInterfaceIPConfigurationProperties
+        {
+            public PublicIPAddress publicIPAddress;
+
+            public Subnet subnet;
+
+            public SubResource gatewayLoadBalancer;
+        }
+
+        public class NetworkInterface
+        {
+            public string id { get; set; }
+            public string location { get; set; }
+            public string name { get; set; }
+            public NetworkInterfaceProperties properties { get; set; }
+            public string type { get; set; }
+
+            
+
+        }
+
         public class NetworkSecurityGroupProperties
         {
             //public SecurityRule[] defaultSecurityRules { get; set; }
 
             //public Flowlog[] flowlogs { get; set; }
 
-            //public NetworkInterface[] networkInterfaces{ get; set;}
+            public NetworkInterface[] networkInterfaces { get; set; }
 
             public ProvisioningState provisioningState { get; set; }
 
@@ -281,7 +379,6 @@ namespace azure_m.Models
 
             public Subnet[] subnets { get; set; }
         }
-
 
         public class VirtualNetworkPrivateEndpointNetworkPolicies
         {
@@ -365,7 +462,6 @@ namespace azure_m.Models
 
             public Subnet[] subnets { get; set; }
         }
-
 
         public class ServiceAssociationLink
         {

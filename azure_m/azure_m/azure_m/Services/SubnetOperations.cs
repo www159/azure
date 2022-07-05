@@ -4,10 +4,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
-using azure_m.Models.RequestModels.SubnetRequest.CreateOrUpdate;
-using azure_m.Models.RequestModels.SubnetRequest.Delete;
-using azure_m.Models.RequestModels.SubnetRequest.Get;
-using azure_m.Models.RequestModels.SubnetRequest.List;
+using azure_m.Models.RequestModels.Subnet.CreateOrUpdate;
+using azure_m.Models.RequestModels.Subnet.Delete;
+using azure_m.Models.RequestModels.Subnet.Get;
+using azure_m.Models.RequestModels.Subnet.List;
 using azure_m.Models.ResponseModels;
 
 namespace azure_m.Services

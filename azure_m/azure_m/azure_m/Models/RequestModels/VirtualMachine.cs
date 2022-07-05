@@ -1,7 +1,7 @@
 ﻿namespace azure_m.Models.RequestModels
 {
 
-    namespace VMRequestModels
+    namespace VM
     {
 
         namespace CreateOrUpdate

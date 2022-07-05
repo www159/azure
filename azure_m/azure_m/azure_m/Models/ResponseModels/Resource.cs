@@ -1,7 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
-
-namespace azure_m.Models
+﻿namespace azure_m.Models
 {
 
     namespace ResponseModels

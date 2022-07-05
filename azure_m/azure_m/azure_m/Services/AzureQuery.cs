@@ -17,28 +17,25 @@ namespace azure_m.Services
 
     public static class QueryInfo
     {
+        #region 验证相关
         private static string token { get; set; }
-        private static string baseUri { get; set; } = "https://management.azure.com/";
+
         private static string subscriptionSql { get; set; } = "resourcecontainers\n        | where type == \"microsoft.resources/subscriptions\"\n        | join kind=leftouter (securityresources \n            | where type == \"microsoft.security/securescores\"\n            | where properties.environment == \"Azure\" and properties.displayName == \"ASC score\"\n            ) on subscriptionId\n        | extend secureScore=properties1.score.percentage,\n            managementGroup=properties.managementGroupAncestorsChain,\n            subscriptionName=name,\n            status=properties.state\n        | project id, subscriptionId, subscriptionName, status, managementGroup, secureScore";
+
         public static string subscriptionId { get; set; } = "219b2431-594f-47fa-8e85-664196aa3f92";
-        public static string baseStrUrl
-        {
-            get
-            {
-                return $"{baseUri}subscriptions/{subscriptionId}";
-            }
-        }
+
         public static string clientId { get; set; } = "89924e36-f70a-43c3-86c5-51bc7b5e8136";
+
         public static string tenantId { get; set; } = "453d8628-343d-48b9-b4d9-c0a97e4be3b7";
+
         public static string redirectUrl { get; set; } = "http://localhost";
-        public static IFlurlRequest baseRequest { get; set; }
-        public static string methodHead { get; set; } = "X-Http-Method-Override";
+
         private static string[] scopes { get; set; } = new string[]
         {
             "https://management.azure.com/user_impersonation"
         };
 
-        public static async Task getTokenAsync()
+         public static async Task getTokenAsync()
         {
             var app = PublicClientApplicationBuilder
                 .Create(clientId)
@@ -61,7 +58,7 @@ namespace azure_m.Services
                 Utils.error(ex);
 
                 try
-            {
+                {
                     authResult = await app
                         .AcquireTokenInteractive(scopes)
                         .WithParentActivityOrWindow(App.parentWindow)
@@ -72,7 +69,7 @@ namespace azure_m.Services
                 {
                     Utils.error(msalEx);
                 }
-                catch(Exception simpleEx)
+                catch (Exception simpleEx)
                 {
                     Utils.error(simpleEx);
                 }
@@ -83,7 +80,6 @@ namespace azure_m.Services
                 baseRequest = new Url(baseStrUrl)
                     .WithOAuthBearerToken(token);
 
-                await getSubscriptionsAsync(token);
             }
         }
 
@@ -92,7 +88,8 @@ namespace azure_m.Services
         //    baseRequest = baseRequest.AppendPathSegment(subscriptionId);
         //}
 
-        private static async Task getSubscriptionsAsync(string token)
+        // 暂定订阅的获取在getToken之后
+        private static async Task getSubscriptionsAsync()
         {
             //https://management.azure.com/providers/Microsoft.ResourceGraph/resources?api-version=2021-03-01
             var url = new Url(baseUri)
@@ -114,10 +111,74 @@ namespace azure_m.Services
             subscriptionId = res.data[0].subscriptionId;
         }
 
+
+        #endregion
+
+        #region 请求相关
+        private static string baseUri { get; set; } = "https://management.azure.com/";
+        public static string baseStrUrl
+        {
+            get
+            {
+                return $"{baseUri}subscriptions/{subscriptionId}";
+            }
+        }
+        public static IFlurlRequest baseRequest { get; set; }
+
+        public static class ResourceType {
+
+            public const string networkInterfaces = "networkInterfaces";
+
+            public const string publicIPAddresses = "publicIPAddresses";
+
+            public const string virtualNetworks = "virtualNetworks";
+
+            public const string subnets = "subnets";
+        }
+
+        public static Dictionary<string, string> resourceNamespace = new Dictionary<string, string> {
+            ["networkInterfaces"] = "Microsoft.Network",
+            ["publicIPAddresses"] = "Microsoft.Network",
+            ["virtualNetworks"]   = "Microsoft.Network",
+            ["subnets"]           = "Microsoft.Network",
+        };
+
+        public const string subnetNameDefault = "default";
+
+        public const string subnetIPDefault = "10.0.0.0/24";
+
+        public const string ipSpaceDefault = "10.0.0.0/16";
+
+        public const int fltominDefault = 10;
+        
+        private static string resourceIdFormat = "/subscriptions/{0}/resourceGroups/{1}/providers/{2}/{3}/{4}";
+
+        public static string genSubnetId(string vnName, string subnetName) {
+            var vnId = string.Format(
+                resourceIdFormat,
+                subscriptionId,
+                resourceNamespace[ResourceType.subnets],
+                ResourceType.virtualNetworks,
+                vnName);
+
+            return $"{vnId}/{ResourceType.subnets}/{subnetName}";
+        }
+
+        public static string genResourceId(string resourceType, string name) {
+            return string.Format(
+                resourceIdFormat,
+                subscriptionId,
+                resourceNamespace[resourceType],
+                resourceType,
+                name);
+        }
+       
+       
         public static async Task<T> queryWithNextLink<T>(string url)
         {
             var req = new Url(url).WithOAuthBearerToken(token);
             return await req.GetJsonAsync<T>();
         }
+         #endregion
     }
 }

@@ -1,22 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Flurl.Http;
-using azure_m.Models.RequestModels.VMRequestModels;
-using azure_m.Models.RequestModels.VMRequestModels.CreateOrUpdate;
-using azure_m.Models.RequestModels.VMRequestModels.Get;
-using azure_m.Models.RequestModels.VMRequestModels.Delete;
-using azure_m.Models.RequestModels.VMRequestModels.Dellocate;
-using azure_m.Models.RequestModels.VMRequestModels.List;
-using azure_m.Models.RequestModels.VMRequestModels.ListAll;
-using azure_m.Models.RequestModels.VMRequestModels.Restart;
-using azure_m.Models.RequestModels.VMRequestModels.Start;
-
 using System.Threading.Tasks;
 using Flurl;
 
 namespace azure_m.Services
 {
+    using Models.RequestModels.VM.CreateOrUpdate;
+    using Models.RequestModels.VM.Delete;
+    using Models.RequestModels.VM.Dellocate;
+    using Models.RequestModels.VM.Get;
+    using Models.RequestModels.VM.List;
+    using Models.RequestModels.VM.ListAll;
+    using Models.RequestModels.VM.Restart;
+    using Models.RequestModels.VM.Start;
+
     using Models.ResponseModels;
     public class VMDataStore
     {
