@@ -18,6 +18,9 @@ namespace azure_m.ViewModels
     {
         public Guid UID =Guid.NewGuid();
 
+        public int DefaultIndex0 { get; set; } = 0;
+        public int DefaultIndex1 { get; set; } = 1;
+
         public Dictionary<string, string> subscribes { get; set; } 
         public List<string> subscribesNames { get; set; }
         public string subscribeID;
@@ -117,12 +120,12 @@ namespace azure_m.ViewModels
             Views.AddVmDetailsPage.diskTypeIndexChanged+=(sender, e) => { };
             portsChange = new Command((sender) => { });
             net_portsChange = new Command((sender) => { });
-            CreateOrUpdateVM = new Command((sender) => { //创建或更新，发送请求
+            CreateOrUpdateVM = new Command(async (sender) => { //创建或更新，发送请求
                 //publicIP
                 //subnet 选择的是已经有的subnet, 选择默认的ipaddress？
                 //nic 创建一个叫{UID}的nic
                 vm.body.properties.networkProfile.networkInterfaces[0].id = $"/subscriptions/{azure_m.Services.QueryInfo.subscriptionId}/resourceGroups/{vm.uri.resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{UID}";
-                (new VMDataStore()).queryCreateOrUpdateVM(vm);//调用，创建
+                await (new VMDataStore()).queryCreateOrUpdateVM(vm);//调用，创建
             });
 
         #endregion

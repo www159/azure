@@ -143,14 +143,14 @@ namespace azure_m.Views
         private void vnetworks_SelectedIndexChanged(object sender, EventArgs e)
         {
             c_vnet.Text = vnetworks.SelectedItem.ToString();
-            vnetChanged?.Invoke(this, EventArgs.Empty);
+            vnetChanged?.Invoke(sender, EventArgs.Empty);
         }
 
         public static event EventHandler subnetChanged;
         private void subnet_SelectedIndexChanged(object sender, EventArgs e)
         {
             c_subnet.Text = subnet.SelectedItem.ToString();
-            subnetChanged?.Invoke(this, EventArgs.Empty);
+            subnetChanged?.Invoke(sender, EventArgs.Empty);
         }
 
         public static event EventHandler publicIPChanged;
