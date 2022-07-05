@@ -475,15 +475,15 @@
 
         namespace List
         {
-            public class ListBody
+            public class ListVMBody
             {
 
             }
-            public class ListUri
+            public class ListVMUri
             {
                 public string resourceGroupName;
             }
-            public class ListRequest:IRequest<ListUri,ListBody>
+            public class ListVMRequest:IRequest<ListVMUri,ListVMBody>
             {              
 
             }
@@ -491,15 +491,15 @@
 
         namespace ListAll
         {
-            public class ListAllBody
+            public class ListAllVMBody
             {
 
             }
-            public class ListAllUri
+            public class ListAllVMUri
             {
 
             }
-            public class ListAllRequest:IRequest<ListAllUri,ListAllBody>
+            public class ListAllVMRequest:IRequest<ListAllVMUri,ListAllVMBody>
             {
 
             }
@@ -507,50 +507,50 @@
 
         namespace Start
         {
-            public class StartBody
+            public class StartVMBody
             {
 
             }
-            public class StartUri
+            public class StartVMUri
             {
                 public string resourceGroupName;
 
                 public string vmName;
             }
-            public class StartRequest : IRequest<StartUri,StartBody>
+            public class StartVMRequest : IRequest<StartVMUri,StartVMBody>
             {
             }
         }//启动虚拟机
         
         namespace Dellocate
         {
-            public class DellocateBody
+            public class DellocateVMBody
             {
 
             }
-            public class DellocateUri
+            public class DellocateVMUri
             {
                 public string resourceGroupName;
 
                 public string vmName;
             }
-            public class DellocateRequest : IRequest<DellocateUri,DellocateBody> { }
+            public class DellocateVMRequest : IRequest<DellocateVMUri,DellocateVMBody> { }
 
         }//关闭虚拟机并释放计算资源
         
         namespace Delete
         {
-            public class DeleteBody
+            public class DeleteVMBody
             {
 
             }
-            public class DeleteUri
+            public class DeleteVMUri
             {
                 public string resourceGroupName;
 
                 public string vmName;
             }
-            public class DeleteRequest : IRequest<DeleteUri, DeleteBody>
+            public class DeleteVMRequest : IRequest<DeleteVMUri, DeleteVMBody>
             {
 
             }
@@ -558,18 +558,18 @@
         
         namespace Restart
         {
-            public class RestartBody
+            public class RestartVMBody
             {
 
             }
-            public class RestartUri
+            public class RestartVMUri
             {
                 public string resourceGroupName;
                 
                 public string vmName;
 
             }
-            public class RestartRequest : IRequest<RestartUri,RestartBody>
+            public class RestartVMRequest : IRequest<RestartVMUri,RestartVMBody>
             {
 
             }

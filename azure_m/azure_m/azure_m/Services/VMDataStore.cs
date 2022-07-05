@@ -75,7 +75,7 @@ namespace azure_m.Services
             try
             {
                 var res = await url
-                    .GetJsonAsync<VirtualMachineResopnse>();
+                    .GetJsonAsync<VirtualMachineResponse>();
             }
             catch(Exception ex)
             {
@@ -83,9 +83,9 @@ namespace azure_m.Services
             }
         }
 
-        public async Task queryDeleteVM(DeleteRequest deleteRequest)
+        public async Task queryDeleteVM(DeleteVMRequest deleteVMRequest)
         {
-            var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, deleteRequest.uri.resourceGroupName, deleteRequest.uri.vmName);
+            var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, deleteVMRequest.uri.resourceGroupName, deleteVMRequest.uri.vmName);
             var url = Utils.withApiVersion(
                 new Url(baseStrUrl),
                 apiVersion.delete);
@@ -101,16 +101,16 @@ namespace azure_m.Services
             }
         }//删除虚拟机操作
 
-        public async Task queryListVM(ListRequest listRequest)
+        public async Task queryListVM(ListVMRequest listVMRequest)
         {
-            var baseStrUrl = string.Format(baseFormatUrlWithoutVMname, listRequest.uri.resourceGroupName);
+            var baseStrUrl = string.Format(baseFormatUrlWithoutVMname, listVMRequest.uri.resourceGroupName);
             var url = Utils.withApiVersion(
                 new Url(baseStrUrl),
                 apiVersion.list);
             try
             {
                 var res = await url
-                    .GetJsonAsync<VirtualMachineResopnse>();
+                    .GetJsonAsync<VirtualMachineResponse>();
 
             }
             catch(Exception ex)
@@ -128,7 +128,7 @@ namespace azure_m.Services
             try
             {
                 var res = await url
-                    .GetJsonAsync<VirtualMachineResopnse>();
+                    .GetJsonAsync<VirtualMachineResponse>();
 
             }
             catch (Exception ex)
@@ -138,9 +138,9 @@ namespace azure_m.Services
 
         }//列出该订阅的所有虚拟机
 
-        public async Task queryDellocateVM(DellocateRequest dellocateRequest)
+        public async Task queryDellocateVM(DellocateVMRequest dellocateVMRequest)
         {
-            var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, dellocateRequest.uri.resourceGroupName, dellocateRequest.uri.vmName);
+            var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, dellocateVMRequest.uri.resourceGroupName, dellocateVMRequest.uri.vmName);
             var url = Utils.withApiVersion(
                 new Url(baseStrUrl),
                 apiVersion.dellocate
@@ -148,7 +148,7 @@ namespace azure_m.Services
             try
             {
                 var res = await url
-                    .PostJsonAsync(dellocateRequest.body)
+                    .PostJsonAsync(dellocateVMRequest.body)
                     .ReceiveString();
             }
             catch(Exception ex)
@@ -157,16 +157,16 @@ namespace azure_m.Services
             }
         }//释放虚拟机计算资源
 
-        public async Task queryStartVM(StartRequest startRequest)
+        public async Task queryStartVM(StartVMRequest startVMRequest)
         {
-            var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, startRequest.uri.resourceGroupName, startRequest.uri.vmName);
+            var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, startVMRequest.uri.resourceGroupName, startVMRequest.uri.vmName);
             var url = Utils.withApiVersion(
                 new Url(baseStrUrl),
                 apiVersion.start);
             try
             {
                 var res = await url.
-                    PostJsonAsync(startRequest.body)
+                    PostJsonAsync(startVMRequest.body)
                     .ReceiveString();
             }
             catch(Exception ex)
@@ -175,16 +175,16 @@ namespace azure_m.Services
             }
         }//启动虚拟机
         
-        public async Task queryReStartVM(RestartRequest restartRequest)
+        public async Task queryReStartVM(RestartVMRequest restartVMRequest)
         {
-            var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, restartRequest.uri.resourceGroupName, restartRequest.uri.vmName);
+            var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, restartVMRequest.uri.resourceGroupName, restartVMRequest.uri.vmName);
             var url = Utils.withApiVersion(
                 new Url(baseStrUrl),
                 apiVersion.start);
             try
             {
                 var res = await url.
-                    PostJsonAsync(restartRequest.body)
+                    PostJsonAsync(restartVMRequest.body)
                     .ReceiveString();
             }
             catch (Exception ex)

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace azure_m.Models
+namespace azure_m.Models.ResponseModels
 {
-    public class ResourceGroup
+    public class ResourceGroupResponse
     {
         public string id { get; set; }
         public string location { get; set; }
@@ -13,17 +13,17 @@ namespace azure_m.Models
         public ResourceGroupProperties properties { get; set; }
         //public string tags;
         //public string managedBy;
-        public ResourceGroup()
+        public ResourceGroupResponse()
         {
 
         }
-        public ResourceGroup(string id,string location,string name,string type,ResourceGroupProperties resourceGroupProperties)
+        public ResourceGroupResponse(string id, string location, string name, string type, ResourceGroupProperties resourceGroupProperties)
         {
             this.id = id;
             this.location = location;
             this.name = name;
             this.type = type;
-            this.properties.provisioningState = resourceGroupProperties.provisioningState;
+            properties.provisioningState = resourceGroupProperties.provisioningState;
         }
     }
 
@@ -31,6 +31,6 @@ namespace azure_m.Models
     {
         public string provisioningState { get; set; }
     }
-   
+
 
 }

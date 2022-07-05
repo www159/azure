@@ -1,66 +1,62 @@
-﻿namespace azure_m.Models.RequestModels
+﻿using azure_m.Models.RequestModels.VNReuestModels.CreateOrUpdate;
+namespace azure_m.Models.RequestModels
 {
     namespace NetworkInterfaceRequestModels
     {
         // TODO
-        using PublicIPAddressRequestModels;
-        public class NetworkInterfacesProperties
+        namespace CreateOrUpdateNI
         {
-            public bool enableAcceleratedNetworking;
+            using PublicIPAddressRequestModels;
+            public class NetworkInterfacesProperties
+            {
+                public bool enableAcceleratedNetworking;
 
-            public NetworkInterfaceIPConfiguration[] ipConfigurations;
-        }//网络接口请求主体的参数
-        public class NetworkInterfaceIPConfiguration
-        {
-            public string name;
+                public NetworkInterfaceIPConfiguration[] ipConfigurations;
+            }//网络接口请求主体的参数
+            public class NetworkInterfaceIPConfiguration
+            {
+                public string name;
 
-            public NetworkInterfaceIPConfigurationProperties properties;
-        }//网络接口参数的一部分
-        public class NetworkInterfaceIPConfigurationProperties
-        {
-            public PublicIPAddress publicIPAddress;
+                public NetworkInterfaceIPConfigurationProperties properties;
+            }//网络接口参数的一部分
+            public class NetworkInterfaceIPConfigurationProperties
+            {
+                public PublicIPAddress publicIPAddress;
 
-            public Subnet subnet;
+                public Subnet subnet;
 
-            public SubResource gatewayLoadBalancer;
-        }//网络接口IP配置的参数
+                public SubResource gatewayLoadBalancer;
+            }//网络接口IP配置的参数
 
-        public class SubResource
-        {
-            public string id;
-        }//属于网络接口IP配置参数的一部分
+            public class SubResource
+            {
+                public string id;
+            }//属于网络接口IP配置参数的一部分
 
-        public class Subnet
-        {
-            //public string etag;
 
-            public string id;
+            public class CreateOrUpdateNIBody
+            {
+                public string location;
 
-            //public string name;
-        }//属于网络接口IP配置参数的一部分
+                //public string id;
 
-        public class CreateOrUpdateNIBody
-        {
-            public string location;
+                //public string extendedLocation;
 
-            //public string id;
+                public NetworkInterfacesProperties properties;
+            }//建立网络接口的请求主体部分
+            public class CreateOrUpdateNIUri
+            {
+                public string networkInterfaceName;
 
-            //public string extendedLocation;
+                public string resourceGroupName;
 
-            public NetworkInterfacesProperties properties;
-        }//建立网络接口的请求主体部分
-        public class CreateOrUpdateNIUri
-        {
-            public string networkInterfaceName;
+            }//建立网络接口的请求主体部分
 
-            public string resourceGroupName;
-
-        }//建立网络接口的请求主体部分
-
-        public class CreateOrUpdateNIRequest : IRequest<
-               CreateOrUpdateNIUri,
-               CreateOrUpdateNIBody>
-        { }//建立网络接口的请求 套用IRequest
+            public class CreateOrUpdateNIRequest : IRequest<
+                   CreateOrUpdateNIUri,
+                   CreateOrUpdateNIBody>
+            { }//建立网络接口的请求 套用IRequest
+        }
 
     }
 }

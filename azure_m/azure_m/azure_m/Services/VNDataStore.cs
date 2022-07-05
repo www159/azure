@@ -1,0 +1,123 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Flurl;
+using Flurl.Http;
+using System.Threading.Tasks;
+using azure_m.Models.RequestModels.VNReuestModels.CreateOrUpdate;
+using azure_m.Models.RequestModels.VNReuestModels.Delete;
+using azure_m.Models.RequestModels.VNReuestModels.Get;
+using azure_m.Models.RequestModels.VNReuestModels.List;
+using azure_m.Models.RequestModels.VNReuestModels.ListAll;
+using azure_m.Models.ResponseModels;
+namespace azure_m.Services
+{
+   public class VNOperations
+    {
+        private static class apiVersion
+        {
+            public const string createOrUpdate = "2021-08-01";
+
+            public const string delete = "2021-08-01";
+
+            public const string get = "2021-08-01";
+
+            public const string list = "2021-08-01";
+
+            public const string listAll= "2021-08-01";
+        }
+        private string baseFormatUrlWithResourceGroupAndVNname = $"{QueryInfo.baseStrUrl}/resourceGroups/{{0}}/providers/Microsoft.Network/virtualNetworks/{{1}}";
+        private string baseFormatUrlWithResourceGroup = $"{QueryInfo.baseStrUrl}/resourceGroups/{{0}}/providers/Microsoft.Network/virtualNetworks";
+        private string baseFormatUrlWithoutVNnameOrResourceGroup = $"{QueryInfo.baseStrUrl}/providers/Microsoft.Network/virtualNetworks";
+        public async Task queryCreateOrUpdateVN(CreateOrUpdateVNRequest createOrUpdateVNRequest)
+        {
+            var baseStrUrl = string.Format(baseFormatUrlWithResourceGroupAndVNname, createOrUpdateVNRequest.uri.resourceGroupName, createOrUpdateVNRequest.uri.virtualNetworkName );
+            var url = Utils.withApiVersion(
+                    new Url(baseStrUrl),
+                    apiVersion.createOrUpdate);
+
+            try
+            {
+                var res = await url
+                    .PostJsonAsync(createOrUpdateVNRequest.body)
+                    .ReceiveString();
+            }
+            catch (FetchException ex)
+            {
+                Utils.error(ex);
+            }
+        }
+
+        public async Task queryGetVN(GetVNRequest getVNRequest)
+        {
+            var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, getVNRequest.uri.resourceGroupName, getVNRequest.uri.virtualNetworkName);
+            var url = Utils.withApiVersion(
+                    new Url(baseStrUrl),
+                    apiVersion.get);
+            try
+            {
+                var res = await url
+                    .GetJsonAsync<VirtualNetworkResponse>();
+            }
+            catch (Exception ex)
+            {
+                Utils.error(ex);
+            }
+        }
+
+        public async Task queryDeleteVN(DeleteVNRequest deleteVNRequest)
+        {
+            var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, deleteVNRequest.uri.resourceGroupName, deleteVNRequest.uri.virtualNetworkName);
+            var url = Utils.withApiVersion(
+                new Url(baseStrUrl),
+                apiVersion.delete);
+            try
+            {
+                var res = await url
+                    .DeleteAsync()
+                    .ReceiveString();
+            }
+            catch (Exception ex)
+            {
+                Utils.error(ex);
+            }
+        }
+
+        public async Task queryListVN(ListVNRequest listVNRequest)
+        {
+            var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, listVNRequest.uri.resourceGroupName);
+            var url = Utils.withApiVersion(
+                new Url(baseStrUrl),
+                apiVersion.list);
+            try
+            {
+                var res = await url
+                    .GetJsonAsync<VirtualNetworkResponse>();
+
+            }
+            catch (Exception ex)
+            {
+                Utils.error(ex);
+            }
+
+        }
+
+        public async Task queryListAllVM()
+        {
+            var url = Utils.withApiVersion(
+                new Url(baseFormatUrlWithoutVNnameOrResourceGroup),
+                apiVersion.list);
+            try
+            {
+                var res = await url
+                    .GetJsonAsync<VirtualNetworkResponse>();
+
+            }
+            catch (Exception ex)
+            {
+                Utils.error(ex);
+            }
+
+        }
+    }
+}
