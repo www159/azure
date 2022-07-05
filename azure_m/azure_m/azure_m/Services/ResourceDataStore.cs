@@ -32,20 +32,27 @@ namespace azure_m.Services
             ResourceResponse res;
             while(true)
             {
-                res = await queryResourcesAsync();
-                foreach(var resource in res.value)
+               try
                 {
-                    var simplifiedResource = new Resource
+                    res = await queryResourcesAsync();
+                    foreach (var resource in res.value)
                     {
-                        id = resource.id,
-                        name = resource.name,
-                        type = resource.type,
-                        location = resource.location,
-                    };
-                    resources.Add(simplifiedResource);
+                        var simplifiedResource = new Resource
+                        {
+                            id = resource.id,
+                            name = resource.name,
+                            type = resource.type,
+                            location = resource.location,
+                        };
+                        resources.Add(simplifiedResource);
+                    }
+                    if (res.nextLink == null) break;
+                    res = await QueryInfo.queryWithNextLink<ResourceResponse>(res.nextLink);
                 }
-                if (res.nextLink == null) break;
-                res = await QueryInfo.queryWithNextLink<ResourceResponse>(res.nextLink);
+                catch (Exception ex)
+                {
+                    Utils.error(ex);
+                }
             }
         }
 

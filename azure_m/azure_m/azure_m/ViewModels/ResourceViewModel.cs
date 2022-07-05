@@ -26,7 +26,7 @@ namespace azure_m.ViewModels
             ["sshPublicKeys"] = "sshPublicKeys.png",
             ["virtualMachines"] = "virtualMachines.png",
             ["networkInterfaces"] = "networkInterfaces.png",
-            ["netWorkSecurityGroups"] = "netWorkSecurityGroups.png",
+            ["networkSecurityGroups"] = "netWorkSecurityGroups.png",
             ["publicIPAddresses"] = "publicIPAddresses.png",
             ["virtualNetworks"] = "virtualNetworks.png",
         };

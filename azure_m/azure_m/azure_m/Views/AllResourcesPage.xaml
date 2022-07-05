@@ -58,69 +58,69 @@
         <ToolbarItem Text="test" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
-            <!--<Frame BorderColor="Black" Padding="5" Margin="5">-->
+        <Frame>
+            <StackLayout>
+                <!--<Frame BorderColor="Black" Padding="5" Margin="5">-->
                 <ScrollView 
                     Orientation="Horizontal" 
                     Margin="20">
-                    <StackLayout Orientation="Horizontal">
-                    <Button Text="创建"/>
-                    <Button Text="刷新"/>
-                    <Button Text="csv"/>
-                    <Button Text="标记"/>
-                    <Button Text="删除"/>
-                </StackLayout>
+                    <StackLayout 
+                        Orientation="Horizontal"
+                        HorizontalOptions="Center">
+                        <Button Text="创建"/>
+                        <Button Text="刷新"/>
+                        <Button Text="csv"/>
+                    </StackLayout>
                 </ScrollView>
-            <!--</Frame>-->
-            <StackLayout
+                <!--</Frame>-->
+                <StackLayout
                 HorizontalOptions="Center" 
-                Orientation="Horizontal">
-                <Entry Placeholder="模糊搜索" />
-                <Button Text="筛选器" />
-            </StackLayout>
-            <StackLayout>
-                <Button 
-                    Text="test api"
-                    Command="{Binding LoadResourcesCommand}"/>
-
-
-            </StackLayout>
-            <RefreshView
+                Orientation="Horizontal"
+                HeightRequest="40">
+                    <Entry 
+                    Placeholder="模糊搜索" 
+                    WidthRequest="120"/>
+                    <Button Text="选择类型" />
+                </StackLayout>
+        </Frame>
+        <RefreshView
                 x:DataType="local:ResourceViewModel"
                 Command="{Binding LoadResourcesCommand}"
                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-                <CollectionView
+                <!--<ScrollView>-->
+                    <CollectionView
                     x:Name="ResourceTabVIew"
                     ItemsSource="{Binding Resources}"
                     SelectionMode="None"
                     ItemsLayout="VerticalGrid, 2">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout 
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout 
                                 Style="{StaticResource resourceCard}"
                                 x:DataType="model:Resource">
-                                <Frame 
+                                    <Frame 
                                     BorderColor="{StaticResource Primary}"
                                     HasShadow="True"
                                     Padding="5"
                                     CornerRadius="5">
-                                    <StackLayout 
+                                        <StackLayout 
                                         Style="{StaticResource resourceCardInner}">
-                                        <Image Source="{Binding imgUrl}"/>
-                                        <Label
+                                            <Image Source="{Binding imgUrl}"/>
+                                            <Label
                                             Style="{StaticResource innerCardLabel}"
                                             Text="{Binding type}"
                                             FontAttributes="Bold"
                                             Margin="0,-5,0,0"/>
-                                        <Label
+                                            <Label
                                             Style="{StaticResource innerCardLabel}"
                                             Text="{Binding location}"/>
-                                    </StackLayout>
-                                </Frame>
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                <!--</ScrollView>-->
             </RefreshView>
         </StackLayout>
         
