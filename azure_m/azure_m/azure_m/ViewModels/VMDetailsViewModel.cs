@@ -113,7 +113,7 @@ namespace azure_m.ViewModels
                 };
                 vm.body.properties.networkProfile.networkInterfaces[0] = new NetworkInterface
                 {
-                    id = $"/subscriptions/{QueryInfo.subid}/resourceGroups/{vm.uri.resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{UID}",
+                    id = $"/subscriptions/{QueryInfo.subscriptionId}/resourceGroups/{vm.uri.resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{UID}",
                     properties = new NetworkInterfaceProperties { primary = true }
                 };
             };
@@ -128,7 +128,7 @@ namespace azure_m.ViewModels
                 };
                 vm.body.properties.networkProfile.networkInterfaces[0] = new NetworkInterface
                 {
-                    id = $"/subscriptions/{azure_m.Services.QueryInfo.subid}/resourceGroups/{vm.uri.resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{UID}",
+                    id = $"/subscriptions/{azure_m.Services.QueryInfo.subscriptionId}/resourceGroups/{vm.uri.resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{UID}",
                     properties = new NetworkInterfaceProperties { primary = true }
                 };
             };
@@ -141,7 +141,7 @@ namespace azure_m.ViewModels
                 };
                 vm.body.properties.networkProfile.networkInterfaces[0] =  new NetworkInterface
                 {
-                    id = $"/subscriptions/{azure_m.Services.QueryInfo.subid}/resourceGroups/{vm.uri.resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{UID}",
+                    id = $"/subscriptions/{azure_m.Services.QueryInfo.subscriptionId}/resourceGroups/{vm.uri.resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{UID}",
                     properties = new NetworkInterfaceProperties { primary = true }
                 };
             };
