@@ -14,23 +14,22 @@ namespace azure_m.ViewModels
     public class VNDetailsViewModel : BaseViewModel
     {
 
-        ContentView basic, ipAddress, security, tag, checkAndCreate;
-
-        public ObservableCollection<ContentView> pages { get; set; }
+        //ContentView basic, ipAddress, security, tag, checkAndCreate;
+        //public ObservableCollection<ContentView> pages { get; set; }
 
         public VNDetailsViewModel()
         {
-            Title = "创建虚拟网络";
-            basic = new Views.VNDetails.Basic();
-            ipAddress = new Views.VNDetails.IPAddress();
-            security = new Views.VNDetails.Security();
-            tag = new Views.VNDetails.Tag();
-            checkAndCreate = new Views.VNDetails.CheckAndCreate();
-            pages = new ObservableCollection<ContentView>
-            {
-                basic, ipAddress, security, tag, checkAndCreate
+            //Title = "创建虚拟网络";
+            //basic = new Views.VNDetails.Basic();
+            //ipAddress = new Views.VNDetails.IPAddress();
+            //security = new Views.VNDetails.Security();
+            //tag = new Views.VNDetails.Tag();
+            //checkAndCreate = new Views.VNDetails.CheckAndCreate();
+            //pages = new ObservableCollection<ContentView>
+            //{
+            //    basic, ipAddress, security, tag, checkAndCreate
 
-            };
+            //};
 
         }
 

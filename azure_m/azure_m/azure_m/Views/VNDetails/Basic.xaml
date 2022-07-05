@@ -16,7 +16,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="1" Grid.Column="1" x:Name="subscribe" ItemsSource="{Binding subscribes}" ItemDisplayBinding="{Binding Name}" SelectedIndex="0">
+                    <Picker Grid.Row="1" Grid.Column="1" x:Name="subscribe" Title="请选择订阅" ItemsSource="{Binding subscribesName}" ItemDisplayBinding="{Binding Name}" SelectedIndex="0">
                         <Picker.Items>
                             <x:String>免费试用</x:String>
                         </Picker.Items>
