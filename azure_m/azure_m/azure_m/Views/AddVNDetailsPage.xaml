@@ -10,7 +10,7 @@
         <viewmodels:VNDetailsViewModel/>
     </CarouselPage.BindingContext>
 
-
+    <!--#region Basic页面-->
     <ContentPage BackgroundColor="white" x:Name="Basic">
         <StackLayout Margin="10,5,0,10">
             <ScrollView>
@@ -21,11 +21,11 @@
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="订阅"/>
-                                <Span Text="*" TextColor="Maroon"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="1" Grid.Column="1" x:Name="subscribe" Title="请选择订阅" ItemsSource="{Binding subscribesName}" SelectedIndexChanged="subscribe_SelectedIndexChanged" />
+                    <!--<Label Grid.Row="1" Grid.Column="1" Text="免费试用" VerticalOptions="Center" FontSize="20"/>-->
+                    <Picker Grid.Row="1" Grid.Column="1" x:Name="subscribe" Title="请选择订阅" ItemsSource="{Binding subscribesNames}" SelectedIndexChanged="subscribe_SelectedIndexChanged" />
                     <Label VerticalTextAlignment="Center" Grid.Row="2">
                         <Label.FormattedText>
                             <FormattedString>
@@ -34,7 +34,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="2" Grid.Column="1" x:Name="resourcesGroup" Title="请选择资源组" ItemsSource="{Binding resourcesGroup}" SelectedIndexChanged="resourcesGroup_SelectedIndexChanged"/>
+                    <Picker Grid.Row="2" Grid.Column="1" x:Name="resourcesGroup" Title="请选择资源组" ItemsSource="{Binding resourceGroups}" SelectedIndexChanged="resourcesGroup_SelectedIndexChanged"/>
                     <!--#endregion-->
 
                     <!--#region 实例详细信息-->
@@ -57,14 +57,14 @@
                         </Label.FormattedText>
                     </Label>
                     <Picker Grid.Row="5" x:Name="areas" Grid.Column="1" Title="请选择区域" ItemsSource="{Binding AreaSources}" SelectedIndexChanged="areas_SelectedIndexChanged"/>
-
-
-
+                    <!--#endregion-->
                 </Grid>
             </ScrollView>
         </StackLayout>
     </ContentPage>
+    <!--#endregion-->
 
+    <!--#region IP地址页面-->
     <ContentPage BackgroundColor="white" x:Name="IPAddress">
         <StackLayout Orientation="Vertical" Margin="0,10,0,0">
             <Frame Margin="10,5,10,0">
@@ -84,7 +84,9 @@
             <Entry  Margin="20, 0, 20, 20" x:Name="IPAddressEntry" ReturnCommand="{Binding IPAddressComplete}" ReturnCommandParameter="{x:Reference IPAddress}"/>
         </StackLayout>
     </ContentPage>
+    <!--#endregion-->
 
+    <!--#region 安全性页面-->
     <ContentPage BackgroundColor="white" x:Name="Security">
         <StackLayout Margin="10,5,0,10">
             <Grid ColumnDefinitions="*,2*">
@@ -134,8 +136,86 @@
             </Grid>
         </StackLayout>
     </ContentPage>
-
+    <!--#endregion-->
+    
+    <!--#region 创建页面-->
     <ContentPage BackgroundColor="white" x:Name="Create">
-        
+        <StackLayout Orientation="Vertical" Margin="10,10,10,10">
+            
+            <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
+                <Label Text="基本" FontAttributes="Bold" FontSize="20"/>
+            </StackLayout>
+
+            <Grid RowSpacing="0">
+                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                    <Label Text="订阅"/>
+                    <Label Text="免费试用" x:Name="c_subscribeName"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                    <Label Text="资源组"/>
+                    <Label x:Name="c_resGroup"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                    <Label Text="名称"/>
+                    <Label BindingContext="{Reference VNName}" Text="{Binding Text}"/>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+                    <Label Text="区域"/>
+                    <!--//todo-->
+                    <Label x:Name="c_areas"/>
+                </StackLayout>
+            </Grid>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="IP地址" FontAttributes="Bold" FontSize="20"/>
+            </StackLayout>
+            <Grid RowSpacing="0">
+                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                    <Label Text="地址空间"/>
+                    <Label BindingContext="{Reference IPAddressEntry}" Text="{Binding Text}"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                    <Label Text="子网"/>
+                    <Label BindingContext="{Reference IPAddressEntry}" Text="{Binding Text}" />
+                </StackLayout>
+            </Grid>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="标记" FontAttributes="Bold" FontSize="20"/>
+            </StackLayout>
+            <Grid RowSpacing="0">
+                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                    <Label Text="无"/>
+                </StackLayout>
+            </Grid>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="安全性" FontAttributes="Bold" FontSize="20"/>
+            </StackLayout>
+            <Grid RowSpacing="0">
+                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                    <Label Text="BastionHost"/>
+                    <Label Text="已禁用"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                    <Label Text="DDoS 防护计划"/>
+                    <Label Text="基本"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                    <Label Text="防护墙"/>
+                    <Label Text="已禁用"/>
+                </StackLayout>
+            </Grid>
+            <Button BackgroundColor="#2196F3" Text="创建" Margin="250,0,10,10"  Command="{Binding CreateOrUpdateVM}"/>
+
+        </StackLayout>
     </ContentPage>
+    <!--#endregion-->
+
 </CarouselPage>

@@ -165,6 +165,7 @@ namespace azure_m.ViewModels
         private void ChangeSubID(object sender, int i)
         {
             subscribes.TryGetValue(subscribesNames[i], out subscribeID);
+            
         }
     }
 }
