@@ -18,6 +18,9 @@ namespace azure_m.ViewModels
     {
         public Guid UID =Guid.NewGuid();
 
+        public int DefaultIndex0 { get; set; } = 0;
+        public int DefaultIndex1 { get; set; } = 1;
+
         public Dictionary<string, string> subscribes { get; set; } 
         public List<string> subscribesNames { get; set; }
         public string subscribeID;
@@ -39,10 +42,13 @@ namespace azure_m.ViewModels
         public Command portsChange { get; set; }
 
         public List<string> vnetworks { get; set; }
+        public string Selectedvnet { get; set; }
 
         public List<string> subnets { get; set; }
+        public string Selectedsubnet { get; set; }
 
         public List<string> publicIPs { get; set; }
+        public string SelectedpubIP { get; set; }
 
         public List<string> net_ports { get; set; }
         public Command net_portsChange { get; set; }
@@ -51,11 +57,13 @@ namespace azure_m.ViewModels
         public string mail { get; set; }
         public string PhoneNumber { get; set; }
 
+
         public Command CreateOrUpdateVM { get; set; }
 
         public CreateOrUpdateNIRequest nIRequest { get; set; } = new CreateOrUpdateNIRequest { body = new CreateOrUpdateNIBody { properties = new NetworkInterfacesProperties { ipConfigurations = new NetworkInterfaceIPConfiguration[1] } } };
 
-        public CreateOrUpdateVMRequest vm = new CreateOrUpdateVMRequest();
+        public CreateOrUpdateVMRequest vm = new CreateOrUpdateVMRequest { };
+        
         public VMDetailsViewModel()
         {
 #if DEBUG
@@ -71,7 +79,7 @@ namespace azure_m.ViewModels
             net_ports = new List<string> { "HTTPS(443)", "HTTP(80)", "SSH(22)","RDP(3389)" };
 
 #endif  
-
+            
             subscribesNames = subscribes.Keys.ToList();
             #region Bindings
             Views.AddVmDetailsPage.SubscribeIndexChange += ChangeSubID;
@@ -146,17 +154,21 @@ namespace azure_m.ViewModels
                 };
             };
             Views.AddVmDetailsPage.DeleteOptionChanged += (sender, e) => { vm.body.properties.networkProfile.networkInterfaces[0].properties.deleteOptions = (sender as CheckBox).IsChecked ? "Delete" : "Detach"; };
+            Views.AddVmDetailsPage.vnetChanged += (sender, e) =>  Selectedvnet = (sender as Picker).SelectedItem.ToString(); 
+            Views.AddVmDetailsPage.subnetChanged += (sender, e) =>Selectedsubnet = (sender as Picker).SelectedItem.ToString();
+            Views.AddVmDetailsPage.publicIPChanged += (sender, e) => SelectedpubIP = (sender as Picker).SelectedItem.ToString(); 
+            Views.AddVmDetailsPage.DeleteOptionChanged += (sender, e) =>  vm.body.properties.networkProfile.networkInterfaces[0].properties.deleteOptions = (sender as CheckBox).IsChecked ? "Delete" : "Detach";
 
             //TODO:未完成的commands
             Views.AddVmDetailsPage.diskTypeIndexChanged+=(sender, e) => { };
             portsChange = new Command((sender) => { });
             net_portsChange = new Command((sender) => { });
-            CreateOrUpdateVM = new Command((sender) => { //创建或更新，发送请求
+            CreateOrUpdateVM = new Command(async (sender) => { //创建或更新，发送请求
                 //publicIP
                 //subnet 选择的是已经有的subnet, 选择默认的ipaddress？
                 //nic 创建一个叫{UID}的nic
-
-                (new VMDataStore()).queryCreateOrUpdateVM(vm);//调用，创建
+                vm.body.properties.networkProfile.networkInterfaces[0].id = $"/subscriptions/{azure_m.Services.QueryInfo.subscriptionId}/resourceGroups/{vm.uri.resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{UID}";
+                await (new VMDataStore()).queryCreateOrUpdateVM(vm);//调用，创建
             });
 
         #endregion

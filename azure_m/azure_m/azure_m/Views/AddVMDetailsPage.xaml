@@ -7,13 +7,45 @@
         <viewmodel:VMDetailsViewModel/>
     </CarouselPage.BindingContext>
 
+    <CarouselPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="itemLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="15,0,0,0"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+
+            <Style x:Key="ItemPicker" TargetType="Picker">
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="20,0,0,0"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+
+            <Style x:Key="entryStyle" TargetType="Entry">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="MaxLength" Value="100"/>
+                <!--<Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>-->
+            </Style>
+            
+        </ResourceDictionary>
+    </CarouselPage.Resources>
+    
     <ContentPage BackgroundColor="white" x:Name="Basic">
         <StackLayout Margin="5,5,0,5">
             <ScrollView>
                 <Grid ColumnDefinitions="*,2*" >
                     <!--#region 项目详细信息-->
                     <Label VerticalTextAlignment="Center" Text="项目详细信息" Grid.ColumnSpan="2" FontSize="20" />
-                    <Label VerticalTextAlignment="Center" Grid.Row="1" >
+                    <Label VerticalTextAlignment="Center" Grid.Row="1" Style="{StaticResource itemLabel}" >
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="订阅"/>
@@ -21,8 +53,8 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="1" Grid.Column="1" x:Name="subscribe" Title="请选择订阅" ItemsSource="{Binding subscribesNames}" SelectedIndexChanged="subscribe_SelectedIndexChanged"/>
-                    <Label VerticalTextAlignment="Center" Grid.Row="2">
+                    <Picker Grid.Row="1" Grid.Column="1" x:Name="subscribe" Title="请选择订阅" ItemsSource="{Binding subscribesNames}" SelectedIndex="{Binding DefaultIndex0}" SelectedIndexChanged="subscribe_SelectedIndexChanged" Style="{StaticResource ItemPicker}"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="2"  Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="资源组"/>
@@ -30,12 +62,12 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="2" Grid.Column="1" x:Name="resourcesGroup" Title="请选择资源组" ItemsSource="{Binding resourceGroups}" SelectedIndexChanged="resourcesGroup_SelectedIndexChanged"/>
+                    <Picker Grid.Row="2" Grid.Column="1" x:Name="resourcesGroup" Title="请选择资源组" ItemsSource="{Binding resourceGroups}"  SelectedIndex="{Binding DefaultIndex0}" SelectedIndexChanged="resourcesGroup_SelectedIndexChanged" Style="{StaticResource ItemPicker}"/>
                     <!--#endregion-->
 
                     <!--#region 实例详细信息-->
-                    <Label VerticalTextAlignment="Center" Text="实例详细信息" Grid.ColumnSpan="2" FontSize="20" Grid.Row="3"/>
-                    <Label VerticalTextAlignment="Center" Grid.Row="4">
+                    <Label VerticalTextAlignment="Center" Text="实例详细信息" Grid.ColumnSpan="2" FontSize="20" Grid.Row="3" />
+                    <Label VerticalTextAlignment="Center" Grid.Row="4"  Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="虚拟机名称"/>
@@ -43,8 +75,8 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Entry Grid.Row="4" Grid.Column="1" x:Name="VMName" ReturnCommand="{Binding vmNameComplete}" ReturnCommandParameter="{x:Reference VMName}"/>
-                    <Label VerticalTextAlignment="Center" Grid.Row="5">
+                    <Entry Style="{StaticResource entryStyle}" Grid.Row="4" Grid.Column="1" x:Name="VMName" ReturnCommand="{Binding vmNameComplete}" ReturnCommandParameter="{x:Reference VMName}"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="5"  Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="区域"/>
@@ -52,11 +84,11 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="5" x:Name="areas" Grid.Column="1" Title="请选择区域" ItemsSource="{Binding AreaSources}"  SelectedIndexChanged="areas_SelectedIndexChanged"/>
+                    <Picker Grid.Row="5" x:Name="areas" Grid.Column="1" Title="请选择区域" ItemsSource="{Binding AreaSources}"   SelectedIndex="{Binding DefaultIndex0}" SelectedIndexChanged="areas_SelectedIndexChanged" Style="{StaticResource ItemPicker}"/>
 
 
-                    <Label VerticalTextAlignment="Center" Grid.Row="6" Text="可用性选项"/>
-                    <Picker Grid.Row="6" x:Name="availabilty" Grid.Column="1" SelectedIndexChanged="availabilty_SelectedIndexChanged">
+                    <Label VerticalTextAlignment="Center" Grid.Row="6" Text="可用性选项"  Style="{StaticResource itemLabel}"/>
+                    <Picker Grid.Row="6" x:Name="availabilty" Grid.Column="1" SelectedIndexChanged="availabilty_SelectedIndexChanged" Style="{StaticResource ItemPicker}">
                         <Picker.Items>
                             <x:String>无需基础结构冗余</x:String>
                             <x:String>可用性区域</x:String>
@@ -64,7 +96,7 @@
                             <x:String>可用性集</x:String>
                         </Picker.Items>
                     </Picker>
-                    <Label VerticalTextAlignment="Center" Grid.Row="7" >
+                    <Label VerticalTextAlignment="Center" Grid.Row="7"  Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="可用性区域"/>
@@ -80,14 +112,14 @@
                         </CollectionView>
                     </Frame>
 
-                    <Label VerticalTextAlignment="Center" Grid.Row="8" Text="安全类型"/>
-                    <Picker Grid.Row="8" x:Name="safetymode" Grid.Column="1" SelectedIndexChanged="safetymode_SelectedIndexChanged">
+                    <Label VerticalTextAlignment="Center" Grid.Row="8" Text="安全类型"  Style="{StaticResource itemLabel}"/>
+                    <Picker Grid.Row="8" x:Name="safetymode" Grid.Column="1" SelectedIndexChanged="safetymode_SelectedIndexChanged" SelectedIndex="{Binding DefaultIndex0}" Style="{StaticResource ItemPicker}" >
                         <Picker.Items>
                             <x:String>标准</x:String>
                             <x:String>受信任启动虚拟机</x:String>
                         </Picker.Items>
                     </Picker>
-                    <Label VerticalTextAlignment="Center" Grid.Row="9" >
+                    <Label VerticalTextAlignment="Center" Grid.Row="9"  Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="镜像"/>
@@ -95,11 +127,11 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="9" x:Name="images" Grid.Column="1" ItemsSource="{Binding Images}"  SelectedIndexChanged="images_SelectedIndexChanged" />
+                    <Picker Grid.Row="9" x:Name="images" Grid.Column="1" ItemsSource="{Binding Images}"  SelectedIndexChanged="images_SelectedIndexChanged"  SelectedIndex="{Binding DefaultIndex0}" Style="{StaticResource ItemPicker}" />
 
-                    <Label VerticalTextAlignment="Center" Grid.Row="10" Text="Azure现成VM实例"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="10" Text="Azure现成VM实例"  Style="{StaticResource itemLabel}"/>
                     <CheckBox Grid.Row="10" x:Name="ready_instance" Grid.Column="1"/>
-                    <Label VerticalTextAlignment="Center" Grid.Row="11" >
+                    <Label VerticalTextAlignment="Center" Grid.Row="11"  Style="{StaticResource itemLabel}" >
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="大小"/>
@@ -107,28 +139,27 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="11" x:Name="vmSize" Grid.Column="1" ItemsSource="{Binding vmSizes}" SelectedIndexChanged="vmSize_SelectedIndexChanged"/>
+                    <Picker Grid.Row="11" x:Name="vmSize" Grid.Column="1" ItemsSource="{Binding vmSizes}" SelectedIndexChanged="vmSize_SelectedIndexChanged" SelectedIndex="{Binding DefaultIndex0}" Style="{StaticResource ItemPicker}" />
 
                     <!--#endregion-->
 
                     <!--#region 管理员账户-->
                     <Label VerticalTextAlignment="Center" Text="管理员账户" Grid.ColumnSpan="2" FontSize="20" Grid.Row="12"/>
 
-                    <Label VerticalTextAlignment="Center" Grid.Row="13">
+                    <Label VerticalTextAlignment="Center" Grid.Row="13" Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="身份验证类型"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="13" Grid.Column="1" x:Name="valid" 
-                            SelectedIndex="0" SelectedIndexChanged="valid_SelectedIndexChanged">
+                    <Picker Grid.Row="13" Grid.Column="1" x:Name="valid" SelectedIndex="{Binding DefaultIndex1}" SelectedIndexChanged="valid_SelectedIndexChanged" Style="{StaticResource ItemPicker}">
                         <Picker.Items>
                             <x:String>SSH公钥</x:String>
                             <x:String>密码</x:String>
                         </Picker.Items>
                     </Picker>
-                    <Label VerticalTextAlignment="Center" Grid.Row="14">
+                    <Label VerticalTextAlignment="Center" Grid.Row="14" Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="用户名"/>
@@ -136,26 +167,26 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Entry Grid.Row="14" Grid.Column="1" x:Name="UserName" Text="{Binding vm.body.properties.osProfile.adminUsername}" Completed="UserName_Completed" />
+                    <Entry Style="{StaticResource entryStyle}" Grid.Row="14" Grid.Column="1" x:Name="UserName" Text="{Binding vm.body.properties.osProfile.adminUsername}" Completed="UserName_Completed" />
 
                     <!--#region ssh公钥-->
                     <Frame Grid.Row="15" Grid.RowSpan="2" Grid.ColumnSpan="2" x:Name="sshFrame" IsVisible="False">
                         <Grid RowDefinitions="*,2*" ColumnDefinitions="*,*">
-                            <Label VerticalTextAlignment="Center" Grid.Row="0" >
+                            <Label VerticalTextAlignment="Center" Grid.Row="0"  Style="{StaticResource itemLabel}">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="SSH公钥源"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Picker Grid.Row="0" Grid.Column="1" x:Name="SSHsource" SelectedIndex="0">
+                            <Picker Grid.Row="0" Grid.Column="1" x:Name="SSHsource" SelectedIndex="0" Style="{StaticResource ItemPicker}">
                                 <Picker.Items>
                                     <x:String>生成新秘钥对</x:String>
                                     <x:String>使用Azure中存储的现有秘钥</x:String>
                                     <x:String>使用现有公钥</x:String>
                                 </Picker.Items>
                             </Picker>
-                            <Label VerticalTextAlignment="Center" Grid.Row="1">
+                            <Label VerticalTextAlignment="Center" Grid.Row="1" Style="{StaticResource itemLabel}">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="秘钥对名称"/>
@@ -163,7 +194,7 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Entry Grid.Row="1" Grid.Column="1" x:Name="SSHKeyName" Text="{Binding SSHKeyName}" />
+                            <Entry Style="{StaticResource entryStyle}" Grid.Row="1" Grid.Column="1" x:Name="SSHKeyName" Text="{Binding SSHKeyName}" />
                         </Grid>
                     </Frame>
                     <!--#endregion-->
@@ -171,15 +202,15 @@
                     <!--#region 密码-->
                     <Frame Grid.Row="15" Grid.RowSpan="2" Grid.ColumnSpan="2" x:Name="pswdFrame">
                         <Grid RowDefinitions="*,2*" ColumnDefinitions="*,*">
-                            <Label VerticalTextAlignment="Center" Grid.Row="0" >
+                            <Label VerticalTextAlignment="Center" Grid.Row="0" Style="{StaticResource itemLabel}" >
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="密码"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Entry Grid.Row="0" Grid.Column="1" x:Name="passwd" IsPassword="True" Completed="passwd_Completed" />
-                            <Label VerticalTextAlignment="Center" Grid.Row="1">
+                            <Entry Style="{StaticResource entryStyle}" Grid.Row="0" Grid.Column="1" x:Name="passwd" IsPassword="True" Completed="passwd_Completed" />
+                            <Label VerticalTextAlignment="Center" Grid.Row="1" Style="{StaticResource itemLabel}">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="确认密码"/>
@@ -187,7 +218,7 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Entry Grid.Row="1" Grid.Column="1" x:Name="passwd2" IsPassword="True" TextChanged="passwd2_Completed"/>
+                            <Entry Style="{StaticResource entryStyle}" Grid.Row="1" Grid.Column="1" x:Name="passwd2" IsPassword="True" TextChanged="passwd2_Completed"/>
                         </Grid>
                     </Frame>
                     <!--#endregion-->
@@ -196,7 +227,7 @@
 
                     <!--#region 入站端口规则-->
                     <Label VerticalTextAlignment="Center" Text="入站端口规则" Grid.ColumnSpan="2" FontSize="20" Grid.Row="17"/>
-                    <Label VerticalTextAlignment="Center" Grid.Row="18">
+                    <Label VerticalTextAlignment="Center" Grid.Row="18" Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="公共入站端口"/>
@@ -204,13 +235,13 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="18" Grid.Column="1" x:Name="openentryPort" SelectedIndex="1" SelectedIndexChanged="openentryPort_SelectedIndexChanged">
+                    <Picker Grid.Row="18" Grid.Column="1" x:Name="openentryPort" SelectedIndex="{Binding DefaultIndex1}" Style="{StaticResource ItemPicker}" SelectedIndexChanged="openentryPort_SelectedIndexChanged">
                         <Picker.Items>
                             <x:String>无</x:String>
                             <x:String>允许选定的端口</x:String>
                         </Picker.Items>
                     </Picker>
-                    <Label VerticalTextAlignment="Center" Grid.Row="19"  >
+                    <Label VerticalTextAlignment="Center" Grid.Row="19" BindingContext="{Reference openentryPort}" IsVisible="{Binding SelectedIndex}" Style="{StaticResource itemLabel}" >
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="选择入站端口"/>
@@ -232,7 +263,7 @@
                 <Grid ColumnDefinitions="*,2*">
                     <!--#region 磁盘选项-->
                     <Label VerticalTextAlignment="Center" Text="磁盘选项" Grid.ColumnSpan="2" FontSize="20"/>
-                    <Label VerticalTextAlignment="Center" Grid.Row="1">
+                    <Label VerticalTextAlignment="Center" Grid.Row="1" Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="OS磁盘类型"/>
@@ -240,14 +271,14 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="1" Grid.Column="1" x:Name="disk_type" SelectedIndex="-1" SelectedIndexChanged="disk_type_SelectedIndexChanged">
+                    <Picker Grid.Row="1" Grid.Column="1" x:Name="disk_type" SelectedIndex="-1" SelectedIndexChanged="disk_type_SelectedIndexChanged" Style="{StaticResource ItemPicker}">
                         <Picker.Items>
                             <x:String>高级SSD</x:String>
                             <x:String>标准SSD</x:String>
                             <x:String>标准HDD</x:String>
                         </Picker.Items>
                     </Picker>
-                    <Label VerticalTextAlignment="Center" Grid.Row="2">
+                    <Label VerticalTextAlignment="Center" Grid.Row="2" Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="使用VM删除"/>
@@ -257,7 +288,7 @@
                     </Label>
                     <CheckBox x:Name="vm_delete" IsChecked="True" Grid.Row="2" Grid.Column="1"/>
 
-                    <Label VerticalTextAlignment="Center" Grid.Row="3">
+                    <Label VerticalTextAlignment="Center" Grid.Row="3" Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="主机加密"/>
@@ -265,7 +296,7 @@
                         </Label.FormattedText>
                     </Label>
                     <CheckBox Grid.Row="3" Grid.Column="1" x:Name="secreted" IsEnabled="False" Color="LightSlateGray"/>
-                    <Label VerticalTextAlignment="Center" Grid.Row="4">
+                    <Label VerticalTextAlignment="Center" Grid.Row="4" Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="加密类型"/>
@@ -273,14 +304,14 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="4" x:Name="secretType" Grid.Column="1" SelectedIndex="0">
+                    <Picker Grid.Row="4" x:Name="secretType" Grid.Column="1" SelectedIndex="0" Style="{StaticResource ItemPicker}">
                         <Picker.Items>
                             <x:String>（默认）使用平台管理的秘钥进行加密</x:String>
                             <x:String>使用客户管理的秘钥进行静态加密</x:String>
                             <x:String>使用平台托管秘钥和客户管理的秘钥进行双重加密</x:String>
                         </Picker.Items>
                     </Picker>
-                    <Label VerticalTextAlignment="Center" Grid.Row="5">
+                    <Label VerticalTextAlignment="Center" Grid.Row="5" Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="启用超级磁盘兼容性"/>
@@ -292,7 +323,7 @@
 
                     <!--#region 数据磁盘-->
                     <Label VerticalTextAlignment="Center" Text="数据磁盘" Grid.Row="6" Grid.ColumnSpan="2" FontSize="20"/>
-                    <Label VerticalTextAlignment="Center" Grid.Row="7">
+                    <Label VerticalTextAlignment="Center" Grid.Row="7" Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="To be added"/>
@@ -313,7 +344,7 @@
             <Grid ColumnDefinitions="*,2*" >
                 <!--#region 网络接口-->
                 <Label VerticalTextAlignment="Center" Text="网络接口" Grid.ColumnSpan="2" FontSize="20" />
-                <Label VerticalTextAlignment="Center" Grid.Row="1">
+                <Label VerticalTextAlignment="Center" Grid.Row="1" Style="{StaticResource itemLabel}">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="虚拟网络"/>
@@ -321,8 +352,8 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Picker Title="请选择"  Grid.Row="1" Grid.Column="1" x:Name="vnetworks" ItemsSource="{Binding vnetworks}" SelectedIndexChanged="vnetworks_SelectedIndexChanged"/>
-                <Label VerticalTextAlignment="Center" Grid.Row="2">
+                <Picker Title="请选择"  Grid.Row="1" Grid.Column="1" x:Name="vnetworks" ItemsSource="{Binding vnetworks}" SelectedIndexChanged="vnetworks_SelectedIndexChanged" Style="{StaticResource ItemPicker}"/>
+                <Label VerticalTextAlignment="Center" Grid.Row="2" Style="{StaticResource itemLabel}">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="子网"/>
@@ -330,17 +361,17 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Picker Title="请选择"  Grid.Row="2" Grid.Column="1" x:Name="subnet" ItemsSource="{Binding subnets}" SelectedIndexChanged="subnet_SelectedIndexChanged"/>
-                <Label VerticalTextAlignment="Center" Grid.Row="3">
+                <Picker Title="请选择"  Grid.Row="2" Grid.Column="1" x:Name="subnet" ItemsSource="{Binding subnets}" SelectedIndexChanged="subnet_SelectedIndexChanged" Style="{StaticResource ItemPicker}"/>
+                <Label VerticalTextAlignment="Center" Grid.Row="3" Style="{StaticResource itemLabel}">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="公用IP"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Picker Title="请选择" Grid.Row="3" Grid.Column="1" x:Name="publicIPs" ItemsSource="{Binding publicIPs}" SelectedIndexChanged="publicIPs_SelectedIndexChanged"/>
+                <Picker Title="请选择" Grid.Row="3" Grid.Column="1" x:Name="publicIPs" ItemsSource="{Binding publicIPs}" SelectedIndexChanged="publicIPs_SelectedIndexChanged" Style="{StaticResource ItemPicker}"/>
 
-                <Label VerticalTextAlignment="Center" Grid.Row="4" Grid.RowSpan="3" >
+                <Label VerticalTextAlignment="Center" Grid.Row="4" Grid.RowSpan="3" Style="{StaticResource itemLabel}" >
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="NIC网络安全组"/>
@@ -355,25 +386,17 @@
                     <RadioButton x:Name="nic_adv" Grid.Column="0" Grid.Row="2" Content="高级"/>
                 </Grid>
 
-                <Label VerticalTextAlignment="Center" Grid.Row="7" Grid.RowSpan="4" >
+                <Label VerticalTextAlignment="Center" Grid.Row="7" Grid.RowSpan="4" Style="{StaticResource itemLabel}" >
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="选择入站端口"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <StackLayout Grid.Row="7" Grid.RowSpan="4" Grid.Column="1" 
-                            BindingContext="{x:Reference openentryPort}" IsVisible="{Binding SelectedIndex}" 
-                            RadioButtonGroup.GroupName="entryport_group" RadioButtonGroup.SelectedValue="1" VerticalOptions="Center">
-                    <RadioButton x:Name="http" Grid.Column="0" Grid.Row="0" Content="HTTP(80)"/>
-                    <RadioButton x:Name="https"  Grid.Column="0" Grid.Row="1" Content="HTTPS(443)"/>
-                    <RadioButton x:Name="ssh" Grid.Column="0" Grid.Row="2" Content="SSH(22)"/>
-                    <RadioButton x:Name="rdp" Grid.Column="0" Grid.Row="2" Content="RDP(3389)"/>
-                </StackLayout>
 
                 <CollectionView x:Name="net_port" Grid.Row="7" Grid.RowSpan="4" Grid.Column="1" SelectionChangedCommand="{Binding net_portsChange}" SelectionChangedCommandParameter="{x:Reference net_port}" ItemsSource="{Binding net_ports}" VerticalOptions="Center" SelectionMode="Multiple" SelectionChanged="net_port_SelectionChanged"/>
 
-                <Label VerticalTextAlignment="Center" Grid.Row="11">
+                <Label VerticalTextAlignment="Center" Grid.Row="11" Style="{StaticResource itemLabel}">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="删除VM时删除NIC"/>
@@ -382,7 +405,7 @@
                 </Label>
                 <CheckBox Grid.Row="11" Grid.Column="1" CheckedChanged="CascadDeleteNic_CheckedChanged" />
 
-                <Label VerticalTextAlignment="Center" Grid.Row="12">
+                <Label VerticalTextAlignment="Center" Grid.Row="12" Style="{StaticResource itemLabel}">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="更快的网络连接"/>
@@ -394,7 +417,7 @@
 
                 <!--#region 负载均衡-->
                 <Label VerticalTextAlignment="Center" Text="负载均衡" Grid.ColumnSpan="2" FontSize="20" Grid.Row="13"/>
-                <Label VerticalTextAlignment="Center" Grid.Row="14">
+                <Label VerticalTextAlignment="Center" Grid.Row="14" Style="{StaticResource itemLabel}">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="负载均衡选项"/>
@@ -417,33 +440,33 @@
             <ScrollView>
                 <Grid ColumnDefinitions="*,2*">
                     <Label Text="监视" FontSize="Large" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
-                    <Label Text="启动诊断" Grid.Row="1" Grid.RowSpan="2" VerticalTextAlignment="Center"/>
+                    <Label Text="启动诊断" Grid.Row="1" Grid.RowSpan="2" VerticalTextAlignment="Center" Style="{StaticResource itemLabel}"/>
                     <StackLayout Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" RadioButtonGroup.SelectedValue="0">
                         <RadioButton Content="使用托管存储账户启用（推荐）"/>
                         <RadioButton Content="使用自定义存储账户启用"/>
                         <RadioButton Content="禁用"/>
                     </StackLayout>
-                    <Label Text="启用OS来宾诊断" Grid.Row="4" VerticalTextAlignment="Center"/>
+                    <Label Text="启用OS来宾诊断" Grid.Row="4" VerticalTextAlignment="Center"  Style="{StaticResource itemLabel}"/>
                     <CheckBox Grid.Row="4" Grid.Column="1" x:Name="os_guest"/>
 
                     <Label Text="标识" FontSize="Large" Grid.Row="5" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
-                    <Label Text="系统分配的托管标识" Grid.Row="6" VerticalTextAlignment="Center"/>
+                    <Label Text="系统分配的托管标识" Grid.Row="6" VerticalTextAlignment="Center" Style="{StaticResource itemLabel}"/>
                     <CheckBox Grid.Row="6" Grid.Column="1" x:Name="trusteeship"/>
 
                     <Label Text="Azure AD" FontSize="Large" Grid.Row="7" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
-                    <Label Text="使用Azure AD登录" Grid.Row="8" VerticalTextAlignment="Center"/>
+                    <Label Text="使用Azure AD登录" Grid.Row="8" VerticalTextAlignment="Center" Style="{StaticResource itemLabel}"/>
                     <CheckBox Grid.Row="8" Grid.Column="1" x:Name="AzureAD"/>
 
                     <Label Text="自动关闭" FontSize="Large" Grid.Row="9" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
-                    <Label Text="启用自动关闭" Grid.Row="10" VerticalTextAlignment="Center"/>
+                    <Label Text="启用自动关闭" Grid.Row="10" VerticalTextAlignment="Center" Style="{StaticResource itemLabel}"/>
                     <CheckBox Grid.Row="10" Grid.Column="1" x:Name="auto_shutdown"/>
 
                     <Label Text="备份" FontSize="Large" Grid.Row="11" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
-                    <Label Text="启用备份" Grid.Row="12" VerticalTextAlignment="Center"/>
+                    <Label Text="启用备份" Grid.Row="12" VerticalTextAlignment="Center" Style="{StaticResource itemLabel}"/>
                     <CheckBox Grid.Row="12" Grid.Column="1" x:Name="backup"/>
 
                     <Label Text="来宾OS更新" FontSize="Large" Grid.Row="13" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
-                    <Label Text="补丁编排选项" Grid.Row="14" VerticalTextAlignment="Center"/>
+                    <Label Text="补丁编排选项" Grid.Row="14" VerticalTextAlignment="Center" Style="{StaticResource itemLabel}"/>
                     <Picker Title="请选择" Grid.Row="14" Grid.Column="1" x:Name="plugin" ItemsSource="{Binding plugins}" />
                 </Grid>
             </ScrollView>
@@ -455,7 +478,7 @@
             <ScrollView>
                 <Grid ColumnDefinitions="*,2*">
                     <Label Text="扩展" FontSize="Large" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
-                    <Label Text="扩展" Grid.Row="1" VerticalTextAlignment="Center"/>
+                    <Label Text="扩展" Grid.Row="1" VerticalTextAlignment="Center" Style="{StaticResource itemLabel}"/>
                     <Label Text="选择要安装的扩展" TextColor="#303F9F" Grid.Row="1" Grid.Column="1" >
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="pluggin_Tapped"/>
@@ -463,32 +486,32 @@
                     </Label>
 
                     <Label Text="VM应用程序（预览版）" FontSize="Large" Grid.Row="2" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
-                    <Label Text="选择要安装的VM应用程序" TextColor="#303F9F" Grid.Row="3" Grid.ColumnSpan="2" >
+                    <Label Text="选择要安装的VM应用程序" TextColor="#303F9F" Grid.Row="3" Grid.ColumnSpan="2"  Style="{StaticResource itemLabel}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="vmapp_Tapped"/>
                         </Label.GestureRecognizers>
                     </Label>
 
                     <Label Text="自定义数据和云初始化" FontSize="Large" Grid.Row="4" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
-                    <Label Text="自定义数据" Grid.Row="5" VerticalTextAlignment="Center"/>
+                    <Label Text="自定义数据" Grid.Row="5" VerticalTextAlignment="Center" Style="{StaticResource itemLabel}"/>
                     <Frame Grid.Row="5" Grid.RowSpan="2" Grid.Column="1" BorderColor="#303F9F" >
                         <Editor x:Name="Define_data_edt" />
                     </Frame>
 
                     <Label Text="用户数据" FontSize="Large" Grid.Row="7" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
-                    <Label Text="启用用户数据" Grid.Row="8" VerticalTextAlignment="Center"/>
+                    <Label Text="启用用户数据" Grid.Row="8" VerticalTextAlignment="Center" Style="{StaticResource itemLabel}"/>
                     <CheckBox x:Name="user_data_cbx" Grid.Row="8" Grid.Column="1"/>
 
                     <Label Text="主机" FontSize="Large" Grid.Row="9" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
-                    <Label Text="主机组" Grid.Row="10" VerticalTextAlignment="Center"/>
-                    <Picker Title="请选择" x:Name="host_picker" Grid.Row="10" Grid.Column="1" ItemsSource="{Binding SourceGroup}" ItemDisplayBinding="{Binding Name}"/>
+                    <Label Text="主机组" Grid.Row="10" VerticalTextAlignment="Center" Style="{StaticResource itemLabel}"/>
+                    <Picker Title="请选择" x:Name="host_picker" Grid.Row="10" Grid.Column="1" ItemsSource="{Binding SourceGroup}" ItemDisplayBinding="{Binding Name}" Style="{StaticResource ItemPicker}"/>
 
                     <Label Text="产能预留" FontSize="Large" Grid.Row="11" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
-                    <Label Text="产能预留组" Grid.Row="12" VerticalTextAlignment="Center"/>
-                    <Picker Title="请选择" x:Name="capacity_picker" Grid.Row="12" Grid.Column="1" ItemsSource="{Binding capacity}" ItemDisplayBinding="{Binding Name}"/>
+                    <Label Text="产能预留组" Grid.Row="12" VerticalTextAlignment="Center" Style="{StaticResource itemLabel}"/>
+                    <Picker Title="请选择" x:Name="capacity_picker" Grid.Row="12" Grid.Column="1" ItemsSource="{Binding capacity}" ItemDisplayBinding="{Binding Name}" Style="{StaticResource ItemPicker}"/>
                     <Label Text="邻近放置组" FontSize="Large" Grid.Row="13" Grid.ColumnSpan="2" VerticalTextAlignment="Center"/>
-                    <Label Text="邻近放置组" Grid.Row="14" VerticalTextAlignment="Center"/>
-                    <Picker Title="请选择" x:Name="nearby_picker" Grid.Row="14" Grid.Column="1" ItemsSource="{Binding NearGroup}" ItemDisplayBinding="{Binding Name}"/>
+                    <Label Text="邻近放置组" Grid.Row="14" VerticalTextAlignment="Center" Style="{StaticResource itemLabel}"/>
+                    <Picker Title="请选择" x:Name="nearby_picker" Grid.Row="14" Grid.Column="1" ItemsSource="{Binding NearGroup}" ItemDisplayBinding="{Binding Name}" Style="{StaticResource ItemPicker}"/>
                 </Grid>
             </ScrollView>
         </StackLayout>
@@ -506,8 +529,8 @@
                         <Label WidthRequest="30"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal" Grid.Row="1">
-                        <Entry Text="" WidthRequest="100" x:Name="Trigger1" FontSize="24"/>
-                        <Entry Text="" WidthRequest="100" x:Name="Trigger2" FontSize="24"/>
+                        <Entry Style="{StaticResource entryStyle}" Text="" WidthRequest="100" x:Name="Trigger1" FontSize="24"/>
+                        <Entry Style="{StaticResource entryStyle}" Text="" WidthRequest="100" x:Name="Trigger2" FontSize="24"/>
                         <Picker Title="请选择" WidthRequest="100" />
                         <Image Source="delete.png" x:Name="delete" Background="white" WidthRequest="20" >
                             <Image.Triggers>
@@ -526,9 +549,9 @@
                                 <Setter Property="IsVisible" Value="False"/>
                             </DataTrigger>
                         </StackLayout.Triggers>
-                        <Entry Text="" WidthRequest="100" FontSize="24"/>
-                        <Entry Text="" WidthRequest="100" FontSize="24"/>
-                        <Entry Text="" WidthRequest="100" FontSize="24"/>
+                        <Entry Style="{StaticResource entryStyle}" Text="" WidthRequest="100" FontSize="24"/>
+                        <Entry Style="{StaticResource entryStyle}" Text="" WidthRequest="100" FontSize="24"/>
+                        <Entry Style="{StaticResource entryStyle}" Text="" WidthRequest="100" FontSize="24"/>
                         <Image Source="delete.png" x:Name="delete2" Background="white" WidthRequest="20" >
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="delete2_Clicked" NumberOfTapsRequired="1"></TapGestureRecognizer>
@@ -552,17 +575,17 @@
                     </Frame>
 
                     <StackLayout Orientation="Vertical" Margin="0,10,0,0">
-                        <Label Text="Name"/>
-                        <Entry IsReadOnly="True" Text="{Binding vm.uri.vmName}"/>
+                        <Label Text="Name" Style="{StaticResource itemLabel}"/>
+                        <Entry Style="{StaticResource entryStyle}" IsReadOnly="True" Text="{Binding vm.uri.vmName}"/>
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical" Margin="0,10,0,0">
-                        <Label Text="Preferred e-mail address" WidthRequest="180"/>
-                        <Entry Placeholder="输入邮箱" Text="{Binding mail}"/>
+                        <Label Text="Preferred e-mail address" WidthRequest="180" Style="{StaticResource itemLabel}"/>
+                        <Entry Style="{StaticResource entryStyle}" Placeholder="输入邮箱" Text="{Binding mail}"/>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" Margin="0,10,0,0">
-                        <Label Text="Preferred phone number"/>
-                        <Entry Placeholder="请输入电话号码" Text="{Binding PhoneNumber}"/>
+                        <Label Text="Preferred phone number" Style="{StaticResource itemLabel}"/>
+                        <Entry Style="{StaticResource entryStyle}" Placeholder="请输入电话号码" Text="{Binding PhoneNumber}"/>
                     </StackLayout>
 
                     <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
@@ -571,64 +594,64 @@
 
                     <Grid RowSpacing="0">
                         <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                            <Label Text="订阅"/>
-                            <Label x:Name="c_subscribeName"/>
+                            <Label Text="订阅" Style="{StaticResource itemLabel}"/>
+                            <Label x:Name="c_subscribeName" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
-                            <Label Text="资源组"/>
-                            <Label x:Name="c_resGroup"/>
+                            <Label Text="资源组" Style="{StaticResource itemLabel}"/>
+                            <Label x:Name="c_resGroup" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
-                            <Label Text="虚拟机名称"/>
-                            <Label BindingContext="{Reference VMName}" Text="{Binding Text}"/>
+                            <Label Text="虚拟机名称" Style="{StaticResource itemLabel}"/>
+                            <Label BindingContext="{Reference VMName}" Text="{Binding Text}" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
-                            <Label Text="区域"/>
-                            <Label Text="{Binding vm.body.location}"/>
+                            <Label Text="区域" Style="{StaticResource itemLabel}"/>
+                            <Label Text="{Binding vm.body.location}" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
-                            <Label Text="可用性选项"/>
-                            <Label x:Name="c_have_zone"/>
+                            <Label Text="可用性选项" Style="{StaticResource itemLabel}"/>
+                            <Label x:Name="c_have_zone" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
-                            <Label Text="可用性区域"/>
-                            <Label x:Name="c_zone"/>
+                            <Label Text="可用性区域" Style="{StaticResource itemLabel}"/>
+                            <Label x:Name="c_zone" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="6" Grid.Column="0">
-                            <Label Text="安全类型"/>
-                            <Label Text="标准" x:Name="c_safetymode"/>
+                            <Label Text="安全类型" Style="{StaticResource itemLabel}"/>
+                            <Label Text="标准" x:Name="c_safetymode" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="7" Grid.Column="0">
-                            <Label Text="映像"/>
-                            <Label Text="{Binding vm.body.properties.storageProfile.imageReference}"/>
+                            <Label Text="映像" Style="{StaticResource itemLabel}"/>
+                            <Label Text="{Binding vm.body.properties.storageProfile.imageReference}" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="8" Grid.Column="0">
-                            <Label Text="大小"/>
-                            <Label Text="{Binding vm.body.properties.hardWareProfile.vmSize}"/>
+                            <Label Text="大小" Style="{StaticResource itemLabel}"/>
+                            <Label Text="{Binding vm.body.properties.hardWareProfile.vmSize}" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="9" Grid.Column="0">
-                            <Label Text="身份认证类型"/>
-                            <Label x:Name="c_valid"/>
+                            <Label Text="身份认证类型" Style="{StaticResource itemLabel}"/>
+                            <Label x:Name="c_valid" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="10" Grid.Column="0">
-                            <Label Text="用户名"/>
-                            <Label Text="{Binding vm.body.properties.osProfile.adminUsername}"/>
+                            <Label Text="用户名" Style="{StaticResource itemLabel}"/>
+                            <Label Text="{Binding vm.body.properties.osProfile.adminUsername}" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="11" Grid.Column="0" x:Name="c_sshkey">
-                            <Label Text="密钥对名称"/>
+                            <Label Text="密钥对名称" Style="{StaticResource itemLabel}"/>
                             <!--<Label Text="{Binding vm.body.properties.osProfile.sshkeyname}"/>-->
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="11"  Grid.Column="0" x:Name="c_pswd">
-                            <Label Text="用户密码"/>
-                            <Label Text="{Binding vm.body.properties.osProfile.adminPassword}"/>
+                            <Label Text="用户密码" Style="{StaticResource itemLabel}"/>
+                            <Label Text="{Binding vm.body.properties.osProfile.adminPassword}" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
 
                         <StackLayout Orientation="Horizontal" Grid.Row="12" Grid.Column="0">
-                            <Label Text="公共入站端口"/>
+                            <Label Text="公共入站端口" Style="{StaticResource itemLabel}"/>
                             <Label x:Name="c_ports"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="13" Grid.Column="0">
-                            <Label Text="Azure现成VM"/>
+                            <Label Text="Azure现成VM" Style="{StaticResource itemLabel}"/>
                             <Label Text="否"/>
                         </StackLayout>
                     </Grid>
@@ -639,20 +662,20 @@
 
                     <Grid RowSpacing="0">
                         <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                            <Label Text="OS 磁盘类型"/>
-                            <Label Text="高级 SSD LRS"/>
+                            <Label Text="OS 磁盘类型" Style="{StaticResource itemLabel}"/>
+                            <Label Text="高级 SSD LRS" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
-                            <Label Text="使用托管的磁盘"/>
-                            <Label Text="是"/>
+                            <Label Text="使用托管的磁盘" Style="{StaticResource itemLabel}"/>
+                            <Label Text="是" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
-                            <Label Text="使用 VM 删除 OS 磁盘"/>
-                            <Label Text="已启用"/>
+                            <Label Text="使用 VM 删除 OS 磁盘" Style="{StaticResource itemLabel}"/>
+                            <Label Text="已启用" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
-                            <Label Text="临时 OS 磁盘"/>
-                            <Label Text="否"/>
+                            <Label Text="临时 OS 磁盘" Style="{StaticResource itemLabel}"/>
+                            <Label Text="否" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                     </Grid>
 
@@ -662,28 +685,28 @@
 
                     <Grid RowSpacing="0">
                         <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                            <Label Text="虚拟网络"/>
-                            <Label x:Name="c_vnet"/>
+                            <Label Text="虚拟网络" Style="{StaticResource itemLabel}"/>
+                            <Label x:Name="c_vnet" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
-                            <Label Text="子网"/>
-                            <Label x:Name="c_subnet"/>
+                            <Label Text="子网" Style="{StaticResource itemLabel}"/>
+                            <Label x:Name="c_subnet" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
-                            <Label Text="公用 IP"/>
-                            <Label x:Name="c_pubIP"/>
+                            <Label Text="公用 IP" Style="{StaticResource itemLabel}"/>
+                            <Label x:Name="c_pubIP" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
-                            <Label Text="更快的网络连接"/>
-                            <Label Text="关"/>
+                            <Label Text="更快的网络连接" Style="{StaticResource itemLabel}"/>
+                            <Label Text="关" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
-                            <Label Text="是否将此虚拟机置于现有负载均衡解决方案之后?"/>
-                            <Label Text="否"/>
+                            <Label Text="是否将此虚拟机置于现有负载均衡解决方案之后?" Style="{StaticResource itemLabel}"/>
+                            <Label Text="否" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
-                            <Label Text="删除 VM 时删除公共 IP 和 NIC"/>
-                            <Label Text="已禁用"/>
+                            <Label Text="删除 VM 时删除公共 IP 和 NIC" Style="{StaticResource itemLabel}"/>
+                            <Label Text="已禁用" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                     </Grid>
 
@@ -693,40 +716,40 @@
 
                     <Grid RowSpacing="0">
                         <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                            <Label Text="Azure 安全中心"/>
-                            <Label Text="基本(免费)"/>
+                            <Label Text="Azure 安全中心" Style="{StaticResource itemLabel}"/>
+                            <Label Text="基本(免费)" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
-                            <Label Text="启动诊断"/>
-                            <Label Text="开"/>
+                            <Label Text="启动诊断" Style="{StaticResource itemLabel}"/>
+                            <Label Text="开" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
-                            <Label Text="启用 OS 来宾诊断"/>
-                            <Label Text="关"/>
+                            <Label Text="启用 OS 来宾诊断" Style="{StaticResource itemLabel}"/>
+                            <Label Text="关" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
-                            <Label Text="系统分配的托管标识"/>
-                            <Label Text="关"/>
+                            <Label Text="系统分配的托管标识" Style="{StaticResource itemLabel}"/>
+                            <Label Text="关" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
-                            <Label Text="使用 Azure AD 登录"/>
-                            <Label Text="关"/>
+                            <Label Text="使用 Azure AD 登录" Style="{StaticResource itemLabel}"/>
+                            <Label Text="关" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
-                            <Label Text="自动关闭"/>
-                            <Label Text="关"/>
+                            <Label Text="自动关闭" Style="{StaticResource itemLabel}"/>
+                            <Label Text="关" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="6" Grid.Column="0">
-                            <Label Text="备份"/>
-                            <Label Text="已禁用"/>
+                            <Label Text="备份" Style="{StaticResource itemLabel}"/>
+                            <Label Text="已禁用" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="7" Grid.Column="0">
-                            <Label Text="启用热补丁"/>
-                            <Label Text="关"/>
+                            <Label Text="启用热补丁" Style="{StaticResource itemLabel}"/>
+                            <Label Text="关" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="8" Grid.Column="0">
-                            <Label Text="补丁编排选项"/>
-                            <Label Text="映像默认"/>
+                            <Label Text="补丁编排选项" Style="{StaticResource itemLabel}"/>
+                            <Label Text="映像默认" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                     </Grid>
 
@@ -736,28 +759,28 @@
 
                     <Grid RowSpacing="0">
                         <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                            <Label Text="扩展"/>
-                            <Label Text="无"/>
+                            <Label Text="扩展" Style="{StaticResource itemLabel}"/>
+                            <Label Text="无" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
-                            <Label Text="VM 应用程序(预览版)"/>
-                            <Label Text="无"/>
+                            <Label Text="VM 应用程序(预览版)" Style="{StaticResource itemLabel}"/>
+                            <Label Text="无" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
-                            <Label Text="云 init"/>
-                            <Label Text="否"/>
+                            <Label Text="云 init" Style="{StaticResource itemLabel}"/>
+                            <Label Text="否" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
-                            <Label Text="用户数据"/>
-                            <Label Text="否"/>
+                            <Label Text="用户数据" Style="{StaticResource itemLabel}"/>
+                            <Label Text="否" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
-                            <Label Text="邻近放置组"/>
-                            <Label Text="无"/>
+                            <Label Text="邻近放置组" Style="{StaticResource itemLabel}"/>
+                            <Label Text="无" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
-                            <Label Text="产能预留组"/>
-                            <Label Text="无"/>
+                            <Label Text="产能预留组" Style="{StaticResource itemLabel}"/>
+                            <Label Text="无" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                     </Grid>
                     <Button BackgroundColor="#2196F3" Text="创建" Margin="250,0,10,10"/>
