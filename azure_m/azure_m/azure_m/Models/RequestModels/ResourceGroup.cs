@@ -5,15 +5,15 @@
         namespace CreateOrUpdateResourceGroup
         {
 
-            public class CreateOrUpdateResourceResourceGroupUri
+            public class CreateOrUpdateResourceGroupUri
             {
                 public string resourceGroupName;
             }
-            public class CreateOrUpdateResourceResourceGroupBody
+            public class CreateOrUpdateResourceGroupBody
             {
                 public string location;
             }
-            public class CreateOrUpdateResourceGroupRequest : IRequest<CreateOrUpdateResourceResourceGroupUri, CreateOrUpdateResourceResourceGroupBody>
+            public class CreateOrUpdateResourceGroupRequest : IRequest<CreateOrUpdateResourceGroupUri, CreateOrUpdateResourceGroupBody>
             {
 
             }

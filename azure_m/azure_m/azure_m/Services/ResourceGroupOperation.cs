@@ -8,6 +8,7 @@ using azure_m.Models.RequestModels.ResourceGroupRequestModels.DeleteResourceGrou
 using azure_m.Models.RequestModels.ResourceGroupRequestModels.GetResourceGroup;
 using azure_m.Models.RequestModels.ResourceGroupRequestModels.ListResourceGroup;
 using azure_m.Models;
+using azure_m.Models.ResponseModels;
 using System.Threading.Tasks;
 namespace azure_m.Services
 {
@@ -54,7 +55,7 @@ namespace azure_m.Services
             try
             {
                 var res = await url
-                    .GetJsonAsync<ResourceGroup>();
+                    .GetJsonAsync<ResourceGroupResponse>();
             }
             catch(Exception ex)
             {
