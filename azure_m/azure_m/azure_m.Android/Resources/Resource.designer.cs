@@ -15,10 +15,14 @@ namespace azure_m.Droid
 	
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.2.4.160")]
 =======
 	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.3.3.31")]
 >>>>>>> 16bd67df31af7f2740ed7cf8e95f84e75cad192c
+=======
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.3.0.26")]
+>>>>>>> 28df283b09237536fef6396459aca2158acc42ff
 	public partial class Resource
 	{
 		
