@@ -429,7 +429,7 @@
             public class CreateOrUpdateVMRequest : IRequest<
                 CreateOrUpdateVMUri,
                 CreateOrUpdateVMBody>
-<<<<<<< HEAD
+
             {
                 public CreateOrUpdateVMRequest()
                 {
@@ -452,9 +452,7 @@
                     uri = new CreateOrUpdateVMUri { resourceGroupName = "", vmName = "" };
                 }
             }
-        }
-=======
-            { }
+
         }//创建或更新虚拟机
 
         namespace Get
@@ -576,7 +574,7 @@
 
             }
         }//重启虚拟机
->>>>>>> 16bd67df31af7f2740ed7cf8e95f84e75cad192c
+
     }
 
 

@@ -58,31 +58,35 @@
         <ToolbarItem Text="test" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <Frame>
+
             <StackLayout>
-                <!--<Frame BorderColor="Black" Padding="5" Margin="5">-->
-                <ScrollView 
+
+
+            <Frame>
+                <StackLayout>
+                    <ScrollView 
                     Orientation="Horizontal" 
                     Margin="20">
-                    <StackLayout 
+                        <StackLayout 
                         Orientation="Horizontal"
                         HorizontalOptions="Center">
-                        <Button Text="创建"/>
-                        <Button Text="刷新"/>
-                        <Button Text="csv"/>
-                    </StackLayout>
-                </ScrollView>
-                <!--</Frame>-->
-                <StackLayout
+                            <Button Text="创建"/>
+                            <Button Text="刷新"/>
+                            <Button Text="csv"/>
+                        </StackLayout>
+                    </ScrollView>
+                    <StackLayout
                 HorizontalOptions="Center" 
                 Orientation="Horizontal"
                 HeightRequest="40">
-                    <Entry 
+                        <Entry 
                     Placeholder="模糊搜索" 
                     WidthRequest="120"/>
-                    <Button Text="选择类型" />
+                        <Button Text="选择类型" />
+                    </StackLayout>
                 </StackLayout>
-        </Frame>
+            </Frame>
+
         <RefreshView
                 x:DataType="local:ResourceViewModel"
                 Command="{Binding LoadResourcesCommand}"

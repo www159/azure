@@ -8,7 +8,7 @@
         {
             public bool enableAcceleratedNetworking;
 
-            public NetworkInterfaceIPConfiguration ipConfigurations;
+            public NetworkInterfaceIPConfiguration[] ipConfigurations;
         }//网络接口请求主体的参数
         public class NetworkInterfaceIPConfiguration
         {

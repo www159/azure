@@ -11,12 +11,13 @@ using azure_m.Models.RequestModels.VMRequestModels.List;
 using azure_m.Models.RequestModels.VMRequestModels.ListAll;
 using azure_m.Models.RequestModels.VMRequestModels.Restart;
 using azure_m.Models.RequestModels.VMRequestModels.Start;
-using azure_m.Models;
+
 using System.Threading.Tasks;
 using Flurl;
 
 namespace azure_m.Services
 {
+    using Models.ResponseModels;
     public class VMDataStore
     {
         private static class apiVersion {
@@ -74,7 +75,7 @@ namespace azure_m.Services
             try
             {
                 var res = await url
-                    .GetJsonAsync<VirtualMachine>();
+                    .GetJsonAsync<VirtualMachineResopnse>();
             }
             catch(Exception ex)
             {
@@ -109,7 +110,7 @@ namespace azure_m.Services
             try
             {
                 var res = await url
-                    .GetJsonAsync<VirtualMachine>();
+                    .GetJsonAsync<VirtualMachineResopnse>();
 
             }
             catch(Exception ex)
@@ -127,7 +128,7 @@ namespace azure_m.Services
             try
             {
                 var res = await url
-                    .GetJsonAsync<VirtualMachine>();
+                    .GetJsonAsync<VirtualMachineResopnse>();
 
             }
             catch (Exception ex)
