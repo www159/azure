@@ -7,33 +7,75 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using azure_m.Services;
 using System.Diagnostics;
+using System.Linq;
+using azure_m.Models.RequestModels.VNReuestModels.CreateOrUpdate;
+using azure_m.Models.RequestModels.NetworkInterfaceRequestModels;
 
 
 namespace azure_m.ViewModels
 {
     public class VNDetailsViewModel : BaseViewModel
     {
+        public Guid UID = Guid.NewGuid();
 
-        ContentView basic, ipAddress, security, tag, checkAndCreate;
+        public Dictionary<string, string> subscribes { get; set; }
 
-        public ObservableCollection<ContentView> pages { get; set; }
+        public List<string> subscribesNames { get; set; }
 
+        public string subscribeID;
+
+        public List<string> resourceGroups { get; set; }
+
+        public string ResourceGroup;
+
+        public Command vnNameComplete { get; set; }
+
+        public Command IPAddressComplete { get; set; }
+
+        public List<string> AreaSources { get; set; }
+        
+        public Command CreateOrUpdateVN { get; set; }
+
+        public CreateOrupdateVNRequest vn = new CreateOrupdateVNRequest();
         public VNDetailsViewModel()
         {
-            Title = "创建虚拟网络";
-            basic = new Views.VNDetails.Basic();
-            ipAddress = new Views.VNDetails.IPAddress();
-            security = new Views.VNDetails.Security();
-            tag = new Views.VNDetails.Tag();
-            checkAndCreate = new Views.VNDetails.CheckAndCreate();
-            pages = new ObservableCollection<ContentView>
+#if DEBUG
+
+            subscribes = new Dictionary<string, string> { { "免费试用", "123" } };
+            resourceGroups = new List<string> { "wfpres", "wfpppres" };
+            AreaSources = new List<string> { "JapanEast" };
+#endif
+
+            subscribesNames = subscribes.Keys.ToList();
+
+            Views.AddVNDetailsPage.SubscribeIndexChange += ChangeSubID;
+            Views.AddVNDetailsPage.ResourceGroupIndexChanged += (sender, args) => { vn.uri.resourceGroupName = (sender as Picker).SelectedItem.ToString(); };
+            Views.AddVNDetailsPage.AreaChanged += (sender, args) => { vn.body.location = AreaSources[(sender as Picker).SelectedIndex]; };
+            Views.AddVNDetailsPage.IPAddressChanged += (sender, args) =>
             {
-                basic, ipAddress, security, tag, checkAndCreate
-
+                vn.body.properties.addressSpace.addressPrefixes[0] = (sender as Entry).Text;
+                vn.body.properties.subnets[0].name = "default";
+                vn.body.properties.subnets[0].properties.addressPrefix = (sender as Entry).Text;
             };
-
+            Views.AddVNDetailsPage.VNNameChanged += (sender, args) =>
+            {
+                vn.uri.virtualNetworkName = (sender as Entry).Text;
+            };
+            //vnNameComplete = new Command((sender) => { vn.uri.virtualNetworkName = (sender as Entry).Text; });       
+            //IPAddressComplete = new Command((sender) =>
+            //{
+            //    vn.body.properties.addressSpace.addressPrefixes[0] = (sender as Entry).Text;
+            //    vn.body.properties.subnets[0].name = "default";
+            //    vn.body.properties.subnets[0].properties.addressPrefix = (sender as Entry).Text;
+            //});
         }
 
 
+
+
+        private void ChangeSubID(object sender, int i)
+        {
+            subscribes.TryGetValue(subscribesNames[i], out subscribeID);
+        }
     }
 }

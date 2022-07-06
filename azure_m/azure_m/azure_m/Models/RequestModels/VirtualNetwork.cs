@@ -5,9 +5,38 @@
         namespace CreateOrUpdate
         {
 
-            public class CreateOrUpdateVNRequest:IRequest<CreateOrupdateVNUri, CreateOrUpdateVNBody>{}
+            public class CreateOrUpdateVNRequest : IRequest<CreateOrupdateVNUri, CreateOrUpdateVNBody>
+            {
+                public CreateOrUpdateVNRequest()
+                {
+                    uri = new CreateOrupdateVNUri
+                    {
 
-            public class CreateOrupdateVNUri {
+                    };
+
+                    body = new CreateOrUpdateVNBody
+                    {
+                        properties = new CreateOrUpdateVNProperties
+                        {
+                            addressSpace = new AddressSpace { addressPrefixes = new string[2] },
+                            subnets = new Subnet[]
+                            {
+                                new Subnet
+                                {
+                                    properties = new SubnetProperties
+                                    {
+
+                                    }
+                                }
+                            }
+
+                        }
+                    };
+                }
+            }
+
+            public class CreateOrupdateVNUri
+            {
                 public string resourceGroupName;
                 public string virtualNetworkName;
             }
@@ -15,24 +44,24 @@
             {
                 public CreateOrUpdateVNProperties properties { get; set; }
 
-                public string location {get;set;}
+                public string location { get; set; }
             }
             public class CreateOrUpdateVNProperties
             {
-                public AddressSpace addressSpace { get;set;}
+                public AddressSpace addressSpace { get; set; }
 
-                public Subnet[] subnets { get; set;}
+                public Subnet[] subnets { get; set; }
 
-                public VirtualNetworkBgpCommunities bgpCommunities { get; set;}
+                public VirtualNetworkBgpCommunities bgpCommunities { get; set; }
 
-                public int flowTimeOutInMinutes { get; set;}
+                public int flowTimeOutInMinutes { get; set; }
 
-                public VirtualNetworkEncryption encryption { get; set;}
+                public VirtualNetworkEncryption encryption { get; set; }
             }
 
             public class AddressSpace
             {
-                public string[] addressPrefixes { get; set;}
+                public string[] addressPrefixes { get; set; }
             }
 
             public class Subnet
@@ -414,7 +443,7 @@
         }
         namespace Get
         {
-            public class GetVNRequest:IRequest<GetVNUri, GetVNBody> { }
+            public class GetVNRequest : IRequest<GetVNUri, GetVNBody> { }
 
             public class GetVNUri
             {
@@ -427,7 +456,7 @@
         }
         namespace List
         {
-            public class ListVNRequest:IRequest<ListVNUri, ListVNBody> { }
+            public class ListVNRequest : IRequest<ListVNUri, ListVNBody> { }
 
             public class ListVNUri
             {
@@ -439,7 +468,7 @@
         }
         namespace Delete
         {
-            public class DeleteVNRequest:IRequest<DeleteVNUri, DeleteVNBody> { }
+            public class DeleteVNRequest : IRequest<DeleteVNUri, DeleteVNBody> { }
 
             public class DeleteVNUri
             {
@@ -452,7 +481,7 @@
         }
         namespace ListAll
         {
-            public class ListAllVNRequest:IRequest<ListAllVNUri, ListAllVNBody> { }
+            public class ListAllVNRequest : IRequest<ListAllVNUri, ListAllVNBody> { }
 
             public class ListAllVNUri
             {
