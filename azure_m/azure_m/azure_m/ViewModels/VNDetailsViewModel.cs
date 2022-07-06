@@ -74,38 +74,43 @@ namespace azure_m.ViewModels
 #if DEBUG
 
             subscribes = new ObservableDictionary<string, string> { { "免费试用", "123" } };
-            resourceGroups = new ObservableCollection<string> { "wfpres", "wfpppres" };
+            //resourceGroups = new ObservableCollection<string> { "wfpres", "wfpppres" };
             AreaSources = new ObservableCollection<string> { "Japaneast" };
 #endif
 
             subscribesNames = new ObservableCollection<string>();
 
+            resourceGroups = new ObservableCollection<string>();
 
             foreach (var key in subscribes.Keys)
             {
                 subscribesNames.Add(key);
             }
-
-
-
-            CreateOrUpdateVN = new Command(async () =>
-            {
-                VNOperations vnOperations = new VNOperations();
-
-                await vnOperations.queryCreateOrUpdateVN(vn);
-            });
-
-        }
-
-        public void OnAppearing(Object sender, EventArgs e)
-        {
-            ResourceGroupOperations resourceGroupOperations = new ResourceGroupOperations();
-            var resourceGroupsRes = resourceGroupOperations.ListResourceGroup().Result;
-            foreach(var val in resourceGroupsRes)
+            
+            foreach(var val in QueryInfo.resourceGroup)
             {
                 resourceGroups.Add(val.name);
             }
+
         }
+
+        //public void OnAppearing(Object sender, EventArgs e)
+        //{
+        //    ResourceGroupOperations resourceGroupOperations = new ResourceGroupOperations();
+        //    List<ResourceGroup> resourceGroupsRes = null;
+        //    try
+        //    {
+        //        resourceGroupsRes = resourceGroupOperations.ListResourceGroup().Result;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Utils.error(ex);
+        //    }
+        //    foreach(var val in resourceGroupsRes)
+        //    {
+        //        resourceGroups.Add(val.name);
+        //    }
+        //}
 
 
         private void ChangeSubID(object sender, int i)

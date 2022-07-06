@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 
 using Xamarin.Forms;
@@ -8,6 +9,8 @@ using Xamarin.Forms.Xaml;
 namespace azure_m.Views
 {
     using Models;
+    using Services;
+    using Models.ResponseModels;
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VirtualNetworkPage : ContentPage
@@ -18,6 +21,11 @@ namespace azure_m.Views
         {
             InitializeComponent();
             GetResources();
+            //QueryInfo.jumpCreateVNPage += async (o, e) =>
+            //{
+            //    await Navigation.PushAsync(new AddVNDetailsPage());
+            //};
+            
         }
 
 
@@ -120,10 +128,20 @@ namespace azure_m.Views
             DisplayAlert("Alert", "管理", "OK");
 
         }
+
         private void CreateTapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new AddVNDetailsPage());
+
+
+            //QueryInfo.JumpAsync();
+#pragma warning disable
+            Helpers.AsyncbeforeJump(Navigation, typeof(AddVNDetailsPage), async () =>
+            {
+                ResourceGroupOperations resourceGroupOperations = new ResourceGroupOperations();
+                QueryInfo.resourceGroup = await resourceGroupOperations.ListResourceGroup();
+            });
             DisplayAlert("Alert", "创建成功", "OK");
         }
+
     }
 }

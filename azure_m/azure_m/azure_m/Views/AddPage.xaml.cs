@@ -21,8 +21,15 @@ namespace azure_m.Views
         public void CreateServiceVM(object sender, EventArgs e)
         {
             DisplayAlert("VM", "", "OK");
-
-            Navigation.PushAsync(new AddVmDetailsPage());
+#pragma warning disable
+            Helpers.AsyncbeforeJump(
+                Navigation,
+                typeof(AddVmDetailsPage),
+                async () =>
+                {
+                    //TODO
+                    await Task.Delay(1000)
+                });
 
         }
         public void CreateServiceFuncApp(object sender, EventArgs e)

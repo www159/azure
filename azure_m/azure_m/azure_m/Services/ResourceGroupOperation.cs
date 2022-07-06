@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Flurl.Http;
+using Flurl;
 
 using azure_m.Models.ResponseModels;
 using System.Threading.Tasks;
@@ -24,9 +25,9 @@ namespace azure_m.Services
 
             public const string list = "2021-04-01";
         }
-        private string baseFormatUrlWithResourceGroup = $"{QueryInfo.baseStrUrl}/resourceGroups/{{0}}";
+        private string baseFormatUrlWithResourceGroup = $"{QueryInfo.baseStrUrl}/resourcegroups/{{0}}";
 
-        private string baseFormatUrlWithoutResourceGroup = $"{QueryInfo.baseStrUrl}/resourceGroups";
+        private string baseFormatUrlWithoutResourceGroup = $"{QueryInfo.baseStrUrl}/resourcegroups";
         public async Task CreateOrUpdateResourceGroup(CreateOrUpdateResourceGroupRequest createOrUpdateResourceGroupRequest)
         {
             var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, createOrUpdateResourceGroupRequest.uri.resourceGroupName);
@@ -71,9 +72,18 @@ namespace azure_m.Services
                 )
                 .WithOAuthBearerToken(QueryInfo.token);
 
-            var re = await url
-                .GetJsonAsync();
-            var res = re as ResourceGroupResponse;
+            ResourceGroupResponse res;
+            try
+            {
+                res = await new Url("https://management.azure.com/subscriptions/219b2431-594f-47fa-8e85-664196aa3f92/resourcegroups?api-version=2021-04-01")
+                    .WithOAuthBearerToken(QueryInfo.token)
+                    .GetJsonAsync<ResourceGroupResponse>();
+            }
+            catch (Exception ex)
+            {
+                Utils.error(ex);
+                return new List<ResourceGroup>();
+            }
             List<ResourceGroup> resourceGroups = (res.value.Clone() as ResourceGroup[]).ToList();
 
             while(res.nextLink != null)

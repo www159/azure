@@ -15,7 +15,6 @@ namespace azure_m.Views
             InitializeComponent();
 
             // viewModel
-            Appearing += viewModel.OnAppearing;
         }
 
     }

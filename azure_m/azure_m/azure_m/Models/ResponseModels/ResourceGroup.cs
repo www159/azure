@@ -17,8 +17,8 @@
         public string name { get; set; }
         public string type { get; set; }
         public ResourceGroupProperties properties { get; set; }
-        //public string tags;
-        //public string managedBy;
+        public object tags;
+        public string managedBy;
     }
 
     public class ResourceGroupProperties

@@ -14,6 +14,7 @@ namespace azure_m.Services
 {
 
     using Models.ResponseModels;
+    using Views;
 
     public static class QueryInfo
     {
@@ -181,6 +182,24 @@ namespace azure_m.Services
             var req = new Url(url).WithOAuthBearerToken(token);
             return await req.GetJsonAsync<T>();
         }
-         #endregion
+        #endregion
+
+        #region onAppearBeforeAsync
+        public static List<ResourceGroup> resourceGroup;
+
+
+        #region 创建虚拟网络
+        // 根据
+        public static event EventHandler jumpCreateVNPage;
+
+        public static async Task JumpAsync()
+        {
+            var regOp = new ResourceGroupOperations();
+            resourceGroup = await regOp.ListResourceGroup();
+            jumpCreateVNPage.Invoke(null, EventArgs.Empty);
+
+        }
+        #endregion
+        #endregion
     }
 }
