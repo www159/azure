@@ -14,6 +14,7 @@ namespace azure_m.Views
     {
         public AddVNDetailsPage()
         {
+            
             InitializeComponent();
         }
 

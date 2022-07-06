@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 using azure_m.Services;
 using System.Diagnostics;
 using System.Linq;
-using azure_m.Models.RequestModels.VNReuestModels.CreateOrUpdate;
-using azure_m.Models.RequestModels.NetworkInterfaceRequestModels;
+//using azure_m.Models.RequestModels.VNReuestModels.CreateOrUpdate;
+//using azure_m.Models.RequestModels.NetworkInterfaceRequestModels;
 
 
 namespace azure_m.ViewModels
@@ -36,7 +36,7 @@ namespace azure_m.ViewModels
         
         public Command CreateOrUpdateVN { get; set; }
 
-        public CreateOrupdateVNRequest vn = new CreateOrupdateVNRequest();
+        public Models.RequestModels.VN.CreateOrUpdate.CreateOrUpdateVNRequest vn = new Models.RequestModels.VN.CreateOrUpdate.CreateOrUpdateVNRequest();
         public VNDetailsViewModel()
         {
 #if DEBUG
