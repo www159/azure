@@ -4,11 +4,8 @@
              xmlns:viewmodels="clr-namespace:azure_m.ViewModels"
             xmlns:views="clr-namespace:azure_m.Views.VNDetails" 
              x:Class="azure_m.Views.AddVNDetailsPage"
+             x:DataType="viewmodels:VNDetailsViewModel"
              >
-
-    <CarouselPage.BindingContext>
-        <viewmodels:VNDetailsViewModel/>
-    </CarouselPage.BindingContext>
 
     <!--#region Basic页面-->
     <ContentPage BackgroundColor="white" x:Name="Basic">
@@ -25,7 +22,7 @@
                         </Label.FormattedText>
                     </Label>
                     <!--<Label Grid.Row="1" Grid.Column="1" Text="免费试用" VerticalOptions="Center" FontSize="20"/>-->
-                    <Picker Grid.Row="1" Grid.Column="1" x:Name="subscribe" Title="请选择订阅" ItemsSource="{Binding subscribesNames}" SelectedIndexChanged="subscribe_SelectedIndexChanged" />
+                    <Picker Grid.Row="1" Grid.Column="1" x:Name="subscribe" Title="请选择订阅" ItemsSource="{Binding subscribesNames}"/>
                     <Label VerticalTextAlignment="Center" Grid.Row="2">
                         <Label.FormattedText>
                             <FormattedString>
@@ -34,7 +31,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="2" Grid.Column="1" x:Name="resourcesGroup" Title="请选择资源组" ItemsSource="{Binding resourceGroups}" SelectedIndexChanged="resourcesGroup_SelectedIndexChanged"/>
+                    <Picker Grid.Row="2" Grid.Column="1" x:Name="resourcesGroup" Title="请选择资源组" ItemsSource="{Binding resourceGroups}" SelectedItem="{Binding ResourceGroup}"/>
                     <!--#endregion-->
 
                     <!--#region 实例详细信息-->
@@ -47,7 +44,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Entry Grid.Row="4" Grid.Column="1" x:Name="VNName" ReturnCommand="{Binding vnNameComplete}" ReturnCommandParameter="{x:Reference VNName}" TextChanged="VNName_TextChanged"/>
+                    <Entry Grid.Row="4" Grid.Column="1" x:Name="VNName" Text="{Binding VNName}"/>
                     <Label VerticalTextAlignment="Center" Grid.Row="5">
                         <Label.FormattedText>
                             <FormattedString>
@@ -56,7 +53,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="5" x:Name="areas" Grid.Column="1" Title="请选择区域" ItemsSource="{Binding AreaSources}" SelectedIndexChanged="areas_SelectedIndexChanged" />
+                    <Picker Grid.Row="5" x:Name="areas" Grid.Column="1" Title="请选择区域" ItemsSource="{Binding AreaSources}" SelectedItem="{Binding AreaSource}" />
                     <!--#endregion-->
                 </Grid>
             </ScrollView>
@@ -65,7 +62,7 @@
     <!--#endregion-->
 
     <!--#region IP地址页面-->
-    <ContentPage BackgroundColor="white" x:Name="IPAddress">
+    <ContentPage BackgroundColor="white" x:Name="IPAddress_P">
         <StackLayout Orientation="Vertical" Margin="0,10,0,0">
             <Frame Margin="10,5,10,0">
                 <StackLayout>
@@ -81,7 +78,7 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Entry  Margin="20, 0, 20, 20" x:Name="IPAddressEntry" ReturnCommand="{Binding IPAddressComplete}" ReturnCommandParameter="{x:Reference IPAddressEntry}" TextChanged="IPAddressEntry_TextChanged"/>
+            <Entry  Margin="20, 0, 20, 20" x:Name="IPAddressEntry" Text="{Binding IPAddress}"/>
         </StackLayout>
     </ContentPage>
     <!--#endregion-->
@@ -159,7 +156,7 @@
 
                 <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
                     <Label Text="名称"/>
-                    <Label BindingContext="{Reference VNName}" Text="{Binding Text}"/>
+                    <Label Text="{Binding IPAddress}"/>
                 </StackLayout>
                 
                 <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
@@ -175,12 +172,12 @@
             <Grid RowSpacing="0">
                 <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
                     <Label Text="地址空间"/>
-                    <Label BindingContext="{Reference IPAddressEntry}" Text="{Binding Text}"/>
+                    <Label Text="{Binding IPAddress}"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
                     <Label Text="子网"/>
-                    <Label BindingContext="{Reference IPAddressEntry}" Text="{Binding Text}" />
+                    <Label Text="{Binding IPAddress}" />
                 </StackLayout>
             </Grid>
 

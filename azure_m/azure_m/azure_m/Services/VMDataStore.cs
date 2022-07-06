@@ -45,7 +45,7 @@ namespace azure_m.Services
         private string baseFormatUrlWithoutVMname = $"{QueryInfo.baseStrUrl}/resourceGroups/{{0}}/providers/Microsoft.Compute/virtualMachines";
 
         private string baseFormatUrlWithoutVMnameOrResourceGroup= $"{QueryInfo.baseStrUrl}/providers/Microsoft.Compute/virtualMachines";
-        public async Task queryCreateOrUpdateVM(CreateOrUpdateVMRequest createOrUpdateVMRequest)
+        public async Task<int> queryCreateOrUpdateVM(CreateOrUpdateVMRequest createOrUpdateVMRequest)
         {
             var baseStrUrl = string.Format(
                 baseFormatUrlWithResourceGroup,
@@ -56,18 +56,9 @@ namespace azure_m.Services
                     apiVersion.createOrUpdate)
                     .WithOAuthBearerToken(QueryInfo.token);
 
-            try
-            {
-                var str = JsonConvert.SerializeObject(createOrUpdateVMRequest.body);
-                var res = await url
-                    .WithHeader("Content-type", "application/json")
-                    .PutStringAsync(str)
-                    .ReceiveString();
-            }
-            catch(FetchException ex)
-            {
-                Utils.error(ex);
-            }
+            IFlurlResponse res = res = await url
+                    .PutJsonAsync(createOrUpdateVMRequest.body);
+            return res.StatusCode;
         }//创建/更新虚拟机的请求
 
         public async Task queryGetVM(GetVMRequest getVMRequest)

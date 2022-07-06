@@ -431,6 +431,17 @@
                 CreateOrUpdateVMBody>
 
             {
+
+                // public static CreateOrUpdateVMRequest Create() {
+                //     return new CreateOrUpdateVMRequest{
+                //         uri = new CreateOrUpdateVMUri{},
+                //         body = new CreateOrUpdateVMBody{
+                //             properties = new CreateOrUpdateVMProperties {
+                //                 storageProfile
+                //             }
+                //         }
+                //     }
+                // }
                 public CreateOrUpdateVMRequest()
                 {
                     body = new CreateOrUpdateVMBody

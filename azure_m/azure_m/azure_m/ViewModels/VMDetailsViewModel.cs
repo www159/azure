@@ -226,7 +226,7 @@ namespace azure_m.ViewModels
                             },
                     },
                 },
-                uri = new CreateOrupdateVNUri
+                uri = new CreateOrUpdateVNUri
                 {
                     resourceGroupName = vm.uri.resourceGroupName,
                     virtualNetworkName = virtualNetworkName,

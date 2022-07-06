@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using Flurl;
+using System.Linq;
 using Flurl.Http;
 
 using azure_m.Models.ResponseModels;
@@ -63,23 +62,31 @@ namespace azure_m.Services
                 Utils.error(ex);
             }
         }
-        public async Task ListResourceGroup(ListResourceGroupRequest listResourceGroupRequest)
+        public async Task<List<ResourceGroup>> ListResourceGroup()
         {
             var baseStrUrl = string.Format(baseFormatUrlWithoutResourceGroup);
             var url = Utils.withApiVersion(
                 baseStrUrl,
                 apiVersion.list
-                );
-            try
+                )
+                .WithOAuthBearerToken(QueryInfo.token);
+
+            var re = await url
+                .GetJsonAsync();
+            var res = re as ResourceGroupResponse;
+            List<ResourceGroup> resourceGroups = (res.value.Clone() as ResourceGroup[]).ToList();
+
+            while(res.nextLink != null)
             {
-                var res = await url
-                    .PostJsonAsync(listResourceGroupRequest.body)
-                    .ReceiveString();
+                res = await QueryInfo.queryWithNextLink<ResourceGroupResponse>(res.nextLink);
+                foreach(var val in res.value)
+                {
+                    resourceGroups.Add(val);
+                }
             }
-            catch(Exception ex)
-            {
-                Utils.error(ex);
-            }
+
+            return resourceGroups;
+
         }
         public async Task DeleteResourceGroup(DeleteResourceGroupRequest deleteResourceGroupRequest)
         {

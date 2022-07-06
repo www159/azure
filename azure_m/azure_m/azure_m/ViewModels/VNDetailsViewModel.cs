@@ -1,76 +1,111 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Collections.ObjectModel;
-using azure_m.Models;
 using Xamarin.Forms;
-using System.Threading.Tasks;
-using azure_m.Services;
-using System.Diagnostics;
 using System.Linq;
-using azure_m.Models.RequestModels.VNReuestModels.CreateOrUpdate;
-using azure_m.Models.RequestModels.NetworkInterfaceRequestModels;
+
 
 
 namespace azure_m.ViewModels
 {
+    using Models.RequestModels.VN.CreateOrUpdate;
+    using Helpers;
+    using Services;
+
     public class VNDetailsViewModel : BaseViewModel
     {
+        #region 数据结构
         public Guid UID = Guid.NewGuid();
 
-        public Dictionary<string, string> subscribes { get; set; }
+        public ObservableDictionary<string, string> subscribes { get; set; }
 
-        public List<string> subscribesNames { get; set; }
+        public ObservableCollection<string> subscribesNames { get; set; }
 
         public string subscribeID;
 
-        public List<string> resourceGroups { get; set; }
+        public ObservableCollection<string> resourceGroups { get; set; }
 
-        public string ResourceGroup;
 
         public Command vnNameComplete { get; set; }
 
         public Command IPAddressComplete { get; set; }
 
-        public List<string> AreaSources { get; set; }
-        
+        public ObservableCollection<string> AreaSources { get; set; }
+
         public Command CreateOrUpdateVN { get; set; }
 
-        public CreateOrupdateVNRequest vn = new CreateOrupdateVNRequest();
+        // public CreateOrUpdateVNRequest vn = new CreateOrUpdateVNRequest();
+        #endregion
+
+        #region 绑定
+
+        public string ResourceGroup
+        {
+            get => vn.uri.resourceGroupName ?? string.Empty;
+            set => vn.uri.resourceGroupName = value;
+        }
+
+        public string VNName
+        {
+            get => vn.uri.virtualNetworkName ?? string.Empty;
+            set => vn.uri.virtualNetworkName = value;
+        }
+
+        public string AreaSource
+        {
+            get => vn.body.location ?? string.Empty;
+            set => vn.body.location = value;
+        }
+
+        public string IPAddress
+        {
+            get => vn.body.properties.addressSpace.addressPrefixes[0] ?? string.Empty;
+            set
+            {
+                vn.body.properties.addressSpace.addressPrefixes[0] = value;
+                vn.body.properties.subnets[0].properties.addressPrefix = value;
+            }
+        }
+        private CreateOrUpdateVNRequest vn = CreateOrUpdateVNRequest.create();
+        #endregion
+
         public VNDetailsViewModel()
         {
 #if DEBUG
 
-            subscribes = new Dictionary<string, string> { { "免费试用", "123" } };
-            resourceGroups = new List<string> { "wfpres", "wfpppres" };
-            AreaSources = new List<string> { "JapanEast" };
+            subscribes = new ObservableDictionary<string, string> { { "免费试用", "123" } };
+            resourceGroups = new ObservableCollection<string> { "wfpres", "wfpppres" };
+            AreaSources = new ObservableCollection<string> { "Japaneast" };
 #endif
 
-            subscribesNames = subscribes.Keys.ToList();
+            subscribesNames = new ObservableCollection<string>();
 
-            Views.AddVNDetailsPage.SubscribeIndexChange += ChangeSubID;
-            Views.AddVNDetailsPage.ResourceGroupIndexChanged += (sender, args) => { vn.uri.resourceGroupName = (sender as Picker).SelectedItem.ToString(); };
-            Views.AddVNDetailsPage.AreaChanged += (sender, args) => { vn.body.location = AreaSources[(sender as Picker).SelectedIndex]; };
-            Views.AddVNDetailsPage.IPAddressChanged += (sender, args) =>
+
+            foreach (var key in subscribes.Keys)
             {
-                vn.body.properties.addressSpace.addressPrefixes[0] = (sender as Entry).Text;
-                vn.body.properties.subnets[0].name = "default";
-                vn.body.properties.subnets[0].properties.addressPrefix = (sender as Entry).Text;
-            };
-            Views.AddVNDetailsPage.VNNameChanged += (sender, args) =>
+                subscribesNames.Add(key);
+            }
+
+
+
+            CreateOrUpdateVN = new Command(async () =>
             {
-                vn.uri.virtualNetworkName = (sender as Entry).Text;
-            };
-            //vnNameComplete = new Command((sender) => { vn.uri.virtualNetworkName = (sender as Entry).Text; });       
-            //IPAddressComplete = new Command((sender) =>
-            //{
-            //    vn.body.properties.addressSpace.addressPrefixes[0] = (sender as Entry).Text;
-            //    vn.body.properties.subnets[0].name = "default";
-            //    vn.body.properties.subnets[0].properties.addressPrefix = (sender as Entry).Text;
-            //});
+                VNOperations vnOperations = new VNOperations();
+
+                await vnOperations.queryCreateOrUpdateVN(vn);
+            });
+
         }
 
-
+        public void OnAppearing(Object sender, EventArgs e)
+        {
+            ResourceGroupOperations resourceGroupOperations = new ResourceGroupOperations();
+            var resourceGroupsRes = resourceGroupOperations.ListResourceGroup().Result;
+            foreach(var val in resourceGroupsRes)
+            {
+                resourceGroups.Add(val.name);
+            }
+        }
 
 
         private void ChangeSubID(object sender, int i)
