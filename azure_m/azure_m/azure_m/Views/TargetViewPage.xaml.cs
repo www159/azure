@@ -81,19 +81,30 @@ namespace azure_m.Views
             ChooseRange.Text = (Collection.SelectedItem as azure_m.ViewModels.Sourse).Name;
             ShowType.Text= (Collection.SelectedItem as azure_m.ViewModels.Sourse).SourseType;
             ChooseTarget.IsVisible = false;
-            if(ShowType.Text=="虚拟机")
+            if (ShowType.Text == "虚拟机")
             {
                 VirtualMachine.IsVisible = true;
+                Disk.IsVisible = false;
+                ValueChoose.Text = "度量值";
+                CccChart.IsVisible = false;
+                CcrChart.IsVisible = false;
+                AmbChart.IsVisible = false;
             }
-            if(ShowType.Text=="磁盘")
+            if (ShowType.Text == "磁盘")
             {
-                Disk.IsVisible= true;
+                VirtualMachine.IsVisible = false;
+                Disk.IsVisible = true;
+                ValueChoose.Text = "度量值";
+                CccChart.IsVisible = false;
+                CcrChart.IsVisible = false;
+                AmbChart.IsVisible = false;
             }
         }
 
         private void CcrClicked(object sender, EventArgs e)
         {
             VirtualMachine.IsVisible= false;
+            ValueChoose.Text = "Ccr";
             CcrChart.IsVisible = true;
             CccChart.IsVisible = false;
             AmbChart.IsVisible = false;
@@ -102,6 +113,7 @@ namespace azure_m.Views
         private void CccClicked(object sender, EventArgs e)
         {
             VirtualMachine.IsVisible = false;
+            ValueChoose.Text = "Ccc";
             CccChart.IsVisible = true;
             CcrChart.IsVisible = false;
             AmbChart.IsVisible = false;
@@ -110,6 +122,7 @@ namespace azure_m.Views
         private void AmbClicked(object sender, EventArgs e)
         {
             VirtualMachine.IsVisible = false;
+            ValueChoose.Text = "Amb";
             AmbChart.IsVisible = true;
             CccChart.IsVisible=false;
             CcrChart.IsVisible=false;
@@ -119,11 +132,13 @@ namespace azure_m.Views
         {
             if (ShowType.Text == "虚拟机")
             {
-                VirtualMachine.IsVisible = true;
+                VirtualMachine.IsVisible = !VirtualMachine.IsVisible;
+                Disk.IsVisible = false;
             }
             if (ShowType.Text == "磁盘")
             {
-                Disk.IsVisible = true;
+                Disk.IsVisible = !Disk.IsVisible;
+                VirtualMachine.IsVisible = false;
             }
         }
     }

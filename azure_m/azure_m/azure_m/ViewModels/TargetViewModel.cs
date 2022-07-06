@@ -28,18 +28,15 @@ namespace azure_m.ViewModels
             var amb = Utils.readMock<azure_m.Models.MockModels.Index>(azure_m.Mocks.Mocks.amb);
             ccr.Data.ForEach(o =>
             {
-                if (o.Average >= 1024&&o.Average<(1024*1024)) 
-                { 
-                    o.Average = o.Average / 1024; 
-                }
-                else if(o.Average>=(1024*1024)&&o.Average<(1024*1024*1024))
-                {
-                    o.Average = o.Average / (1024 * 1024);
-                }
-                else if(o.Average >= (1024*1024*1024))
-                {
-                    o.Average =o.Average/ (1024*1024*1024);
-                }
+                o.Average = o.Average / (1024 * 1024);
+            });
+            ccc.Data.ForEach(o =>
+            {
+                o.Average = o.Average / (1024 * 1024);
+            });
+            amb.Data.ForEach(o =>
+            {                    
+                o.Average = o.Average / (1024 * 1024);
             });
             Ccr = ccr.Data;
             Ccc = ccc.Data;
