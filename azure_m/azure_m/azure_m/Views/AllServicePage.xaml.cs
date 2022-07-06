@@ -21,17 +21,17 @@ namespace azure_m.Views
 
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AllResourcesPage());
+            await Navigation.PushAsync(new MainPage());
         }
 
         private async void ImageButton_Clicked_1(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AllResourcesPage());
+            await Navigation.PushAsync(new VirtualMachinePage());
         }
 
         private async void ImageButton_Clicked_2(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AllResourcesPage());
+            await Navigation.PushAsync(new ResourceGroupPage());
         }
 
         private async void ImageButton_Clicked_3(object sender, EventArgs e)
@@ -51,7 +51,7 @@ namespace azure_m.Views
 
         private async void ImageButton_Clicked_6(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AllResourcesPage());
+            await Navigation.PushAsync(new SubscribePage());
         }
 
         private async void ImageButton_Clicked_7(object sender, EventArgs e)
