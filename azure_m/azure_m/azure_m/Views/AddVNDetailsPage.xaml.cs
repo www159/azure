@@ -37,5 +37,6 @@ namespace azure_m.Views
             if (areas.SelectedIndex != -1) { AreaChanged?.Invoke(sender, EventArgs.Empty); }
             c_areas.Text = areas.SelectedItem.ToString();
         }
+
     }
 }

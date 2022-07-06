@@ -30,6 +30,8 @@ namespace azure_m.ViewModels
 
         public Command vnNameComplete { get; set; }
 
+        public Command IPAddressComplete { get; set; }
+
         public List<string> AreaSources { get; set; }
         
         public Command CreateOrUpdateVN { get; set; }
@@ -39,7 +41,7 @@ namespace azure_m.ViewModels
         {
 #if DEBUG
 
-            subscribes = new Dictionary<string, string> { { "免费试用","123" } };
+            subscribes = new Dictionary<string, string> { { "免费试用", "123" } };
             resourceGroups = new List<string> { "wfpres", "wfpppres" };
             AreaSources = new List<string> { "JapanEast" };
 #endif
@@ -50,9 +52,12 @@ namespace azure_m.ViewModels
             Views.AddVNDetailsPage.ResourceGroupIndexChanged += (sender, args) => { vn.uri.resourceGroupName = (sender as Picker).SelectedItem.ToString(); };
             Views.AddVNDetailsPage.AreaChanged += (sender, args) => { vn.body.location = AreaSources[(sender as Picker).SelectedIndex]; };
             vnNameComplete = new Command((sender) => { vn.uri.virtualNetworkName = (sender as Entry).Text; });
-
-
-
+            IPAddressComplete = new Command((sender) =>
+            {
+                vn.body.properties.addressSpace.addressPrefixes[0] = (sender as Entry).Text;
+                vn.body.properties.subnets[0].name = "default";
+                vn.body.properties.subnets[0].properties.addressPrefix = (sender as Entry).Text;
+            });
         }
 
 

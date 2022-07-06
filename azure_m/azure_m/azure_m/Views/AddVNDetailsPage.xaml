@@ -81,7 +81,7 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Entry  Margin="20, 0, 20, 20" x:Name="IPAddressEntry" ReturnCommand="{Binding IPAddressComplete}" ReturnCommandParameter="{x:Reference IPAddress}"/>
+            <Entry  Margin="20, 0, 20, 20" x:Name="IPAddressEntry" ReturnCommand="{Binding IPAddressComplete}" ReturnCommandParameter="{x:Reference IPAddressEntry}"/>
         </StackLayout>
     </ContentPage>
     <!--#endregion-->

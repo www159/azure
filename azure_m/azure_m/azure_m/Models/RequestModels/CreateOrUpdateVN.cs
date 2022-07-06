@@ -9,7 +9,38 @@ namespace azure_m.Models.RequestModels
         namespace CreateOrUpdate
         {
 
-            public class CreateOrupdateVNRequest: IRequest<CreateOrupdateVNUri, CreateOrUpdateVNBody>{}
+            public class CreateOrupdateVNRequest: IRequest<CreateOrupdateVNUri, CreateOrUpdateVNBody>
+            {
+                public CreateOrupdateVNRequest()
+                {
+                    uri = new CreateOrupdateVNUri
+                    {
+                        resourceGroupName = "",
+                        virtualNetworkName = ""
+                    };
+
+                    body = new CreateOrUpdateVNBody
+                    {
+                        location = "",
+                        properties = new CreateOrUpdateVNProperties
+                        {
+                            addressSpace = new AddressSpace { addressPrefixes = new string[2] { "","" } },
+                            subnets = new Subnet[]
+                            {
+                                new Subnet
+                                {
+                                    name = "",
+                                    properties = new SubnetProperties
+                                    {
+                                        addressPrefix = ""
+                                    }
+                                }
+                            }
+                            
+                        }
+                    };
+                }
+            }
 
             public class CreateOrupdateVNUri 
             {
