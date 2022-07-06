@@ -3,27 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using azure_m.Models.ResponseModels;
 using Xamarin.Forms;
 
 namespace azure_m.ViewModels
 {
     public class VirtualMachineViewModel : ContentView
     {
-        public List<VmDetails> VmDetails { get; set; }
+        public List<VirtualMachineResopnse> VmDetails { get; set; }
         public VirtualMachineViewModel()
         {
-            VmDetails = new List<VmDetails>()
+            VmDetails = new List<azure_m.Models.ResponseModels.VirtualMachineResopnse>()
             {
-                new VmDetails() { Name = "好啊",SourceGroup="vm",Size="不知道" },
-                new VmDetails(){Name="不是很ok",SourceGroup="disk",Size="第二个"}
+                new azure_m.Models.ResponseModels.VirtualMachineResopnse(){name="123"}
+            };
+            virtualMachine = new VirtualMachineResopnse()
+            {
+                name = "wmwmw",
+                location= "japaneast",
             };
         }
+
+        public VirtualMachineResopnse virtualMachine { get; set; } 
     }
 
-    public class VmDetails
-    {
-        public string Name { get; set; }
-        public string SourceGroup { get; set; }
-        public string Size { get; set; }
-    }
 }
