@@ -1,12 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:azure_m.ViewModels"
              x:Class="azure_m.Views.VirtualMachinePage">
+    <ContentPage.BindingContext>
+        <local:VirtualMachineViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Label Text="虚拟机" FontSize="35" Margin="20"/>
+            <ScrollView Orientation="Horizontal"  >
+                <StackLayout Orientation="Horizontal" VerticalOptions="Start" Margin="0,80,0,0" >
+                    <Button Text="创建" VerticalOptions="Start" HorizontalOptions="Start" Margin="20,0,0,0" />
+                    <Button Text="开始" VerticalOptions="Start" HorizontalOptions="Start" />
+                    <Button Text="重新开始" VerticalOptions="Start" HorizontalOptions="Start"/>
+                    <Button Text="停止" VerticalOptions="Start" HorizontalOptions="Start"/>
+                    <Button Text="删除" VerticalOptions="Start"/>
+                </StackLayout>
+            </ScrollView>
+            <Entry Placeholder="筛选任何字段" VerticalOptions="Start" HorizontalOptions="Start" Margin="20,160,0,0"/>
+            <CheckBox x:Name="checkBox" VerticalOptions="Start" HorizontalOptions="Start" Margin="20,220,0,0"/>
+            <Label Text="名称" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="60,222,0,0"/>
+            <Label Text="资源组" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="160,222,0,0"/>
+            <Label Text="大小" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="280,222,0,0"/>
+            <CollectionView x:Name="VirtualMachineList" ItemsSource="{Binding VmDetails}" Margin="20,260,0,0">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid VerticalOptions="Start" HorizontalOptions="Start">
+                            <CheckBox />
+                            <Label Text="{Binding Name}" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,5,0,0">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label Text="{Binding SourceGroup}" VerticalOptions="Start" HorizontalOptions="Start" Margin="160,5,0,0"/>
+                            <Label Text="{Binding Size}" Margin="260,5,0,0" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Frame x:Name="DetailesFrame" IsVisible="false">
+                <Button x:Name="btn" Text="关闭" Clicked="Button_Clicked"/>
+            </Frame>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

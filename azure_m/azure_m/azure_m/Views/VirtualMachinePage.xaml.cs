@@ -16,5 +16,17 @@ namespace azure_m.Views
         {
             InitializeComponent();
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            DetailesFrame.IsVisible = true;
+            btn.Text = (VirtualMachineList.SelectedItem as azure_m.ViewModels.VmDetails).Name;
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            DetailesFrame.IsVisible = false;
+        }
+
     }
 }
