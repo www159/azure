@@ -51,13 +51,23 @@ namespace azure_m.ViewModels
             Views.AddVNDetailsPage.SubscribeIndexChange += ChangeSubID;
             Views.AddVNDetailsPage.ResourceGroupIndexChanged += (sender, args) => { vn.uri.resourceGroupName = (sender as Picker).SelectedItem.ToString(); };
             Views.AddVNDetailsPage.AreaChanged += (sender, args) => { vn.body.location = AreaSources[(sender as Picker).SelectedIndex]; };
-            vnNameComplete = new Command((sender) => { vn.uri.virtualNetworkName = (sender as Entry).Text; });
-            IPAddressComplete = new Command((sender) =>
+            Views.AddVNDetailsPage.IPAddressChanged += (sender, args) =>
             {
                 vn.body.properties.addressSpace.addressPrefixes[0] = (sender as Entry).Text;
                 vn.body.properties.subnets[0].name = "default";
                 vn.body.properties.subnets[0].properties.addressPrefix = (sender as Entry).Text;
-            });
+            };
+            Views.AddVNDetailsPage.VNNameChanged += (sender, args) =>
+            {
+                vn.uri.virtualNetworkName = (sender as Entry).Text;
+            };
+            //vnNameComplete = new Command((sender) => { vn.uri.virtualNetworkName = (sender as Entry).Text; });       
+            //IPAddressComplete = new Command((sender) =>
+            //{
+            //    vn.body.properties.addressSpace.addressPrefixes[0] = (sender as Entry).Text;
+            //    vn.body.properties.subnets[0].name = "default";
+            //    vn.body.properties.subnets[0].properties.addressPrefix = (sender as Entry).Text;
+            //});
         }
 
 

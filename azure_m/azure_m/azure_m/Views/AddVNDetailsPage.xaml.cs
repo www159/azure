@@ -38,5 +38,16 @@ namespace azure_m.Views
             c_areas.Text = areas.SelectedItem.ToString();
         }
 
+        public static event EventHandler IPAddressChanged;
+        private void IPAddressEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            IPAddressChanged?.Invoke(sender, EventArgs.Empty);
+        }
+
+        public static event EventHandler VNNameChanged;
+        private void VNName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            VNNameChanged?.Invoke(sender, EventArgs.Empty);
+        }
     }
 }

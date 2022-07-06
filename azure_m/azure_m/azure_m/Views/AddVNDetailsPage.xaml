@@ -47,7 +47,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Entry Grid.Row="4" Grid.Column="1" x:Name="VNName" ReturnCommand="{Binding vnNameComplete}" ReturnCommandParameter="{x:Reference VNName}"/>
+                    <Entry Grid.Row="4" Grid.Column="1" x:Name="VNName" ReturnCommand="{Binding vnNameComplete}" ReturnCommandParameter="{x:Reference VNName}" TextChanged="VNName_TextChanged"/>
                     <Label VerticalTextAlignment="Center" Grid.Row="5">
                         <Label.FormattedText>
                             <FormattedString>
@@ -56,7 +56,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="5" x:Name="areas" Grid.Column="1" Title="请选择区域" ItemsSource="{Binding AreaSources}" SelectedIndexChanged="areas_SelectedIndexChanged"/>
+                    <Picker Grid.Row="5" x:Name="areas" Grid.Column="1" Title="请选择区域" ItemsSource="{Binding AreaSources}" SelectedIndexChanged="areas_SelectedIndexChanged" />
                     <!--#endregion-->
                 </Grid>
             </ScrollView>
@@ -81,7 +81,7 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Entry  Margin="20, 0, 20, 20" x:Name="IPAddressEntry" ReturnCommand="{Binding IPAddressComplete}" ReturnCommandParameter="{x:Reference IPAddressEntry}"/>
+            <Entry  Margin="20, 0, 20, 20" x:Name="IPAddressEntry" ReturnCommand="{Binding IPAddressComplete}" ReturnCommandParameter="{x:Reference IPAddressEntry}" TextChanged="IPAddressEntry_TextChanged"/>
         </StackLayout>
     </ContentPage>
     <!--#endregion-->
@@ -212,7 +212,7 @@
                     <Label Text="已禁用"/>
                 </StackLayout>
             </Grid>
-            <Button BackgroundColor="#2196F3" Text="创建" Margin="250,0,10,10"  Command="{Binding CreateOrUpdateVM}"/>
+            <Button BackgroundColor="#2196F3" Text="创建" Margin="250,0,10,10"  Command="{Binding CreateOrUpdateVN}"/>
 
         </StackLayout>
     </ContentPage>
