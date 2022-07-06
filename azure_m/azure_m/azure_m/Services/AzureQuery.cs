@@ -18,7 +18,7 @@ namespace azure_m.Services
     public static class QueryInfo
     {
         #region 验证相关
-        private static string token { get; set; }
+        public static string token { get; private set; }
 
         private static string subscriptionSql { get; set; } = "resourcecontainers\n        | where type == \"microsoft.resources/subscriptions\"\n        | join kind=leftouter (securityresources \n            | where type == \"microsoft.security/securescores\"\n            | where properties.environment == \"Azure\" and properties.displayName == \"ASC score\"\n            ) on subscriptionId\n        | extend secureScore=properties1.score.percentage,\n            managementGroup=properties.managementGroupAncestorsChain,\n            subscriptionName=name,\n            status=properties.state\n        | project id, subscriptionId, subscriptionName, status, managementGroup, secureScore";
 
@@ -153,10 +153,11 @@ namespace azure_m.Services
         
         private static string resourceIdFormat = "/subscriptions/{0}/resourceGroups/{1}/providers/{2}/{3}/{4}";
 
-        public static string genSubnetId(string vnName, string subnetName) {
+        public static string genSubnetId(string vnName, string resourceGroup, string subnetName) {
             var vnId = string.Format(
                 resourceIdFormat,
                 subscriptionId,
+                resourceGroup,
                 resourceNamespace[ResourceType.subnets],
                 ResourceType.virtualNetworks,
                 vnName);
@@ -164,10 +165,11 @@ namespace azure_m.Services
             return $"{vnId}/{ResourceType.subnets}/{subnetName}";
         }
 
-        public static string genResourceId(string resourceType, string name) {
+        public static string genResourceId(string resourceType, string resourceGroup, string name) {
             return string.Format(
                 resourceIdFormat,
                 subscriptionId,
+                resourceGroup,
                 resourceNamespace[resourceType],
                 resourceType,
                 name);

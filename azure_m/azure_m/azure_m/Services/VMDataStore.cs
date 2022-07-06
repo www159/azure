@@ -2,6 +2,7 @@
 using Flurl.Http;
 using System.Threading.Tasks;
 using Flurl;
+using Newtonsoft.Json;
 
 namespace azure_m.Services
 {
@@ -37,24 +38,30 @@ namespace azure_m.Services
         }
         
         //private CreateOrUpdateVMRequest createOrUpdateVMRequest;
-        private string baseFormatUrlWithResourceGroup = $"{QueryInfo.baseStrUrl}/resourceGroups/{{0}}/providers/Microsoft.Compute/VirtualMachines/{{1}}";
+        private string baseFormatUrlWithResourceGroup = $"{QueryInfo.baseStrUrl}/resourceGroups/{{0}}/providers/Microsoft.Compute/virtualMachines/{{1}}";
 
-        private string baseFormatUrlWithoutResourceGroup = $"{QueryInfo.baseStrUrl}/providers/Microsoft.Compute/VirtualMachines/{{0}}";
+        private string baseFormatUrlWithoutResourceGroup = $"{QueryInfo.baseStrUrl}/providers/Microsoft.Compute/virtualMachines/{{0}}";
 
-        private string baseFormatUrlWithoutVMname = $"{QueryInfo.baseStrUrl}/resourceGroups/{{0}}/providers/Microsoft.Compute/VirtualMachines";
+        private string baseFormatUrlWithoutVMname = $"{QueryInfo.baseStrUrl}/resourceGroups/{{0}}/providers/Microsoft.Compute/virtualMachines";
 
-        private string baseFormatUrlWithoutVMnameOrResourceGroup= $"{QueryInfo.baseStrUrl}/providers/Microsoft.Compute/VirtualMachines";
+        private string baseFormatUrlWithoutVMnameOrResourceGroup= $"{QueryInfo.baseStrUrl}/providers/Microsoft.Compute/virtualMachines";
         public async Task queryCreateOrUpdateVM(CreateOrUpdateVMRequest createOrUpdateVMRequest)
         {
-            var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, createOrUpdateVMRequest.uri.resourceGroupName, createOrUpdateVMRequest.uri.vmName);
+            var baseStrUrl = string.Format(
+                baseFormatUrlWithResourceGroup,
+                createOrUpdateVMRequest.uri.resourceGroupName, 
+                createOrUpdateVMRequest.uri.vmName);
             var url = Utils.withApiVersion(
-                    new Url (baseStrUrl),
-                    apiVersion.createOrUpdate);
+                    new Url(baseStrUrl),
+                    apiVersion.createOrUpdate)
+                    .WithOAuthBearerToken(QueryInfo.token);
 
             try
             {
+                var str = JsonConvert.SerializeObject(createOrUpdateVMRequest.body);
                 var res = await url
-                    .PostJsonAsync(createOrUpdateVMRequest.body)
+                    .WithHeader("Content-type", "application/json")
+                    .PutStringAsync(str)
                     .ReceiveString();
             }
             catch(FetchException ex)
@@ -85,7 +92,8 @@ namespace azure_m.Services
             var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, deleteVMRequest.uri.resourceGroupName, deleteVMRequest.uri.vmName);
             var url = Utils.withApiVersion(
                 new Url(baseStrUrl),
-                apiVersion.delete);
+                apiVersion.delete)
+                .WithOAuthBearerToken(QueryInfo.token);
             try
             {
                 var res = await url
@@ -103,7 +111,8 @@ namespace azure_m.Services
             var baseStrUrl = string.Format(baseFormatUrlWithoutVMname, listVMRequest.uri.resourceGroupName);
             var url = Utils.withApiVersion(
                 new Url(baseStrUrl),
-                apiVersion.list);
+                apiVersion.list)
+                .WithOAuthBearerToken(QueryInfo.token);
             try
             {
                 var res = await url

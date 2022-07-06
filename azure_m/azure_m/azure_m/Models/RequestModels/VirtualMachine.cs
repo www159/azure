@@ -10,13 +10,13 @@
             public class VMSizeProperties
             {
 
-                public int vCPUsAvailable { get; set; }
+                public int? vCPUsAvailable { get; set; }
 
-                public int vCPUsPerCore { get; set; }
+                public int? vCPUsPerCore { get; set; }
             }
-            public class HardWareProfile
+            public class HardwareProfile
             {
-                public string[] vmSize { get; set; }
+                public string vmSize { get; set; }
 
                 public VMSizeProperties vmSizeProperties { get; set; }
 
@@ -36,11 +36,11 @@
             public class NetworkInterfaceProperties
             {
 
-                public bool primary { get; set; }
+                public bool? primary { get; set; }
 
-                // Type:  DeleteOption
+                // Type:  DeleteOptions
                 // Value: Delete, Detach
-                public string deleteOptions { get; set; }
+                public string deleteOption { get; set; }
             }
 
             public class NetworkInterface
@@ -112,13 +112,13 @@
                 */
                 public string adminUsername { get; set; }
 
-                public bool alllowExtensionOperations { get; set; }
+                public bool? allowExtensionOperations { get; set; }
 
                 public string computerName { get; set; }
 
-                public string custmData { get; set; }
+                public string customData { get; set; }
 
-                public bool requireGuestProvisionSignal { get; set; }
+                public bool? requireGuestProvisionSignal { get; set; }
 
                 /*
                 
@@ -254,13 +254,13 @@
 
                 // Type:  DiskCreateOptionTypes
                 // Value: Attach, Empty, FromImage
-                public string createOptions { get; set; }
+                public string createOption { get; set; }
 
                 // Type:  DiskDeleteOptionTypes
                 // Value: Delete, Detach
                 public string deleteOption { get; set; }
 
-                public int diskSizeGB { get; set; }
+                public int? diskSizeGB { get; set; }
 
                 /*
 
@@ -276,7 +276,7 @@
 
                 public VirtualHardDisk vhd { get; set; }
 
-                public bool writeAcceleratorEnabled { get; set; }
+                public bool? writeAcceleratorEnabled { get; set; }
 
             }
 
@@ -304,13 +304,13 @@
                 // Value: ForceDetach
                 public string detachOption { get; set; }
 
-                public int diskIOSReadWrtite { get; set; }
+                public int? diskIOSReadWrtite { get; set; }
 
-                public int diskMBpsReadWrite { get; set; }
+                public int? diskMBpsReadWrite { get; set; }
 
-                public int lun { get; set; }
+                public int? lun { get; set; }
 
-                public bool toBeDetach { get; set; }
+                public bool? toBeDetach { get; set; }
             }
 
             public class ImageReference {
@@ -323,11 +323,11 @@
 
                 public string publisher { get; set; }
 
-                public string shareGalleryImageId { get; set; }
+                public string sharedGalleryImageId { get; set; }
 
                 public string sku { get; set; }
 
-                public string verison { get; set; }
+                public string version { get; set; }
 
                 public override string ToString()
                 {
@@ -349,7 +349,7 @@
             #region 虚拟机配置汇总
             public class CreateOrUpdateVMProperties
             {
-                public HardWareProfile hardWareProfile { get; set; }
+                public HardwareProfile hardwareProfile { get; set; }
 
                 public NetworkProfile networkProfile { get; set; }
 
@@ -379,7 +379,7 @@
 
                 public string licenseType { get; set; }
 
-                public int platformFaultDomain { get; set; };
+                public int? platformFaultDomain { get; set; };
 
                 public VirtualMachinePrioityTypes priority { get; set; }
 
@@ -438,7 +438,7 @@
                         properties = new CreateOrUpdateVMProperties
                         {
                             storageProfile = new StorageProfile { imageReference = new ImageReference() },
-                            hardWareProfile = new HardWareProfile { vmSizeProperties = new VMSizeProperties() },
+                            hardwareProfile = new HardwareProfile { vmSizeProperties = new VMSizeProperties() },
                             osProfile = new OSProfile { computerName = "", adminUsername = "", adminPassword = "" },
                             networkProfile = new NetworkProfile { networkInterfaces = new NetworkInterface[1]
                             {

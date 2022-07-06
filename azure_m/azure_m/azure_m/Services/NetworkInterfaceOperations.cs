@@ -16,14 +16,16 @@ namespace azure_m.Services
         public async Task queryCreateOrUpdateNI(CreateOrUpdateNIRequest createOrUpdateNIRequest)
         {
             var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, createOrUpdateNIRequest.uri.resourceGroupName, createOrUpdateNIRequest.uri.networkInterfaceName);
-            var url = Utils.withApiVersion(
+            var url = Utils
+                .withApiVersion(
                     new Url(baseStrUrl),
-                    apiVersion.createOrUpdate);
+                    apiVersion.createOrUpdate)
+                .WithOAuthBearerToken(QueryInfo.token);
 
             try
             {
                 var res = await url
-                    .PostJsonAsync(createOrUpdateNIRequest.body)
+                    .PutJsonAsync(createOrUpdateNIRequest.body)
                     .ReceiveString();
             }
             catch (FetchException ex)

@@ -32,14 +32,16 @@ namespace azure_m.Services
         public async Task queryCreateOrUpdateVN(CreateOrUpdateVNRequest createOrUpdateVNRequest)
         {
             var baseStrUrl = string.Format(baseFormatUrlWithResourceGroupAndVNname, createOrUpdateVNRequest.uri.resourceGroupName, createOrUpdateVNRequest.uri.virtualNetworkName );
-            var url = Utils.withApiVersion(
+            var url = Utils
+                .withApiVersion(
                     new Url(baseStrUrl),
-                    apiVersion.createOrUpdate);
+                    apiVersion.createOrUpdate)
+                .WithOAuthBearerToken(QueryInfo.token);
 
             try
             {
                 var res = await url
-                    .PostJsonAsync(createOrUpdateVNRequest.body)
+                    .PutJsonAsync(createOrUpdateVNRequest.body)
                     .ReceiveString();
             }
             catch (FetchException ex)

@@ -17,14 +17,17 @@ namespace azure_m.Services
         public async Task queryCreateOrUpdatePublicIPAddress(CreateOrUpdatePublicIPAddressRequest createOrUpdatePublicIPAddressRequest)
         {
             var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, createOrUpdatePublicIPAddressRequest.uri.resourceGroupName, createOrUpdatePublicIPAddressRequest.uri.publicIpAddressName);
-            var url = Utils.withApiVersion(
+            var url = Utils
+                .withApiVersion(
                     new Url(baseStrUrl),
-                    apiVersion.createOrUpdate);
+                    apiVersion.createOrUpdate)
+                .WithOAuthBearerToken(QueryInfo.token); 
+                
 
             try
             {
                 var res = await url
-                    .PostJsonAsync(createOrUpdatePublicIPAddressRequest.body)
+                    .PutJsonAsync(createOrUpdatePublicIPAddressRequest.body)
                     .ReceiveString();
             }
             catch (FetchException ex)

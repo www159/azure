@@ -75,7 +75,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Entry Style="{StaticResource entryStyle}" Grid.Row="4" Grid.Column="1" x:Name="VMName" ReturnCommand="{Binding vmNameComplete}" ReturnCommandParameter="{x:Reference VMName}"/>
+                    <Entry Style="{StaticResource entryStyle}" Grid.Row="4" Grid.Column="1" x:Name="VMName" Text="{Binding VMName}" />
                     <Label VerticalTextAlignment="Center" Grid.Row="5"  Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
@@ -167,7 +167,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Entry Style="{StaticResource entryStyle}" Grid.Row="14" Grid.Column="1" x:Name="UserName" Text="{Binding vm.body.properties.osProfile.adminUsername}" Completed="UserName_Completed" />
+                    <Entry Style="{StaticResource entryStyle}" Grid.Row="14" Grid.Column="1" x:Name="UserName" Text="{Binding AdminUsername}" />
 
                     <!--#region ssh公钥-->
                     <Frame Grid.Row="15" Grid.RowSpan="2" Grid.ColumnSpan="2" x:Name="sshFrame" IsVisible="False">
@@ -209,7 +209,7 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Entry Style="{StaticResource entryStyle}" Grid.Row="0" Grid.Column="1" x:Name="passwd" IsPassword="True" Completed="passwd_Completed" />
+                            <Entry Style="{StaticResource entryStyle}" Grid.Row="0" Grid.Column="1" x:Name="passwd" IsPassword="True" Completed="passwd_Completed" Unfocused="passwd_Completed" />
                             <Label VerticalTextAlignment="Center" Grid.Row="1" Style="{StaticResource itemLabel}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -218,7 +218,7 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Entry Style="{StaticResource entryStyle}" Grid.Row="1" Grid.Column="1" x:Name="passwd2" IsPassword="True" TextChanged="passwd2_Completed"/>
+                            <Entry Style="{StaticResource entryStyle}" Grid.Row="1" Grid.Column="1" x:Name="passwd2" IsPassword="True" Completed="passwd2_Completed" Unfocused="passwd2_Completed"/>
                         </Grid>
                     </Frame>
                     <!--#endregion-->
@@ -254,6 +254,7 @@
                     <!--#endregion-->
                 </Grid>
             </ScrollView>
+            <Button Text="Create" HorizontalOptions="Center" Command="{Binding CreateOrUpdateVM}"/>
         </StackLayout>
     </ContentPage>
 
