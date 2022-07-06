@@ -7,19 +7,19 @@ using Xamarin.Forms;
 
 namespace azure_m.Models.RequestModels
 {
-    namespace Locations
+    namespace ListLocations
     {
-            public class LocationsBody
+            public class ListLocationsBody
             {
 
             }
 
-            public class LocationsUri
+            public class ListLocationsUri
             {
 
             }
 
-            public class LocationsRequest:IRequest<LocationsUri,LocationsBody>
+            public class ListLocationsRequest:IRequest<ListLocationsUri,ListLocationsBody>
             {
 
             }
