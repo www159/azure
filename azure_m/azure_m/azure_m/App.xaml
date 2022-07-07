@@ -7,9 +7,15 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Primary">#686789</Color>
+            <Color x:Key="SPrim">#9FABB9</Color>
+            <Color x:Key="DPrim">#91AD9E</Color>
+            <Color x:Key="Layout">#F3EEEA</Color>
+            <Color x:Key="CardBack">#D3D2D0</Color>
+            <Color x:Key="PrimaryText">#E4E6E1</Color>
+            <Color x:Key="DPrimText">#B0B1B6</Color>
             <Style TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryText}"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -20,7 +26,7 @@
                             </VisualState>
                             <VisualState x:Name="Disabled">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#332196F0" />
+                                    <Setter Property="BackgroundColor" Value="{StaticResource PrimaryText}" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>

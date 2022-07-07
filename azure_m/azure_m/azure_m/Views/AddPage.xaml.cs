@@ -28,7 +28,7 @@ namespace azure_m.Views
                 async () =>
                 {
                     //TODO
-                    await Task.Delay(1000)
+                    await Task.Delay(1000);
                 });
 
         }
