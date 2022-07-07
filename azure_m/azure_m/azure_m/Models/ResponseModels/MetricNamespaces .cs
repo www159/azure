@@ -6,7 +6,11 @@ namespace azure_m.Models
 {
     namespace ResponseModels
     {
-        public class MetricNamespacesResponse
+
+        public class ListMetricNamespaceResponse: ListResponse<MetricNamespace> {}
+
+        public class MetricNamespaceResponse: MetricNamespace {}
+        public class MetricNamespace
         {
             public string id { get; set; }
 

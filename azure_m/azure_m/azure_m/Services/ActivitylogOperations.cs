@@ -87,7 +87,7 @@ namespace azure_m.Services
                     {
                         break;
                     }
-                    res = await QueryInfo.queryWithNextLink<ActivitylogResponse>(res.nextLink);
+                    res = await Utils.queryWithNextLink<ActivitylogResponse>(res.nextLink);
                 }catch(Exception ex)
                 {
                     Utils.error(ex);
