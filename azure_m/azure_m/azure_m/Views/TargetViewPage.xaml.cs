@@ -15,58 +15,14 @@ namespace azure_m.Views
 
     public partial class TargetViewPage : ContentPage
     {
-
-        int checkedIndex;
-
-        List<bool> checks;
-
-        StackLayout stackLayout;
         public TargetViewPage()
         {
             InitializeComponent();
-            
-            //Resource();
         }
-        
-        //public void Resource()
-        //{
-            
-        //    stackLayout=new StackLayout 
-        //    {
-        //        Margin=new Thickness(0,140,0,0),
-        //        BackgroundColor=Color.Red,
-        //        VerticalOptions=LayoutOptions.Start,
-        //        HorizontalOptions=LayoutOptions.Start,
-        //        BindingContext=checks
-        //    };
-        //    StaticGrid.Children.Add(stackLayout);
-        //    int index = 0;
-        //    Sourses.ForEach(o =>
-        //    {
-        //        checks.Add(false);
-        //        var radioBtn = new RadioButton { GroupName = "Same", };
-        //        // grid = new Grid();
-        //        var RadioGrid = new Grid();
-        //        var label = new Label { Text = o.Name, Margin = new Thickness(20, 0, 0, 0) };
-        //        var TypeLabel = new Label { Text = o.SourseType, Margin = new Thickness(200, 0, 0, 0) };
-        //        //stackLayout.Children.Add(grid);
-        //        //grid.Children.Add(radioBtn);
-
-        //        radioBtn.Content = RadioGrid;
-        //        RadioGrid.Children.Add(label);
-        //        RadioGrid.Children.Add(TypeLabel);
-        //    });
-        //}
-
 
         private void ChooseTargetClicked(object sender, EventArgs e)
         {
             ChooseTarget.IsVisible = !ChooseTarget.IsVisible;
-        }
-
-        private void ApplyTargetClicked(object sender, EventArgs e)
-        {     
-            ChooseTarget.IsVisible = false;           
         }
 
         private void CancelTargetClicked(object sender, EventArgs e)
@@ -89,6 +45,7 @@ namespace azure_m.Views
                 CccChart.IsVisible = false;
                 CcrChart.IsVisible = false;
                 AmbChart.IsVisible = false;
+                DoboChart.IsVisible = false;
             }
             if (ShowType.Text == "磁盘")
             {
@@ -98,6 +55,7 @@ namespace azure_m.Views
                 CccChart.IsVisible = false;
                 CcrChart.IsVisible = false;
                 AmbChart.IsVisible = false;
+                DoboChart.IsVisible = false;
             }
         }
 
@@ -108,6 +66,7 @@ namespace azure_m.Views
             CcrChart.IsVisible = true;
             CccChart.IsVisible = false;
             AmbChart.IsVisible = false;
+            DoboChart.IsVisible = false;
         }
 
         private void CccClicked(object sender, EventArgs e)
@@ -117,6 +76,7 @@ namespace azure_m.Views
             CccChart.IsVisible = true;
             CcrChart.IsVisible = false;
             AmbChart.IsVisible = false;
+            DoboChart.IsVisible = false;
         }
 
         private void AmbClicked(object sender, EventArgs e)
@@ -126,6 +86,17 @@ namespace azure_m.Views
             AmbChart.IsVisible = true;
             CccChart.IsVisible=false;
             CcrChart.IsVisible=false;
+            DoboChart.IsVisible = false;
+        }
+
+        private void DoboClicked(object sender,EventArgs e)
+        {
+            Disk.IsVisible = false;
+            ValueChoose.Text = "Dobo";
+            AmbChart.IsVisible = false;
+            CccChart.IsVisible = false;
+            CcrChart.IsVisible = false;
+            DoboChart.IsVisible = true;
         }
 
         private void ValueChooseClicked(object sender,EventArgs e)

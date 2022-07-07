@@ -21,11 +21,13 @@ namespace azure_m.ViewModels
         public List<Models.MockModels.Data> Ccr { get; set; }
         public List<Models.MockModels.Data> Ccc { get; set; }
         public List<Models.MockModels.Data> Amb { get; set; }
+        public List<Models.MockModels.Data> Dobo { get; set; }
         public TargetViewModel()
         {
             var ccr = Utils.readMock<azure_m.Models.MockModels.Index>(azure_m.Mocks.Mocks.ccr);
             var ccc = Utils.readMock<azure_m.Models.MockModels.Index>(azure_m.Mocks.Mocks.ccc);
             var amb = Utils.readMock<azure_m.Models.MockModels.Index>(azure_m.Mocks.Mocks.amb);
+            var dobo = Utils.readMock<azure_m.Models.MockModels.Index>(azure_m.Mocks.Mocks.dobo);
             ccr.Data.ForEach(o =>
             {
                 o.Average = o.Average / (1024 * 1024);
@@ -38,9 +40,14 @@ namespace azure_m.ViewModels
             {                    
                 o.Average = o.Average / (1024 * 1024);
             });
+            dobo.Data.ForEach(o =>
+            {
+                o.Average = o.Average / (1024 * 1024);
+            });
             Ccr = ccr.Data;
             Ccc = ccc.Data;
             Amb = amb.Data;
+            Dobo = dobo.Data;
 
             Sourses = new List<Sourse>()
             {
@@ -57,6 +64,5 @@ namespace azure_m.ViewModels
     {
         public string Name { get; set; }
         public string SourseType { get; set; }
-
     }
 }

@@ -23,7 +23,7 @@
             <Label Text="名称" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="60,222,0,0"/>
             <Label Text="资源组" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="160,222,0,0"/>
             <Label Text="大小" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="280,222,0,0"/>
-            <CollectionView x:Name="VirtualMachineList" ItemsSource="{Binding VmDetails}" Margin="20,260,0,0" SelectionChanged="VirtualMachineList_SelectionChanged" SelectionMode="Single">
+            <CollectionView x:Name="VirtualMachineList" ItemsSource="{Binding VmDetails}" Margin="20,260,0,0" SelectionChanged="VirtualMachineList_SelectionChanged" SelectionChangedCommand="{Binding OnSelectChanged}" SelectionChangedCommandParameter="{Reference VirtualMachineList}" SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid VerticalOptions="Start" HorizontalOptions="Start">
@@ -38,7 +38,8 @@
             <Frame x:Name="DetailesFrame" IsVisible="false">
                 <Grid>
                     <Button x:Name="btn" Text="关闭" VerticalOptions="End" HorizontalOptions="Start" Clicked="Button_Clicked" Margin="20,0,0,0"/>
-                    <Label Text="虚拟机名称" FontSize="35" Margin="20,0,0,0" VerticalOptions="Start" HorizontalOptions="Start" />
+                    <Button x:Name="LogBtn" Text="获取活动日志（30天内）" VerticalOptions="End" HorizontalOptions="Start" Clicked="LogBtn_Clicked" Margin="160,0,0,0"/>
+                    <Label Text="{Binding Name, Mode=TwoWay}" FontSize="35" Margin="20,0,0,0" VerticalOptions="Start" HorizontalOptions="Start" />
                     <ScrollView  Margin="0,40,0,80" >
                         <Grid>
                             <Label Text="概要" FontSize="30" Margin="20,40,0,0"/>
@@ -58,7 +59,7 @@
                                 <StackLayout Orientation="Horizontal" >
                                     <Grid>
                                         <Label Text="位置" FontSize="20"  Margin="20,20,0,0"/>
-                                        <Label Text="{Binding virtualMachine.location}" FontSize="20"  Margin="160,20,0,0"/>
+                                        <Label Text="{Binding Location}" FontSize="20"  Margin="160,20,0,0"/>
                                     </Grid>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" >
@@ -88,7 +89,7 @@
                                 <StackLayout Orientation="Horizontal" >
                                     <Grid>
                                         <Label Text="计算机名称" FontSize="20"  Margin="20,500,0,0"/>
-                                        <Label Text="{Binding virtualMachine.name}" FontSize="20"  Margin="160,500,0,0"/>
+                                        <Label Text="{Binding Name}" FontSize="20"  Margin="160,500,0,0"/>
                                     </Grid>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" >
@@ -106,13 +107,13 @@
                                 <StackLayout Orientation="Horizontal" >
                                     <Grid>
                                         <Label Text="产品/服务" FontSize="20"  Margin="20,20,0,0"/>
-                                        <Label Text="{Binding virtualMachine.properties.storageProfile.imageReference.offer}" FontSize="20"  Margin="160,20,0,0"/>
+                                        <Label Text="{Binding Offer}" FontSize="20"  Margin="160,20,0,0"/>
                                     </Grid>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" >
                                     <Grid>
                                         <Label Text="计划" FontSize="20"  Margin="20,20,0,0"/>
-                                        <Label Text="{Binding virtualMachine.properties.storageProfile.imageReference.sku}" FontSize="20"  Margin="160,20,0,0"/>
+                                        <Label Text="{Binding Sku}" FontSize="20"  Margin="160,20,0,0"/>
                                     </Grid>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal">
@@ -121,8 +122,8 @@
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" >
                                     <Grid>
-                                        <Label Text="磁盘" FontSize="20"  Margin="20,20,0,0"/>
-                                        <Label Text="{Binding virtualMachine.properties.storageProfile.osDisk.name}" FontSize="20"  Margin="160,20,0,0"/>
+                                        <Label Text="OS磁盘" FontSize="20"  Margin="20,20,0,0"/>
+                                        <Label Text="{Binding OSDisk_Name}" FontSize="20"  Margin="160,20,0,0"/>
                                     </Grid>
                                 </StackLayout>
                             </StackLayout>

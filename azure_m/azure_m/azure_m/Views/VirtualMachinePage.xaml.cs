@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using azure_m.ViewModels;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -26,7 +27,12 @@ namespace azure_m.Views
 
         private void VirtualMachineList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DetailesFrame.IsVisible = true;
+            DetailesFrame.IsVisible = true;           
+        }
+
+        private void LogBtn_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }
