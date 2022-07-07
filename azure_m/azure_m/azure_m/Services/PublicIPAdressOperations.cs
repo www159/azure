@@ -12,7 +12,7 @@ namespace azure_m.Services
         {
             public const string createOrUpdate = "2021-08-01";
         }
-        private string baseFormatUrlWithResourceGroup = $"{QueryInfo.baseStrUrl}/resourceGroups/{{0}}/providers/Microsoft.Network/publicIPAddresses/{{1}}";
+        private string baseFormatUrlWithResourceGroup = $"{QueryInfo.baseStrUrl}/resourceGroups/{{0}}/providers/{QueryInfo.resourceNamespace[ResourceType.publicIPAddresses]}/{ResourceType.publicIPAddresses}/{{1}}";
 
         public async Task queryCreateOrUpdatePublicIPAddress(CreateOrUpdatePublicIPAddressRequest createOrUpdatePublicIPAddressRequest)
         {

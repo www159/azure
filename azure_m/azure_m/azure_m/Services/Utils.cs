@@ -55,6 +55,14 @@ namespace azure_m.Services
             var json = JsonConvert.DeserializeObject<T>(jsonStr);
             return json;
         }
+
+        public static IFlurlRequest baseStrUrlFull(string apiVersion, string type, string resourceGroup = "", string _namespace = "",  string name = "")
+        {
+
+            string uri = $"{QueryInfo.baseStrUrl}{(resourceGroup == "" ? "" : $"/resourceGroups/{resourceGroup}")}{(_namespace == "" ? "" : $"/providers/{_namespace}")}/{type}{(name == "" ? "" : $"/{name}")}";
+            IFlurlRequest req = withApiVersion(new Url(uri), apiVersion).WithOAuthBearerToken(QueryInfo.token);
+            return req;
+        }
     }
 
 }

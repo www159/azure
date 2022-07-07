@@ -172,7 +172,7 @@ namespace azure_m.ViewModels
 
             NetworkInterfaceOperations networkInterfaceOperations = new NetworkInterfaceOperations();
 
-            VMDataStore vmDataStore = new VMDataStore();
+            VMOperations vmDataStore = new VMOperations();
 
             string publicIPAddressName = $"IP_{UID}";
 
@@ -248,7 +248,7 @@ namespace azure_m.ViewModels
                                         properties = new NetworkInterfaceIPConfigurationProperties {
                                             publicIPAddress = new PublicIPAddress {
                                                 id = QueryInfo.genResourceId(
-                                                    QueryInfo.ResourceType.publicIPAddresses,
+                                                    ResourceType.publicIPAddresses,
                                                     resourceGroup,
                                                     publicIPAddressName)
                                             },
@@ -276,7 +276,7 @@ namespace azure_m.ViewModels
 
             #region VM
             vm.body.properties.networkProfile.networkInterfaces[0].id = QueryInfo.genResourceId(
-                QueryInfo.ResourceType.networkInterfaces,
+                ResourceType.networkInterfaces,
                 resourceGroup,
                 networkInterfaceName);
 

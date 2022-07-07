@@ -15,7 +15,7 @@ namespace azure_m.ViewModels
     public class ResourceViewModel: BaseViewModel
     {
 
-        public ResourceDataStore resourceDataStore => DependencyService.Get<ResourceDataStore>();
+        public ResourceOperations resourceDataStore => DependencyService.Get<ResourceOperations>();
         private Resource _selectedResource;
 
         public static Dictionary<string, string> ImgMap = new Dictionary<string, string>()

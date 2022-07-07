@@ -4,12 +4,9 @@
     namespace ResponseModels
     {
 
-        public class ResourceResponse
-        {
-            public string nextLink { get; set; }
+        public class ListResourceResponse: ListResponse<GenericResourceExpanded> { } 
 
-            public GenericResourceExpanded[] value { get; set; }
-        }
+        public class ResourceResponse: GenericResourceExpanded { }
 
         public class GenericResourceExpanded
         {

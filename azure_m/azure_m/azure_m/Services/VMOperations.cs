@@ -16,7 +16,7 @@ namespace azure_m.Services
     using Models.RequestModels.VM.Start;
 
     using Models.ResponseModels;
-    public class VMDataStore
+    public class VMOperations
     {
         private static class apiVersion {
 
@@ -51,10 +51,17 @@ namespace azure_m.Services
                 baseFormatUrlWithResourceGroup,
                 createOrUpdateVMRequest.uri.resourceGroupName, 
                 createOrUpdateVMRequest.uri.vmName);
-            var url = Utils.withApiVersion(
-                    new Url(baseStrUrl),
-                    apiVersion.createOrUpdate)
-                    .WithOAuthBearerToken(QueryInfo.token);
+
+            var url = Utils.baseStrUrlFull(
+                resourceGroup: createOrUpdateVMRequest.uri.resourceGroupName,
+                name: createOrUpdateVMRequest.uri.vmName,
+                _namespace: QueryInfo.resourceNamespace[ResourceType.virtualMachines],
+                type: ResourceType.virtualMachines,
+                apiVersion: apiVersion.createOrUpdate);
+            //var url = Utils.withApiVersion(
+            //        new Url(baseStrUrl),
+            //        apiVersion.createOrUpdate)
+            //        .WithOAuthBearerToken(QueryInfo.token);
 
             IFlurlResponse res = res = await url
                     .PutJsonAsync(createOrUpdateVMRequest.body);
@@ -117,21 +124,23 @@ namespace azure_m.Services
 
         }//列出指定资源组所有虚拟机
 
-        public async Task queryListAllVM()
+        public async Task<ListVirtualMachineResponse> queryListAllVM()
         {
             var url = Utils.withApiVersion(
                 new Url(baseFormatUrlWithoutVMnameOrResourceGroup),
                 apiVersion.list);
+            ListVirtualMachineResponse res = null;
             try
             {
-                var res = await url
-                    .GetJsonAsync<VirtualMachineResponse>();
+               res = await url
+                    .GetJsonAsync<ListVirtualMachineResponse>();
 
             }
             catch (Exception ex)
             {
                 Utils.error(ex);
             }
+            return res;
 
         }//列出该订阅的所有虚拟机
 

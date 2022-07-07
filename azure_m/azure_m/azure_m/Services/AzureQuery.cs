@@ -7,6 +7,7 @@ using Flurl.Http;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.Identity.Client;
+using Xamarin.Forms;
 
 
 
@@ -15,6 +16,30 @@ namespace azure_m.Services
 
     using Models.ResponseModels;
     using Views;
+
+    public static class ResourceType
+    {
+
+        public const string networkInterfaces = "networkInterfaces";
+
+        public const string publicIPAddresses = "publicIPAddresses";
+
+        public const string virtualNetworks = "virtualNetworks";
+
+        public const string subnets = "subnets";
+
+        public const string virtualMachines = "virtualMachines";
+
+        public const string sshPublicKeys = "sshPublicKeys";
+
+        public const string networkWatchers = "networkWatchers";
+
+        public const string disks = "disks";
+
+        public const string networkSecurityGroups = "networkSecurityGroups";
+
+        public const string resources = "resources";
+    }
 
     public static class QueryInfo
     {
@@ -120,29 +145,19 @@ namespace azure_m.Services
         private static string baseUri { get; set; } = "https://management.azure.com/";
         public static string baseStrUrl
         {
-            get
-            {
-                return $"{baseUri}subscriptions/{subscriptionId}";
-            }
+            get => $"{baseUri}subscriptions/{subscriptionId}";
+   
         }
+
         public static IFlurlRequest baseRequest { get; set; }
 
-        public static class ResourceType {
-
-            public const string networkInterfaces = "networkInterfaces";
-
-            public const string publicIPAddresses = "publicIPAddresses";
-
-            public const string virtualNetworks = "virtualNetworks";
-
-            public const string subnets = "subnets";
-        }
 
         public static Dictionary<string, string> resourceNamespace = new Dictionary<string, string> {
-            ["networkInterfaces"] = "Microsoft.Network",
-            ["publicIPAddresses"] = "Microsoft.Network",
-            ["virtualNetworks"]   = "Microsoft.Network",
-            ["subnets"]           = "Microsoft.Network",
+            [ResourceType.networkInterfaces] = "Microsoft.Network",
+            [ResourceType.publicIPAddresses] = "Microsoft.Network",
+            [ResourceType.virtualNetworks]   = "Microsoft.Network",
+            [ResourceType.subnets]           = "Microsoft.Network",
+            [ResourceType.virtualMachines]   = "Microsoft.Compute",
         };
 
         public const string subnetNameDefault = "default";
@@ -185,22 +200,26 @@ namespace azure_m.Services
         }
         #endregion
 
-        #region onAppearBeforeAsync
+        #region 全局资源
         public static List<ResourceGroup> resourceGroup;
 
-
-        #region 创建虚拟网络
-        // 根据
-        public static event EventHandler jumpCreateVNPage;
-
-        public static async Task JumpAsync()
-        {
-            var regOp = new ResourceGroupOperations();
-            resourceGroup = await regOp.ListResourceGroup();
-            jumpCreateVNPage.Invoke(null, EventArgs.Empty);
-
-        }
         #endregion
+
+        #region 服务注册
+
+        public static void registerGlobal() {
+
+            DependencyService.Register<VMOperations>();
+            DependencyService.Register<VNOperations>();
+            DependencyService.Register<VMSizesOperations>();
+            DependencyService.Register<SubnetOperations>();
+            DependencyService.Register<NetworkInterfaceOperations>();
+            DependencyService.Register<PublicIPAdressOperations>();
+            DependencyService.Register<ResourceGroupOperations>();
+            DependencyService.Register<ResourceOperations>();
+            // DependencyService.Register<>();
+            // DependencyService.Register<>();
+        }
         #endregion
     }
 }

@@ -11,7 +11,7 @@ namespace azure_m.Services
         {
             public const string createOrUpdate = "2021-08-01";
         }
-        private string baseFormatUrlWithResourceGroup = $"{QueryInfo.baseStrUrl}/resourceGroups/{{0}}/providers/Microsoft.Network/networkInterfaces/{{1}}";
+        private string baseFormatUrlWithResourceGroup = $"{QueryInfo.baseStrUrl}/resourceGroups/{{0}}/providers/{QueryInfo.resourceNamespace[ResourceType.networkInterfaces]}/{ResourceType.networkInterfaces}/{{1}}";
 
         public async Task queryCreateOrUpdateNI(CreateOrUpdateNIRequest createOrUpdateNIRequest)
         {

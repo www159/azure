@@ -4,7 +4,10 @@ using System.Text;
 
 namespace azure_m.Models.ResponseModels
 {
-    internal class IResponse
+    public class ListResponse<T>
     {
+        public string nextLink { get; set; }
+
+        public T[] value { get; set; }
     }
 }

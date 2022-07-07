@@ -18,7 +18,7 @@ namespace azure_m
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            DependencyService.Register<ResourceDataStore>();
+            QueryInfo.registerGlobal();
 
            // MainPage = new Page1();
 

@@ -10,7 +10,7 @@ namespace azure_m.Services
     using Models.ResponseModels;
     using Models;
 
-    public class ResourceDataStore
+    public class ResourceOperations
     {
         private IFlurlRequest baseRequest = QueryInfo.baseRequest.AppendPathSegment("resources");
 
@@ -21,7 +21,7 @@ namespace azure_m.Services
             public const string listResources = "2021-04-01";
         }
 
-        public ResourceDataStore()
+        public ResourceOperations()
         {
             resources = new List<Resource>{ };
         }
@@ -29,7 +29,7 @@ namespace azure_m.Services
         public async Task refreshResourceAsync()
         {
             resources.Clear();
-            ResourceResponse res;
+            ListResourceResponse res;
             while(true)
             {
                try
@@ -47,7 +47,7 @@ namespace azure_m.Services
                         resources.Add(simplifiedResource);
                     }
                     if (res.nextLink == null) break;
-                    res = await QueryInfo.queryWithNextLink<ResourceResponse>(res.nextLink);
+                    res = await QueryInfo.queryWithNextLink<ListResourceResponse>(res.nextLink);
                 }
                 catch (Exception ex)
                 {
@@ -56,15 +56,15 @@ namespace azure_m.Services
             }
         }
 
-        private async Task<ResourceResponse> queryResourcesAsync(string filter = "", int top = -1)
+        private async Task<ListResourceResponse> queryResourcesAsync(string filter = "", int top = -1)
         {
-            var req = Utils.withApiVersion(baseRequest, apiVersion.listResources);
-            ResourceResponse res = null;
+            var req = Utils.baseStrUrlFull(type: ResourceType.resources, apiVersion: apiVersion.listResources);
+            ListResourceResponse res = null;
             try
             {
                 if (filter == "")
                 {
-                    res = await req.GetJsonAsync<ResourceResponse>();
+                    res = await req.GetJsonAsync<ListResourceResponse>();
                 }
                 else
                 {
@@ -72,7 +72,7 @@ namespace azure_m.Services
                     {
                         filter = filter,
                         top = top,
-                    }).GetJsonAsync<ResourceResponse>();
+                    }).GetJsonAsync<ListResourceResponse>();
                 }
             }
             catch (Exception ex)

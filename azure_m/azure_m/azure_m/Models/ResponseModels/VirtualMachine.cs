@@ -2,6 +2,8 @@
 {
     namespace ResponseModels
     {
+
+        public class ListVirtualMachineResponse: ListResponse<VirtualMachineResponse> { }
         public class VirtualMachineResponse
         {
             //public ExtendedLocation extendedLocation { get; set; }

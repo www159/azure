@@ -6,6 +6,9 @@ namespace azure_m.Models
 {
     namespace ResponseModels
     {
+
+        public class ListVMSizeResponse: ListResponse<VMSizeResponse> { }
+
         public class VMSizeResponse
         {
             public int maxDataDiskCount { get; set; }

@@ -36,7 +36,7 @@ namespace azure_m.Services
         private string baseFormatUrlWithLocation = $"{QueryInfo.baseStrUrl}/providers/Microsoft.Compute/locations/{{0}}/vmSizes";
 
 
-        public async Task<IResponse<VMSizeResponse>> queryListVMSizes(ListVMSizesRequest listVMSizesRequest)
+        public async Task<ListVMSizeResponse> queryListVMSizes(ListVMSizesRequest listVMSizesRequest)
         {
             var baseStrUrl = string.Format(baseFormatUrlWithLocation, listVMSizesRequest.uri.location);
             var url = Utils.withApiVersion(
@@ -44,11 +44,11 @@ namespace azure_m.Services
                 apiVersion.list)
                 .WithOAuthBearerToken(QueryInfo.token);
 
-            IResponse<VMSizeResponse> res = null;
+            ListVMSizeResponse res = null;
             try
             {
                 res = await url
-                    .GetJsonAsync<IResponse<VMSizeResponse>>();
+                    .GetJsonAsync<ListVMSizeResponse>();
 
             }
             catch (Exception ex)
