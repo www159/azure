@@ -124,7 +124,9 @@ namespace azure_m.Views
 
         public void onFavoriteBtn_Clicked(object sender, EventArgs e)
         {
-            swapBtnColors();
+            FavoriteBtn.BackgroundColor = FavoriteBtn.BorderColor = RecentBtn.TextColor = Color.FromHex("#1e6ede");
+            FavoriteBtn.TextColor = Color.White;
+            RecentBtn.BackgroundColor = RecentBtn.BorderColor = Color.LightGray;
             //异步 querying datas, 在此期间出现一个刷新标志
             GetResources(1);
 
@@ -132,7 +134,9 @@ namespace azure_m.Views
 
         public void onRecentBtn_Clicked(object sender, EventArgs e)
         {
-            swapBtnColors();
+            RecentBtn.BackgroundColor = RecentBtn.BorderColor = FavoriteBtn.TextColor = Color.FromHex("#1e6ede");
+            RecentBtn.TextColor = Color.White;
+            FavoriteBtn.BackgroundColor = FavoriteBtn.BorderColor = Color.LightGray;
             //异步 querying datas, 在此期间出现一个刷新标志
             GetResources(0);
         }
