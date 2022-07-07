@@ -373,14 +373,14 @@
                     <Line Grid.Row="6" Grid.ColumnSpan="2" VerticalOptions="Start" Style="{StaticResource BoldBorder}"/>
                     <!--#region 数据磁盘-->
                     <Label VerticalTextAlignment="Center" Text="数据磁盘" Grid.Row="6" Grid.ColumnSpan="2" FontSize="20"/>
-                    <Label VerticalTextAlignment="Center" Grid.Row="7" Style="{StaticResource itemLabel}">
+                    <!--<Label VerticalTextAlignment="Center" Grid.Row="7" Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="To be added"/>
                                 <Span Text="*" TextColor="Maroon"/>
                             </FormattedString>
                         </Label.FormattedText>
-                    </Label>
+                    </Label>-->
                     <Label VerticalTextAlignment="Center" Text="创建并添加新磁盘" Grid.Row="8" TextColor="#1e6ede"/>
                     <Label VerticalTextAlignment="Center" Text="添加现有磁盘" Grid.Row="8" Grid.Column="1" TextColor="#1e6ede"/>
                     <!--#endregion-->

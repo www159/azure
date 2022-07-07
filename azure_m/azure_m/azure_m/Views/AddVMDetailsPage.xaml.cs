@@ -24,6 +24,8 @@ namespace azure_m.Views
             {
                 Navigation.PopAsync();
                 DisplayAlert($"虚拟机{(sender as ViewModels.VMDetailsViewModel).VMName}创建成功","","OK");
+
+
             }
             else
             {

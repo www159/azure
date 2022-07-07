@@ -10,14 +10,78 @@
         <viewmodels:VNDetailsViewModel/>
     </CarouselPage.BindingContext>
 
+    <CarouselPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="itemLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="2,0,0,0"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+
+            <Style x:Key="ItemPicker" TargetType="Picker">
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="WidthRequest" Value="200"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="20,0,0,0"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+
+            <Style x:Key="entryStyle" TargetType="Entry">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="MaxLength" Value="100"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="WidthRequest" Value="200"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+
+            <Style x:Key="frameStyle" TargetType="Frame">
+                <Setter Property="BorderColor" Value="White"/>
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+
+            <Style x:Key="CollectionStyle" TargetType="CollectionView">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+            </Style>
+
+            <Style x:Key="BoldBorder" TargetType="Line">
+                <Setter Property="HeightRequest" Value="2"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="BackgroundColor" Value="LightGray"/>
+            </Style>
+
+            <Style x:Key="ThinBorder" TargetType="Line">
+                <Setter Property="HeightRequest" Value="1"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="BackgroundColor" Value="lightGray"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="WidthRequest" Value="400"/>
+            </Style>
+        </ResourceDictionary>
+    </CarouselPage.Resources>
+
     <!--#region Basic页面-->
     <ContentPage BackgroundColor="white" x:Name="Basic">
-        <StackLayout Margin="10,5,0,10">
+        <StackLayout Margin="5,5,0,5">
             <ScrollView>
                 <Grid ColumnDefinitions="*,2*">
                     <!--#region 项目详细信息-->
                     <Label VerticalTextAlignment="Center" Text="项目详细信息" Grid.ColumnSpan="2" FontSize="20"/>
-                    <Label VerticalTextAlignment="Center" Grid.Row="1">
+                    <Line Grid.Row="1" Grid.ColumnSpan="2" VerticalOptions="Start" Style="{StaticResource ThinBorder}"/>
+                    <Label VerticalTextAlignment="Center" Grid.Row="1" Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="订阅"/>
@@ -25,8 +89,10 @@
                         </Label.FormattedText>
                     </Label>
                     <!--<Label Grid.Row="1" Grid.Column="1" Text="免费试用" VerticalOptions="Center" FontSize="20"/>-->
-                    <Picker Grid.Row="1" Grid.Column="1" x:Name="subscribe" Title="请选择订阅" ItemsSource="{Binding subscribesNames}" SelectedIndexChanged="subscribe_SelectedIndexChanged" />
-                    <Label VerticalTextAlignment="Center" Grid.Row="2">
+                    <Picker Grid.Row="1" Grid.Column="1" x:Name="subscribe" Title="请选择订阅" ItemsSource="{Binding subscribesNames}" SelectedIndexChanged="subscribe_SelectedIndexChanged" Style="{StaticResource ItemPicker}" />
+                    <Line Grid.Row="2" Grid.ColumnSpan="2" VerticalOptions="Start" Style="{StaticResource ThinBorder}"/>
+
+                    <Label VerticalTextAlignment="Center" Grid.Row="2" Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="资源组"/>
@@ -34,12 +100,15 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="2" Grid.Column="1" x:Name="resourcesGroup" Title="请选择资源组" ItemsSource="{Binding resourceGroups}" SelectedIndexChanged="resourcesGroup_SelectedIndexChanged"/>
+                    <Picker Grid.Row="2" Grid.Column="1" x:Name="resourcesGroup" Title="请选择资源组" ItemsSource="{Binding resourceGroups}" SelectedIndexChanged="resourcesGroup_SelectedIndexChanged" Style="{StaticResource ItemPicker}"/>
                     <!--#endregion-->
+                    <Line Grid.Row="3" Grid.ColumnSpan="2" VerticalOptions="Start" Style="{StaticResource BoldBorder}"/>
 
                     <!--#region 实例详细信息-->
-                    <Label VerticalTextAlignment="End" Text="实例详细信息" Grid.ColumnSpan="2" FontSize="20" Grid.Row="3"/>
-                    <Label VerticalTextAlignment="Center" Grid.Row="4">
+                    <Label VerticalTextAlignment="Center" Text="实例详细信息" Grid.ColumnSpan="2" FontSize="20" Grid.Row="3"/>
+                    <Line Grid.Row="4" Grid.ColumnSpan="2" VerticalOptions="Start" Style="{StaticResource ThinBorder}"/>
+
+                    <Label VerticalTextAlignment="Center" Grid.Row="4" Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="名称"/>
@@ -47,8 +116,10 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Entry Grid.Row="4" Grid.Column="1" x:Name="VNName" ReturnCommand="{Binding vnNameComplete}" ReturnCommandParameter="{x:Reference VNName}" TextChanged="VNName_TextChanged"/>
-                    <Label VerticalTextAlignment="Center" Grid.Row="5">
+                    <Entry Grid.Row="4" Grid.Column="1" x:Name="VNName" ReturnCommand="{Binding vnNameComplete}" ReturnCommandParameter="{x:Reference VNName}" TextChanged="VNName_TextChanged" Style="{StaticResource entryStyle}"/>
+                    <Line Grid.Row="5" Grid.ColumnSpan="2" VerticalOptions="Start" Style="{StaticResource ThinBorder}"/>
+
+                    <Label VerticalTextAlignment="Center" Grid.Row="5" Style="{StaticResource itemLabel}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="区域"/>
@@ -56,8 +127,9 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Picker Grid.Row="5" x:Name="areas" Grid.Column="1" Title="请选择区域" ItemsSource="{Binding AreaSources}" SelectedIndexChanged="areas_SelectedIndexChanged" />
+                    <Picker Margin="0,3, 0,0" Grid.Row="5" x:Name="areas" Grid.Column="1" Title="请选择区域" ItemsSource="{Binding AreaSources}" SelectedIndexChanged="areas_SelectedIndexChanged" Style="{StaticResource ItemPicker}"/>
                     <!--#endregion-->
+
                 </Grid>
             </ScrollView>
         </StackLayout>
@@ -69,19 +141,19 @@
         <StackLayout Orientation="Vertical" Margin="0,10,0,0">
             <Frame Margin="10,5,10,0">
                 <StackLayout>
-                    <Label Text="IP地址"></Label>
-                    <Label Text="虚拟网络的地址空间，采用 CIDR 表示法(例如 192.168.1.0/24)指定为一个或多个地址前缀。
+                    <Label Text="IP地址" FontSize="24"></Label>
+                    <Label FontSize="18" Text="虚拟网络的地址空间，采用 CIDR 表示法(例如 192.168.1.0/24)指定为一个或多个地址前缀。
 "/>
                 </StackLayout>
             </Frame>
-            <Label VerticalTextAlignment="Center" Margin="20, 20,20,20" >
+            <Label VerticalTextAlignment="Center" Margin="20, 20,20,20" FontSize="18">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="IPv4地址空间(例如192.168.1.0/24)"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Entry  Margin="20, 0, 20, 20" x:Name="IPAddressEntry" ReturnCommand="{Binding IPAddressComplete}" ReturnCommandParameter="{x:Reference IPAddressEntry}" TextChanged="IPAddressEntry_TextChanged"/>
+            <Entry FontSize="18" Text="192.168.1.0/24" Margin="20, 0, 20, 20" x:Name="IPAddressEntry" ReturnCommand="{Binding IPAddressComplete}" ReturnCommandParameter="{x:Reference IPAddressEntry}" TextChanged="IPAddressEntry_TextChanged"/>
         </StackLayout>
     </ContentPage>
     <!--#endregion-->
@@ -90,8 +162,10 @@
     <ContentPage BackgroundColor="white" x:Name="Security">
         <StackLayout Margin="10,5,0,10">
             <Grid ColumnDefinitions="*,2*">
-                <Label VerticalTextAlignment="End" Text="安全性" Grid.Row="0" Grid.ColumnSpan="2" FontSize="20"/>
-                <Label VerticalTextAlignment="Center" Grid.Row="1" Grid.RowSpan="2">
+                <Label Margin="10,5,10,0" VerticalTextAlignment="End" Text="安全性" Grid.Row="0" Grid.ColumnSpan="2" FontSize="24"/>
+                <Line Grid.Row="1" Grid.ColumnSpan="2" VerticalOptions="Start" Style="{StaticResource ThinBorder}"/>
+
+                <Label VerticalTextAlignment="Center" Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource itemLabel}">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="BastionHost"/>
@@ -101,11 +175,13 @@
                 <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" ColumnDefinitions="*,3*"  Margin="0, 15, 0, 0"
                         HeightRequest="10" RadioButtonGroup.GroupName="bh_group" RadioButtonGroup.SelectedValue="0">
                     <RadioButton x:Name="bh_false" Grid.Column="0" Grid.Row="0" Value="0" IsChecked="True"/>
-                    <Label Text="禁用" Grid.Column="1" Grid.Row="0" />
+                    <Label Text="禁用" Grid.Column="1" Grid.Row="0" Style="{StaticResource itemLabel}"/>
                     <RadioButton x:Name="bh_true"   Grid.Column="0" Grid.Row="1" IsEnabled="False" Value="1"/>
-                    <Label Text="启用" Grid.Column="1" Grid.Row="1" />
+                    <Label Text="启用" Grid.Column="1" Grid.Row="1" Style="{StaticResource itemLabel}"/>
                 </Grid>
-                <Label VerticalTextAlignment="Center" Grid.Row="3" Grid.RowSpan="2">
+                <Line Grid.Row="3" Grid.ColumnSpan="2" VerticalOptions="Start" Style="{StaticResource ThinBorder}"/>
+
+                <Label VerticalTextAlignment="Center" Grid.Row="3" Grid.RowSpan="2" Style="{StaticResource itemLabel}">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="DDos保护标准"/>
@@ -115,11 +191,13 @@
                 <Grid Grid.Row="3" Grid.RowSpan="2" Grid.Column="1" ColumnDefinitions="*,3*" Margin="0, 15, 0, 0"
                         HeightRequest="10" RadioButtonGroup.GroupName="ddos_group" RadioButtonGroup.SelectedValue="0">
                     <RadioButton x:Name="ddos_false" Grid.Column="0" Grid.Row="0" Value="0" IsChecked="True"/>
-                    <Label Text="禁用" Grid.Column="1" Grid.Row="0"/>
+                    <Label Text="禁用" Grid.Column="1" Grid.Row="0" Style="{StaticResource itemLabel}"/>
                     <RadioButton x:Name="ddos_true"  Grid.Column="0" Grid.Row="1" IsEnabled="False" Value="1"/>
-                    <Label Text="启用" Grid.Column="1" Grid.Row="1"/>
+                    <Label Text="启用" Grid.Column="1" Grid.Row="1" Style="{StaticResource itemLabel}"/>
                 </Grid>
-                <Label VerticalTextAlignment="Center" Grid.Row="5" Grid.RowSpan="2">
+                <Line Grid.Row="5" Grid.ColumnSpan="2" VerticalOptions="Start" Style="{StaticResource ThinBorder}"/>
+
+                <Label VerticalTextAlignment="Center" Grid.Row="5" Grid.RowSpan="2" Style="{StaticResource itemLabel}">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="防火墙"/>
@@ -129,10 +207,12 @@
                 <Grid Grid.Row="5" Grid.RowSpan="2" Grid.Column="1" ColumnDefinitions="*,3*" Margin="0, 15, 0, 0"
                         HeightRequest="10" RadioButtonGroup.GroupName="firewall_group" RadioButtonGroup.SelectedValue="0">
                     <RadioButton x:Name="firewall_false" Grid.Column="0" Grid.Row="0" Value="0" IsChecked="True"/>
-                    <Label Text="禁用" Grid.Column="1" Grid.Row="0"/>
+                    <Label Text="禁用" Grid.Column="1" Grid.Row="0" Style="{StaticResource itemLabel}"/>
                     <RadioButton x:Name="fire_true"  Grid.Column="0" Grid.Row="1" IsEnabled="False" Value="1"/>
-                    <Label Text="启用" Grid.Column="1" Grid.Row="1"/>
+                    <Label Text="启用" Grid.Column="1" Grid.Row="1" Style="{StaticResource itemLabel}"/>
                 </Grid>
+                <Line Grid.Row="7" Grid.ColumnSpan="2" VerticalOptions="Start" Style="{StaticResource ThinBorder}"/>
+
             </Grid>
         </StackLayout>
     </ContentPage>
@@ -143,73 +223,73 @@
         <StackLayout Orientation="Vertical" Margin="10,10,10,10">
             
             <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
-                <Label Text="基本" FontAttributes="Bold" FontSize="20"/>
+                <Label Text="基本" FontAttributes="Bold" FontSize="24"/>
             </StackLayout>
 
             <Grid RowSpacing="0">
                 <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                    <Label Text="订阅"/>
-                    <Label Text="免费试用" x:Name="c_subscribeName"/>
+                    <Label Text="订阅" Style="{StaticResource itemLabel}"/>
+                    <Label Text="免费试用" x:Name="c_subscribeName" Style="{StaticResource itemLabel}"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
-                    <Label Text="资源组"/>
-                    <Label x:Name="c_resGroup"/>
+                    <Label Text="资源组" Style="{StaticResource itemLabel}"/>
+                    <Label x:Name="c_resGroup" Style="{StaticResource itemLabel}"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
-                    <Label Text="名称"/>
-                    <Label BindingContext="{Reference VNName}" Text="{Binding Text}"/>
+                    <Label Text="名称" Style="{StaticResource itemLabel}"/>
+                    <Label BindingContext="{Reference VNName}" Text="{Binding Text}" Style="{StaticResource itemLabel}"/>
                 </StackLayout>
                 
                 <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
-                    <Label Text="区域"/>
+                    <Label Text="区域" Style="{StaticResource itemLabel}"/>
                     <!--//todo-->
-                    <Label x:Name="c_areas"/>
+                    <Label x:Name="c_areas" Style="{StaticResource itemLabel}"/>
                 </StackLayout>
             </Grid>
 
             <StackLayout Orientation="Horizontal">
-                <Label Text="IP地址" FontAttributes="Bold" FontSize="20"/>
+                <Label Text="IP地址" FontAttributes="Bold" FontSize="24"/>
             </StackLayout>
             <Grid RowSpacing="0">
                 <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                    <Label Text="地址空间"/>
-                    <Label BindingContext="{Reference IPAddressEntry}" Text="{Binding Text}"/>
+                    <Label Text="地址空间" Style="{StaticResource itemLabel}"/>
+                    <Label BindingContext="{Reference IPAddressEntry}" Text="{Binding Text}" Style="{StaticResource itemLabel}"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
-                    <Label Text="子网"/>
-                    <Label BindingContext="{Reference IPAddressEntry}" Text="{Binding Text}" />
+                    <Label Text="子网" Style="{StaticResource itemLabel}"/>
+                    <Label BindingContext="{Reference IPAddressEntry}" Text="{Binding Text}" Style="{StaticResource itemLabel}"/>
                 </StackLayout>
             </Grid>
 
             <StackLayout Orientation="Horizontal">
-                <Label Text="标记" FontAttributes="Bold" FontSize="20"/>
+                <Label Text="标记" FontAttributes="Bold" FontSize="24"/>
             </StackLayout>
             <Grid RowSpacing="0">
                 <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                    <Label Text="无"/>
+                    <Label Text="无" Style="{StaticResource itemLabel}"/>
                 </StackLayout>
             </Grid>
 
             <StackLayout Orientation="Horizontal">
-                <Label Text="安全性" FontAttributes="Bold" FontSize="20"/>
+                <Label Text="安全性" FontAttributes="Bold" FontSize="24"/>
             </StackLayout>
             <Grid RowSpacing="0">
                 <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                    <Label Text="BastionHost"/>
-                    <Label Text="已禁用"/>
+                    <Label Text="BastionHost" Style="{StaticResource itemLabel}"/>
+                    <Label Text="已禁用" Style="{StaticResource itemLabel}"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
-                    <Label Text="DDoS 防护计划"/>
-                    <Label Text="基本"/>
+                    <Label Text="DDoS 防护计划" Style="{StaticResource itemLabel}"/>
+                    <Label Text="基本" Style="{StaticResource itemLabel}"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
-                    <Label Text="防护墙"/>
-                    <Label Text="已禁用"/>
+                    <Label Text="防护墙" Style="{StaticResource itemLabel}"/>
+                    <Label Text="已禁用" Style="{StaticResource itemLabel}"/>
                 </StackLayout>
             </Grid>
             <Button BackgroundColor="#2196F3" Text="创建" Margin="250,0,10,10"  Command="{Binding CreateOrUpdateVN}"/>
