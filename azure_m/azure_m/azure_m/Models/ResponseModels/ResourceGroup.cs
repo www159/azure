@@ -1,14 +1,9 @@
 ﻿namespace azure_m.Models.ResponseModels
 {
 
-    public class ResourceGroupResponse
-    {
+    public class ListResourceGroupResponse: ListResponse<ResourceGroup> { }
 
-        public string nextLink { get; set; }  
-
-        public ResourceGroup[] value { get; set; }
-
-    }
+    public class ResourceGroupResponse: ResourceGroup { }
 
     public class ResourceGroup
     {

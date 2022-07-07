@@ -3,8 +3,13 @@
     namespace ResponseModels
     {
 
-        public class ListVirtualMachineResponse: ListResponse<VirtualMachineResponse> { }
-        public class VirtualMachineResponse
+        using RequestModels.VM.CreateOrUpdate;
+
+        public class ListVirtualMachineResponse: ListResponse<VirtualMachine> { }
+
+        public class VirtualMachineResponse: VirtualMachine { }
+
+        public class VirtualMachine
         {
             //public ExtendedLocation extendedLocation { get; set; }
 
@@ -81,31 +86,21 @@
             public DataDisk[] dataDisks { get; set; }
         }
 
-        public class ImageReference
-        {
-            public string publisher { get; set; }
 
-            public string offer { get; set; }
+        //public class OSDisk
+        //{
+        //    public string osType { get; set; }
 
-            public string sku { get; set; }
+        //    public string name { get; set; }
 
-            public string version { get; set; }
-        }
+        //    public string createOption { get; set; }
 
-        public class OSDisk
-        {
-            public string osType { get; set; }
+        //    public string caching { get; set; }
 
-            public string name { get; set; }
+        //    public ManagedDiskParameters managedDisk { get; set; }
 
-            public string createOption { get; set; }
-
-            public string caching { get; set; }
-
-            public ManagedDiskParameters managedDisk { get; set; }
-
-            public int diskSizeGB { get; set; }
-        }
+        //    public int diskSizeGB { get; set; }
+        //}
 
         public class ManagedDiskParameters
         {

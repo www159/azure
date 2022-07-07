@@ -2,11 +2,10 @@
 {
     namespace ResponseModels
     {
-        public class SubscriptionsResponse
-        {
-            public string nextLink;
-            public Subscription[] value;
-        }
+
+        public class ListSubscriptionResponse: ListResponse<SubscriptionResponse> { }
+
+        public class SubscriptionResponse: Subscription { }
 
         public class Subscription
         {

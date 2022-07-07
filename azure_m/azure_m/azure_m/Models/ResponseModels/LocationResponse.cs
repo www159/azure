@@ -15,9 +15,8 @@ namespace azure_m.Models
             public string displayName { get; set; }
         }
 
-        public class LocationResponse
-        {
-            public Location[] value { get; set; }
-        }
+        public class LocationResponse : Location { }
+
+        public class ListLocationResponse: ListResponse<Location> { }
     }
 }

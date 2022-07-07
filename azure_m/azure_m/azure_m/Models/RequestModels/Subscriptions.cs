@@ -4,7 +4,7 @@ using System.Text;
 
 namespace azure_m.Models.RequestModels
 {
-    namespace SubscriptionsOperations
+    namespace Subscriptions
     {
         namespace List
         {

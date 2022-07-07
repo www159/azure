@@ -2,10 +2,7 @@
 <CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:viewmodel="clr-namespace:azure_m.ViewModels"
-              x:Class="azure_m.Views.AddVmDetailsPage">
-    <CarouselPage.BindingContext>
-        <viewmodel:VMDetailsViewModel/>
-    </CarouselPage.BindingContext>
+              x:Class="azure_m.Views.AddVMDetailsPage">
 
     <CarouselPage.Resources>
         <ResourceDictionary>
@@ -121,7 +118,7 @@
                         </Label.FormattedText>
                     </Label>
                     <StackLayout Grid.Row="5" Grid.Column="1" VerticalOptions="Center" WidthRequest="200" HorizontalOptions="Center">
-                        <Picker  x:Name="areas"  Title="请选择区域" ItemsSource="{Binding AreaSources}"   SelectedIndex="{Binding DefaultIndex0}" SelectedIndexChanged="areas_SelectedIndexChanged" Style="{StaticResource ItemPicker}"/>
+                        <Picker  x:Name="areas"  Title="请选择区域" ItemsSource="{Binding AreaSources}" ItemDisplayBinding="{Binding displayName}"  SelectedIndex="{Binding DefaultIndex0}" SelectedIndexChanged="areas_SelectedIndexChanged" Style="{StaticResource ItemPicker}"/>
                     </StackLayout>
 
                     <Line Grid.Row="6" Grid.ColumnSpan="2" VerticalOptions="Start" Style="{StaticResource ThinBorder}"/>
@@ -239,7 +236,7 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Entry Style="{StaticResource entryStyle}" Grid.Row="1" Grid.Column="1" x:Name="SSHKeyName" Text="{Binding SSHKeyName}" />
+                            <!--<Entry Style="{StaticResource entryStyle}" Grid.Row="1" Grid.Column="1" x:Name="SSHKeyName" Text="{Binding SSHKeyName}" />-->
                         </Grid>
                     </Frame>
                     <!--#endregion-->

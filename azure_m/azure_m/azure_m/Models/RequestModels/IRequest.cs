@@ -10,4 +10,13 @@ namespace azure_m.Models.RequestModels
 
         public U body;
     }
+
+    public class QueryRequest<T, U, V> {
+
+        public T uriPath;
+
+        public U uriQUery;
+
+        public V body;
+    }
 }

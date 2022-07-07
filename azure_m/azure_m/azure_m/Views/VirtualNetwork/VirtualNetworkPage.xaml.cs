@@ -138,7 +138,7 @@ namespace azure_m.Views
             Helpers.AsyncbeforeJump(Navigation, typeof(AddVNDetailsPage), async () =>
             {
                 ResourceGroupOperations resourceGroupOperations = new ResourceGroupOperations();
-                QueryInfo.resourceGroup = await resourceGroupOperations.ListResourceGroup();
+                QueryInfo.resourceGroups = await resourceGroupOperations.ListResourceGroup();
             });
             DisplayAlert("Alert", "创建成功", "OK");
         }

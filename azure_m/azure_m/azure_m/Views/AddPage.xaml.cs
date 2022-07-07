@@ -9,6 +9,9 @@ using Xamarin.Forms.Xaml;
 
 namespace azure_m.Views
 {
+    using Services;
+    using Models.RequestModels.VMSizes.List;
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddPage : ContentPage
     {
@@ -24,11 +27,26 @@ namespace azure_m.Views
 #pragma warning disable
             Helpers.AsyncbeforeJump(
                 Navigation,
-                typeof(AddVmDetailsPage),
+                typeof(AddVMDetailsPage),
                 async () =>
                 {
-                    //TODO
-                    await Task.Delay(1000);
+                    //service
+                    ResourceGroupOperations resourceGroupOperations = DependencyService.Get<ResourceGroupOperations>();
+                    LocationOperations locationOperations           = DependencyService.Get<LocationOperations>();
+                    VMSizesOperations vmSizesOperations             = DependencyService.Get<VMSizesOperations>();
+
+                    //query
+                    QueryInfo.resourceGroups = await resourceGroupOperations.ListResourceGroup();
+                    QueryInfo.locations      = await locationOperations.queryListLocation();
+                    //默认选第一个地区
+                    QueryInfo.vmSizes        = await vmSizesOperations.queryListVMSizes(new ListVMSizesRequest
+                    {
+                        uri = new ListVMSizesUri
+                        {
+                            location = QueryInfo.locations.FirstOrDefault().name
+                        },
+                    });
+                    //animate
                     Xamarin.Essentials.Vibration.Vibrate(500);
                 });
             

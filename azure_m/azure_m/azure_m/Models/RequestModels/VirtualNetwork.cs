@@ -5,6 +5,8 @@
         namespace CreateOrUpdate
         {
 
+            using ResponseModels;
+
 
             public class CreateOrUpdateVNRequest : IRequest<CreateOrUpdateVNUri, CreateOrUpdateVNBody>
             {
@@ -62,68 +64,68 @@
                     public VirtualNetworkEncryption encryption { get; set; }
                 }
 
-                public class AddressSpace
-                {
-                    public string[] addressPrefixes { get; set; }
-                }
+                //public class AddressSpace
+                //{
+                //    public string[] addressPrefixes { get; set; }
+                //}
 
-                public class Subnet
-                {
-                    public string etag { get; set; }
+                //public class Subnet
+                //{
+                //    public string etag { get; set; }
 
-                    public string id { get; set; }
+                //    public string id { get; set; }
 
-                    public string name { get; set; }
+                //    public string name { get; set; }
 
-                    public SubnetProperties properties { get; set; }
+                //    public SubnetProperties properties { get; set; }
 
-                    public string type { get; set; }
-                }
+                //    public string type { get; set; }
+                //}
                 public class SubResource
                 {
                     public string id { get; set; }
                 }
-                public class SubnetProperties
-                {
-                    public string addressPrefix { get; set; }
+                //public class SubnetProperties
+                //{
+                //    public string addressPrefix { get; set; }
 
-                    public string[] addressPrefixes { get; set; }
+                //    public string[] addressPrefixes { get; set; }
 
-                    public ApplicationGatewayIPConfiguration[] applicationGatewayIPConfigurations { get; set; }
+                //    public ApplicationGatewayIPConfiguration[] applicationGatewayIPConfigurations { get; set; }
 
-                    public Delegation[] delegations { get; set; }
+                //    public Delegation[] delegations { get; set; }
 
-                    public SubResource[] ipAllocations { get; set; }
+                //    public SubResource[] ipAllocations { get; set; }
 
-                    public IPConfigurationProfile[] iPConfigurationProfiles { get; set; }
+                //    public IPConfigurationProfile[] iPConfigurationProfiles { get; set; }
 
-                    public IPConfiguration[] iPConfigurations { get; set; }
+                //    public IPConfiguration[] iPConfigurations { get; set; }
 
-                    public SubResource natGateway { get; set; }
+                //    public SubResource natGateway { get; set; }
 
-                    public NetworkSecurityGroup networkSecurityGroup { get; set; }
+                //    public NetworkSecurityGroup networkSecurityGroup { get; set; }
 
-                    public VirtualNetworkPrivateEndpointNetworkPolicies privateEndpointNetworkPolicies { get; set; }
+                //    public VirtualNetworkPrivateEndpointNetworkPolicies privateEndpointNetworkPolicies { get; set; }
 
-                    public PrivateEndpoint[] privateEndpoints { get; set; }
+                //    public PrivateEndpoint[] privateEndpoints { get; set; }
 
-                    public VirtualNetworkPrivateLinkServiceNetworkPolicies privateLinkServiceNetworkPolicies { get; set; }
+                //    public VirtualNetworkPrivateLinkServiceNetworkPolicies privateLinkServiceNetworkPolicies { get; set; }
 
-                    public ProvisioningState provisioningState { get; set; }
+                //    public ProvisioningState provisioningState { get; set; }
 
-                    public string purpose { get; set; }
+                //    public string purpose { get; set; }
 
-                    public ResourceNavigationLink[] resourceNavigationLinks { get; set; }
+                //    public ResourceNavigationLink[] resourceNavigationLinks { get; set; }
 
-                    public RouteTable routeTable { get; set; }
+                //    public RouteTable routeTable { get; set; }
 
-                    public ServiceAssociationLink[] serviceAssociationLinks { get; set; }
+                //    public ServiceAssociationLink[] serviceAssociationLinks { get; set; }
 
-                    public ServiceEndpointPolicy[] serviceEndpointPolicies { get; set; }
+                //    public ServiceEndpointPolicy[] serviceEndpointPolicies { get; set; }
 
-                    public ServiceEndpointPropertiesFormat[] serviceEndpoints { get; set; }
+                //    public ServiceEndpointPropertiesFormat[] serviceEndpoints { get; set; }
 
-                }
+                //}
 
                 public class ProvisioningState
                 {

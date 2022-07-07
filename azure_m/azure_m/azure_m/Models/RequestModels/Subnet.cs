@@ -4,7 +4,7 @@
     {
         namespace CreateOrUpdate
         {
-            using VN.CreateOrUpdate;
+            using ResponseModels;
 
             public class CreateOrUpdateSubnetUri
             {

@@ -36,13 +36,15 @@ namespace azure_m.Services
         private string baseFormatUrlWithLocation = $"{QueryInfo.baseStrUrl}/providers/Microsoft.Compute/locations/{{0}}/vmSizes";
 
 
-        public async Task<ListVMSizeResponse> queryListVMSizes(ListVMSizesRequest listVMSizesRequest)
+        public async Task<List<VMSize>> queryListVMSizes(ListVMSizesRequest listVMSizesRequest)
         {
             var baseStrUrl = string.Format(baseFormatUrlWithLocation, listVMSizesRequest.uri.location);
             var url = Utils.withApiVersion(
                 new Url(baseStrUrl),
                 apiVersion.list)
                 .WithOAuthBearerToken(QueryInfo.token);
+
+            
 
             ListVMSizeResponse res = null;
             try
@@ -54,8 +56,14 @@ namespace azure_m.Services
             catch (Exception ex)
             {
                 Utils.error(ex);
+                return new List<VMSize>();
             }
-            return res;
+
+            List<VMSize> VMSizes = Utils.arr2List(res.value);
+
+            await Utils.loopQuery(VMSizes, res);
+
+            return VMSizes;
 
         }//列出指定资源组所有虚拟机大小
     }

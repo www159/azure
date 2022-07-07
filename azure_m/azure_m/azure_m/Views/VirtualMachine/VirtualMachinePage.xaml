@@ -23,19 +23,25 @@
             <Label Text="名称" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="60,222,0,0"/>
             <Label Text="资源组" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="160,222,0,0"/>
             <Label Text="大小" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="280,222,0,0"/>
-            <CollectionView x:Name="VirtualMachineList" ItemsSource="{Binding VmDetails}" Margin="20,260,0,0" SelectionChanged="VirtualMachineList_SelectionChanged" SelectionMode="Single">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid VerticalOptions="Start" HorizontalOptions="Start">
-                            <CheckBox VerticalOptions="Start" HorizontalOptions="Start" />
-                            <Label Text="{Binding name}" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,5,0,0"/>
-                            <Label Text="{Binding SourceGroup}" VerticalOptions="Start" HorizontalOptions="Start" Margin="160,5,0,0"/>
-                            <Label Text="{Binding properties.hardwareProfile.vmSize}" Margin="260,5,0,0" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <Frame x:Name="DetailesFrame" IsVisible="false">
+            <RefreshView
+                x:DataType="local:VirtualMachineViewModel"
+                Command=""
+                IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+                >
+                <CollectionView x:Name="VirtualMachineList" ItemsSource="{Binding VirtualMachines}" Margin="20,260,0,0" SelectionChanged="VirtualMachineList_SelectionChanged" SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid VerticalOptions="Start" HorizontalOptions="Start">
+                                <CheckBox VerticalOptions="Start" HorizontalOptions="Start" />
+                                <Label Text="{Binding name}" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,5,0,0"/>
+                                <Label Text="{Binding SourceGroup}" VerticalOptions="Start" HorizontalOptions="Start" Margin="160,5,0,0"/>
+                                <Label Text="{Binding properties.hardwareProfile.vmSize}" Margin="260,5,0,0" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+            <!--<Frame x:Name="DetailesFrame" IsVisible="false">
                 <Grid>
                     <Button x:Name="btn" Text="关闭" VerticalOptions="End" HorizontalOptions="Start" Clicked="Button_Clicked" Margin="20,0,0,0"/>
                     <Label Text="虚拟机名称" FontSize="35" Margin="20,0,0,0" VerticalOptions="Start" HorizontalOptions="Start" />
@@ -129,7 +135,7 @@
                         </Grid>
                     </ScrollView>
                 </Grid>
-            </Frame>
+            </Frame>-->
         </Grid>
     </ContentPage.Content>
 </ContentPage>

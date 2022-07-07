@@ -6,6 +6,7 @@
         {
             // TODO
 
+            using RequestModels;
 
             public class PublicIPAddressProperties
             {
@@ -37,16 +38,16 @@
                 public string Static;
             }//IP分配策略
 
-            public class PublicIPAddress
-            {
-                public string id;
+            //public class PublicIPAddress
+            //{
+            //    public string id;
 
-                public string location;
+            //    public string location;
 
-                public PublicIPAddressProperties properties;
+            //    public PublicIPAddressProperties properties;
 
 
-            }//被NetworkInterfaceRequestModel调用的一部分
+            //}//被NetworkInterfaceRequestModel调用的一部分
 
             public class PublicIPAddressSku
             {

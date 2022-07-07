@@ -47,7 +47,7 @@ namespace azure_m.Services
                         resources.Add(simplifiedResource);
                     }
                     if (res.nextLink == null) break;
-                    res = await QueryInfo.queryWithNextLink<ListResourceResponse>(res.nextLink);
+                    res = await Utils.queryWithNextLink<ListResourceResponse>(res.nextLink);
                 }
                 catch (Exception ex)
                 {

@@ -24,13 +24,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\VirtualMachinePage.xaml.cs">
+    <Compile Update="Views\VirtualMachine\VirtualMachinePage.xaml.cs">
       <DependentUpon>VirtualMachinePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\AddVmDetailsPage.xaml">
+    <EmbeddedResource Update="Views\VirtualMachine\AddVMDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\AddPage.xaml">
@@ -54,10 +54,13 @@
     <EmbeddedResource Update="Views\TargetViewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\VirtualMachinePage.xaml">
+    <EmbeddedResource Update="Views\VirtualMachine\VirtualMachinePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\VirtualNetworkPage.xaml">
+    <EmbeddedResource Update="Views\VirtualMachine\VMDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\VirtualNetwork\VirtualNetworkPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\VMDetails\Advance.xaml">

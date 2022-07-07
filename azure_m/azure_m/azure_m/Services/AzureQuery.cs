@@ -39,6 +39,10 @@ namespace azure_m.Services
         public const string networkSecurityGroups = "networkSecurityGroups";
 
         public const string resources = "resources";
+
+        public const string metrics = "metrics";
+
+        public const string locations = "locations";
     }
 
     public static class QueryInfo
@@ -132,7 +136,7 @@ namespace azure_m.Services
                 {
                     query = subscriptionSql,
                 })
-                .ReceiveJson<SubscriptionsResponse>();
+                .ReceiveJson<ListSubscriptionResponse>();
             subscriptionId = res.value[0].subscriptionId;
 
            // subscriptionId = res.data[0].subscriptionId;
@@ -142,7 +146,7 @@ namespace azure_m.Services
         #endregion
 
         #region 请求相关
-        private static string baseUri { get; set; } = "https://management.azure.com/";
+        public static string baseUri { get; set; } = "https://management.azure.com/";
         public static string baseStrUrl
         {
             get => $"{baseUri}subscriptions/{subscriptionId}";
@@ -158,6 +162,8 @@ namespace azure_m.Services
             [ResourceType.virtualNetworks]   = "Microsoft.Network",
             [ResourceType.subnets]           = "Microsoft.Network",
             [ResourceType.virtualMachines]   = "Microsoft.Compute",
+            [ResourceType.metrics]           = "Microsoft.Insight",
+            //[ResourceType.locations]         = "Microsoft.Compute",
         };
 
         public const string subnetNameDefault = "default";
@@ -193,15 +199,17 @@ namespace azure_m.Services
         }
        
        
-        public static async Task<T> queryWithNextLink<T>(string url)
-        {
-            var req = new Url(url).WithOAuthBearerToken(token);
-            return await req.GetJsonAsync<T>();
-        }
+        
         #endregion
 
         #region 全局资源
-        public static List<ResourceGroup> resourceGroup;
+        public static List<ResourceGroup> resourceGroups;
+
+        public static List<Subscription> subscriptions;
+
+        public static List<VMSize> vmSizes;
+
+        public static List<Location> locations;
 
         #endregion
 
@@ -217,6 +225,8 @@ namespace azure_m.Services
             DependencyService.Register<PublicIPAdressOperations>();
             DependencyService.Register<ResourceGroupOperations>();
             DependencyService.Register<ResourceOperations>();
+            DependencyService.Register<SubscriptionOperations>();
+            DependencyService.Register<LocationOperations>();
             // DependencyService.Register<>();
             // DependencyService.Register<>();
         }

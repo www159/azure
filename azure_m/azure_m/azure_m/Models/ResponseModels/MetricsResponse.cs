@@ -9,7 +9,7 @@ namespace azure_m.Models
 {
     namespace ResponseModels
     {
-        public class MetricsResponse
+        public class ListMetricsResponse
         {
             public double cost { get; set; }
             public string interval { get; set; }
@@ -17,6 +17,9 @@ namespace azure_m.Models
             public string timespan { get; set; }
             public Metrics[] value { get; set; }
         }
+
+        public class MetricsResponse: Metrics { }
+
         public class MetricsErrorResponse
         {
             public string message { get; set; }
@@ -34,11 +37,6 @@ namespace azure_m.Models
             public MetricUnit unit { get; set; }
         }
 
-        public class LocalizableString
-        {
-            public string value { get; set; }
-            public string localizedValue { get; set; }
-        }
 
         public class TimeSeriesElement
         {

@@ -72,12 +72,12 @@ namespace azure_m.Services
                 )
                 .WithOAuthBearerToken(QueryInfo.token);
 
-            ResourceGroupResponse res;
+            ListResourceGroupResponse res;
             try
             {
                 res = await new Url("https://management.azure.com/subscriptions/219b2431-594f-47fa-8e85-664196aa3f92/resourcegroups?api-version=2021-04-01")
                     .WithOAuthBearerToken(QueryInfo.token)
-                    .GetJsonAsync<ResourceGroupResponse>();
+                    .GetJsonAsync<ListResourceGroupResponse>();
             }
             catch (Exception ex)
             {
@@ -86,14 +86,15 @@ namespace azure_m.Services
             }
             List<ResourceGroup> resourceGroups = (res.value.Clone() as ResourceGroup[]).ToList();
 
-            while(res.nextLink != null)
-            {
-                res = await QueryInfo.queryWithNextLink<ResourceGroupResponse>(res.nextLink);
-                foreach(var val in res.value)
-                {
-                    resourceGroups.Add(val);
-                }
-            }
+            //while(res.nextLink != null)
+            //{
+            //    res = await Utils.queryWithNextLink<ResourceGroupResponse>(res.nextLink);
+            //    foreach(var val in res.value)
+            //    {
+            //        resourceGroups.Add(val);
+            //    }
+            //}
+            await Utils.loopQuery(resourceGroups, res);
 
             return resourceGroups;
 

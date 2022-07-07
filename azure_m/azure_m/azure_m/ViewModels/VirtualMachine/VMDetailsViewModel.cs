@@ -17,6 +17,7 @@ namespace azure_m.ViewModels
     using Models.RequestModels.NetworkInterface.CreateOrUpdate;
     using Models.RequestModels.PublicIPAddress.CreateOrUpdate;
     using Models.RequestModels.VN.CreateOrUpdate;
+    using Models.ResponseModels;
 
     public class VMDetailsViewModel : BaseViewModel
     {
@@ -35,7 +36,7 @@ namespace azure_m.ViewModels
 
         public Command vmNameComplete { get; set; }
 
-        public List<string> AreaSources { get; set; }
+        public List<Location> AreaSources { get; set; }
 
         public List<string> Zones { get; set; }
         public Command ZonesIndexChange { get; set; }
@@ -72,88 +73,114 @@ namespace azure_m.ViewModels
 
         public CreateOrUpdateVMRequest vm = new CreateOrUpdateVMRequest { };
 
-        public string VMName {
-            get {
+        public string VMName
+        {
+            get
+            {
                 return vm.uri.vmName;
             }
-            set {
+            set
+            {
                 vm.uri.vmName = vm.body.properties.osProfile.computerName = value;
             }
         }
 
-        public string AdminUsername;
-        
+        public string AdminUsername { get; set; }
+
 
         #endregion
 
         #region initialize
-    public VMDetailsViewModel()
-    {
-        subscribes = new Dictionary<string, string> { { "免费试用", "123" } };
-#if DEBUG
-        resourceGroups = new List<string> { "wfpres", "wfpppres" };
-        vnetworks = new List<string> { "new_group-vnet" };
-#endif
-
-        AreaSources = new List<string> { "japaneast" , "AsiaEast"};
-        Zones = new List<string> { "Zones 1", "Zones 2", "Zones 3" };
-        Images = new List<ImageReference> { new ImageReference() { sku = "20_04-lts-gen2", publisher = "Canonical", version = "latest", offer = "0001-com-ubuntu-server-focal"  } };
-        vmSizes = new List<string> { "Standard_B1s", "Standard_D2s_v3" };
-        ports = new List<string> { "HTTPS(443)", "HTTP(80)", "SSH(22)" };
-        net_ports = new List<string> { "HTTPS(443)", "HTTP(80)", "SSH(22)", "RDP(3389)" };
-
-        subscribesNames = subscribes.Keys.ToList();
-
-        #region subscription events
-        Views.AddVmDetailsPage.SubscribeIndexChange += ChangeSubID;
-        Views.AddVmDetailsPage.ResourceGroupIndexChanged += (sender, e) => { vm.uri.resourceGroupName = (sender as Picker).SelectedItem.ToString(); };
-        Views.AddVmDetailsPage.AreaChanged += (sender, e) => { vm.body.location = AreaSources[(sender as Picker).SelectedIndex]; };
-        vmNameComplete = new Command((sender) => { vm.uri.vmName = vm.body.properties.osProfile.computerName = (sender as Entry).Text; });
-        ZonesIndexChange = new Command((sender) =>
+        public VMDetailsViewModel()
         {
-            if (vm.body.zones != null && vm.body.zones.Length != 0) { Array.Clear(vm.body.zones, 0, vm.body.zones.Length); }
-            vm.body.zones = new string[(sender as CollectionView).SelectedItems.Count()];
-            int idx = 0;
-            foreach (string zone in (sender as CollectionView).SelectedItems) { vm.body.zones[idx++] = zone; }
-        });
-        Views.AddVmDetailsPage.ImagesIndexChanged += (sender, e) =>
-        {
-            vm.body.properties.storageProfile.imageReference = Images[(sender as Picker).SelectedIndex];
-            if (Regex.IsMatch(vm.body.properties.storageProfile.imageReference.offer, "ubuntu"))
+            subscribes = new Dictionary<string, string> { { "免费试用", "123" } };
+            //#if DEBUG
+            //        resourceGroups = new List<string> { "wfpres", "wfpppres" };
+            //        vnetworks = new List<string> { "new_group-vnet" };
+            //#endif
+
+
+            #region 初始化绑定资源
+
+            resourceGroups = new List<string>();
+            foreach(var val in QueryInfo.resourceGroups)
             {
-                vm.body.properties.storageProfile.oSDisk = new OSDisk
-                {
-                    osType = "Linux",
-                    name = "Disk_" + UID.ToString(),
-                    createOption = "FromImage",
-                    caching = "ReadWrite",
-                    managedDisk = new ManagedDiskParameters { storageAccountType = "Premium_LRS" },
-                    diskSizeGB = 30
-                };
+                resourceGroups.Add(val.name);
             }
-        };
-        Views.AddVmDetailsPage.vmSizeIndexChanged += (sender, e) => vm.body.properties.hardwareProfile.vmSize = vmSizes[(sender as Picker).SelectedIndex].ToString();  
-        Views.AddVmDetailsPage.passwdComplete += (sender, e) => vm.body.properties.osProfile.adminPassword = (sender as Entry).Text.ToString();
 
-        Views.AddVmDetailsPage.vnetChanged += (sender, e) =>
-        {
-        };
-        Views.AddVmDetailsPage.subnetChanged += (sender, e) =>
-        {
-        };
-        Views.AddVmDetailsPage.publicIPChanged += (sender, e) =>
-        {
-        };
-        Views.AddVmDetailsPage.DeleteOptionChanged += (sender, e) => { vm.body.properties.networkProfile.networkInterfaces[0].properties.deleteOption = (sender as CheckBox).IsChecked ? "Delete" : "Detach"; };
-        Views.AddVmDetailsPage.vnetChanged += (sender, e) => Selectedvnet = (sender as Picker).SelectedItem.ToString();
-        Views.AddVmDetailsPage.subnetChanged += (sender, e) => Selectedsubnet = (sender as Picker).SelectedItem.ToString();
-        Views.AddVmDetailsPage.publicIPChanged += (sender, e) => SelectedpubIP = (sender as Picker).SelectedItem.ToString();
-        Views.AddVmDetailsPage.DeleteOptionChanged += (sender, e) => vm.body.properties.networkProfile.networkInterfaces[0].properties.deleteOption = (sender as CheckBox).IsChecked ? "Delete" : "Detach";
+            AreaSources = new List<Location>();
+            foreach(var val in QueryInfo.locations)
+            {
+                AreaSources.Add(val);
+            }
 
-        //TODO:未完成的commands
-        Views.AddVmDetailsPage.diskTypeIndexChanged += (sender, e) => { };
-        portsChange = new Command((sender) => { });
-        net_portsChange = new Command((sender) => { });
+            vmSizes = new List<string>();
+            foreach (var val in QueryInfo.vmSizes)
+            {
+                vmSizes.Add(val.name);
+            }
+
+
+
+
+            Zones = new List<string> { "Zones 1", "Zones 2", "Zones 3" };
+            Images = new List<ImageReference> { new ImageReference() { sku = "20_04-lts-gen2", publisher = "Canonical", version = "latest", offer = "0001-com-ubuntu-server-focal" } };
+            ports = new List<string> { "HTTPS(443)", "HTTP(80)", "SSH(22)" };
+            net_ports = new List<string> { "HTTPS(443)", "HTTP(80)", "SSH(22)", "RDP(3389)" };
+
+            subscribesNames = subscribes.Keys.ToList();
+
+            #region subscription events
+            Views.AddVMDetailsPage.SubscribeIndexChange += ChangeSubID;
+            Views.AddVMDetailsPage.ResourceGroupIndexChanged += (sender, e) => { vm.uri.resourceGroupName = (sender as Picker).SelectedItem.ToString(); };
+            Views.AddVMDetailsPage.AreaChanged += (sender, e) => { vm.body.location = AreaSources[(sender as Picker).SelectedIndex].name; };
+            vmNameComplete = new Command((sender) => { vm.uri.vmName = vm.body.properties.osProfile.computerName = (sender as Entry).Text; });
+            ZonesIndexChange = new Command((sender) =>
+            {
+                if (vm.body.zones != null && vm.body.zones.Length != 0) { Array.Clear(vm.body.zones, 0, vm.body.zones.Length); }
+                vm.body.zones = new string[(sender as CollectionView).SelectedItems.Count()];
+                int idx = 0;
+                foreach (string zone in (sender as CollectionView).SelectedItems) { vm.body.zones[idx++] = zone; }
+            });
+            Views.AddVMDetailsPage.ImagesIndexChanged += (sender, e) =>
+            {
+                vm.body.properties.storageProfile.imageReference = Images[(sender as Picker).SelectedIndex];
+                if (Regex.IsMatch(vm.body.properties.storageProfile.imageReference.offer, "ubuntu"))
+                {
+                    vm.body.properties.storageProfile.oSDisk = new OSDisk
+                    {
+                        osType = "Linux",
+                        name = "Disk_" + UID.ToString(),
+                        createOption = "FromImage",
+                        caching = "ReadWrite",
+                        managedDisk = new ManagedDiskParameters { storageAccountType = "Premium_LRS" },
+                        diskSizeGB = 30
+                    };
+                }
+            };
+            Views.AddVMDetailsPage.vmSizeIndexChanged += (sender, e) => vm.body.properties.hardwareProfile.vmSize = vmSizes[(sender as Picker).SelectedIndex].ToString();
+            Views.AddVMDetailsPage.passwdComplete += (sender, e) => vm.body.properties.osProfile.adminPassword = (sender as Entry).Text.ToString();
+
+            Views.AddVMDetailsPage.vnetChanged += (sender, e) =>
+            {
+            };
+            Views.AddVMDetailsPage.subnetChanged += (sender, e) =>
+            {
+            };
+            Views.AddVMDetailsPage.publicIPChanged += (sender, e) =>
+            {
+            };
+            Views.AddVMDetailsPage.DeleteOptionChanged += (sender, e) => { vm.body.properties.networkProfile.networkInterfaces[0].properties.deleteOption = (sender as CheckBox).IsChecked ? "Delete" : "Detach"; };
+            Views.AddVMDetailsPage.vnetChanged += (sender, e) => Selectedvnet = (sender as Picker).SelectedItem.ToString();
+            Views.AddVMDetailsPage.subnetChanged += (sender, e) => Selectedsubnet = (sender as Picker).SelectedItem.ToString();
+            Views.AddVMDetailsPage.publicIPChanged += (sender, e) => SelectedpubIP = (sender as Picker).SelectedItem.ToString();
+            Views.AddVMDetailsPage.DeleteOptionChanged += (sender, e) => vm.body.properties.networkProfile.networkInterfaces[0].properties.deleteOption = (sender as CheckBox).IsChecked ? "Delete" : "Detach";
+
+            //TODO:未完成的commands
+            Views.AddVMDetailsPage.diskTypeIndexChanged += (sender, e) => { };
+            portsChange = new Command((sender) => { });
+            net_portsChange = new Command((sender) => { });
+            #endregion
 
             #region 创建虚拟机 Command
             //过程: 创建公网&&创建虚拟网络 -> 创建虚拟网卡 -> 创建虚拟机
@@ -285,16 +312,16 @@ namespace azure_m.ViewModels
             CreateFinishd?.Invoke(this, StatusCode);
             #endregion
         });
-#endregion
+            #endregion
 
-#endregion
-            
-    }
-#endregion
+            #endregion
 
-    private void ChangeSubID(object sender, int i)
-    {
-        subscribes.TryGetValue(subscribesNames[i], out subscribeID);
+        }
+        #endregion
+
+        private void ChangeSubID(object sender, int i)
+        {
+            subscribes.TryGetValue(subscribesNames[i], out subscribeID);
+        }
     }
-}
 }

@@ -6,6 +6,7 @@
 
         namespace CreateOrUpdate
         {
+            using ResponseModels;
             #region 虚拟机硬件配置相关配置
             public class VMSizeProperties
             {
@@ -222,18 +223,18 @@
                 public static string UltraSSD_LRS = "UltraSSD_LRS";
                 
             }
-            public class ManagedDiskParameters {
+            //public class ManagedDiskParameters {
                 
-                public DiskEncryptionSetParameters diskEncryptionSet { get; set; }
+            //    public DiskEncryptionSetParameters diskEncryptionSet { get; set; }
 
-                public string id { get; set; }
+            //    public string id { get; set; }
 
-                public VMDiskSecurityProfile securityProfile { get; set; }
+            //    public VMDiskSecurityProfile securityProfile { get; set; }
 
-                // Type:  StorageAccountTypes
-                // Value: ...
-                public string storageAccountType { get; set; }
-            }
+            //    // Type:  StorageAccountTypes
+            //    // Value: ...
+            //    public string storageAccountType { get; set; }
+            //}
 
             public class OperatingSystemTypes {
 

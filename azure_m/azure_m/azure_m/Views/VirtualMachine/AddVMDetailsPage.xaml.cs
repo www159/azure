@@ -9,11 +9,13 @@ using Xamarin.Forms.Xaml;
 
 namespace azure_m.Views
 {
+    using ViewModels;
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddVmDetailsPage : CarouselPage
+    public partial class AddVMDetailsPage : CarouselPage
     {
-        public AddVmDetailsPage()
+        public AddVMDetailsPage()
         {
+            BindingContext = new VMDetailsViewModel();
             InitializeComponent();
             ViewModels.VMDetailsViewModel.CreateFinishd += VMDetailsViewModel_CreateFinishd;
         }

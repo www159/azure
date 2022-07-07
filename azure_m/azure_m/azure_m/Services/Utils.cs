@@ -6,11 +6,19 @@ using Flurl.Http;
 using System.Security;
 using Newtonsoft.Json;
 using Flurl;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace azure_m.Services
 {
+    using Models.ResponseModels;
+
+    using Models.RequestModels.Metrics.List;
+
     static partial class Utils
     {
+
+        #region 异常
         public static Action<Exception> errorMethod { get; set; }
 
         static Utils()
@@ -38,8 +46,8 @@ namespace azure_m.Services
             return url.SetQueryParam("api-version", apiVersion);
         }
 
-
-
+        #endregion
+        #region 类型转化
         public static SecureString str2secStr(string str)
         {
             SecureString secureStr = new SecureString();    
@@ -56,13 +64,96 @@ namespace azure_m.Services
             return json;
         }
 
-        public static IFlurlRequest baseStrUrlFull(string apiVersion, string type, string resourceGroup = "", string _namespace = "",  string name = "")
+        public static List<T> arr2List<T>(T[] arr)
+        {
+            return (arr.Clone() as T[]).ToList<T>();
+        }
+
+
+        #endregion
+
+        #region 请求
+
+        public static IFlurlRequest baseStrReq(string url, string apiVersion)
+        {
+            return withApiVersion(new Url(url), apiVersion).WithOAuthBearerToken(QueryInfo.token);
+        }
+
+        public static IFlurlRequest baseStrUrlFull(
+            string apiVersion, 
+            string type, 
+            string resourceGroup = "", 
+            string _namespace = "",  
+            string name = "")
         {
 
-            string uri = $"{QueryInfo.baseStrUrl}{(resourceGroup == "" ? "" : $"/resourceGroups/{resourceGroup}")}{(_namespace == "" ? "" : $"/providers/{_namespace}")}/{type}{(name == "" ? "" : $"/{name}")}";
-            IFlurlRequest req = withApiVersion(new Url(uri), apiVersion).WithOAuthBearerToken(QueryInfo.token);
+            string url = $"{QueryInfo.baseStrUrl}{(resourceGroup == "" ? "" : $"/resourceGroups/{resourceGroup}")}{(_namespace == "" ? "" : $"/providers/{_namespace}")}/{type}{(name == "" ? "" : $"/{name}")}";
+            IFlurlRequest req = withApiVersion(new Url(url), apiVersion).WithOAuthBearerToken(QueryInfo.token);
             return req;
         }
-    }
 
+        public static async Task<T> queryWithNextLink<T>(string url)
+        {
+            var req = new Url(url).WithOAuthBearerToken(QueryInfo.token);
+            return await req.GetJsonAsync<T>();
+        }
+
+        public static async Task loopQuery<T, V>(List<V> list, T res)
+            where T : ListResponse<V>
+        {
+
+            while(true)
+            {
+                if (res.nextLink == null) break;
+                res = await queryWithNextLink<T>(res.nextLink);
+                foreach(var val in res.value)
+                {
+                    list.Add(val);
+                }
+            }
+        }
+        #endregion
+        #region metric 请求参数
+        public static IFlurlRequest baseMetricUrl(
+            string apiVersion, 
+            string resourceUri) {
+                string url = $"{QueryInfo.baseStrUrl}/{resourceUri}/providers/{QueryInfo.resourceNamespace[ResourceType.metrics]}/{ResourceType.metrics}";
+                return withApiVersion(url, apiVersion).WithOAuthBearerToken(QueryInfo.token);
+            }
+
+        
+        private static string[] timeDurationStr = new string[] {
+            "Y", "M", "D", "H", "M", "S"
+        };
+
+        public static string ISODuration(int[] timeList) {
+            if(timeList.Length != 6) throw new Exception("timeList必须大小为6");
+            string baseStr = "P";
+            for(var i = 0; i < timeList.Length; i++) {
+                if(timeList[i] == 0) {
+                    if(i == 2) {
+                        if(baseStr == "P") baseStr += "0T";
+                        else baseStr += "T";
+                    }
+                    continue;
+                }
+                baseStr += $"{timeList[i]}{timeDurationStr[i]}";
+                if(i == 2) baseStr += "T";
+            }
+            return baseStr;
+        }
+
+
+        public static ListMetricsUriQuery metricQueryDefault()
+        {
+            return new ListMetricsUriQuery
+            {
+                aggregation = "average",
+                interval = ISODuration(new int[] { 0, 0, 0, 1, 0, 0 }),
+                
+
+            };
+        }
+        #endregion
+    }
 }

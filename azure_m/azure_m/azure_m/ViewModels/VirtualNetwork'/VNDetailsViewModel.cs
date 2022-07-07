@@ -86,7 +86,7 @@ namespace azure_m.ViewModels
                 subscribesNames.Add(key);
             }
             
-            foreach(var val in QueryInfo.resourceGroup)
+            foreach(var val in QueryInfo.resourceGroups)
             {
                 resourceGroups.Add(val.name);
             }
