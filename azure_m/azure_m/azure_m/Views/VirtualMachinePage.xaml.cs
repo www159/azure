@@ -16,5 +16,17 @@ namespace azure_m.Views
         {
             InitializeComponent();
         }
+
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            VirtualMachineList.SelectedItem = null;
+            DetailesFrame.IsVisible = false;
+        }
+
+        private void VirtualMachineList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DetailesFrame.IsVisible = true;
+        }
     }
 }

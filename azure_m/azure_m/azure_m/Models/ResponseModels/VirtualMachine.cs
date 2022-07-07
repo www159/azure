@@ -60,7 +60,7 @@
 
         public class HardwareProfile
         {
-            public string cmSize { get; set; }
+            public string vmSize { get; set; }
 
             public VMSizeProperties vmSizeProperties { get; set; }
         }

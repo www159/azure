@@ -1,12 +1,135 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:azure_m.ViewModels"
              x:Class="azure_m.Views.VirtualMachinePage">
+    <ContentPage.BindingContext>
+        <local:VirtualMachineViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Label Text="虚拟机" FontSize="35" Margin="20"/>
+            <ScrollView Orientation="Horizontal"  >
+                <StackLayout Orientation="Horizontal" VerticalOptions="Start" Margin="0,80,0,0" >
+                    <Button Text="创建" VerticalOptions="Start" HorizontalOptions="Start" Margin="20,0,0,0" />
+                    <Button Text="开始" VerticalOptions="Start" HorizontalOptions="Start" />
+                    <Button Text="重新开始" VerticalOptions="Start" HorizontalOptions="Start"/>
+                    <Button Text="停止" VerticalOptions="Start" HorizontalOptions="Start"/>
+                    <Button Text="删除" VerticalOptions="Start"/>
+                </StackLayout>
+            </ScrollView>
+            <Entry Placeholder="筛选任何字段" VerticalOptions="Start" HorizontalOptions="Start" Margin="20,160,0,0"/>
+            <CheckBox x:Name="checkBox" VerticalOptions="Start" HorizontalOptions="Start" Margin="20,220,0,0"/>
+            <Label Text="名称" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="60,222,0,0"/>
+            <Label Text="资源组" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="160,222,0,0"/>
+            <Label Text="大小" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="280,222,0,0"/>
+            <CollectionView x:Name="VirtualMachineList" ItemsSource="{Binding VmDetails}" Margin="20,260,0,0" SelectionChanged="VirtualMachineList_SelectionChanged" SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid VerticalOptions="Start" HorizontalOptions="Start">
+                            <CheckBox VerticalOptions="Start" HorizontalOptions="Start" />
+                            <Label Text="{Binding name}" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,5,0,0"/>
+                            <Label Text="{Binding SourceGroup}" VerticalOptions="Start" HorizontalOptions="Start" Margin="160,5,0,0"/>
+                            <Label Text="{Binding properties.hardwareProfile.vmSize}" Margin="260,5,0,0" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Frame x:Name="DetailesFrame" IsVisible="false">
+                <Grid>
+                    <Button x:Name="btn" Text="关闭" VerticalOptions="End" HorizontalOptions="Start" Clicked="Button_Clicked" Margin="20,0,0,0"/>
+                    <Label Text="虚拟机名称" FontSize="35" Margin="20,0,0,0" VerticalOptions="Start" HorizontalOptions="Start" />
+                    <ScrollView  Margin="0,40,0,80" >
+                        <Grid>
+                            <Label Text="概要" FontSize="30" Margin="20,40,0,0"/>
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Grid>
+                                        <Label Text="资源组" FontSize="20"  Margin="20,100,0,0"/>
+                                        <Label Text="资源组" FontSize="20"  Margin="160,100,0,0"/>
+                                    </Grid>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Grid>
+                                        <Label Text="状态" FontSize="20"  Margin="20,20,0,0"/>
+                                        <Label Text="状态" FontSize="20"  Margin="160,20,0,0"/>
+                                    </Grid>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Grid>
+                                        <Label Text="位置" FontSize="20"  Margin="20,20,0,0"/>
+                                        <Label Text="{Binding virtualMachine.location}" FontSize="20"  Margin="160,20,0,0"/>
+                                    </Grid>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Grid>
+                                        <Label Text="订阅ID" FontSize="20"  Margin="20,20,0,0"/>
+                                        <Label Text="订阅ID" FontSize="20"  Margin="160,20,0,0"/>
+                                    </Grid>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Grid>
+                                        <Label Text="操作系统" FontSize="20"  Margin="20,20,0,0"/>
+                                        <Label Text="{Binding virtualMachine.properties.storageProfile.osDisk.osType}" FontSize="20"  Margin="160,20,0,0"/>
+                                    </Grid>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Grid>
+                                        <Label Text="大小" FontSize="20"  Margin="20,20,0,0"/>
+                                        <Label Text="{Binding virtualMachine.properties.hardwareProfile.vmSize}" FontSize="20"  Margin="160,20,0,0"/>
+                                    </Grid>
+                                </StackLayout>
+                                <Line X1="20" X2="800" Y1="0" Y2="0" StrokeThickness="2" Stroke="blue" />
+                            </StackLayout>
+                            <Label Text="属性" FontSize="30" Margin="20,410"/>
+                            <Image Source="virtualMachines.png" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="20" Margin="20,455"/>
+                            <Label Text="虚拟机" FontSize="25" Margin="60,450"/>
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Grid>
+                                        <Label Text="计算机名称" FontSize="20"  Margin="20,500,0,0"/>
+                                        <Label Text="{Binding virtualMachine.name}" FontSize="20"  Margin="160,500,0,0"/>
+                                    </Grid>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Grid>
+                                        <Label Text="操作系统" FontSize="20"  Margin="20,20,0,0"/>
+                                        <Label Text="{Binding virtualMachine.properties.storageProfile.osDisk.osType}" FontSize="20"  Margin="160,20,0,0"/>
+                                    </Grid>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Grid>
+                                        <Label Text="发布者" FontSize="20"  Margin="20,20,0,0"/>
+                                        <Label Text="{Binding virtualMachine.properties.storageProfile.imageReference.publisher}" FontSize="20"  Margin="160,20,0,0"/>
+                                    </Grid>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Grid>
+                                        <Label Text="产品/服务" FontSize="20"  Margin="20,20,0,0"/>
+                                        <Label Text="{Binding virtualMachine.properties.storageProfile.imageReference.offer}" FontSize="20"  Margin="160,20,0,0"/>
+                                    </Grid>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Grid>
+                                        <Label Text="计划" FontSize="20"  Margin="20,20,0,0"/>
+                                        <Label Text="{Binding virtualMachine.properties.storageProfile.imageReference.sku}" FontSize="20"  Margin="160,20,0,0"/>
+                                    </Grid>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="disks.png" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="20" Margin="20,25,0,0"/>
+                                    <Label Text="磁盘" FontSize="25" Margin="20,20,0,0"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Grid>
+                                        <Label Text="磁盘" FontSize="20"  Margin="20,20,0,0"/>
+                                        <Label Text="{Binding virtualMachine.properties.storageProfile.osDisk.name}" FontSize="20"  Margin="160,20,0,0"/>
+                                    </Grid>
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                    </ScrollView>
+                </Grid>
+            </Frame>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
