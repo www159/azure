@@ -3,11 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:azure_m.ViewModels" x:DataType="viewmodels:AllServiceViewModel"
              x:Class="azure_m.Views.AllServicePage"
               Title="所有服务">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="Alert" IconImageSource="alert0.png" Clicked="OnAlert_Clicked" />
-        <ToolbarItem x:Name="Setting" IconImageSource="setting0.png" Clicked="OnSetting_Clicked" />
-        <ToolbarItem x:Name="My" IconImageSource="user0.png" Clicked="OnMy_Clicked" />
-    </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="Accent">#96d1ff</Color>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace azure_m.Views
 {
@@ -134,10 +135,11 @@ namespace azure_m.Views
             GetResources(0);
         }
 
-        public void OnMyIcon_Clicked(object sender, EventArgs e)
+        public async void OnMyIcon_Clicked(object sender, EventArgs e)
         {
             //this.Navigation.PushAsync(new MyPage());
-            DisplayAlert("Alert", "My page", "OK");
+            //DisplayAlert("Alert", "My page", "OK");
+            await Navigation.PushAsync(new Mypage(),true);
         }
 
         public void OnSetting_Clicked(object sender, EventArgs e)
@@ -149,6 +151,7 @@ namespace azure_m.Views
         public void OnAlert_Clicked(object sender, EventArgs e)
         {
             //this.Navigation.PushAsync(new AlertsPage());
+            
             DisplayAlert("Alert", "AlertPage", "OK");
         }
 

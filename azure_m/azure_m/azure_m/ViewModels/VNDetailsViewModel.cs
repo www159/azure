@@ -5,7 +5,6 @@ using Xamarin.Forms;
 using System.Linq;
 
 
-
 namespace azure_m.ViewModels
 {
     using Models.RequestModels.VN.CreateOrUpdate;

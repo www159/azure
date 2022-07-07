@@ -32,7 +32,7 @@ namespace azure_m
        
         private void App_LoginComplete(object sender,EventArgs e)
         {
-
+      
             MainPage=new AppShell();
         }
         

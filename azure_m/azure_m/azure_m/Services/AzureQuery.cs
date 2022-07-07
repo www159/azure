@@ -108,8 +108,9 @@ namespace azure_m.Services
                     query = subscriptionSql,
                 })
                 .ReceiveJson<SubscriptionsResponse>();
+            subscriptionId = res.value[0].subscriptionId;
 
-            subscriptionId = res.data[0].subscriptionId;
+           // subscriptionId = res.data[0].subscriptionId;
         }
 
 
