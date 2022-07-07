@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define DEBUG
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Xamarin.Forms;
@@ -23,7 +24,7 @@ namespace azure_m.Views
         /// 
         /// </summary>
         /// <param name="type">0表示Recent，1表示Favorite</param>
-        public void  GetResources(int type = 0)
+        public async void  GetResources(int type = 0)
         {
             ResourceLayout.Children.Clear();
             List<Resource> resources = new List<Resource>();
@@ -31,7 +32,7 @@ namespace azure_m.Views
             //resources = await GetResourcesByApi(type)...
             //resources.sort by type nad name (or linq
 
-            ///DEBUG
+#if DEBUG
             if (type == 0)
                 
             {
@@ -50,7 +51,9 @@ namespace azure_m.Views
                     name = "虚拟机"
                 });
             }
-
+#else
+            resources = await queryResources();
+#endif
             //no resources
             if (resources.Count == 0)
             {
@@ -84,19 +87,19 @@ namespace azure_m.Views
                     {
                         Margin = new Thickness(20, 0, 20, 0),
                         HorizontalOptions = LayoutOptions.FillAndExpand,
-                        BackgroundColor = Color.MintCream,
                         RowSpacing = 10,
                         ColumnDefinitions =
                 {
-                    //new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
                     new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) },
                     new ColumnDefinition { Width = new GridLength (2, GridUnitType.Star) },
                     new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) }
                 }
                     };
-                    grid.Children.Add(new Image { Source = getSourceByType(o.type), HeightRequest = 15, VerticalOptions = LayoutOptions.Start }, 0, 0);
-                    grid.Children.Add(new Label { Text = o.name, HeightRequest = grid.Height, VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Start }, 0, 0);
+                    grid.Children.Add(new Image { Source = getSourceByType(o.type), HeightRequest = 15, HorizontalOptions = LayoutOptions.Start }, 0, 0);
+                    grid.Children.Add(new Label { Text = o.name, HeightRequest = grid.Height, VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Center }, 0, 0);
                     grid.Children.Add(new Label { Text = o.type, HeightRequest = grid.Height, VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Center }, 1, 0);
+                    grid.Children.Add(new Label { Text = o.location, HeightRequest = grid.Height, VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Center }, 2, 0);
+                    grid.Children.Add(new Xamarin.Forms.Shapes.Rectangle { HeightRequest = 1, VerticalOptions = LayoutOptions.End, BackgroundColor = Color.LightGray },0,3,0,1);
                     ResourceLayout.Children.Add(grid);
                 });
             }

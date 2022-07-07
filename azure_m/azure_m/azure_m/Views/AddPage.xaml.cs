@@ -29,7 +29,9 @@ namespace azure_m.Views
                 {
                     //TODO
                     await Task.Delay(1000);
+                    Xamarin.Essentials.Vibration.Vibrate(500);
                 });
+            
 
         }
         public void CreateServiceFuncApp(object sender, EventArgs e)

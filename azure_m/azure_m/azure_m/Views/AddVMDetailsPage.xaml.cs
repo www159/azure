@@ -15,6 +15,21 @@ namespace azure_m.Views
         public AddVmDetailsPage()
         {
             InitializeComponent();
+            ViewModels.VMDetailsViewModel.CreateFinishd += VMDetailsViewModel_CreateFinishd;
+        }
+
+        private void VMDetailsViewModel_CreateFinishd(object sender, int StatusCode)
+        {
+            if(StatusCode < 300 && StatusCode > 199)
+            {
+                Navigation.PopAsync();
+                DisplayAlert($"虚拟机{(sender as ViewModels.VMDetailsViewModel).VMName}创建成功","","OK");
+            }
+            else
+            {
+                Xamarin.Essentials.Vibration.Vibrate(500);
+                DisplayAlert($"虚拟机创建失败", "", "OK");
+            }
         }
 
         private void valid_SelectedIndexChanged(object sender, EventArgs e)
@@ -165,5 +180,11 @@ namespace azure_m.Views
         {
             DeleteOptionChanged?.Invoke(sender, EventArgs.Empty);
         }
+
+        private void view_clicked(object sender, EventArgs eventArgs)
+        {
+            CurrentPage = Create;
+        }
+
     }
 }

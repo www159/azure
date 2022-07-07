@@ -66,6 +66,7 @@ namespace azure_m.ViewModels
 
 
         public Command CreateOrUpdateVM { get; set; }
+        public static event EventHandler<int> CreateFinishd;
 
         public CreateOrUpdateNIRequest nIRequest { get; set; } = new CreateOrUpdateNIRequest { body = new CreateOrUpdateNIBody { properties = new NetworkInterfacesProperties { ipConfigurations = new NetworkInterfaceIPConfiguration[1] } } };
 
@@ -80,32 +81,29 @@ namespace azure_m.ViewModels
             }
         }
 
-        public string AdminUsername
-        {
-            get => vm.body.properties.osProfile.adminUsername;
-            set => vm.body.properties.osProfile.adminUsername = value;
-        }
+        public string AdminUsername;
+        
 
-    #endregion
+        #endregion
 
-    #region initialize
+        #region initialize
     public VMDetailsViewModel()
     {
-#if DEBUG
         subscribes = new Dictionary<string, string> { { "免费试用", "123" } };
+#if DEBUG
         resourceGroups = new List<string> { "wfpres", "wfpppres" };
-        AreaSources = new List<string> { "japaneast" };
+        vnetworks = new List<string> { "new_group-vnet" };
+#endif
+
+        AreaSources = new List<string> { "japaneast" , "AsiaEast"};
         Zones = new List<string> { "Zones 1", "Zones 2", "Zones 3" };
         Images = new List<ImageReference> { new ImageReference() { sku = "20_04-lts-gen2", publisher = "Canonical", version = "latest", offer = "0001-com-ubuntu-server-focal"  } };
         vmSizes = new List<string> { "Standard_B1s", "Standard_D2s_v3" };
         ports = new List<string> { "HTTPS(443)", "HTTP(80)", "SSH(22)" };
-
-        vnetworks = new List<string> { "new_group-vnet" };
         net_ports = new List<string> { "HTTPS(443)", "HTTP(80)", "SSH(22)", "RDP(3389)" };
 
-#endif
-
         subscribesNames = subscribes.Keys.ToList();
+
         #region subscription events
         Views.AddVmDetailsPage.SubscribeIndexChange += ChangeSubID;
         Views.AddVmDetailsPage.ResourceGroupIndexChanged += (sender, e) => { vm.uri.resourceGroupName = (sender as Picker).SelectedItem.ToString(); };
@@ -157,16 +155,16 @@ namespace azure_m.ViewModels
         portsChange = new Command((sender) => { });
         net_portsChange = new Command((sender) => { });
 
-        #region 创建虚拟机 Command
-        //过程: 创建公网&&创建虚拟网络 -> 创建虚拟网卡 -> 创建虚拟机
-        //约定：
-        //1. 只有一个系统盘，无数据盘
-        //2. 如果区域不同，那么将默认创建虚拟网络
-        //3. 无论虚拟网络是否新建，都将使用默认虚拟子网。
-        CreateOrUpdateVM = new Command(async (sender) =>
+            #region 创建虚拟机 Command
+            //过程: 创建公网&&创建虚拟网络 -> 创建虚拟网卡 -> 创建虚拟机
+            //约定：
+            //1. 只有一个系统盘，无数据盘
+            //2. 如果区域不同，那么将默认创建虚拟网络
+            //3. 无论虚拟网络是否新建，都将使用默认虚拟子网。
+
+            CreateOrUpdateVM = new Command(async (sender) =>
         {
-            //subnet 选择的是已经有的subnet, 选择默认的ipaddress？
-            //nic 创建一个叫{UID}的nic
+
             #region local var
             PublicIPAdressOperations publicIPAddressOperations = new PublicIPAdressOperations();
 
@@ -183,6 +181,7 @@ namespace azure_m.ViewModels
             string networkInterfaceName = $"ipconfig_{UID}";
 
             string resourceGroup = vm.uri.resourceGroupName;
+            int StatusCode;
             #endregion
 
             #region PublicIPAddress
@@ -281,15 +280,17 @@ namespace azure_m.ViewModels
                 resourceGroup,
                 networkInterfaceName);
 
-            await vmDataStore.queryCreateOrUpdateVM(vm);//调用，创建
+            StatusCode = await vmDataStore.queryCreateOrUpdateVM(vm);//调用，创建
+
+            CreateFinishd?.Invoke(this, StatusCode);
             #endregion
-
         });
-        #endregion
+#endregion
 
-        #endregion
+#endregion
+            
     }
-    #endregion
+#endregion
 
     private void ChangeSubID(object sender, int i)
     {
