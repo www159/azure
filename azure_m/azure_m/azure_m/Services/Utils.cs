@@ -37,6 +37,10 @@ namespace azure_m.Services
         {
             return url.SetQueryParam("api-version", apiVersion);
         }
+        public static Url withFilterVersion(Url url,string filter)
+        {
+            return url.SetQueryParam("$filter", filter);
+        }
 
 
 

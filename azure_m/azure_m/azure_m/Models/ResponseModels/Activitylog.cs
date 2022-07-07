@@ -7,7 +7,7 @@ namespace azure_m.Models.ResponseModels
     public class ActivitylogResponse
     {
         public EventData[] value;
-        public string nexLink;
+        public string nextLink;
     }
     public class EventData
     {

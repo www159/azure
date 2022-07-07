@@ -135,11 +135,11 @@ namespace azure_m.Views
             GetResources(0);
         }
 
-        public async void OnMyIcon_Clicked(object sender, EventArgs e)
+        public void OnMyIcon_Clicked(object sender, EventArgs e)
         {
             //this.Navigation.PushAsync(new MyPage());
-            //DisplayAlert("Alert", "My page", "OK");
-            await Navigation.PushAsync(new Mypage(),true);
+            DisplayAlert("Alert", "My page", "OK");
+        
         }
 
         public void OnSetting_Clicked(object sender, EventArgs e)
@@ -148,11 +148,12 @@ namespace azure_m.Views
             DisplayAlert("Alert", "SettingPage", "OK");
         }
 
-        public void OnAlert_Clicked(object sender, EventArgs e)
+        public async void OnAlert_Clicked(object sender, EventArgs e)
         {
             //this.Navigation.PushAsync(new AlertsPage());
             
             DisplayAlert("Alert", "AlertPage", "OK");
+            await Navigation.PushAsync(new ActivitylogPage());
         }
 
         public void OnAdd_Clicked(object sender, EventArgs e)

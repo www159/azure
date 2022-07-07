@@ -628,7 +628,7 @@
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="8" Grid.Column="0">
                             <Label Text="大小" Style="{StaticResource itemLabel}"/>
-                            <Label Text="{Binding vm.body.properties.hardWareProfile.vmSize}" Style="{StaticResource itemLabel}"/>
+                            <Label Text="{Binding vm.body.properties.hardwareProfile.vmSize}" Style="{StaticResource itemLabel}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Grid.Row="9" Grid.Column="0">
                             <Label Text="身份认证类型" Style="{StaticResource itemLabel}"/>
