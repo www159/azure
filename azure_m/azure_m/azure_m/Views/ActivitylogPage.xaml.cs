@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using azure_m.ViewModels;
 
 namespace azure_m.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Mypage : ContentPage
+    public partial class ActivitylogPage : ContentPage
     {
-        public Mypage()
+        ActivitylogViewModel activitylogViewModel;
+        public ActivitylogPage()
         {
             InitializeComponent();
+            BindingContext = activitylogViewModel = new ActivitylogViewModel();
+
         }
     }
 }

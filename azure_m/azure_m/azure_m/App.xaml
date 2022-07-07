@@ -7,13 +7,13 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#686789</Color>
-            <Color x:Key="SPrim">#9FABB9</Color>
-            <Color x:Key="DPrim">#91AD9E</Color>
-            <Color x:Key="Layout">#F3EEEA</Color>
-            <Color x:Key="CardBack">#D3D2D0</Color>
+            <Color x:Key="Primary">#470024</Color>
+            <Color x:Key="SPrim">#470024</Color>
+            <Color x:Key="DPrim">#b0a589</Color><!--a0a0a0-->
+            <Color x:Key="Layout">#d8caaf</Color> <!--f8ebd8-->
+            <Color x:Key="CardBack">#b0a589</Color>
             <Color x:Key="PrimaryText">#E4E6E1</Color>
-            <Color x:Key="DPrimText">#B0B1B6</Color>
+            <Color x:Key="DPrimText">#E4E6E1</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="{StaticResource PrimaryText}"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">

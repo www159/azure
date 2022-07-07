@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="azure_m.Views.MainPage"
              xmlns:vm="clr-namespace:azure_m.ViewModels"
-             Title="主页">
+             Title="主页"
+             BackgroundColor="{StaticResource Layout}">
     
     <!--#region 设置导航栏-->
     <ContentPage.ToolbarItems>
