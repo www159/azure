@@ -4,7 +4,8 @@ using System.Text;
 
 namespace azure_m.Models.ResponseModels
 {
-    internal class IResponse
+    public class IResponse<T>
     {
+        T[] value { get; set; } 
     }
 }
