@@ -7,8 +7,10 @@ using Xamarin.Forms;
 
 namespace azure_m.Models.RequestModels
 {
-    namespace ListLocations
+    namespace Locations
     {
+        namespace List
+        { 
             public class ListLocationsBody
             {
 
@@ -23,5 +25,6 @@ namespace azure_m.Models.RequestModels
             {
 
             }
+        }
     }
 }
