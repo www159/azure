@@ -20,8 +20,7 @@ namespace azure_m.Views
 
         public void CreateServiceVM(object sender, EventArgs e)
         {
-            DisplayAlert("VM", "", "OK");
-
+            Xamarin.Essentials.Vibration.Vibrate(500);
             Navigation.PushAsync(new AddVmDetailsPage());
 
         }

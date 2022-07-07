@@ -115,7 +115,7 @@
                     </Grid.ColumnDefinitions>
                     <Label Text="名称" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
                     <Label Text="类型" FontSize="15" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="1"/>
-                    <Label Text="上次查看" FontSize="15" Grid.Row="0" Grid.Column="2"/>
+                    <Label Text="地点" FontSize="15" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center"/>
                 </Grid>
                 <ScrollView>
                     <StackLayout x:Name="ResourceLayout" Margin="5,0,0,5" >
