@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace azure_m.Models.ResponseModels
+namespace azure_m.Models
 {
     namespace ResponseModels
     {
