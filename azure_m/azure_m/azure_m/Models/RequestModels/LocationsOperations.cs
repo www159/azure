@@ -10,7 +10,7 @@ namespace azure_m.Models.RequestModels
     namespace Locations
     {
         namespace List
-        { 
+        {
             public class ListLocationsBody
             {
 
@@ -21,7 +21,7 @@ namespace azure_m.Models.RequestModels
 
             }
 
-            public class ListLocationsRequest:IRequest<ListLocationsUri,ListLocationsBody>
+            public class ListLocationsRequest : IRequest<ListLocationsUri, ListLocationsBody>
             {
 
             }
