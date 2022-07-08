@@ -6,19 +6,19 @@ using System.Text.RegularExpressions;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using azure_m.Models.RequestModels.VM.Get;
 
 namespace azure_m.ViewModels
 {
-    [QueryProperty(nameof(Id), nameof(Id))]
     public class VMDetailViewModel: BaseViewModel
     {
         #region 引用类的重命名
         public class ImageReference:Models.RequestModels.VM.CreateOrUpdate.ImageReference{}
         public class vmSize:Models.ResponseModels.VMSize{}
         #endregion
-        public IDataStore<VirtualMachine> VMDataStore => DependencyService.Get<IDataStore<VirtualMachine>>();
+        public VMOperations VMOperation => DependencyService.Get<VMOperations>();
         public VirtualMachine VM {get; set;}
-        
+        public string Title { get; set; }
         private string _id;
         public string Id{
             get =>VM.id;
@@ -32,7 +32,7 @@ namespace azure_m.ViewModels
         private string _vmName;
         public string VMName {
             get =>VM.name;
-            set{ VM.name = value; SetProperty(ref _vmName, value);}
+            set{ VM.name = Title= value; SetProperty(ref _vmName, value);}
         }
 
         private string _rGName;
@@ -65,16 +65,28 @@ namespace azure_m.ViewModels
             }
         }
 
-        private string _publicIP;
+        private string _publicIP = "20.210.244.174";
         public string PublicIP{
-            get => "20.210.244.174";//for test
+            get => _publicIP;//for test
+            set => SetProperty(ref _publicIP, value);
         }
 
+        public VMDetailViewModel(GetVMRequest vMRequest)
+        {
+            LoadCommand = new Command(async () =>  await Load(vMRequest));
+        }
 
-        public async void LoadVMId(string VMId){
+        async void LoadIP()
+        {
+            PublicIPAdressOperations ops = new PublicIPAdressOperations();
+        }
+
+        public Command LoadCommand { get; set; }
+        async Task Load(GetVMRequest vMRequest)
+        {
             try{
-                var qvm = await VMDataStore.GetItemAsync(VMId);
-                Id = qvm.id;
+                await VMOperation.queryGetVM(vMRequest);
+                
                 VMName = qvm.name;
                 RGName = Regex.Match(qvm.id, $"(?<=(resourceGroups/))[.\\s\\S]*?(?=(/))").Value;
                 Location = qvm.location;
@@ -87,4 +99,5 @@ namespace azure_m.ViewModels
             }
         }
     }
+
 }

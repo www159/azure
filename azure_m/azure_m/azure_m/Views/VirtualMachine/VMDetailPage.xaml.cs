@@ -15,8 +15,8 @@ namespace azure_m.Views
     {
         public VMDetailPage()
         {
-            InitializeComponent();
             BindingContext = new VMDetailViewModel();
+            InitializeComponent();
             vnlbl.Text = (BindingContext as VMDetailViewModel)?.RGName + "-vnet/default";
         }
     }
