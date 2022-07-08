@@ -22,6 +22,7 @@
             <Label Text="资源组" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="160,222,0,0"/>
             <Label Text="大小" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="280,222,0,0"/>
             <RefreshView
+                x:DataType="local:VirtualMachineViewModel"
                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
                 Command="{Binding LoadVMsCommand}"
                 Margin="20,260,0,0" 

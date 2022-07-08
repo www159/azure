@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="azure_m.Views.VNDetailPage"
+             xmlns:local="clr-namespace:azure_m.ViewModels"
+             x:DataType="local:VNDetailViewModel">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding VNName, StringFormat='虚拟网络名称:{0}'}" />
+            <Label Text="{Binding VNResGrpName, StringFormat='资源组名称:{0}'}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

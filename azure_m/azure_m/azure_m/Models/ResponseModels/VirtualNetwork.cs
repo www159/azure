@@ -8,7 +8,10 @@ namespace azure_m.Models
     namespace ResponseModels
     {
 
-        public class VirtualNetworkResponse
+        public class ListVirtualNetworkResponse : ListResponse<VirtualNetwork> { }
+
+        public class VirtualNetworkResponse : VirtualNetwork { }
+        public class VirtualNetwork
         {
             public string etag { get; set; }
 
