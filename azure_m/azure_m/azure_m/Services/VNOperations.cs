@@ -29,6 +29,10 @@ namespace azure_m.Services
         private string baseFormatUrlWithResourceGroupAndVNname = $"{QueryInfo.baseStrUrl}/resourceGroups/{{0}}/providers/Microsoft.Network/virtualNetworks/{{1}}";
         private string baseFormatUrlWithResourceGroup = $"{QueryInfo.baseStrUrl}/resourceGroups/{{0}}/providers/Microsoft.Network/virtualNetworks";
         private string baseFormatUrlWithoutVNnameOrResourceGroup = $"{QueryInfo.baseStrUrl}/providers/Microsoft.Network/virtualNetworks";
+
+        public List<VirtualNetwork> virtualNetworks { get; set; }
+
+
         public async Task queryCreateOrUpdateVN(CreateOrUpdateVNRequest createOrUpdateVNRequest)
         {
             var baseStrUrl = string.Format(baseFormatUrlWithResourceGroupAndVNname, createOrUpdateVNRequest.uri.resourceGroupName, createOrUpdateVNRequest.uri.virtualNetworkName );
@@ -104,21 +108,30 @@ namespace azure_m.Services
 
         }
 
-        public async Task queryListAllVM()
+        public async Task<ListVirtualNetworkResponse> queryListAllVN()
         {
-            var url = Utils.withApiVersion(
-                new Url(baseFormatUrlWithoutVNnameOrResourceGroup),
-                apiVersion.list);
+            //var url = Utils.withApiVersion(
+            //    new Url(baseFormatUrlWithoutVNnameOrResourceGroup),
+            //    apiVersion.list);
+            var url = Utils.baseStrUrlFull(
+                apiVersion: apiVersion.listAll,
+                type: ResourceType.virtualNetworks,
+                _namespace: QueryInfo.resourceNamespace[ResourceType.virtualNetworks]
+                );
+            ListVirtualNetworkResponse res = null;
             try
             {
-                var res = await url
-                    .GetJsonAsync<VirtualNetworkResponse>();
+                var str = await url.GetStringAsync();
+                res = await url
+                    .GetJsonAsync<ListVirtualNetworkResponse>();
 
             }
             catch (Exception ex)
             {
                 Utils.error(ex);
             }
+            virtualNetworks = Utils.arr2List(res.value);
+            return res;
 
         }
     }

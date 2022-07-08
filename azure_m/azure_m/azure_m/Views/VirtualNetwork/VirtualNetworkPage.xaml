@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:azure_m.ViewModels"
+
              x:Class="azure_m.Views.VirtualNetworkPage">
 
     <Grid RowDefinitions="120, 40, auto, auto, auto">
@@ -49,14 +51,48 @@
         
         <Grid Grid.Row="3" ColumnDefinitions="*, 2*, *">
             <Label Grid.Column="0" HorizontalOptions="Center" BackgroundColor="#ffffff" Text="名称" TextColor="#161616" FontSize="20"/>
-            <Label Grid.Column="1" HorizontalOptions="Center" BackgroundColor="#ffffff" Text="位置" TextColor="#161616" FontSize="20"/>
-            <Label Grid.Column="2" HorizontalOptions="Center" BackgroundColor="#ffffff" Text="状态" TextColor="#161616" FontSize="20"/>
+            <Label Grid.Column="1" HorizontalOptions="Center" BackgroundColor="#ffffff" Text="资源组" TextColor="#161616" FontSize="20"/>
         </Grid>
 
-        <ScrollView Grid.Row="4">
+        <RefreshView
+                x:DataType="local:VirtualMachineViewModel"
+                IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+                Command="{Binding LoadVMsCommand}"
+                Margin="20,260,0,0" 
+                >
+            <CollectionView 
+                    x:Name="vmCollection"
+                    ItemsSource="{Binding VirtualMachines}" 
+                    SelectionMode="Single"
+                    SelectionChangedCommand="{Binding VMSelected}"
+                    SelectionChangedCommandParameter="{Reference vmCollection}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid  
+                                BackgroundColor="Wheat" 
+                                VerticalOptions="Start" 
+                                HorizontalOptions="Start">
+                            <!--<Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        NumberOfTapsRequired="1"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:VMDetailViewModel}}, Path=VMTapped}" 
+                                        CommandParameter="{Binding .}">
+                                        
+                                    </TapGestureRecognizer>
+                                </Grid.GestureRecognizers>-->
+                            <CheckBox VerticalOptions="Start" HorizontalOptions="Start"/>
+                            <Label Text="{Binding name}" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,5,0,0"/>
+                            <Label Text="{Binding resourceGroup}" VerticalOptions="Start" HorizontalOptions="Start" Margin="140,5,0,0"/>
+                            <!--<Label Text="{Binding osDiskSize}" Margin="260,5,0,0" />-->
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+        <!--<ScrollView Grid.Row="4">
             <StackLayout x:Name="ResourceLayout" Margin="5,0,0,5" >
 
             </StackLayout>
-        </ScrollView>
+        </ScrollView>-->
     </Grid>
 </ContentPage>
