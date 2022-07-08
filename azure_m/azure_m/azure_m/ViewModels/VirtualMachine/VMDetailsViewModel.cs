@@ -75,17 +75,15 @@ namespace azure_m.ViewModels
 
         public string VMName
         {
-            get
-            {
-                return vm.uri.vmName;
-            }
-            set
-            {
-                vm.uri.vmName = vm.body.properties.osProfile.computerName = value;
-            }
+            get => vm.uri.vmName;
+            set => vm.uri.vmName = vm.body.properties.osProfile.computerName = value;
         }
 
-        public string AdminUsername { get; set; }
+        public string AdminUsername 
+        { 
+            get => vm.body.properties.osProfile.adminUsername;
+            set => vm.body.properties.osProfile.adminUsername = value;
+        }
 
 
         #endregion

@@ -22,6 +22,7 @@ namespace azure_m
 
             Routing.RegisterRoute(nameof(VirtualMachinePage), typeof(VirtualMachinePage));
             Routing.RegisterRoute(nameof(VMDetailPage), typeof(VMDetailPage));
+            Routing.RegisterRoute(nameof(AddVMDetailsPage), typeof(AddVMDetailsPage));
 
             Routing.RegisterRoute(nameof(ResourceGroupPage), typeof(ResourceGroupPage));
             this.CurrentItem = Home;

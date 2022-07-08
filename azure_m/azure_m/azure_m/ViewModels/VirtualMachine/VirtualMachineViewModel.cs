@@ -29,6 +29,9 @@ namespace azure_m.ViewModels
 
         public Command VMSelected { get; }
 
+        public Command JumpCreatePage { get; }
+
+
         public VirtualMachineViewModel()
         {
 
@@ -41,6 +44,12 @@ namespace azure_m.ViewModels
                 var vm = (collection as CollectionView).SelectedItem as VirtualMachine; 
                 if (vm == null) return;
                 await Shell.Current.GoToAsync($"{nameof(VMDetailPage)}?{nameof(VMDetailViewModel.VMName)}={vm.name}&{nameof(VMDetailViewModel.VMResGrpName)}={vm.resourceGroup}");
+            });
+
+            JumpCreatePage = new Command(async () =>
+            {
+                await Services.Utils.beforeAddVMDetialPage();
+                await Shell.Current.GoToAsync($"{nameof(AddVMDetailsPage)}");
             });
 
         }

@@ -14,6 +14,8 @@ namespace azure_m.Services
     using Models.ResponseModels;
 
     using Models.RequestModels.Metrics.List;
+    using Xamarin.Forms;
+    using azure_m.Models.RequestModels.VMSizes.List;
 
     static partial class Utils
     {
@@ -36,7 +38,7 @@ namespace azure_m.Services
             errorMethod.Invoke(new Exception(s));
         }
 
-         public static IFlurlRequest withApiVersion(IFlurlRequest req, string apiVersion)
+        public static IFlurlRequest withApiVersion(IFlurlRequest req, string apiVersion)
         {
             return req.SetQueryParam("api-version", apiVersion);
         }
@@ -45,7 +47,7 @@ namespace azure_m.Services
         {
             return url.SetQueryParam("api-version", apiVersion);
         }
-        public static IFlurlRequest withFilter(IFlurlRequest url,string filter)
+        public static IFlurlRequest withFilter(IFlurlRequest url, string filter)
         {
             return url.SetQueryParam("$filter", filter);
         }
@@ -59,14 +61,15 @@ namespace azure_m.Services
         #region 类型转化
         public static SecureString str2secStr(string str)
         {
-            SecureString secureStr = new SecureString();    
-            foreach(var ch in str) {
+            SecureString secureStr = new SecureString();
+            foreach (var ch in str)
+            {
                 secureStr.AppendChar(ch);
             }
             return secureStr;
-    
+
         }
-            public static T readMock<T>(string jsonStr)
+        public static T readMock<T>(string jsonStr)
         {
 
             var json = JsonConvert.DeserializeObject<T>(jsonStr);
@@ -89,10 +92,10 @@ namespace azure_m.Services
         }
 
         public static IFlurlRequest baseStrUrlFull(
-            string apiVersion, 
-            string type, 
-            string resourceGroup = "", 
-            string _namespace = "",  
+            string apiVersion,
+            string type,
+            string resourceGroup = "",
+            string _namespace = "",
             string name = "")
         {
 
@@ -111,11 +114,11 @@ namespace azure_m.Services
             where T : ListResponse<V>
         {
 
-            while(true)
+            while (true)
             {
                 if (res.nextLink == null) break;
                 res = await queryWithNextLink<T>(res.nextLink);
-                foreach(var val in res.value)
+                foreach (var val in res.value)
                 {
                     list.Add(val);
                 }
@@ -124,30 +127,35 @@ namespace azure_m.Services
         #endregion
         #region metric 请求参数
         public static IFlurlRequest baseMetricUrl(
-            string apiVersion, 
-            string resourceUri) {
-                string url = $"{QueryInfo.baseStrUrl}/{resourceUri}/providers/{QueryInfo.resourceNamespace[ResourceType.metrics]}/{ResourceType.metrics}";
-                return withApiVersion(url, apiVersion).WithOAuthBearerToken(QueryInfo.token);
-            }
+            string apiVersion,
+            string resourceUri)
+        {
+            string url = $"{QueryInfo.baseStrUrl}/{resourceUri}/providers/{QueryInfo.resourceNamespace[ResourceType.metrics]}/{ResourceType.metrics}";
+            return withApiVersion(url, apiVersion).WithOAuthBearerToken(QueryInfo.token);
+        }
 
-        
+
         private static string[] timeDurationStr = new string[] {
             "Y", "M", "D", "H", "M", "S"
         };
 
-        public static string ISODuration(int[] timeList) {
-            if(timeList.Length != 6) throw new Exception("timeList必须大小为6");
+        public static string ISODuration(int[] timeList)
+        {
+            if (timeList.Length != 6) throw new Exception("timeList必须大小为6");
             string baseStr = "P";
-            for(var i = 0; i < timeList.Length; i++) {
-                if(timeList[i] == 0) {
-                    if(i == 2) {
-                        if(baseStr == "P") baseStr += "0T";
+            for (var i = 0; i < timeList.Length; i++)
+            {
+                if (timeList[i] == 0)
+                {
+                    if (i == 2)
+                    {
+                        if (baseStr == "P") baseStr += "0T";
                         else baseStr += "T";
                     }
                     continue;
                 }
                 baseStr += $"{timeList[i]}{timeDurationStr[i]}";
-                if(i == 2) baseStr += "T";
+                if (i == 2) baseStr += "T";
             }
             return baseStr;
         }
@@ -159,10 +167,34 @@ namespace azure_m.Services
             {
                 aggregation = "average",
                 interval = ISODuration(new int[] { 0, 0, 0, 1, 0, 0 }),
-                
+
 
             };
         }
         #endregion
+
+        #region 跳转异步回调特化
+        public static async Task beforeAddVMDetialPage()
+        {
+            //service
+            ResourceGroupOperations resourceGroupOperations = DependencyService.Get<ResourceGroupOperations>();
+            LocationOperations locationOperations = DependencyService.Get<LocationOperations>();
+            VMSizesOperations vmSizesOperations = DependencyService.Get<VMSizesOperations>();
+
+            //query
+            QueryInfo.resourceGroups = await resourceGroupOperations.ListResourceGroup();
+            QueryInfo.locations = await locationOperations.queryListLocation();
+            //默认选第一个地区
+            QueryInfo.vmSizes = await vmSizesOperations.queryListVMSizes(new ListVMSizesRequest
+            {
+                uri = new ListVMSizesUri
+                {
+                    location = QueryInfo.locations.FirstOrDefault().name
+                },
+            });
+            //animate
+            Xamarin.Essentials.Vibration.Vibrate(500);
+            #endregion
+        }
     }
 }

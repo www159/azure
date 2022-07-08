@@ -9,7 +9,12 @@
             <Label Text="虚拟机" FontSize="35" Margin="20"/>
             <ScrollView Orientation="Horizontal"  >
                 <StackLayout Orientation="Horizontal" VerticalOptions="Start" Margin="0,80,0,0" >
-                    <Button Text="创建" VerticalOptions="Start" HorizontalOptions="Start" Margin="20,0,0,0" />
+                    <Button 
+                        Text="创建"
+                        VerticalOptions="Start" 
+                        HorizontalOptions="Start" 
+                        Margin="20,0,0,0" 
+                        Command="{Binding JumpCreatePage}"/>
                     <Button Text="开始" VerticalOptions="Start" HorizontalOptions="Start" />
                     <Button Text="重新开始" VerticalOptions="Start" HorizontalOptions="Start"/>
                     <Button Text="停止" VerticalOptions="Start" HorizontalOptions="Start"/>

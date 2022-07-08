@@ -28,27 +28,8 @@ namespace azure_m.Views
             Helpers.AsyncbeforeJump(
                 Navigation,
                 typeof(AddVMDetailsPage),
-                async () =>
-                {
-                    //service
-                    ResourceGroupOperations resourceGroupOperations = DependencyService.Get<ResourceGroupOperations>();
-                    LocationOperations locationOperations           = DependencyService.Get<LocationOperations>();
-                    VMSizesOperations vmSizesOperations             = DependencyService.Get<VMSizesOperations>();
-
-                    //query
-                    QueryInfo.resourceGroups = await resourceGroupOperations.ListResourceGroup();
-                    QueryInfo.locations      = await locationOperations.queryListLocation();
-                    //默认选第一个地区
-                    QueryInfo.vmSizes        = await vmSizesOperations.queryListVMSizes(new ListVMSizesRequest
-                    {
-                        uri = new ListVMSizesUri
-                        {
-                            location = QueryInfo.locations.FirstOrDefault().name
-                        },
-                    });
-                    //animate
-                    Xamarin.Essentials.Vibration.Vibrate(500);
-                });
+                Services.Utils.beforeAddVMDetialPage
+                );
             
 
         }
