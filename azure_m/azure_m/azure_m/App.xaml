@@ -7,11 +7,11 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#470024</Color>
-            <Color x:Key="SPrim">#470024</Color>
-            <Color x:Key="DPrim">#b0a589</Color><!--a0a0a0-->
-            <Color x:Key="Layout">#d8caaf</Color> <!--f8ebd8-->
-            <Color x:Key="CardBack">#b0a589</Color>
+            <Color x:Key="Primary">#1e6ede</Color>
+            <Color x:Key="SPrim"></Color>
+            <Color x:Key="DPrim">#1e6ede</Color><!--a0a0a0-->
+            <Color x:Key="Layout">white</Color> <!--f8ebd8-->
+            <Color x:Key="CardBack"></Color>
             <Color x:Key="PrimaryText">#E4E6E1</Color>
             <Color x:Key="DPrimText">#E4E6E1</Color>
             <Style TargetType="Button">

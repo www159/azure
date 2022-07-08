@@ -154,7 +154,8 @@ namespace azure_m.Views
         public void OnAlert_Clicked(object sender, EventArgs e)
         {
             //this.Navigation.PushAsync(new AlertsPage());
-            
+
+            this.Navigation.PushAsync(new ActivitylogPage());
             DisplayAlert("Alert", "AlertPage", "OK");
         }
 

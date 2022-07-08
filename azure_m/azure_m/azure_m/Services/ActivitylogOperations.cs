@@ -37,10 +37,10 @@ namespace azure_m.Services
             var baseUrl = baseFormatUrl;
             ListActivitylogResponse res = null;
             var filter = string.Format(filterFormat, pretime, timeofDay, time, timeofDay, resourceUri);
-            Url url1 = Utils.withApiVersion(
+            var url1 = Utils.withApiVersion(
                 baseUrl, apiVersion.list
                 );
-            IFlurlRequest url = Utils.withFilterVersion(
+            IFlurlRequest url = Utils.withFilter(
                 url1, filter
                 ).WithOAuthBearerToken(QueryInfo.token);
             var _filter = "eventTimestamp ge '2022-07-01T08:02:12.6756260Z' and eventTimestamp le '2022-07-08T08:02:12.6756260Z' and resourceUri eq '/subscriptions/219b2431-594f-47fa-8e85-664196aa3f92/resourceGroups/W_GROUP/providers/Microsoft.Compute/virtualMachines/w'";

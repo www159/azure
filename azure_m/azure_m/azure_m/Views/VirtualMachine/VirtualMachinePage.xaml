@@ -36,7 +36,6 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid  
-                                BackgroundColor="Wheat" 
                                 VerticalOptions="Start" 
                                 HorizontalOptions="Start"
                                 x:DataType="model:VirtualMachine">
