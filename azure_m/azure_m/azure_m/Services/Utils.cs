@@ -196,5 +196,14 @@ namespace azure_m.Services
             Xamarin.Essentials.Vibration.Vibrate(500);
             #endregion
         }
+
+        public static async Task beforeJumpAddVNDetialPage()
+        {
+            ResourceGroupOperations resourceGroupOperations = DependencyService.Get<ResourceGroupOperations>();
+            LocationOperations locationOperations = DependencyService.Get<LocationOperations>();
+
+            QueryInfo.resourceGroups = await resourceGroupOperations.ListResourceGroup();
+            QueryInfo.locations = await locationOperations.queryListLocation();
+        }
     }
 }

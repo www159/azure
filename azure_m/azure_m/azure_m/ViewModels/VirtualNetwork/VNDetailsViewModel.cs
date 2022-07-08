@@ -65,6 +65,12 @@ namespace azure_m.ViewModels
                 vn.body.properties.subnets[0].properties.addressPrefix = value;
             }
         }
+
+        public string SubNetIPAddress
+        {
+            get => vn.body?.properties?.subnets[0]?.properties?.addressPrefix ?? string.Empty;
+            set => vn.body.properties.subnets[0].properties.addressPrefix = value;
+        }
         private CreateOrUpdateVNRequest vn = CreateOrUpdateVNRequest.create();
         #endregion
 
@@ -73,13 +79,15 @@ namespace azure_m.ViewModels
 #if DEBUG
 
             subscribes = new ObservableDictionary<string, string> { { "免费试用", "123" } };
-            //resourceGroups = new ObservableCollection<string> { "wfpres", "wfpppres" };
-            AreaSources = new ObservableCollection<string> { "Japaneast" };
+            ////resourceGroups = new ObservableCollection<string> { "wfpres", "wfpppres" };
+            //AreaSources = new ObservableCollection<string> { "Japaneast" };
 #endif
 
             subscribesNames = new ObservableCollection<string>();
 
             resourceGroups = new ObservableCollection<string>();
+
+            AreaSources = new ObservableCollection<string>();
 
             foreach (var key in subscribes.Keys)
             {

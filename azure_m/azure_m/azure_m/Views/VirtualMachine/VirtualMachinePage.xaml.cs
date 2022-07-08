@@ -14,11 +14,11 @@ namespace azure_m.Views
     public partial class VirtualMachinePage : ContentPage
     {
 
-        private VirtualMachineViewModel vmViewModel;
+        private VirtualMachineViewModel vnViewModel;
 
         public VirtualMachinePage()
         {
-            BindingContext = vmViewModel = new VirtualMachineViewModel();
+            BindingContext = vnViewModel = new VirtualMachineViewModel();
             InitializeComponent();
         }
 
@@ -36,7 +36,7 @@ namespace azure_m.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            vmViewModel.OnAppearing();
+            vnViewModel.OnAppearing();
 
         }
     }

@@ -8,7 +8,7 @@ namespace azure_m.Models
     namespace ResponseModels
     {
 
-        public class ListVirtualNetworkResponse : ListResponse<VirtualNetwork> { }
+        public class ListVirtualNetworkResponse : ListNResponse<VirtualNetwork> { }
 
         public class VirtualNetworkResponse : VirtualNetwork { }
         public class VirtualNetwork
@@ -57,7 +57,7 @@ namespace azure_m.Models
 
             public SubResource[] ipAllocations { get; set; }
 
-            public ProvisioningState provisioningState { get; set; }
+            public string provisioningState { get; set; }
 
             public string resourceGuid { get; set; }
 
@@ -141,13 +141,13 @@ namespace azure_m.Models
 
             public NetworkSecurityGroup networkSecurityGroup { get; set; }
 
-            public VirtualNetworkPrivateEndpointNetworkPolicies privateEndpointNetworkPolicies { get; set; }
+            public string privateEndpointNetworkPolicies { get; set; }
 
             public PrivateEndpoint[] privateEndpoints { get; set; }
 
-            public VirtualNetworkPrivateLinkServiceNetworkPolicies privateLinkServiceNetworkPolicies { get; set; }
+            public string privateLinkServiceNetworkPolicies { get; set; }
 
-            public ProvisioningState provisioningState { get; set; }
+            public string provisioningState { get; set; }
 
             public string purpose { get; set; }
 
@@ -179,7 +179,7 @@ namespace azure_m.Models
 
         public class ApplicationGatewayIPConfigurationProperties
         {
-            public ProvisioningState provisioningState { get; set; }
+            public string provisioningState { get; set; }
 
             public SubResource sebnet { get; set; }
         }

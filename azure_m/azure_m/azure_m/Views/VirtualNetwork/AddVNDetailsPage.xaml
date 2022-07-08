@@ -79,6 +79,14 @@
                 </Label.FormattedText>
             </Label>
             <Entry  Margin="20, 0, 20, 20" x:Name="IPAddressEntry" Text="{Binding IPAddress}"/>
+            <Label VerticalTextAlignment="Center" Margin="20, 20,20,20" >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="默认子网IP"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Entry  Margin="20, 0, 20, 20" Text="{Binding IPAddress}"/>
         </StackLayout>
     </ContentPage>
     <!--#endregion-->

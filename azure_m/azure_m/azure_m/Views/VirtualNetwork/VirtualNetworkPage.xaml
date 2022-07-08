@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:azure_m.ViewModels"
-
+             xmlns:model="clr-namespace:azure_m.Models"
              x:Class="azure_m.Views.VirtualNetworkPage">
 
     <Grid RowDefinitions="120, 40, auto, auto, auto">
@@ -55,34 +55,36 @@
         </Grid>
 
         <RefreshView
-                x:DataType="local:VirtualMachineViewModel"
+                x:DataType="local:VirtualNetworkViewModel"
                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
-                Command="{Binding LoadVMsCommand}"
-                Margin="20,260,0,0" 
+                Command="{Binding LoadVNsCommand}"
+                Grid.Row="4" 
                 >
             <CollectionView 
-                    x:Name="vmCollection"
-                    ItemsSource="{Binding VirtualMachines}" 
+                    x:Name="vnCollection"
+                    ItemsSource="{Binding VirtualNetworks}" 
                     SelectionMode="Single"
-                    SelectionChangedCommand="{Binding VMSelected}"
-                    SelectionChangedCommandParameter="{Reference vmCollection}">
+                    SelectionChangedCommand="{Binding VNSelected}"
+                    SelectionChangedCommandParameter="{Reference vnCollection}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid  
-                                BackgroundColor="Wheat" 
-                                VerticalOptions="Start" 
-                                HorizontalOptions="Start">
-                            <!--<Grid.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        NumberOfTapsRequired="1"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:VMDetailViewModel}}, Path=VMTapped}" 
-                                        CommandParameter="{Binding .}">
-                                        
-                                    </TapGestureRecognizer>
-                                </Grid.GestureRecognizers>-->
+                            VerticalOptions="Start" 
+                            HorizontalOptions="Start"
+                            x:DataType="model:VirtualNetwork">
                             <CheckBox VerticalOptions="Start" HorizontalOptions="Start"/>
-                            <Label Text="{Binding name}" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,5,0,0"/>
-                            <Label Text="{Binding resourceGroup}" VerticalOptions="Start" HorizontalOptions="Start" Margin="140,5,0,0"/>
+                            <Label 
+                                Text="{Binding name}" 
+                                VerticalOptions="Start" 
+                                HorizontalOptions="Start" 
+                                Margin="40,5,0,0" 
+                                WidthRequest="100"/>
+                            <Label 
+                                Text="{Binding resourceGroup}" 
+                                VerticalOptions="Start" 
+                                HorizontalOptions="Start" 
+                                Margin="170,5,0,0"
+                                WidthRequest="100"/>
                             <!--<Label Text="{Binding osDiskSize}" Margin="260,5,0,0" />-->
                         </Grid>
                     </DataTemplate>
