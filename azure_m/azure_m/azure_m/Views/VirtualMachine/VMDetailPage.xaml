@@ -1,12 +1,110 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="{Binding VMName}"
              x:Class="azure_m.Views.VMDetailPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="itemLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="2,0,0,0"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+
+            <Style x:Key="ItemPicker" TargetType="Picker">
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="WidthRequest" Value="200"/>
+                <Setter Property="VerticalOptions" Value="End"/>
+                <Setter Property="Margin" Value="20,0,0,0"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+
+            <Style x:Key="entryStyle" TargetType="Entry">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="MaxLength" Value="100"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="WidthRequest" Value="200"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+
+            <Style x:Key="frameStyle" TargetType="Frame">
+                <Setter Property="BorderColor" Value="White"/>
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+
+            <Style x:Key="CollectionStyle" TargetType="CollectionView">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+            </Style>
+
+            <Style x:Key="BoldBorder" TargetType="Line">
+                <Setter Property="HeightRequest" Value="2"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="BackgroundColor" Value="LightGray"/>
+            </Style>
+
+            <Style x:Key="ThinBorder" TargetType="Line">
+                <Setter Property="HeightRequest" Value="1"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="BackgroundColor" Value="lightGray"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="WidthRequest" Value="400"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <!--#region 操作栏-->
+            <ScrollView Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="开始" BackgroundColor="LightGray"/>
+                    <Button Text="重新启动" BackgroundColor="#1e6ede"/>
+                    <Button Text="停止" BackgroundColor="#1e6ede"/>
+                    <Button Text="删除" BackgroundColor="#1e6ede"/>
+                </StackLayout>
+            </ScrollView>
+            <!--#endregion-->
+            <!--#region 显示栏-->
+            <ScrollView>
+                <Grid ColumnDefinitions="*,2*" RowDefinitions="1" >
+
+                    <Line Grid.Row="1" Grid.ColumnSpan="2" VerticalOptions="Start" Style="{StaticResource ThinBorder}"/>
+                    <Label Grid.Row="1" Style="{StaticResource itemLabel}" Text="资源组"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding RGName}" Style="{StaticResource itemLabel}"/>
+                    <Line Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ThinBorder}"/>
+                    <Label Grid.Row="2" Text="位置" Style="{StaticResource itemLabel}"/>
+                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding Location}" Style="{StaticResource itemLabel}"/>
+                    <Line Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ThinBorder}"/>
+                    <Label Grid.Row="3" Text="操作系统" Style="{StaticResource itemLabel}"/>
+                    <Label Grid.Row="3" Grid.Column="1" Text="{Binding Image}" Style="{StaticResource itemLabel}"/>
+                    <Line Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ThinBorder}"/>
+                    <Label Grid.Row="4" Text="大小" Style="{StaticResource itemLabel}"/>
+                    <Label Grid.Row="4"  Grid.Column="1" Text="{Binding VMSize}" Style="{StaticResource itemLabel}"/>
+                    <Line Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource ThinBorder}"/>
+                    <Label Grid.Row="5" Text="虚拟网络/子网" Style="{StaticResource itemLabel}"/>
+                    <Label x:Name="vnlbl"  Grid.Row="5"  Grid.Column="1"  Style="{StaticResource itemLabel}"/>
+                    <Line Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource ThinBorder}"/>
+                    <Label Grid.Row="6" Text="公共IP" Style="{StaticResource itemLabel}"/>
+                    <Label Grid.Row="6"  Grid.Column="1" Text="{Binding VMSize}" Style="{StaticResource itemLabel}"/>
+                    <!--#endregion-->
+                    
+                </Grid>
+            </ScrollView>
+            <!--#endregion-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

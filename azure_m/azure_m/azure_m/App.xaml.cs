@@ -1,5 +1,7 @@
 ﻿#define DEBUG
-
+#if DEBUG
+using System.Text.RegularExpressions;
+#endif
 using azure_m.Services;
 using azure_m.Views;
 using System;

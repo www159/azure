@@ -25,7 +25,6 @@
             <Label Text="大小" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="280,222,0,0"/>
             <RefreshView
                 x:DataType="local:VirtualMachineViewModel"
-                Command=""
                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
                 >
                 <CollectionView x:Name="VirtualMachineList" ItemsSource="{Binding VirtualMachines}" Margin="20,260,0,0" SelectionChanged="VirtualMachineList_SelectionChanged" SelectionMode="Single">
@@ -33,9 +32,9 @@
                         <DataTemplate>
                             <Grid VerticalOptions="Start" HorizontalOptions="Start">
                                 <CheckBox VerticalOptions="Start" HorizontalOptions="Start" />
-                                <Label Text="{Binding name}" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,5,0,0"/>
+                                <!--<Label Text="{Binding name}" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,5,0,0"/>
                                 <Label Text="{Binding SourceGroup}" VerticalOptions="Start" HorizontalOptions="Start" Margin="160,5,0,0"/>
-                                <Label Text="{Binding properties.hardwareProfile.vmSize}" Margin="260,5,0,0" />
+                                <Label Text="{Binding properties.hardwareProfile.vmSize}" Margin="260,5,0,0" />-->
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
