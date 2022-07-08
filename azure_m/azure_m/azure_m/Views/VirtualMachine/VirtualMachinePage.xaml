@@ -52,6 +52,11 @@
                                 <Label Text="{Binding name}" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,5,0,0"/>
                                 <Label Text="{Binding resourceGroup}" VerticalOptions="Start" HorizontalOptions="Start" Margin="140,5,0,0"/>
                                 <Label Text="{Binding osDiskSize}" Margin="260,5,0,0" />
+                            <Grid VerticalOptions="Start" HorizontalOptions="Start">
+                                <CheckBox VerticalOptions="Start" HorizontalOptions="Start" />
+                                <!--<Label Text="{Binding name}" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,5,0,0"/>
+                                <Label Text="{Binding SourceGroup}" VerticalOptions="Start" HorizontalOptions="Start" Margin="160,5,0,0"/>
+                                <Label Text="{Binding properties.hardwareProfile.vmSize}" Margin="260,5,0,0" />-->
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
