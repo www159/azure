@@ -12,14 +12,21 @@ namespace azure_m.Models.RequestModels
             {
 
             }
-            public class ListMetricNamespaceUri
+            public class ListMetricNamespaceUriQuery
             {
-                public string resourceUri { get; set; }
 
                 public string startTime { get; set; }
                 //public string apiVersion;
             }
-            public class ListMetricsNamespaceRequest : IRequest<ListMetricNamespaceUri, ListMetricNamespaceBody>
+
+            public class ListMetricNamespaceUriPath
+            {
+                public string reourceUri { get; set; }
+            }
+            public class ListMetricsNamespaceRequest : QueryRequest<
+                ListMetricNamespaceUriPath,
+                ListMetricNamespaceUriQuery,
+                ListMetricNamespaceBody>
             {
 
             }

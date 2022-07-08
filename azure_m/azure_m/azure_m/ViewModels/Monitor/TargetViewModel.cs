@@ -13,17 +13,32 @@ namespace azure_m.ViewModels
 
     using Models.RequestModels.MetricNamespace.List;
     using Models.RequestModels.Metrics.List;
+    using Models.ResponseModels;
+    using Mocks;
 
     public class TargetViewModel : BaseViewModel
     {
         public ObservableCollection<Resource> Resources { get; set; }
 
-        private MetricOperations operations = DependencyService.Get<MetricOperations>();
+        public ObservableCollection<string> MetricNames { get; set; }
+
+        public ObservableCollection<MetricData> MetricDatas { get; set; }
+
+
+        private MetricOperations metricOperations = DependencyService.Get<MetricOperations>();
         private ResourceOperations resourceOperations = DependencyService.Get<ResourceOperations>();
+        private MetricDefinirtionOperations metricDefinirtionOperations = DependencyService.Get<MetricDefinirtionOperations>();
+        private MetricsNamespaceOperations metricsNamespaceOperations = DependencyService.Get<MetricsNamespaceOperations>();
 
-        string chosenResourceType;
+        public string TZTime { get => $"{DateTime.Now.ToString("yyyy-MM-dd")}T{DateTime.Now.TimeOfDay}Z"; }
 
-        string chosenResourceName;
+        public string TZTimePre { get => $"{DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd")}T{DateTime.Now.TimeOfDay}Z"; }
+
+        private string chosenResourceType;
+        private string chosenResourceName;
+        private string chosenResourceId;
+        private string metricNamespace;
+        private string selectedMetricName;
 
         public string ChosenResourceType
         {
@@ -37,21 +52,28 @@ namespace azure_m.ViewModels
             set => SetProperty(ref chosenResourceName, value);
         }
 
+        public string SelectedMetricName
+        {
+            get => selectedMetricName;
+            set {
+                SetProperty(ref selectedMetricName, value);
+                onMetricSelected(value);
+            }
+        }
+
+
         public Command<CollectionView> selectedResource { get; }
 
-        
-        
-        public List<Models.MockModels.Data> Ccr { get; set; }
-        public List<Models.MockModels.Data> Ccc { get; set; }
-        public List<Models.MockModels.Data> Amb { get; set; }
+
+
 
         async void LoadReSource()
         {
             await resourceOperations.refreshResourceAsync();
 
             Resources.Clear();
-            
-            foreach(var resource in resourceOperations.resources)
+
+            foreach (var resource in resourceOperations.resources)
             {
                 Resources.Add(resource);
             }
@@ -59,6 +81,8 @@ namespace azure_m.ViewModels
         public TargetViewModel()
         {
             Resources = new ObservableCollection<Resource>();
+            MetricNames = new ObservableCollection<string>();
+            MetricDatas = new ObservableCollection<MetricData>();
 
             ChosenResourceName = "请选择一个范围";
 
@@ -71,13 +95,71 @@ namespace azure_m.ViewModels
                 var resource = sender.SelectedItem as Resource;
                 ChosenResourceName = resource.name;
                 ChosenResourceType = resource.type;
+                chosenResourceId = resource.id;
                 // API
+                var resMetDef = await metricDefinirtionOperations.queryListMetricDefinition(
+                    new Models.RequestModels.MetricDefinition.List.ListMetricDefinitionRequest
+                    {
+                        uriPath = new Models.RequestModels.MetricDefinition.List.MetricDefinitionRequestUriPath
+                        {
+                            resourceUri = resource.id
+                        }
+                    });
 
+                MetricNames.Clear();
+                foreach (var val in resMetDef.value)
+                {
+                    MetricNames.Add(val.name.value);
+                }
+
+                var resMetNsp = await metricsNamespaceOperations.queryListMetricsNamespace(new ListMetricsNamespaceRequest
+                {
+                    uriPath = new ListMetricNamespaceUriPath
+                    {
+                        reourceUri = resource.id
+                    }
+                });
+
+                metricNamespace = resMetNsp.value[0].properties.metricNamespaceName;
             });
-        }
-       
 
-      
+
+        }
+
+
+        private async void onMetricSelected(string selectedMetricName)
+        {
+            var res = await metricOperations.queryListMetrics(new ListMetricsRequest
+            {
+                uriPath = new ListMetricsUriPath
+                {
+                    resourceUri = chosenResourceId
+                },
+                uriQuery = new ListMetricsUriQuery
+                {
+                    aggregation = Mocks.MetricReqUriQuery.aggregation,
+
+                    interval = Mocks.MetricReqUriQuery.interval,
+
+                    metricnames = selectedMetricName,
+
+                    metricNamespace = metricNamespace,
+
+                    timespan = $"{TZTimePre}/{TZTime}"
+
+                }
+            });
+
+            MetricDatas.Clear();
+            foreach(var val in res.value[0].timeseries[0].data)
+            {
+                MetricDatas.Add(new MetricData
+                {
+                    timeStamp = val.timeStamp,
+                    average = val.average,
+                });
+            }
+        }
 
     }
 

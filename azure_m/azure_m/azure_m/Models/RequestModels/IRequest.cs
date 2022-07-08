@@ -15,7 +15,7 @@ namespace azure_m.Models.RequestModels
 
         public T uriPath;
 
-        public U uriQUery;
+        public U uriQuery;
 
         public V body;
     }

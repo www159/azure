@@ -16,7 +16,7 @@ namespace azure_m.Services
     {
         private static class apiVersion
         {
-            public const string list = "2022-03-01";
+            public const string list = "2017-12-01-preview";
         }
         //private string baseFormatUrlWithResourceUri = $"{QueryInfo.baseStrUrl}/providers/Microsoft.Compute/locations/{{0}}/vmSizes";
         private string baseFormatUrlWithResourceUri = $"https://management.azure.com/{{0}}/providers/microsoft.insights/metricNamespaces"; //QueryInfo.baseStrUrl里没有这个前缀
@@ -24,7 +24,7 @@ namespace azure_m.Services
 
         public async Task<ListMetricNamespaceResponse> queryListMetricsNamespace(ListMetricsNamespaceRequest listMetricsNamespaceRequest)
         {
-            var baseStrUrl = string.Format(baseFormatUrlWithResourceUri, listMetricsNamespaceRequest.uri.resourceUri);
+            var baseStrUrl = string.Format(baseFormatUrlWithResourceUri, listMetricsNamespaceRequest.uriPath.reourceUri);
             var url = Utils.withApiVersion(
                 new Url(baseStrUrl),
                 apiVersion.list)

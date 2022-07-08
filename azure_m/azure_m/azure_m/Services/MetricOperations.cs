@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Flurl.Http;
+using Flurl;
 
 namespace azure_m.Services
 {
@@ -17,12 +18,13 @@ namespace azure_m.Services
             public const string list = "2018-01-01";
         }
 
+        private string baseUrl = $"https://management.azure.com/{{0}}/providers/microsoft.insights/metrics";
+
         public async Task<ListMetricsResponse> queryListMetrics(ListMetricsRequest req)
         {
-            var url = Utils.baseStrUrlFull(
-                req.uriPath.resourceUri,
-                apiVersion.list
-            ).SetQueryParams(req.uriQUery);
+            var url = Utils.withApiVersion(new Url(string.Format(baseUrl, req.uriPath.resourceUri)), apiVersion.list)
+                .SetQueryParams(req.uriQuery)
+                .WithOAuthBearerToken(QueryInfo.token);
 
 
             ListMetricsResponse res = null;

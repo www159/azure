@@ -229,6 +229,8 @@ namespace azure_m.Services
             DependencyService.Register<LocationOperations>();
             DependencyService.Register<ActivitylogOperations>();
             DependencyService.Register<MetricOperations>();
+            DependencyService.Register<MetricDefinirtionOperations>();
+            DependencyService.Register<MetricsNamespaceOperations>();
             // DependencyService.Register<>();
             // DependencyService.Register<>();
         }

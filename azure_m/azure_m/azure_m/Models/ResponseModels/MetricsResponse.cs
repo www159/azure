@@ -34,7 +34,7 @@ namespace azure_m.Models
             public LocalizableString name { get; set; }
             public string type { get; set; }
             public TimeSeriesElement[] timeseries { get; set; }
-            public MetricUnit unit { get; set; }
+            public string unit { get; set; }
         }
 
 

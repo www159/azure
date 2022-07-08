@@ -29,7 +29,7 @@ namespace azure_m.Models.RequestModels
                 public string interval { get; set; }
 
                 // Type: MetricNames;
-                public string metricNampspace { get; set; }
+                public string metricNamespace { get; set; }
 
                 public string orderby { get; set; }
 
@@ -39,26 +39,12 @@ namespace azure_m.Models.RequestModels
 
                 public string aggregation { get; set; }
 
-                public string metricNames { get; set; }
+                public string metricnames { get; set; }
 
                 // public int top { get; set; }
             }
         }
 
-        public class MetricNamesVM {
-
-            public string AvailableMemBytes = "Available Memnory Bytes";
-
-            public string CPUCreditConsumed = "CPU Credit Consumed";
-
-            public string CPUCreditRemaining = "CPU Credit Remaining";
-        }
-
-        public class MetricNamesDisk {
-        
-            public string DiskOnDemandBurstOperations = "Disk On-demand Burst Operations";
-
-        }
 
     }
 
