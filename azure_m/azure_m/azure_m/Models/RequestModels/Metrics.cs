@@ -39,6 +39,8 @@ namespace azure_m.Models.RequestModels
 
                 public string aggregation { get; set; }
 
+                public string metricNames { get; set; }
+
                 // public int top { get; set; }
             }
         }

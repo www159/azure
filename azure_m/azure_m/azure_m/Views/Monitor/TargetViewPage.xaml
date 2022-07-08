@@ -7,71 +7,7 @@
     <ContentPage.BindingContext>
         <local:TargetViewModel/>
     </ContentPage.BindingContext>
-    <!--<ContentPage.Resources>
-        <ControlTemplate x:Key="RadioButtonTemplate">
-            <Frame BorderColor="White"
-                   BackgroundColor="White"
-                   HasShadow="False"
-                   HeightRequest="30"
-                   WidthRequest="800"
-                   HorizontalOptions="Start"
-                   VerticalOptions="Start"
-                   Padding="0">
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CheckedStates">
-                            <VisualState x:Name="Checked">
-                                <VisualState.Setters>
-                                    <Setter Property="BorderColor"
-                                            Value="#FF3300" />
-                                    <Setter TargetName="check"
-                                            Property="Opacity"
-                                            Value="1" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="Unchecked">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor"
-                                            Value="#F3F2F1" />
-                                    <Setter Property="BorderColor"
-                                            Value="#F3F2F1" />
-                                    <Setter TargetName="check"
-                                            Property="Opacity"
-                                            Value="0" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </VisualStateManager.VisualStateGroups>
-                <Grid Margin="4"
-                      WidthRequest="100">
-                    <Grid WidthRequest="18"
-                          HeightRequest="18"
-                          HorizontalOptions="Start"
-                          VerticalOptions="Start">
-                        <Ellipse Stroke="Blue"
-                                 Fill="White"
-                                 WidthRequest="16"
-                                 HeightRequest="16"
-                                 HorizontalOptions="Center"
-                                 VerticalOptions="Center" />
-                        <Ellipse x:Name="check"
-                                 Fill="Blue"
-                                 WidthRequest="8"
-                                 HeightRequest="8"
-                                 HorizontalOptions="Center"
-                                 VerticalOptions="Center" />
-                    </Grid>
-                    <ContentPresenter />
-                </Grid>
-            </Frame>
-        </ControlTemplate>
-
-        <Style TargetType="RadioButton">
-            <Setter Property="ControlTemplate"
-                    Value="{StaticResource RadioButtonTemplate}" />
-        </Style>
-    </ContentPage.Resources>-->
+   
     <ContentPage.Content>
         <Grid>
             <Grid >

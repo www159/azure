@@ -9,7 +9,6 @@ namespace azure_m.ViewModels
 
     [QueryProperty(nameof(VMResGrpName), nameof(VMResGrpName))]
     [QueryProperty(nameof(VMName), nameof(VMName))]
-
     public class VMDetailViewModel: BaseViewModel
     {
         private string vmName;
