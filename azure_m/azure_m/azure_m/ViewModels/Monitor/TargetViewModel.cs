@@ -152,12 +152,24 @@ namespace azure_m.ViewModels
 
             MetricDatas.Clear();
             foreach(var val in res.value[0].timeseries[0].data)
-            {
-                MetricDatas.Add(new MetricData
+            { 
+                if(val.average>=(1024*1024))
                 {
-                    timeStamp = val.timeStamp,
-                    average = val.average,
-                });
+                    MetricDatas.Add(new MetricData
+                    {
+                        timeStamp = val.timeStamp,
+                        average = val.average/(1024*1024),
+                    });
+                }
+                else
+                {
+                    MetricDatas.Add(new MetricData
+                    {
+                        timeStamp = val.timeStamp,
+                        average = val.average,
+                    });
+                }
+                
             }
         }
 

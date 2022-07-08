@@ -23,17 +23,18 @@
             </Label>
             <Label Text="Microsoft"  HeightRequest="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="90,60,0,0" />
             <Image Source="dashboard2.png"  HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,20,0,0"/>
-            <Button x:Name="ChooseRange" Text="{Binding ChosenResourceName}" HorizontalOptions="Start" VerticalOptions="Start" Margin="2,100" Clicked="ChooseTargetClicked" />
-                <Button x:Name="ShowType" Text="{Binding ChosenResourceType}" HorizontalOptions="Start" VerticalOptions="Start" Margin="115,100,0,0"/>
-                <Picker 
+                <StackLayout Orientation="Horizontal" Margin="20,100" VerticalOptions="Start" HorizontalOptions="Start">
+                    <Button x:Name="ChooseRange" Text="{Binding ChosenResourceName}" HorizontalOptions="Start" VerticalOptions="Start"  Clicked="ChooseTargetClicked" />
+                    <Picker 
                     HorizontalOptions="Start" 
                     VerticalOptions="Start" 
-                    Margin="205,100,0,0"
                     Title="度量值"
                     ItemsSource="{Binding MetricNames}"
                     SelectedItem="{Binding SelectedMetricName}"/>
-                <Button Text="条形图"  HorizontalOptions="Start" VerticalOptions="Start" Margin="300,100,0,0" />
-               
+                    <Button Text="条形图"  HorizontalOptions="Start" VerticalOptions="Start"/>
+                </StackLayout>
+                <Button x:Name="ShowType" Text="{Binding ChosenResourceType}" HorizontalOptions="Start" VerticalOptions="Start" Margin="20,200,0,0"/>
+
 
                 <!--图表显示区-->
                 <chart:SfChart VerticalOptions="Start"  Margin="0,320,0,0" x:Name="CcrChart">
@@ -102,7 +103,6 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Grid 
-                                    HeightRequest="40"
                                     x:DataType="model:Resource">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="40"/>
