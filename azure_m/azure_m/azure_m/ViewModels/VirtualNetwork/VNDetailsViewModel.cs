@@ -8,7 +8,7 @@ using System.Linq;
 namespace azure_m.ViewModels
 {
     using Models.RequestModels.VN.CreateOrUpdate;
-    using Helpers;
+    using azure_m.Helpers;
     using Services;
 
     public class VNDetailsViewModel : BaseViewModel

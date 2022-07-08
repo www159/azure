@@ -9,12 +9,18 @@ using Xamarin.Forms.Xaml;
 
 namespace azure_m.Views
 {
+    using ViewModels;
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VMDetailPage : ContentPage
     {
+
+        private VMDetailViewModel viewModel;
         public VMDetailPage()
         {
+            
             InitializeComponent();
+            BindingContext = viewModel = new VMDetailViewModel();
         }
     }
 }
