@@ -151,12 +151,11 @@ namespace azure_m.Views
             DisplayAlert("Alert", "SettingPage", "OK");
         }
 
-        public async void OnAlert_Clicked(object sender, EventArgs e)
+        public void OnAlert_Clicked(object sender, EventArgs e)
         {
             //this.Navigation.PushAsync(new AlertsPage());
             
             DisplayAlert("Alert", "AlertPage", "OK");
-            await Navigation.PushAsync(new ActivitylogPage());
         }
 
         public void OnAdd_Clicked(object sender, EventArgs e)

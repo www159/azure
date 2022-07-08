@@ -6,12 +6,20 @@
              xmlns:model="clr-namespace:azure_m.Models" x:DataType="local:ActivitylogViewModel">
   <ContentPage.Content>
         <StackLayout>
-            <Label Text="你的虚拟机30天内的活动日志：" FontSize="20"/>
+            <Label Text="你的虚拟机7天内的活动日志：" FontSize="20" TextColor="Black"/>
             <StackLayout Orientation="Horizontal">
-                <Label Text="操作名称" FontSize="15" BackgroundColor="Blue" WidthRequest="120"/>
-                <Label Text="状态" BackgroundColor="Red" WidthRequest="50"/>
-                <Label Text="时间戳" BackgroundColor="Blue" WidthRequest="60"/>
-                <Label Text="事件发起者" BackgroundColor="Red" WidthRequest="110"/>
+                <Frame BorderColor="Black">
+                <Label Text="操作名称" FontSize="15" WidthRequest="120" TextColor="Black"/>
+                </Frame>
+                <Frame BorderColor="Black">
+                    <Label Text="状态" WidthRequest="50" TextColor="Black"/>
+                </Frame>
+                <Frame BorderColor="Black">
+                    <Label Text="时间戳" WidthRequest="60" TextColor="Black"/>
+                </Frame>
+                <Frame BorderColor="Black">
+                    <Label Text="事件发起者" WidthRequest="110" TextColor="Black"/>
+                </Frame>
             </StackLayout>
             <RefreshView
                 Command="{Binding LoadCommand}"
@@ -19,14 +27,14 @@
                 <CollectionView x:Name="ActivitylogView" ItemsSource="{Binding Activitylogs}" ItemsLayout="VerticalGrid,1">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout x:DataType="model:Activitylog">
-                                <StackLayout Orientation="Horizontal" WidthRequest="120">
-                                    <Image Source="{Binding imgUrl}"></Image>
-                                    <Label Text="{Binding operationName}"/>
+                            <StackLayout x:DataType="model:Activitylog" Orientation="Horizontal" Spacing="2">                               
+                                    <StackLayout Orientation="Horizontal" WidthRequest="105">
+                                    <Image Source="{Binding imgUrl}" HeightRequest="15" ></Image>
+                                    <Label Text="{Binding operationName}" TextColor="Black"/>
                                 </StackLayout>
-                                <Label WidthRequest="50" Text="{Binding status}"/>
-                                <Label WidthRequest="60" Text="{Binding timestamp}"/>
-                                <Label WidthRequest="110" Text="{Binding caller}"/>
+                                <Label WidthRequest="70" Text="{Binding status}" TextColor="Black"/>
+                                <Label WidthRequest="75" Text="{Binding timestamp}" TextColor="Black"/>
+                                <Label WidthRequest="100" Text="{Binding caller}" TextColor="Black"/>
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
