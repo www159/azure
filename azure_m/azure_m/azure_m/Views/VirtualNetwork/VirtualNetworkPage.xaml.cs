@@ -10,7 +10,6 @@ namespace azure_m.Views
 {
     using Models;
     using Services;
-    using Models.ResponseModels;
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VirtualNetworkPage : ContentPage

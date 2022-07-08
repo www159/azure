@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
              xmlns:local="clr-namespace:azure_m.ViewModels"
+             xmlns:model="clr-namespace:azure_m.Models"
              x:Class="azure_m.Views.TargetViewPage">
     <ContentPage.BindingContext>
         <local:TargetViewModel/>
     </ContentPage.BindingContext>
    
     <ContentPage.Content>
-        <Grid>
+        <Grid x:DataType="local:TargetViewModel">
             <Grid >
             <!--上方导航栏-->
             <Label  HeightRequest="45" VerticalOptions="Start" HorizontalOptions="Start"  Margin="90,20,0,0">
@@ -22,14 +23,12 @@
             </Label>
             <Label Text="Microsoft"  HeightRequest="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="90,60,0,0" />
             <Image Source="dashboard2.png"  HeightRequest="60" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,20,0,0"/>
-            <Button x:Name="ChooseRange" Text="选择一个范围" HorizontalOptions="Start" VerticalOptions="Start" Margin="2,100" Clicked="ChooseTargetClicked" />
-                <Button x:Name="ShowType" Text="资源类型" HorizontalOptions="Start" VerticalOptions="Start" Margin="115,100,0,0"/>
+            <Button x:Name="ChooseRange" Text="{Binding ChosenResourceName}" HorizontalOptions="Start" VerticalOptions="Start" Margin="2,100" Clicked="ChooseTargetClicked" />
+                <Button x:Name="ShowType" Text="{Binding ChosenResourceType}" HorizontalOptions="Start" VerticalOptions="Start" Margin="115,100,0,0"/>
                 <Button x:Name="ValueChoose" Text="度量值"  HorizontalOptions="Start" VerticalOptions="Start" Margin="205,100,0,0" Clicked="ValueChooseClicked" />
                 <Button Text="条形图"  HorizontalOptions="Start" VerticalOptions="Start" Margin="300,100,0,0" />
                 <StackLayout x:Name="VirtualMachine" VerticalOptions="Start" HorizontalOptions="Start" Margin="205,150,0,0" IsVisible="false">
-                        <Button Text="ccr"  Clicked="CcrClicked"/>
-                        <Button Text="ccc"  Clicked="CccClicked"/>
-                        <Button Text="amb" Clicked="AmbClicked"/>
+                    <Button Text="ccr"  Clicked="CcrClicked"/>
                 </StackLayout>
                 <StackLayout x:Name="Disk" VerticalOptions="Start" HorizontalOptions="Start" Margin="205,150,0,0" IsVisible="false">
                     <Button Text="磁盘" />
@@ -78,89 +77,7 @@
                         </chart:ColumnSeries>
                     </chart:SfChart.Series>
                 </chart:SfChart>
-                <chart:SfChart VerticalOptions="Start"  Margin="0,320,0,0" x:Name="CccChart" IsVisible="false">
-
-
-                    <chart:SfChart.Legend>
-                        <chart:ChartLegend />
-                    </chart:SfChart.Legend>
-
-
-                    <chart:SfChart.ChartBehaviors>
-
-                        <chart:ChartZoomPanBehavior EnableSelectionZooming="True"/>
-
-                    </chart:SfChart.ChartBehaviors>
-
-                    <chart:SfChart.Title>
-                        <chart:ChartTitle Text="Chart"/>
-                    </chart:SfChart.Title>
-
-                    <chart:SfChart.PrimaryAxis>
-                        <chart:CategoryAxis>
-                            <chart:CategoryAxis.Title>
-                                <chart:ChartAxisTitle Text="Time"/>
-                            </chart:CategoryAxis.Title>
-                        </chart:CategoryAxis>
-                    </chart:SfChart.PrimaryAxis>
-
-                    <chart:SfChart.SecondaryAxis>
-                        <chart:NumericalAxis>
-                            <chart:NumericalAxis.Title>
-                                <chart:ChartAxisTitle Text="MiB"/>
-                            </chart:NumericalAxis.Title>
-                        </chart:NumericalAxis>
-                    </chart:SfChart.SecondaryAxis>
-
-                    <chart:SfChart.Series>
-                        <chart:ColumnSeries ItemsSource="{Binding Ccc}" Label="MiB" XBindingPath="TimeStamp" YBindingPath="Average" EnableTooltip="True" Color="LightBlue">
-                            <chart:ColumnSeries.DataMarker>
-                                <chart:ChartDataMarker/>
-                            </chart:ColumnSeries.DataMarker>
-                        </chart:ColumnSeries>
-                    </chart:SfChart.Series>
-                </chart:SfChart>
-                <chart:SfChart VerticalOptions="Start"  Margin="0,320,0,0" x:Name="AmbChart" IsVisible="false">
-
-                    <chart:SfChart.Legend>
-                        <chart:ChartLegend />
-                    </chart:SfChart.Legend>
-
-
-                    <chart:SfChart.ChartBehaviors>
-
-                        <chart:ChartZoomPanBehavior EnableSelectionZooming="True"/>
-
-                    </chart:SfChart.ChartBehaviors>
-
-                    <chart:SfChart.Title>
-                        <chart:ChartTitle Text="Chart"/>
-                    </chart:SfChart.Title>
-
-                    <chart:SfChart.PrimaryAxis>
-                        <chart:CategoryAxis>
-                            <chart:CategoryAxis.Title>
-                                <chart:ChartAxisTitle Text="Time"/>
-                            </chart:CategoryAxis.Title>
-                        </chart:CategoryAxis>
-                    </chart:SfChart.PrimaryAxis>
-
-                    <chart:SfChart.SecondaryAxis>
-                        <chart:NumericalAxis>
-                            <chart:NumericalAxis.Title>
-                                <chart:ChartAxisTitle Text="MiB"/>
-                            </chart:NumericalAxis.Title>
-                        </chart:NumericalAxis>
-                    </chart:SfChart.SecondaryAxis>
-
-                    <chart:SfChart.Series>
-                        <chart:ColumnSeries ItemsSource="{Binding Amb}" Label="MiB" XBindingPath="TimeStamp" YBindingPath="Average" EnableTooltip="True" Color="LightBlue">
-                            <chart:ColumnSeries.DataMarker>
-                                <chart:ChartDataMarker/>
-                            </chart:ColumnSeries.DataMarker>
-                        </chart:ColumnSeries>
-                    </chart:SfChart.Series>
-                </chart:SfChart>
+                
             </Grid> 
         <Frame x:Name="ChooseTarget" Margin="30,0,0,0" BorderColor="Black" IsVisible="false">
             <Grid x:Name="StaticGrid">
@@ -169,17 +86,30 @@
                 <Label Text="资源类型" FontSize="25" Margin="180,100,0,0"/>
                 <Button Text="应用" VerticalOptions="Start" HorizontalOptions="Start" Margin="0,700,0,0" />
                 <Button Text="取消" VerticalOptions="Start" HorizontalOptions="Start" Margin="100,700,0,0" Clicked="CancelTargetClicked"/>
-                    <CollectionView x:Name="Collection" ItemsSource="{Binding Sourses}" VerticalOptions="Start" HorizontalOptions="Start" WidthRequest="880" HeightRequest="500" Margin="0,130,0,0"  SelectionChanged="Collection_SelectionChanged" SelectionMode="Single">
+                    <CollectionView 
+                        x:Name="Collection" 
+                        ItemsSource="{Binding Resources}"
+                        VerticalOptions="Start" 
+                        HorizontalOptions="Start" 
+                        WidthRequest="880" 
+                        HeightRequest="500" 
+                        Margin="0,130,0,0"  
+                        SelectionChanged="Collection_SelectionChanged" 
+                        SelectionChangedCommand="{Binding selectedResource}"
+                        SelectionChangedCommandParameter="{Reference Collection}"
+                        SelectionMode="Single">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <Grid HeightRequest="40">
+                                <Grid 
+                                    HeightRequest="40"
+                                    x:DataType="model:Resource">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="40"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Label Text="{Binding Name}" FontSize="20" Grid.Column="1"/>
-                                    <Label Text="{Binding SourseType}" FontSize="20" Grid.Column="2"/>
+                                    <Label Text="{Binding name}" FontSize="20" Grid.Column="1"/>
+                                    <Label Text="{Binding type}" FontSize="20" Grid.Column="2"/>
                                 </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>

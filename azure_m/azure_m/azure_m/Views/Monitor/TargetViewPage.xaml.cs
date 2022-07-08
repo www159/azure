@@ -16,47 +16,12 @@ namespace azure_m.Views
     public partial class TargetViewPage : ContentPage
     {
 
-        int checkedIndex;
-
-        List<bool> checks;
-
-        StackLayout stackLayout;
         public TargetViewPage()
         {
             InitializeComponent();
             
-            //Resource();
         }
-        
-        //public void Resource()
-        //{
-            
-        //    stackLayout=new StackLayout 
-        //    {
-        //        Margin=new Thickness(0,140,0,0),
-        //        BackgroundColor=Color.Red,
-        //        VerticalOptions=LayoutOptions.Start,
-        //        HorizontalOptions=LayoutOptions.Start,
-        //        BindingContext=checks
-        //    };
-        //    StaticGrid.Children.Add(stackLayout);
-        //    int index = 0;
-        //    Sourses.ForEach(o =>
-        //    {
-        //        checks.Add(false);
-        //        var radioBtn = new RadioButton { GroupName = "Same", };
-        //        // grid = new Grid();
-        //        var RadioGrid = new Grid();
-        //        var label = new Label { Text = o.Name, Margin = new Thickness(20, 0, 0, 0) };
-        //        var TypeLabel = new Label { Text = o.SourseType, Margin = new Thickness(200, 0, 0, 0) };
-        //        //stackLayout.Children.Add(grid);
-        //        //grid.Children.Add(radioBtn);
 
-        //        radioBtn.Content = RadioGrid;
-        //        RadioGrid.Children.Add(label);
-        //        RadioGrid.Children.Add(TypeLabel);
-        //    });
-        //}
 
 
         private void ChooseTargetClicked(object sender, EventArgs e)
@@ -78,26 +43,22 @@ namespace azure_m.Views
 
         private void Collection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ChooseRange.Text = (Collection.SelectedItem as azure_m.ViewModels.Sourse).Name;
-            ShowType.Text= (Collection.SelectedItem as azure_m.ViewModels.Sourse).SourseType;
+            //ChooseRange.Text = (Collection.SelectedItem as azure_m.ViewModels.Sourse).Name;
+            //ShowType.Text= (Collection.SelectedItem as azure_m.ViewModels.Sourse).SourseType;
             ChooseTarget.IsVisible = false;
             if (ShowType.Text == "虚拟机")
             {
                 VirtualMachine.IsVisible = true;
                 Disk.IsVisible = false;
                 ValueChoose.Text = "度量值";
-                CccChart.IsVisible = false;
                 CcrChart.IsVisible = false;
-                AmbChart.IsVisible = false;
             }
             if (ShowType.Text == "磁盘")
             {
                 VirtualMachine.IsVisible = false;
                 Disk.IsVisible = true;
                 ValueChoose.Text = "度量值";
-                CccChart.IsVisible = false;
                 CcrChart.IsVisible = false;
-                AmbChart.IsVisible = false;
             }
         }
 
@@ -106,26 +67,7 @@ namespace azure_m.Views
             VirtualMachine.IsVisible= false;
             ValueChoose.Text = "Ccr";
             CcrChart.IsVisible = true;
-            CccChart.IsVisible = false;
-            AmbChart.IsVisible = false;
-        }
 
-        private void CccClicked(object sender, EventArgs e)
-        {
-            VirtualMachine.IsVisible = false;
-            ValueChoose.Text = "Ccc";
-            CccChart.IsVisible = true;
-            CcrChart.IsVisible = false;
-            AmbChart.IsVisible = false;
-        }
-
-        private void AmbClicked(object sender, EventArgs e)
-        {
-            VirtualMachine.IsVisible = false;
-            ValueChoose.Text = "Amb";
-            AmbChart.IsVisible = true;
-            CccChart.IsVisible=false;
-            CcrChart.IsVisible=false;
         }
 
         private void ValueChooseClicked(object sender,EventArgs e)

@@ -5,58 +5,80 @@ using System.Text;
 using azure_m.Services;
 using Xamarin.Forms;
 using azure_m.Views;
+using System.Collections.ObjectModel;
 
 namespace azure_m.ViewModels
 {
+    using Models;
+
+    using Models.RequestModels.MetricNamespace.List;
+    using Models.RequestModels.Metrics.List;
+
     public class TargetViewModel : BaseViewModel
     {
-        public List<Sourse> Sourses { get; set; }
+        public ObservableCollection<Resource> Resources { get; set; }
 
-        public string targetName { get; set; }
+        private MetricOperations operations = DependencyService.Get<MetricOperations>();
+        private ResourceOperations resourceOperations = DependencyService.Get<ResourceOperations>();
 
-        public static int _checkedIndex { get; set; }
+        string chosenResourceType;
+
+        string chosenResourceName;
+
+        public string ChosenResourceType
+        {
+            get => chosenResourceType;
+            set => SetProperty(ref chosenResourceType, value);
+        }
+
+        public string ChosenResourceName
+        {
+            get => chosenResourceName;
+            set => SetProperty(ref chosenResourceName, value);
+        }
+
+        public Command<CollectionView> selectedResource { get; }
 
         
         
         public List<Models.MockModels.Data> Ccr { get; set; }
         public List<Models.MockModels.Data> Ccc { get; set; }
         public List<Models.MockModels.Data> Amb { get; set; }
+
+        async void LoadReSource()
+        {
+            await resourceOperations.refreshResourceAsync();
+
+            Resources.Clear();
+            
+            foreach(var resource in resourceOperations.resources)
+            {
+                Resources.Add(resource);
+            }
+        }
         public TargetViewModel()
         {
-            var ccr = Utils.readMock<azure_m.Models.MockModels.Index>(azure_m.Mocks.Mocks.ccr);
-            var ccc = Utils.readMock<azure_m.Models.MockModels.Index>(azure_m.Mocks.Mocks.ccc);
-            var amb = Utils.readMock<azure_m.Models.MockModels.Index>(azure_m.Mocks.Mocks.amb);
-            ccr.Data.ForEach(o =>
-            {
-                o.Average = o.Average / (1024 * 1024);
-            });
-            ccc.Data.ForEach(o =>
-            {
-                o.Average = o.Average / (1024 * 1024);
-            });
-            amb.Data.ForEach(o =>
-            {                    
-                o.Average = o.Average / (1024 * 1024);
-            });
-            Ccr = ccr.Data;
-            Ccc = ccc.Data;
-            Amb = amb.Data;
+            Resources = new ObservableCollection<Resource>();
 
-            Sourses = new List<Sourse>()
+            ChosenResourceName = "请选择一个范围";
+
+            ChosenResourceType = "资源类型";
+
+            LoadReSource();
+
+            selectedResource = new Command<CollectionView>(async (sender) =>
             {
-               new Sourse{Name="Vm",SourseType="虚拟机"},
-               new Sourse{Name="Disc",SourseType="磁盘"},
-            };            
-    }
+                var resource = sender.SelectedItem as Resource;
+                ChosenResourceName = resource.name;
+                ChosenResourceType = resource.type;
+                // API
+
+            });
+        }
        
 
       
 
     }
-    public class Sourse
-    {
-        public string Name { get; set; }
-        public string SourseType { get; set; }
 
-    }
 }
