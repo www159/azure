@@ -3,9 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="azure_m.Views.VMDetailPage"
              xmlns:local="clr-namespace:azure_m.ViewModels"
-             x:DataType="local:VMDetailViewModel">
-             Title="{Binding VMName}"
-             x:Class="azure_m.Views.VMDetailPage">
+             x:DataType="local:VMDetailViewModel"
+             Title="{Binding VMName}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="itemLabel" TargetType="Label">
@@ -14,6 +13,7 @@
                 <Setter Property="Margin" Value="2,0,0,0"/>
                 <Setter Property="TextColor" Value="Black"/>
                 <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="Margin" Value="5,0,5,0"/>
             </Style>
 
             <Style x:Key="ItemPicker" TargetType="Picker">
@@ -71,10 +71,8 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding VMName, StringFormat='虚拟机名称:{0}'}" />
-            <Label Text="{Binding VMResGrpName, StringFormat='资源组名称:{0}'}" />
             <!--#region 操作栏-->
-            <ScrollView Orientation="Horizontal">
+            <ScrollView Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="5,10,5,0">
                 <StackLayout Orientation="Horizontal">
                     <Button Text="开始" BackgroundColor="LightGray"/>
                     <Button Text="重新启动" BackgroundColor="#1e6ede"/>
@@ -85,11 +83,11 @@
             <!--#endregion-->
             <!--#region 显示栏-->
             <ScrollView>
-                <Grid ColumnDefinitions="*,2*" RowDefinitions="1" >
+                <Grid ColumnDefinitions="*,2*" RowDefinitions="1,50,50,50,50,50,50,50,50" >
 
                     <Line Grid.Row="1" Grid.ColumnSpan="2" VerticalOptions="Start" Style="{StaticResource ThinBorder}"/>
                     <Label Grid.Row="1" Style="{StaticResource itemLabel}" Text="资源组"/>
-                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding RGName}" Style="{StaticResource itemLabel}"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding VMResGrpName}" Style="{StaticResource itemLabel}"/>
                     <Line Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ThinBorder}"/>
                     <Label Grid.Row="2" Text="位置" Style="{StaticResource itemLabel}"/>
                     <Label Grid.Row="2" Grid.Column="1" Text="{Binding Location}" Style="{StaticResource itemLabel}"/>
@@ -101,10 +99,11 @@
                     <Label Grid.Row="4"  Grid.Column="1" Text="{Binding VMSize}" Style="{StaticResource itemLabel}"/>
                     <Line Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource ThinBorder}"/>
                     <Label Grid.Row="5" Text="虚拟网络/子网" Style="{StaticResource itemLabel}"/>
-                    <Label x:Name="vnlbl"  Grid.Row="5"  Grid.Column="1"  Style="{StaticResource itemLabel}"/>
+                    <Label x:Name="vnlbl" Text="20.210.244.174" Grid.Row="5"  Grid.Column="1"  Style="{StaticResource itemLabel}"/>
                     <Line Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource ThinBorder}"/>
                     <Label Grid.Row="6" Text="公共IP" Style="{StaticResource itemLabel}"/>
                     <Label Grid.Row="6"  Grid.Column="1" Text="{Binding VMSize}" Style="{StaticResource itemLabel}"/>
+                    <Line Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource ThinBorder}"/>
                     <!--#endregion-->
                     
                 </Grid>

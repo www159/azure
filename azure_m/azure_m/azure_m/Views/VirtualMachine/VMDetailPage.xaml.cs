@@ -9,8 +9,6 @@ using Xamarin.Forms.Xaml;
 
 namespace azure_m.Views
 {
-using azure_m.Models.RequestModels.VM.Get;
-    using azure_m.ViewModels;
     using ViewModels;
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -18,11 +16,11 @@ using azure_m.Models.RequestModels.VM.Get;
     {
 
         private VMDetailViewModel viewModel;
-        public VMDetailPage(GetVMRequest vMRequest)
+        public VMDetailPage()
         {
-            BindingContext = viewModel = new VMDetailViewModel(vMRequest);
+            BindingContext = viewModel = new VMDetailViewModel();
             InitializeComponent();
-            vnlbl.Text = (viewModel)?.RGName + "-vnet/default";
+            //vnlbl.Text = (viewModel)?.RGName + "-vnet/default";
         }
     }
 }

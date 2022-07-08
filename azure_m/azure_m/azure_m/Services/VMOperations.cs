@@ -92,7 +92,8 @@ namespace azure_m.Services
             var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, getVMRequest.uri.resourceGroupName, getVMRequest.uri.vmName);
             var url = Utils.withApiVersion(
                     new Url(baseStrUrl),
-                    apiVersion.get);
+                    apiVersion.get)
+                .WithOAuthBearerToken(QueryInfo.token);
 
             VirtualMachine res = null;
             try
