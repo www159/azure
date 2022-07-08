@@ -281,18 +281,18 @@
 
             }
 
-            public class OSDisk: Disk {
+            //public class OSDisk: Disk {
 
-                // Type:  OperatingSystemTypes
-                // Value: Linux, Windows
-                public string osType { get; set; }
+            //    // Type:  OperatingSystemTypes
+            //    // Value: Linux, Windows
+            //    public string osType { get; set; }
 
-                /*
+            //    /*
                 
-                public DiskEncryptionSettings encryptionSettings
+            //    public DiskEncryptionSettings encryptionSettings
 
-                */
-            }
+            //    */
+            //}
 
             public class DiskDetachOptionTypes {
 
@@ -314,27 +314,27 @@
                 public bool? toBeDetach { get; set; }
             }
 
-            public class ImageReference {
+            //public class ImageReference {
 
-                public string communityGalleryImageId { get; set; }
+            //    public string communityGalleryImageId { get; set; }
 
-                public string exactVersion { get; set; }
+            //    public string exactVersion { get; set; }
 
-                public string offer { get; set; }
+            //    public string offer { get; set; }
 
-                public string publisher { get; set; }
+            //    public string publisher { get; set; }
 
-                public string sharedGalleryImageId { get; set; }
+            //    public string sharedGalleryImageId { get; set; }
 
-                public string sku { get; set; }
+            //    public string sku { get; set; }
 
-                public string version { get; set; }
+            //    public string version { get; set; }
 
-                public override string ToString()
-                {
-                    return offer + sku;
-                }
-            }
+            //    public override string ToString()
+            //    {
+            //        return offer + sku;
+            //    }
+            //}
 
             public class StorageProfile {
 

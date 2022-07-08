@@ -3,6 +3,7 @@ using Flurl.Http;
 using System.Threading.Tasks;
 using Flurl;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace azure_m.Services
 {
@@ -16,6 +17,8 @@ namespace azure_m.Services
     using Models.RequestModels.VM.Start;
 
     using Models.ResponseModels;
+    using System.Collections.Generic;
+
     public class VMOperations
     {
         private static class apiVersion {
@@ -45,6 +48,22 @@ namespace azure_m.Services
         private string baseFormatUrlWithoutVMname = $"{QueryInfo.baseStrUrl}/resourceGroups/{{0}}/providers/Microsoft.Compute/virtualMachines";
 
         private string baseFormatUrlWithoutVMnameOrResourceGroup= $"{QueryInfo.baseStrUrl}/providers/Microsoft.Compute/virtualMachines";
+
+        public List<VirtualMachine> virtualMachines { get; set; }
+
+        public async Task<VirtualMachine> getVMsync(string vmName, string vmresGrpName)
+        {
+            VirtualMachine vm = await queryGetVM(new GetVMRequest
+            {
+                uri = new GetVMUri
+                {
+                    vmName = vmName,
+                    resourceGroupName = vmresGrpName
+                }
+            });
+            return vm;
+        }
+
         public async Task<int> queryCreateOrUpdateVM(CreateOrUpdateVMRequest createOrUpdateVMRequest)
         {
             var baseStrUrl = string.Format(
@@ -68,21 +87,25 @@ namespace azure_m.Services
             return res.StatusCode;
         }//创建/更新虚拟机的请求
 
-        public async Task queryGetVM(GetVMRequest getVMRequest)
+        public async Task<VirtualMachine> queryGetVM(GetVMRequest getVMRequest)
         {
             var baseStrUrl = string.Format(baseFormatUrlWithResourceGroup, getVMRequest.uri.resourceGroupName, getVMRequest.uri.vmName);
             var url = Utils.withApiVersion(
                     new Url(baseStrUrl),
                     apiVersion.get);
+
+            VirtualMachine res = null;
             try
             {
-                var res = await url
+                res = await url
                     .GetJsonAsync<VirtualMachineResponse>();
             }
             catch(Exception ex)
             {
                 Utils.error(ex);
             }
+
+            return res;
         }
 
         public async Task queryDeleteVM(DeleteVMRequest deleteVMRequest)
@@ -126,12 +149,14 @@ namespace azure_m.Services
 
         public async Task<ListVirtualMachineResponse> queryListAllVM()
         {
-            var url = Utils.withApiVersion(
-                new Url(baseFormatUrlWithoutVMnameOrResourceGroup),
-                apiVersion.list);
+            var url = Utils.baseStrUrlFull(
+                apiVersion: apiVersion.listAll,
+                type: ResourceType.virtualMachines,
+                _namespace: QueryInfo.resourceNamespace[ResourceType.virtualMachines]);
             ListVirtualMachineResponse res = null;
             try
             {
+                var str = await url.GetStringAsync();
                res = await url
                     .GetJsonAsync<ListVirtualMachineResponse>();
 
@@ -140,6 +165,7 @@ namespace azure_m.Services
             {
                 Utils.error(ex);
             }
+            virtualMachines = Utils.arr2List(res.value);
             return res;
 
         }//列出该订阅的所有虚拟机

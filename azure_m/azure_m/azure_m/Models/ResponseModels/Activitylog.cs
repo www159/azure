@@ -4,25 +4,22 @@ using System.Text;
 
 namespace azure_m.Models.ResponseModels
 {
-    public class ActivitylogResponse
-    {
-        public EventData[] value;
-        public string nextLink;
-    }
+    public class ListActivitylogResponse: ListResponse<EventData> { }
+
     public class EventData
     {
-        public string caller;
+        public string caller { get; set; }
 
-        public LocalizableString operationName;
+        public LocalizableString operationName { get; set; }
 
-        public LocalizableString status;
+        public LocalizableString status { get; set; }
 
-        public string eventTimestamp;
+        public string eventTimestamp { get; set; }
     }
     public class LocalizableString
     {
-        public string localizedValue;
+        public string localizedValue { get; set; }
 
-        public string value;
+        public string value { get; set; }
     }
 }

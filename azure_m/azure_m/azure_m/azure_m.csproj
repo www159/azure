@@ -54,7 +54,7 @@
     <EmbeddedResource Update="Views\SubscribePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\TargetViewPage.xaml">
+    <EmbeddedResource Update="Views\Monitor\TargetViewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\VirtualMachine\VirtualMachinePage.xaml">

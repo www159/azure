@@ -2,10 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:azure_m.ViewModels"
+             xmlns:model="clr-namespace:azure_m.Models"
              x:Class="azure_m.Views.VirtualMachinePage">
-    <ContentPage.BindingContext>
-        <local:VirtualMachineViewModel/>
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
             <Label Text="虚拟机" FontSize="35" Margin="20"/>
@@ -26,10 +24,34 @@
             <RefreshView
                 x:DataType="local:VirtualMachineViewModel"
                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+                Command="{Binding LoadVMsCommand}"
+                Margin="20,260,0,0" 
                 >
-                <CollectionView x:Name="VirtualMachineList" ItemsSource="{Binding VirtualMachines}" Margin="20,260,0,0" SelectionChanged="VirtualMachineList_SelectionChanged" SelectionMode="Single">
+                <CollectionView 
+                    x:Name="vmCollection"
+                    ItemsSource="{Binding VirtualMachines}" 
+                    SelectionMode="Single"
+                    SelectionChangedCommand="{Binding VMSelected}"
+                    SelectionChangedCommandParameter="{Reference vmCollection}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
+                            <Grid  
+                                BackgroundColor="Wheat" 
+                                VerticalOptions="Start" 
+                                HorizontalOptions="Start"
+                                x:DataType="model:VirtualMachine">
+                                <!--<Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        NumberOfTapsRequired="1"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:VMDetailViewModel}}, Path=VMTapped}" 
+                                        CommandParameter="{Binding .}">
+                                        
+                                    </TapGestureRecognizer>
+                                </Grid.GestureRecognizers>-->
+                                <CheckBox VerticalOptions="Start" HorizontalOptions="Start"/>
+                                <Label Text="{Binding name}" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,5,0,0"/>
+                                <Label Text="{Binding resourceGroup}" VerticalOptions="Start" HorizontalOptions="Start" Margin="140,5,0,0"/>
+                                <Label Text="{Binding osDiskSize}" Margin="260,5,0,0" />
                             <Grid VerticalOptions="Start" HorizontalOptions="Start">
                                 <CheckBox VerticalOptions="Start" HorizontalOptions="Start" />
                                 <!--<Label Text="{Binding name}" VerticalOptions="Start" HorizontalOptions="Start" Margin="40,5,0,0"/>

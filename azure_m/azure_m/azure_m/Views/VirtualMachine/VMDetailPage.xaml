@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="azure_m.Views.VMDetailPage"
+             xmlns:local="clr-namespace:azure_m.ViewModels"
+             x:DataType="local:VMDetailViewModel">
              Title="{Binding VMName}"
              x:Class="azure_m.Views.VMDetailPage">
     <ContentPage.Resources>
@@ -68,6 +71,8 @@
     
     <ContentPage.Content>
         <StackLayout>
+            <Label Text="{Binding VMName, StringFormat='虚拟机名称:{0}'}" />
+            <Label Text="{Binding VMResGrpName, StringFormat='资源组名称:{0}'}" />
             <!--#region 操作栏-->
             <ScrollView Orientation="Horizontal">
                 <StackLayout Orientation="Horizontal">

@@ -9,23 +9,35 @@ using Xamarin.Forms.Xaml;
 
 namespace azure_m.Views
 {
+    using ViewModels;
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VirtualMachinePage : ContentPage
     {
+
+        private VirtualMachineViewModel vmViewModel;
+
         public VirtualMachinePage()
         {
+            BindingContext = vmViewModel = new VirtualMachineViewModel();
             InitializeComponent();
         }
 
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            VirtualMachineList.SelectedItem = null;
+  
         }
 
         private void VirtualMachineList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //DetailesFrame.IsVisible = true;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            vmViewModel.OnAppearing();
+
         }
     }
 }

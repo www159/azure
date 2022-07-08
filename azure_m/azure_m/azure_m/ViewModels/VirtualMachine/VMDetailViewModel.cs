@@ -10,7 +10,12 @@ using azure_m.Models.RequestModels.VM.Get;
 
 namespace azure_m.ViewModels
 {
-    public class VMDetailViewModel: BaseViewModel
+    using Models.ResponseModels;
+    using Xamarin.Forms;
+
+    [QueryProperty(nameof(VMResGrpName), nameof(VMResGrpName))]
+    [QueryProperty(nameof(VMName), nameof(VMName))]
+    public class VMDetailViewModel : BaseViewModel
     {
         #region 引用类的重命名
         public class ImageReference:Models.RequestModels.VM.CreateOrUpdate.ImageReference{}
@@ -76,22 +81,17 @@ namespace azure_m.ViewModels
             LoadCommand = new Command(async () =>  await Load(vMRequest));
         }
 
-        async void LoadIP()
-        {
-            PublicIPAdressOperations ops = new PublicIPAdressOperations();
-        }
 
-        public Command LoadCommand { get; set; }
+        public static Command LoadCommand { get; set; }
         async Task Load(GetVMRequest vMRequest)
         {
             try{
-                await VMOperation.queryGetVM(vMRequest);
-                
-                VMName = qvm.name;
-                RGName = Regex.Match(qvm.id, $"(?<=(resourceGroups/))[.\\s\\S]*?(?=(/))").Value;
-                Location = qvm.location;
-                Image = qvm.properties.storageProfile.imageReference as ImageReference;
-                VMSize = qvm.properties.hardwareProfile.vmSize;
+                VirtualMachine vm =  await VMOperation.queryGetVM(vMRequest);
+                VMName = vm.name;
+                RGName = Regex.Match(vm.id, $"(?<=(resourceGroups/))[.\\s\\S]*?(?=(/))").Value;
+                Location = vm.location;
+                Image = vm.properties.storageProfile.imageReference as ImageReference;
+                VMSize = vm.properties.hardwareProfile.vmSize;
                 //PublicIP = ?
             }
             catch(Exception){

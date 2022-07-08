@@ -32,19 +32,32 @@ namespace azure_m.ViewModels
 
             LoadCommand = new Command(async () => await ExecuteLoadResourcesCommand());
         }
+
+        public void OnAppearing()
+        {
+            IsBusy = true;
+        }
         async Task ExecuteLoadResourcesCommand()
         {
+            IsBusy = true;
             try
             {
                 Activitylogs.Clear();
                 await activitylogOperations.getActivitylogs();
                 var activitylogs = activitylogOperations.Activitylogs;
-                foreach (var activitylog in Activitylogs)
+                foreach (var activitylog in activitylogs)
                 {
                     activitylog.imgUrl = ImgMap[activitylog.stautsValue];
                     Activitylogs.Add(activitylog);
                 }
             }
-            catch (Exception ex) { Debug.WriteLine(ex); }        }
+            catch (Exception ex) { 
+                Debug.WriteLine(ex);
+            } 
+            finally
+            {
+                IsBusy = false;
+            }
+        }
     }
 }

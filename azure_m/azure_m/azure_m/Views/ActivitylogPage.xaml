@@ -13,21 +13,25 @@
                 <Label Text="时间戳" BackgroundColor="Blue" WidthRequest="60"/>
                 <Label Text="事件发起者" BackgroundColor="Red" WidthRequest="110"/>
             </StackLayout>
-            <CollectionView x:Name="ActivitylogView" ItemsSource="{Binding Activitylogs}" ItemsLayout="VerticalGrid,1">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout x:DataType="model:Activitylog">
-                            <StackLayout Orientation="Horizontal" WidthRequest="120">
-                                <Image Source="{Binding imgUrl}"></Image>
-                                <Label Text="{Binding operationName}"/>
+            <RefreshView
+                Command="{Binding LoadCommand}"
+                IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                <CollectionView x:Name="ActivitylogView" ItemsSource="{Binding Activitylogs}" ItemsLayout="VerticalGrid,1">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout x:DataType="model:Activitylog">
+                                <StackLayout Orientation="Horizontal" WidthRequest="120">
+                                    <Image Source="{Binding imgUrl}"></Image>
+                                    <Label Text="{Binding operationName}"/>
+                                </StackLayout>
+                                <Label WidthRequest="50" Text="{Binding status}"/>
+                                <Label WidthRequest="60" Text="{Binding timestamp}"/>
+                                <Label WidthRequest="110" Text="{Binding caller}"/>
                             </StackLayout>
-                            <Label WidthRequest="50" Text="{Binding status}"/>
-                            <Label WidthRequest="60" Text="{Binding timestamp}"/>
-                            <Label WidthRequest="110" Text="{Binding caller}"/>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
         </StackLayout>
   </ContentPage.Content>
 </ContentPage>

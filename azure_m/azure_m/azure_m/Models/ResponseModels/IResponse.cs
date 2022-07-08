@@ -10,4 +10,9 @@ namespace azure_m.Models.ResponseModels
 
         public T[] value { get; set; }
     }
+
+    public class ListNResponse<T>
+    {
+        public T[] value { get; set; }
+    }
 }

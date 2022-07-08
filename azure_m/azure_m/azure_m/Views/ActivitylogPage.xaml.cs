@@ -20,5 +20,11 @@ namespace azure_m.Views
             BindingContext = activitylogViewModel = new ActivitylogViewModel();
 
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            activitylogViewModel.OnAppearing();
+        }
     }
 }
